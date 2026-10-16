@@ -59,6 +59,10 @@
      data-rozdil — id розділу саду (тоді посилання з’явиться і на його сторінці).
      Без data-href конспект показується як «незабаром».
 
+  3б. ГЕНЕРАТОР ШПАРГАЛОК — вкладка «Шпаргалки» (#/shpargalky).
+     Там вставляєте текст і формули, бачите картки в стилі саду,
+     друкуєте або завантажуєте окремий HTML. Підказка з розміткою — поруч.
+
   4. ФОРМУЛИ пишуться в LaTeX:
        у рядку        \( … \)  або  $ … $
        окремим рядком \[ … \]  або  $$ … $$
@@ -336,6 +340,29 @@ mark:has(.katex-display){display:block;padding:.25em .4em}
 #spysok-zadach .element{margin:0}
 .porozhn p{margin:0 0 .6rem}
 
+/* генератор шпаргалок */
+.shp-redaktor{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:1.15rem;align-items:start}
+.shp-redaktor .vikno{margin:0 0 1.15rem}
+.shp-redaktor .tilo{padding:1rem 1.15rem 1.1rem}
+.shp-tekst{display:block;width:100%;min-height:26rem;resize:vertical;padding:.9rem 1rem;border-radius:10px;border:1px solid rgba(42,35,37,.35);background:#fffdfb;color:var(--chornylo);font:.9rem/1.55 ui-monospace,"SF Mono",Menlo,Consolas,monospace;tab-size:2}
+.shp-tekst:focus{outline:2px solid var(--lis-500);outline-offset:1px}
+.shp-knopky{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.8rem}
+.shp-polia label{display:grid;gap:.25rem;font-size:.88rem;margin-bottom:.7rem}
+.shp-polia input[type=text],.shp-polia select{font:inherit;font-size:.95rem;padding:.45rem .6rem;border-radius:8px;border:1px solid rgba(42,35,37,.35);background:#fffdfb;color:var(--chornylo)}
+.shp-polia .shp-prapor{display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem}
+.shp-polia input[type=checkbox]{width:1.05rem;height:1.05rem;accent-color:var(--lis-500)}
+.shp-dovidka > summary{cursor:pointer;padding:.7rem 1rem;font-weight:600;font-size:.9rem}
+.shp-dovidka .tilo{padding-top:0}
+.shp-dovidka table{width:100%;border-collapse:collapse;font-size:.84rem}
+.shp-dovidka td{padding:.3rem .3rem;border-top:1px solid rgba(42,35,37,.14);vertical-align:top}
+.shp-dovidka code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;background:rgba(42,35,37,.07);padding:.05rem .3rem;border-radius:4px;white-space:nowrap}
+.shp-mitka-perehliadu{margin:1.4rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid rgba(244,239,225,.25);font-size:.85rem;opacity:.85}
+.shp-perehliad{padding-bottom:clamp(3rem,8vw,6rem)}
+/* ключове в перегляді не ховається кнопкою з розділів */
+.skhovaty .shp-arkush:not(.z-propuskamy) mark{background:var(--rozhevyi-2);color:inherit;cursor:auto;user-select:auto}
+.skhovaty .shp-arkush:not(.z-propuskamy) mark *{visibility:visible}
+@media (max-width:860px){.shp-redaktor{grid-template-columns:1fr}.shp-tekst{min-height:18rem}}
+
 /* конспекти */
 .spysok-rozdiliv .konspekt-plytka{display:flex;flex-direction:column;align-items:flex-start;text-align:left;text-decoration:none;padding:1.1rem 1.25rem 1.2rem}
 .konspekt-plytka > span{display:block}
@@ -392,6 +419,10 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
 
 /* ─────────── друк: будь-яка сторінка саду ─────────── */
 @media print{
+  .shp-redaktor,.shp-shapka-storinky,.shp-mitka-perehliadu{display:none!important}
+  body:has(#shpargalky:not([hidden])) .druk-pidpys{display:none!important}
+  .shp-perehliad{padding:0}
+  .skhovaty .shp-arkush:not(.z-propuskamy):not(.kolir) mark{background:#eee}
   @page{margin:12mm}
   .tlo,.verkh,.nyz,.panel,.dii,.nazad,.spovishchennia,.filtry,.planeta,.afisha-niz,.kontakty,.zadacha summary{display:none!important}
   body{background:#fff;color:#000;display:block;font-size:10.5pt}
@@ -511,6 +542,7 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
       <a href="#/astronomiya">Астрономія</a>
       <a href="#/zadachi">Задачі</a>
       <a href="#/konspekty">Конспекти</a>
+      <a href="#/shpargalky">Шпаргалки</a>
       <button class="druk-knopka" type="button" data-diya="druk" title="Надрукувати цю сторінку">Друк</button>
     </nav>
   </div>
@@ -603,6 +635,89 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
 </div>
 
 
+<!-- ═══════════ ГЕНЕРАТОР ШПАРГАЛОК ═══════════ -->
+<section id="shpargalky" data-storinka data-nazva="Генератор шпаргалок">
+  <div class="obgortka rozdil-shapka shp-shapka-storinky">
+    <a class="nazad" href="#/">← На головну</a>
+    <span class="mitka">Встав текст і формули — отримай картки в стилі саду</span>
+    <h1>Шпаргалки</h1>
+    <p class="propys">виростити свою</p>
+  </div>
+
+  <div class="obgortka">
+    <div class="shp-redaktor">
+      <div class="vikno shavlia">
+        <div class="shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Текст шпаргалки</span></div>
+        <div class="tilo">
+          <label class="lyshe-chytachu" for="shp-tekst">Текст шпаргалки</label>
+          <textarea id="shp-tekst" class="shp-tekst" spellcheck="false" placeholder="## Назва картки&#10;~ рукописний підпис&#10;Текст із ==ключовим== і формулою $v = s/t$&#10;$$ E = mc^2 $$"></textarea>
+          <div class="shp-knopky">
+            <button class="knopka" type="button" id="shp-druk">Надрукувати</button>
+            <button class="knopka" type="button" id="shp-html">Завантажити HTML</button>
+            <button class="knopka" type="button" id="shp-pryklad">Вставити приклад</button>
+            <button class="knopka" type="button" id="shp-ochystyty">Очистити</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="shp-bichna">
+        <div class="vikno">
+          <div class="shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Налаштування</span></div>
+          <div class="tilo shp-polia">
+            <label>Назва шпаргалки<input id="shp-nazva" type="text" placeholder="Наприклад: Механіка"></label>
+            <label>Рукописний підпис<input id="shp-pidpys" type="text" placeholder="Наприклад: до контрольної"></label>
+            <label>Колір карток
+              <select id="shp-kolir">
+                <option value="pocherhovo">почергово</option>
+                <option value="rozh">рожеві</option>
+                <option value="sh">шавлієві</option>
+              </select></label>
+            <label>Колонок у друці
+              <select id="shp-kolonky">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+              </select></label>
+            <label>Розмір тексту
+              <select id="shp-rozmir">
+                <option value="dribnyi">дрібний</option>
+                <option value="zvychainyi" selected>звичайний</option>
+                <option value="velykyi">великий</option>
+              </select></label>
+            <label class="shp-prapor"><input id="shp-kolorovyi" type="checkbox"> Кольоровий друк</label>
+            <label class="shp-prapor"><input id="shp-propusky" type="checkbox"> Ключове — як пропуски (для самоперевірки)</label>
+          </div>
+        </div>
+
+        <details class="vikno shp-dovidka" open>
+          <summary>Як писати</summary>
+          <div class="tilo">
+            <table>
+              <tbody>
+                <tr><td><code>## Назва</code></td><td>нова картка</td></tr>
+                <tr><td><code>~ підпис</code></td><td>рукописний рядок під назвою</td></tr>
+                <tr><td><code>==ключове==</code></td><td>виділення</td></tr>
+                <tr><td><code>**жирний**</code></td><td>жирний текст</td></tr>
+                <tr><td><code>$…$</code> <code>\(…\)</code></td><td>формула в рядку</td></tr>
+                <tr><td><code>$$…$$</code> <code>\[…\]</code></td><td>формула окремим рядком</td></tr>
+                <tr><td><code>- пункт</code> <code>1. пункт</code></td><td>списки</td></tr>
+                <tr><td><code>| a | b |</code></td><td>таблиця</td></tr>
+                <tr><td><code>&gt; примітка</code></td><td>дрібний текст</td></tr>
+                <tr><td><code># Назва</code></td><td>назва всієї шпаргалки</td></tr>
+              </tbody>
+            </table>
+            <p class="prymitka">Порожній рядок — новий абзац. Текст зберігається в цьому браузері.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <p class="shp-mitka-perehliadu">Попередній перегляд</p>
+    <div id="shp-perehliad" class="shp-perehliad"></div>
+  </div>
+</section>
+
+
 <!-- ═══════════ КОНСПЕКТИ ═══════════ -->
 <section id="konspekty" data-storinka data-nazva="Конспекти">
   <div class="obgortka rozdil-shapka">
@@ -628,9 +743,8 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
       <p>Система відліку, переміщення, швидкість і прискорення, графіки руху.</p>
     </article>
 
-
     <article class="konspekt" data-predmet="Фізика" data-rozdil="elektryka"
-           data-href="konspekty/fizyka/postiinyi-strum.html">
+             data-href="konspekty/fizyka/postiinyi-strum.html">
       <h3>Постійний струм</h3>
       <p class="propys">від Ома до Кірхгофа</p>
       <p>Сила струму, напруга, опір, з’єднання провідників, робота й потужність.</p>
@@ -1948,6 +2062,300 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
       e.preventDefault(); vidkryty(e.target);
     }
     if (e.key === '/' && document.activeElement !== q && !$('#zadachi').hidden) { e.preventDefault(); q.focus(); }
+  });
+
+  /* ── 13а. Генератор шпаргалок ── */
+  var SHP_CSS = [
+    '.shp-arkush{--rozhevyi:#fbe6ee;--rozhevyi-2:#f1cfdc;--shavlia:#e9eddb;--shavlia-2:#d5ddbb;--chornylo:#2a2325;--lis-500:#4b5b37;--vershky:#f4efe1;color:var(--vershky);font-family:"Onest","Segoe UI",system-ui,sans-serif;font-size:1rem;line-height:1.5}',
+    '.shp-arkush.m-dribnyi{font-size:.86rem}.shp-arkush.m-velykyi{font-size:1.12rem}',
+    '.shp-arkush .shp-zag{margin:0 0 1.2rem}',
+    '.shp-arkush .shp-zag h1{margin:0;font-family:"Sofia Sans Extra Condensed","Arial Narrow",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(3rem,10vw,6.5rem);line-height:.85;overflow-wrap:break-word}',
+    '.shp-arkush .shp-zag .shp-propys{margin:-.12em 0 0 .25em;font-family:"Great Vibes",cursive;font-size:clamp(1.9rem,5.5vw,3.6rem);line-height:1}',
+    '.shp-arkush .shp-avtor{margin:.5rem 0 0;font-size:.78em;opacity:.8}',
+    '.shp-arkush .shp-kartky{columns:300px;column-gap:1rem}',
+    '.shp-arkush .shp-kartka{break-inside:avoid;page-break-inside:avoid;display:block;margin:0 0 1rem;background:var(--rozhevyi);color:var(--chornylo);border-radius:16px;box-shadow:0 22px 44px -24px rgba(10,16,8,.85),0 2px 0 rgba(255,255,255,.5) inset}',
+    '.shp-arkush .shp-kartka.sh{background:var(--shavlia)}',
+    '.shp-arkush .shp-k-shapka{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.55rem .9rem .45rem;border-bottom:1px solid rgba(42,35,37,.14);font-size:.72em}',
+    '.shp-arkush .shp-k-shapka span:last-child{opacity:.7}',
+    '.shp-arkush .shp-znaky{display:inline-flex;align-items:center;gap:.3em;font-size:9px}',
+    '.shp-arkush .shp-znaky i{display:block;width:1em;height:1em;border-radius:50%;border:.14em solid currentColor}',
+    '.shp-arkush .shp-znaky i:first-child{background:currentColor}.shp-arkush .shp-znaky i:last-child{width:3.4em}',
+    '.shp-arkush .shp-k-tilo{padding:.85rem 1rem .95rem}',
+    '.shp-arkush .shp-k-tilo>:last-child{margin-bottom:0}',
+    '.shp-arkush .shp-k-tilo h3{margin:0 0 .4rem;font-family:"Sofia Sans Extra Condensed","Arial Narrow",sans-serif;font-weight:800;text-transform:uppercase;font-size:2em;line-height:.92;overflow-wrap:break-word;hyphens:auto}',
+    '.shp-arkush .shp-k-tilo .shp-propys{margin:-.3rem 0 .5rem;font-family:"Great Vibes",cursive;font-size:1.65em;line-height:1}',
+    '.shp-arkush .shp-k-tilo p,.shp-arkush .shp-k-tilo ul,.shp-arkush .shp-k-tilo ol,.shp-arkush .shp-k-tilo table{margin:0 0 .6rem}',
+    '.shp-arkush .shp-k-tilo ul,.shp-arkush .shp-k-tilo ol{padding-left:1.2rem}',
+    '.shp-arkush .shp-k-tilo li{margin-bottom:.2rem}',
+    '.shp-arkush .shp-formula{text-align:center;overflow-x:auto;overflow-y:hidden;padding:.1rem 0}',
+    '.shp-arkush .shp-prymitka{font-size:.86em;opacity:.78}',
+    '.shp-arkush table{width:100%;border-collapse:collapse;font-size:.9em}',
+    '.shp-arkush th,.shp-arkush td{padding:.35rem .35rem;border-top:1px solid rgba(42,35,37,.18);text-align:center;vertical-align:middle}',
+    '.shp-arkush thead th{border-top:0;font-weight:600}',
+    '.shp-arkush .katex{font-size:1.08em}.shp-arkush .katex-display{margin:.25em 0;overflow-x:auto;overflow-y:hidden}',
+    '.shp-arkush mark{background:var(--rozhevyi-2);color:inherit;border-radius:4px;padding:.03em .25em;-webkit-box-decoration-break:clone;box-decoration-break:clone}',
+    '.shp-arkush .shp-kartka.sh mark{background:var(--shavlia-2)}',
+    '.shp-arkush mark:has(.katex-display){display:block;padding:.2em .4em}',
+    '.shp-arkush.z-propuskamy mark{background:var(--lis-500)!important;color:transparent!important}',
+    '.shp-arkush.z-propuskamy mark *{visibility:hidden!important}',
+    '.shp-arkush .shp-porozhn{opacity:.75;font-style:italic}',
+    '@media print{',
+    '  .shp-arkush{color:#000;font-size:10pt}.shp-arkush.m-dribnyi{font-size:8.6pt}.shp-arkush.m-velykyi{font-size:11.5pt}',
+    '  .shp-arkush .shp-zag h1{font-size:34pt}.shp-arkush .shp-zag .shp-propys{font-size:18pt}',
+    '  .shp-arkush .shp-kartky{columns:var(--shp-kol,2);column-gap:6mm}',
+    '  .shp-arkush .shp-kartka,.shp-arkush .shp-kartka.sh{background:#fff;box-shadow:none;border:.6pt solid #000;border-radius:3mm;margin-bottom:4mm}',
+    '  .shp-arkush mark,.shp-arkush .shp-kartka.sh mark{background:#e8e8e8}',
+    '  .shp-arkush.z-propuskamy mark{background:#000!important}',
+    '  .shp-arkush.kolir .shp-kartka{background:var(--rozhevyi);-webkit-print-color-adjust:exact;print-color-adjust:exact}',
+    '  .shp-arkush.kolir .shp-kartka.sh{background:var(--shavlia)}',
+    '  .shp-arkush.kolir mark{background:var(--rozhevyi-2);-webkit-print-color-adjust:exact;print-color-adjust:exact}',
+    '  .shp-arkush.kolir .shp-kartka.sh mark{background:var(--shavlia-2)}',
+    '}'
+  ].join('\n');
+  (function () { var st = document.createElement('style'); st.id = 'shp-styli'; st.textContent = SHP_CSS; document.head.appendChild(st); })();
+
+  var SHP_PRYKLAD = [
+    '# Механіка',
+    '~ шпаргалка до контрольної',
+    '',
+    '## Рівноприскорений рух',
+    '~ три формули',
+    'Швидкість: ==$v = v_0 + at$==',
+    '$$ s = v_0 t + \\frac{at^2}{2} $$',
+    'Коли час невідомий: ==$v^2 - v_0^2 = 2as$==',
+    '> $v_0$, $a$, $s$ — проєкції на вісь.',
+    '',
+    '## Закони Ньютона',
+    '1. Якщо ==рівнодійна дорівнює нулю==, тіло зберігає спокій або рівномірний рух.',
+    '2. ==$\\vec F = m\\vec a$==',
+    '3. Сили взаємодії ==рівні за модулем і протилежні== за напрямком.',
+    '',
+    '## Одиниці',
+    '| Величина | Позначення | Одиниця |',
+    '|---|---|---|',
+    '| Сила | $F$ | Н |',
+    '| Імпульс | $p$ | кг·м/с |',
+    '| Робота | $A$ | Дж |',
+    '',
+    '## Енергія',
+    '- Кінетична: ==$E_k = \\dfrac{mv^2}{2}$==',
+    '- Потенціальна: ==$E_p = mgh$==',
+    'У замкненій системі без тертя повна механічна енергія **зберігається**.'
+  ].join('\n');
+
+  function shpInline(t) {
+    var formuly = [];
+    t = t.replace(/\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|\$[^$\n]+?\$/g, function (m) {
+      formuly.push(m); return '\u0000' + (formuly.length - 1) + '\u0000';
+    });
+    t = tekst(t)
+      .replace(/==([\s\S]+?)==/g, '<mark>$1</mark>')
+      .replace(/\*\*([\s\S]+?)\*\*/g, '<b>$1</b>')
+      .replace(/(^|[^*])\*([^*\s][^*]*?)\*/g, '$1<i>$2</i>');
+    return t.replace(/\u0000(\d+)\u0000/g, function (m, i) { return tekst(formuly[+i]); });
+  }
+
+  function shpRozibraty(vkhid) {
+    var ryadky = vkhid.replace(/\r\n?/g, '\n').split('\n');
+    var doc = { nazva: '', pidpys: '', kartky: [] }, kartka = null, abzac = [], spysok = null, tabl = null, blok = null;
+    function novaKartka(nazva) { kartka = { nazva: nazva || '', pidpys: '', bloky: [] }; doc.kartky.push(kartka); }
+    function potribnaKartka() { if (!kartka) novaKartka(''); }
+    function skynuty() {
+      if (abzac.length) { potribnaKartka(); kartka.bloky.push('<p>' + abzac.map(shpInline).join('<br>') + '</p>'); abzac = []; }
+      if (spysok) {
+        potribnaKartka();
+        kartka.bloky.push('<' + spysok.teg + '>' + spysok.punkty.map(function (p) { return '<li>' + shpInline(p) + '</li>'; }).join('') + '</' + spysok.teg + '>');
+        spysok = null;
+      }
+      if (tabl) {
+        potribnaKartka();
+        var h = '<table>', riadky = tabl.riadky, pochatok = 0;
+        if (tabl.zahol && riadky.length) {
+          h += '<thead><tr>' + riadky[0].map(function (c) { return '<th>' + shpInline(c) + '</th>'; }).join('') + '</tr></thead>';
+          pochatok = 1;
+        }
+        h += '<tbody>' + riadky.slice(pochatok).map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + shpInline(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table>';
+        kartka.bloky.push(h); tabl = null;
+      }
+    }
+    ryadky.forEach(function (r) {
+      var t = r.trim(), m;
+      if (blok) {                                   // багаторядкова формула
+        blok.ryadky.push(r);
+        if (t.slice(-blok.kinec.length) === blok.kinec) {
+          potribnaKartka();
+          kartka.bloky.push('<p class="shp-formula">' + tekst(blok.ryadky.join('\n')) + '</p>');
+          blok = null;
+        }
+        return;
+      }
+      if (!t) { skynuty(); return; }
+      if (/^##\s+/.test(t)) { skynuty(); novaKartka(t.replace(/^##\s+/, '')); return; }
+      if (/^#\s+/.test(t)) { skynuty(); doc.nazva = t.replace(/^#\s+/, ''); return; }
+      if (/^~\s*/.test(t)) {
+        skynuty();
+        var p = t.replace(/^~\s*/, '');
+        if (kartka && !kartka.bloky.length && !kartka.pidpys) kartka.pidpys = p;
+        else if (!kartka) doc.pidpys = p;
+        else { kartka.bloky.push('<p class="shp-propys">' + tekst(p) + '</p>'); }
+        return;
+      }
+      if (/^(\$\$|\\\[)/.test(t)) {
+        skynuty();
+        var kin = t.indexOf('$$') === 0 ? '$$' : '\\]';
+        if (t.length > 2 && t.slice(-kin.length) === kin && t.length >= 4) {
+          potribnaKartka(); kartka.bloky.push('<p class="shp-formula">' + tekst(t) + '</p>');
+        } else blok = { kinec: kin, ryadky: [r] };
+        return;
+      }
+      if (/^\|.*\|$/.test(t)) {
+        if (abzac.length || spysok) { var tb = tabl; tabl = null; skynuty(); tabl = tb; }
+        var komirky = t.slice(1, -1).split('|').map(function (c) { return c.trim(); });
+        if (komirky.every(function (c) { return /^:?-{2,}:?$/.test(c); })) { if (tabl) tabl.zahol = true; return; }
+        if (!tabl) tabl = { riadky: [], zahol: false };
+        tabl.riadky.push(komirky); return;
+      }
+      if (tabl) skynuty();
+      if ((m = t.match(/^[-*•]\s+(.*)$/))) {
+        if (abzac.length || (spysok && spysok.teg !== 'ul')) skynuty();
+        if (!spysok) spysok = { teg: 'ul', punkty: [] };
+        spysok.punkty.push(m[1]); return;
+      }
+      if ((m = t.match(/^\d+[.)]\s+(.*)$/))) {
+        if (abzac.length || (spysok && spysok.teg !== 'ol')) skynuty();
+        if (!spysok) spysok = { teg: 'ol', punkty: [] };
+        spysok.punkty.push(m[1]); return;
+      }
+      if (/^>\s?/.test(t)) {
+        skynuty(); potribnaKartka();
+        kartka.bloky.push('<p class="shp-prymitka">' + shpInline(t.replace(/^>\s?/, '')) + '</p>'); return;
+      }
+      if (spysok) skynuty();
+      abzac.push(t);
+    });
+    if (blok) { potribnaKartka(); kartka.bloky.push('<p class="shp-formula">' + tekst(blok.ryadky.join('\n')) + '</p>'); }
+    skynuty();
+    return doc;
+  }
+
+  var shp = {
+    tekst: $('#shp-tekst'), nazva: $('#shp-nazva'), pidpys: $('#shp-pidpys'), kolir: $('#shp-kolir'),
+    kolonky: $('#shp-kolonky'), rozmir: $('#shp-rozmir'), kolorovyi: $('#shp-kolorovyi'), propusky: $('#shp-propusky'),
+    perehliad: $('#shp-perehliad')
+  };
+  function shpOpcii() {
+    return {
+      nazva: shp.nazva.value.trim(), pidpys: shp.pidpys.value.trim(), kolir: shp.kolir.value,
+      kolonky: shp.kolonky.value, rozmir: shp.rozmir.value, kolorovyi: shp.kolorovyi.checked, propusky: shp.propusky.checked
+    };
+  }
+  function shpZbudyvaty() {
+    var o = shpOpcii(), doc = shpRozibraty(shp.tekst.value);
+    var nazva = o.nazva || doc.nazva || 'Шпаргалка', pidpys = o.pidpys || doc.pidpys;
+    var klasy = ['shp-arkush', 'm-' + o.rozmir];
+    if (o.kolorovyi) klasy.push('kolir');
+    if (o.propusky) klasy.push('z-propuskamy');
+    var kartky = doc.kartky.map(function (k, i) {
+      var sh = o.kolir === 'sh' || (o.kolir === 'pocherhovo' && i % 2 === 1);
+      return '<article class="shp-kartka' + (sh ? ' sh' : '') + '">' +
+        '<div class="shp-k-shapka"><span class="shp-znaky" aria-hidden="true"><i></i><i></i><i></i></span><span>' + tekst(nazva) + '</span></div>' +
+        '<div class="shp-k-tilo">' +
+          (k.nazva ? '<h3>' + shpInline(k.nazva) + '</h3>' : '') +
+          (k.pidpys ? '<p class="shp-propys">' + tekst(k.pidpys) + '</p>' : '') +
+          (k.bloky.join('') || '<p class="shp-porozhn">Порожня картка</p>') +
+        '</div></article>';
+    }).join('');
+    return {
+      nazva: nazva,
+      html: '<div class="' + klasy.join(' ') + '" style="--shp-kol:' + o.kolonky + '">' +
+        '<header class="shp-zag"><h1>' + tekst(nazva) + '</h1>' +
+        (pidpys ? '<p class="shp-propys">' + tekst(pidpys) + '</p>' : '') +
+        '<p class="shp-avtor">Астрофізичний сад · Дарина Проволовська</p></header>' +
+        '<div class="shp-kartky">' + (kartky || '<p class="shp-porozhn">Почни писати ліворуч — тут з’являться картки.</p>') + '</div></div>'
+    };
+  }
+  function shpFormuly(vuzol) {
+    if (!window.renderMathInElement) return;
+    renderMathInElement(vuzol, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true }, { left: '\\[', right: '\\]', display: true },
+        { left: '\\(', right: '\\)', display: false }, { left: '$', right: '$', display: false }
+      ],
+      throwOnError: false, strict: false
+    });
+  }
+  function shpZberehty() {
+    try {
+      localStorage.setItem('shp-tekst', shp.tekst.value);
+      localStorage.setItem('shp-opcii', JSON.stringify(shpOpcii()));
+    } catch (e) {}
+  }
+  function shpOnovyty() {
+    shp.perehliad.innerHTML = shpZbudyvaty().html;
+    shpFormuly(shp.perehliad);
+    shpZberehty();
+  }
+  var shpTaimer;
+  function shpPislia() { clearTimeout(shpTaimer); shpTaimer = setTimeout(shpOnovyty, 250); }
+
+  (function shpZavantazhyty() {
+    var t = null, o = null;
+    try { t = localStorage.getItem('shp-tekst'); o = JSON.parse(localStorage.getItem('shp-opcii') || 'null'); } catch (e) {}
+    shp.tekst.value = t != null ? t : SHP_PRYKLAD;
+    if (o) {
+      shp.nazva.value = o.nazva || ''; shp.pidpys.value = o.pidpys || '';
+      ['kolir', 'kolonky', 'rozmir'].forEach(function (k) { if (o[k]) shp[k].value = o[k]; });
+      shp.kolorovyi.checked = !!o.kolorovyi; shp.propusky.checked = !!o.propusky;
+    }
+    shp.perehliad.innerHTML = shpZbudyvaty().html;   // формули відрендерить загальний рендер нижче
+  })();
+
+  shp.tekst.addEventListener('input', shpPislia);
+  [shp.nazva, shp.pidpys].forEach(function (x) { x.addEventListener('input', shpPislia); });
+  [shp.kolir, shp.kolonky, shp.rozmir, shp.kolorovyi, shp.propusky].forEach(function (x) { x.addEventListener('change', shpOnovyty); });
+  shp.tekst.addEventListener('keydown', function (e) {
+    if (e.key === 'Tab' && !e.shiftKey && !e.ctrlKey && !e.altKey) {
+      e.preventDefault();
+      var a = shp.tekst.selectionStart, b = shp.tekst.selectionEnd;
+      shp.tekst.setRangeText('  ', a, b, 'end'); shpPislia();
+    }
+  });
+  $('#shp-druk').addEventListener('click', function () { shpOnovyty(); window.print(); });
+  $('#shp-pryklad').addEventListener('click', function () {
+    if (shp.tekst.value.trim() && shp.tekst.value !== SHP_PRYKLAD && !confirm('Замінити поточний текст прикладом?')) return;
+    shp.tekst.value = SHP_PRYKLAD; shp.nazva.value = ''; shp.pidpys.value = ''; shpOnovyty();
+  });
+  $('#shp-ochystyty').addEventListener('click', function () {
+    if (shp.tekst.value.trim() && !confirm('Очистити текст шпаргалки?')) return;
+    shp.tekst.value = ''; shpOnovyty(); shp.tekst.focus();
+  });
+  $('#shp-html').addEventListener('click', function () {
+    var r = shpZbudyvaty();
+    var doc = '<!doctype html>\n<html lang="uk">\n<head>\n<meta charset="utf-8">\n' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+      '<title>' + tekst(r.nazva) + ' — шпаргалка · Астрофізичний сад</title>\n' +
+      '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Onest:wght@400;500;600;700&family=Sofia+Sans+Extra+Condensed:wght@700;800&display=swap">\n' +
+      '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">\n' +
+      '<style>\n*,*::before,*::after{box-sizing:border-box}\nbody{margin:0;min-height:100vh;background:#1a2416;' +
+      'background-image:radial-gradient(90% 60% at 80% 0%,rgba(138,152,99,.28),transparent 60%),radial-gradient(70% 50% at 0% 100%,rgba(75,91,55,.35),transparent 60%);' +
+      'background-attachment:fixed;-webkit-font-smoothing:antialiased}\n' +
+      '.obgortka{max-width:1180px;margin:0 auto;padding:1.6rem clamp(16px,4vw,44px) 3rem}\n' +
+      '.dii{display:flex;justify-content:flex-end;margin-bottom:1rem}\n' +
+      '.dii button{font:500 .92rem "Onest",system-ui,sans-serif;cursor:pointer;color:#f4efe1;background:transparent;border:1px solid #f4efe1;border-radius:999px;padding:.5rem 1.1rem}\n' +
+      '.dii button:hover{background:rgba(244,239,225,.16)}\n' +
+      '@page{margin:10mm}\n@media print{body{background:#fff}.obgortka{padding:0;max-width:none}.dii{display:none}}\n' +
+      SHP_CSS + '\n</style>\n</head>\n<body>\n<div class="obgortka">\n' +
+      '<div class="dii"><button type="button" onclick="window.print()">Надрукувати</button></div>\n' +
+      r.html + '\n</div>\n' +
+      '<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"><\/script>\n' +
+      '<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:\'$$\',right:\'$$\',display:true},{left:\'\\\\[\',right:\'\\\\]\',display:true},{left:\'\\\\(\',right:\'\\\\)\',display:false},{left:\'$\',right:\'$\',display:false}],throwOnError:false,strict:false})"><\/script>\n' +
+      '</body>\n</html>\n';
+    var imia = (r.nazva.replace(/[\\/:*?"<>|]+/g, ' ').trim() || 'shpargalka') + ' — шпаргалка.html';
+    var url = URL.createObjectURL(new Blob([doc], { type: 'text/html;charset=utf-8' }));
+    zavantazhyty(url, imia);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+    povidomyty('Файл «' + imia + '» збережено. Відкрий його в браузері, щоб надрукувати.');
   });
 
   rezhym(skhovano);
