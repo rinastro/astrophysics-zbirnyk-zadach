@@ -1,0 +1,1856 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Постійний струм — конспект · Астрофізичний сад</title>
+<meta name="description" content="Конспект «Постійний струм: від Ома до Кірхгофа» — сила струму, напруга, опір, з’єднання провідників, робота й потужність, ЕРС, правила Кірхгофа. Інтерактивні схеми та тести.">
+<meta name="theme-color" content="#1a2416">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232c3a24'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23f4efe1'/%3E%3Cellipse cx='16' cy='16' rx='12' ry='5' fill='none' stroke='%23f4efe1' stroke-width='1.6' transform='rotate(-25 16 16)'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Onest:wght@400;500;600;700&family=Sofia+Sans+Extra+Condensed:wght@700;800&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+
+<style>
+:root{
+  --lis-900:#1a2416; --lis-700:#2c3a24; --lis-500:#4b5b37; --lis-300:#8a9863;
+  --vershky:#f4efe1;
+  --rozhevyi:#fbe6ee; --rozhevyi-2:#f1cfdc;
+  --shavlia:#e9eddb; --shavlia-2:#d5ddbb;
+  --chornylo:#2a2325;
+  --dobre:#3f6b2f; --pohano:#9b2f3f;
+  --drukovani:"Sofia Sans Extra Condensed","Oswald","Arial Narrow",sans-serif;
+  --propys:"Great Vibes","Marck Script",cursive;
+  --tekst:"Onest","Segoe UI",system-ui,sans-serif;
+  --pole:clamp(16px,4vw,40px);
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--lis-900);color:var(--vershky);font:400 1.02rem/1.6 var(--tekst);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(90% 60% at 80% 0%,rgba(138,152,99,.28),transparent 60%),radial-gradient(70% 50% at 0% 100%,rgba(75,91,55,.35),transparent 60%)}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:4px}
+.lyshe-chytachu{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.propys{font-family:var(--propys);font-weight:400;text-transform:none;letter-spacing:0}
+
+.obgortka{max-width:880px;margin:0 auto;padding:0 var(--pole)}
+
+/* ── шапка ── */
+.shapka-storinky{padding:1.6rem 0 2.4rem}
+.nazad{display:inline-block;font-size:.92rem;text-underline-offset:.25em;margin-bottom:1.6rem}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-size:.88rem;opacity:.9}
+h1{margin:.4rem 0 0;font-family:var(--drukovani);font-weight:800;text-transform:uppercase;font-size:clamp(3.6rem,13vw,8.4rem);line-height:.84;overflow-wrap:break-word}
+h1 + .propys{margin:-.15em 0 0 .25em;font-size:clamp(2.2rem,7vw,4.4rem);line-height:1}
+.shary{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;font-size:.86rem;align-items:center}
+.shar{display:inline-block;padding:.12rem .6rem;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid currentColor;vertical-align:middle}
+.shar.osnova{background:var(--vershky);color:var(--lis-700);border-color:var(--vershky)}
+.shar.profil{background:var(--lis-300);color:var(--lis-900);border-color:var(--lis-300)}
+.shar.olimp{background:var(--rozhevyi-2);color:var(--chornylo);border-color:var(--rozhevyi-2)}
+.zmist{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.4rem}
+.zmist a{font-size:.85rem;text-decoration:none;padding:.32rem .8rem;border:1px solid rgba(244,239,225,.45);border-radius:999px}
+.zmist a:hover{background:rgba(244,239,225,.14)}
+
+/* ── вікна ── */
+.vikno{background:var(--rozhevyi);color:var(--chornylo);border-radius:16px;margin:0 0 1.2rem;
+  box-shadow:0 26px 50px -24px rgba(10,16,8,.85),0 2px 0 rgba(255,255,255,.5) inset}
+.vikno.shavlia{background:var(--shavlia)}
+.vikno-shapka{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 1rem .5rem;border-bottom:1px solid rgba(42,35,37,.14);font-size:.8rem}
+.vikno-shapka .mitka{opacity:.72}
+.znaky{display:inline-flex;align-items:center;gap:.3em;font-size:10px;flex:none}
+.znaky i{display:block;width:1em;height:1em;border-radius:50%;border:.14em solid currentColor}
+.znaky i:first-child{background:currentColor}
+.znaky i:last-child{width:3.4em}
+.tilo{padding:1.1rem 1.3rem 1.2rem}
+.tilo > :first-child{margin-top:0}
+.tilo > :last-child{margin-bottom:0}
+.tilo p,.tilo ul,.tilo ol{margin:0 0 .8rem}
+.tilo ul,.tilo ol{padding-left:1.3rem}
+.tilo h3{margin:0 0 .5rem;font-family:var(--drukovani);font-weight:800;text-transform:uppercase;font-size:2rem;line-height:.95}
+.tilo h3 + .propys{margin:-.3rem 0 .6rem;font-size:1.7rem;line-height:1}
+
+/* ── підрозділи ── */
+.pidrozdil{padding:2.6rem 0 1rem;scroll-margin-top:1rem}
+.pidrozdil-zag{display:grid;grid-template-columns:auto 1fr;gap:.2rem 1rem;align-items:end;margin-bottom:1.3rem}
+.pidrozdil-zag .nomer{font-family:var(--drukovani);font-weight:800;font-size:clamp(3.6rem,10vw,6rem);line-height:.8;color:var(--lis-300)}
+.pidrozdil-zag h2{margin:0;font-family:var(--drukovani);font-weight:800;text-transform:uppercase;font-size:clamp(2.3rem,7vw,4rem);line-height:.88}
+.pidrozdil-zag .propys{grid-column:2;font-size:clamp(1.7rem,4.5vw,2.6rem);line-height:1;margin-top:-.1em}
+.pidrozdil-zag .shar{grid-column:2;justify-self:start;margin-top:.4rem}
+
+/* терміни */
+.termin{border-left:4px solid var(--lis-500);background:var(--rozhevyi-2);border-radius:0 10px 10px 0;padding:.6rem .9rem;margin:0 0 .9rem}
+.termin > a:first-child{font-weight:700;text-decoration-thickness:1px;text-underline-offset:.2em}
+.vikno.shavlia .termin{background:var(--shavlia-2)}
+mark{background:var(--rozhevyi-2);color:inherit;border-radius:4px;padding:.02em .25em}
+
+/* закони */
+.zakon{background:#fff8fb;border:1.5px solid var(--chornylo);border-radius:12px;padding:.9rem 1.1rem;margin:0 0 1rem}
+.zakon .mitka-z{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.zakon h4{margin:.1rem 0 .4rem;font-family:var(--drukovani);font-weight:800;text-transform:uppercase;font-size:1.6rem;line-height:1}
+.zakon dl{display:grid;grid-template-columns:auto 1fr;gap:.25rem .8rem;margin:.6rem 0 0;font-size:.93rem}
+.zakon dt{font-weight:600}
+.zakon dd{margin:0}
+
+/* формули й виведення */
+.formula{text-align:center;overflow-x:auto;overflow-y:hidden;padding:.2rem 0;margin:.4rem 0 .9rem}
+.katex{font-size:1.08em}
+.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:.1rem 0}
+details.vyvedennia{margin:0 0 1rem;border:1px solid rgba(42,35,37,.25);border-radius:12px;background:rgba(255,255,255,.4)}
+details.vyvedennia > summary{cursor:pointer;list-style:none;padding:.55rem .9rem;font-weight:600;font-size:.9rem;display:flex;gap:.5rem;align-items:center}
+details.vyvedennia > summary::-webkit-details-marker{display:none}
+details.vyvedennia > summary::before{content:"+";display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;border:1px solid currentColor;font-weight:400;line-height:1}
+details.vyvedennia[open] > summary::before{content:"−"}
+details.vyvedennia > summary .zakryto{font-weight:400;opacity:.7}
+details.vyvedennia[open] > summary .zakryto{display:none}
+.kroky{counter-reset:k;list-style:none;margin:0;padding:.2rem .9rem .9rem}
+.kroky li{counter-increment:k;display:grid;grid-template-columns:1.8rem minmax(0,1fr);gap:.5rem;padding:.45rem 0;border-top:1px dashed rgba(42,35,37,.2)}
+.kroky li::before{content:counter(k);font-family:var(--drukovani);font-weight:800;font-size:1.4rem;line-height:1.1;color:var(--lis-500)}
+.kroky .poiasn{display:block;font-size:.88rem;opacity:.8}
+.kroky .formula{margin:.1rem 0}
+.rozmirnist{margin:.2rem .9rem .9rem;padding:.5rem .8rem;border-radius:8px;background:var(--shavlia-2);font-size:.9rem}
+
+/* схеми */
+.skhema{margin:0 0 1rem}
+.skhema svg{display:block;width:100%;height:auto;background:#fffdfb;border-radius:10px;border:1px solid rgba(42,35,37,.18)}
+.keruvannia{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:.6rem 1.2rem;margin:.8rem 0 .4rem;font-size:.9rem}
+.keruvannia label{display:grid;gap:.15rem}
+.keruvannia .riadok{display:flex;justify-content:space-between;gap:.5rem}
+.keruvannia output{font-weight:700;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--lis-500)}
+select{padding:.35rem .6rem;border-radius:8px;border:1px solid rgba(42,35,37,.4);background:#fff}
+.perem{display:flex;flex-wrap:wrap;gap:.35rem}
+.knopka{display:inline-block;cursor:pointer;text-decoration:none;font-size:.85rem;font-weight:500;line-height:1.2;padding:.42rem .9rem;border-radius:999px;border:1px solid var(--chornylo);background:transparent;color:var(--chornylo)}
+.knopka:hover,.knopka[aria-pressed="true"]{background:var(--chornylo);color:var(--rozhevyi)}
+.vikno.shavlia .knopka:hover,.vikno.shavlia .knopka[aria-pressed="true"]{color:var(--shavlia)}
+.pokaz{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin:.5rem 0 .2rem;font-size:.92rem;font-variant-numeric:tabular-nums}
+.pokaz b{font-weight:700}
+.sprobuy{font-size:.9rem;margin:.5rem 0 0;padding:.55rem .8rem;border-radius:8px;background:var(--rozhevyi-2)}
+.sprobuy::before{content:"Що спробувати: ";font-weight:700}
+.prymitka{font-size:.84rem;opacity:.75}
+
+/* міф */
+.mif{display:grid;grid-template-columns:auto 1fr;gap:.2rem .8rem;padding:.7rem .9rem;border-radius:10px;background:#fff;border:1.5px dashed var(--pohano);margin:0 0 1rem}
+.mif::before{content:"✕";grid-row:span 2;font-weight:700;color:var(--pohano);font-size:1.2rem;line-height:1.3}
+.mif b{color:var(--pohano)}
+
+/* тести */
+fieldset.test{border:0;margin:0 0 1.2rem;padding:0;min-width:0}
+fieldset.test legend{padding:0;font-weight:600;margin-bottom:.6rem;display:block;width:100%}
+fieldset.test legend .n{font-family:var(--drukovani);font-weight:800;font-size:1.25rem;margin-right:.35rem;color:var(--lis-500)}
+.varianty{display:grid;gap:.4rem}
+.varianty button{text-align:left;cursor:pointer;padding:.55rem .85rem;border-radius:10px;border:1px solid rgba(42,35,37,.35);background:rgba(255,255,255,.55);color:var(--chornylo);font-size:.95rem;line-height:1.4}
+.varianty button:hover:not(:disabled){border-color:var(--chornylo);background:#fff}
+.varianty button[aria-pressed="true"]{border-color:var(--chornylo);background:#fff;box-shadow:inset 0 0 0 1.5px var(--chornylo)}
+.varianty button.prav{border-color:var(--dobre);background:#eaf3e2;box-shadow:inset 0 0 0 1.5px var(--dobre)}
+.varianty button.hyb{border-color:var(--pohano);background:#f8e3e7;box-shadow:inset 0 0 0 1.5px var(--pohano)}
+.varianty button:disabled{cursor:default;color:var(--chornylo);opacity:1}
+.vidhuk{margin:.6rem 0 0;font-weight:700}
+.vidhuk.dobre{color:var(--dobre)}
+.vidhuk.pohano{color:var(--pohano)}
+.chomu{margin:.4rem 0 0;padding-left:1.2rem;font-size:.9rem}
+.chomu li{margin-bottom:.25rem}
+.chomu li.prav::marker{color:var(--dobre)}
+.pidsumok-rezultat{font-family:var(--drukovani);font-weight:800;font-size:2.4rem;line-height:1;margin:.2rem 0 .6rem}
+.dii-testu{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.6rem}
+
+/* постаті */
+.strichka{display:flex;gap:1rem;overflow-x:auto;padding:.4rem .2rem 1rem;scroll-snap-type:x mandatory}
+.postat{flex:0 0 min(240px,78vw);scroll-snap-align:start;position:relative;padding-top:1.4rem}
+.postat::before{content:"";position:absolute;left:0;right:-1rem;top:.5rem;height:2px;background:rgba(244,239,225,.35)}
+.postat .vikno{margin:0;height:100%}
+.inicialy{display:grid;place-items:center;width:3.2rem;height:3.2rem;border-radius:50%;background:var(--lis-500);color:var(--rozhevyi);font-family:var(--drukovani);font-weight:800;font-size:1.3rem;margin-bottom:.5rem}
+.postat h3{font-size:1.6rem!important;margin-bottom:.2rem!important}
+.postat .roky{font-size:.85rem;opacity:.75;margin:0 0 .5rem}
+.postat .rik-vidkryttia{position:absolute;top:0;left:0;font-family:var(--drukovani);font-weight:800;font-size:1rem;background:var(--vershky);color:var(--lis-900);padding:0 .5rem;border-radius:999px;line-height:1.15rem;z-index:1}
+
+/* таблиці */
+.tablytsia{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:.55rem .5rem;border-top:1px solid rgba(42,35,37,.18);text-align:left;vertical-align:top}
+thead th{border-top:0;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;opacity:.75}
+td.f{white-space:nowrap}
+
+/* глосарій */
+.hlosarii dl{margin:0}
+.hlosarii dt{font-weight:700;margin-top:.7rem;scroll-margin-top:1rem}
+.hlosarii dt:first-child{margin-top:0}
+.hlosarii dd{margin:.1rem 0 0}
+.hlosarii dt:target{background:var(--rozhevyi-2);border-radius:4px;padding:0 .3rem}
+
+/* джерела */
+.dzherela ol{padding-left:1.4rem}
+.dzherela li{margin-bottom:.6rem;overflow-wrap:anywhere}
+.dzherela .stan{font-size:.8rem;opacity:.7}
+
+.blok-zag{font-family:var(--drukovani);font-weight:800;text-transform:uppercase;font-size:clamp(2.4rem,7vw,4rem);line-height:.88;margin:2.6rem 0 1.1rem}
+.blok-zag .propys{font-size:.6em;line-height:0;margin-left:.1em}
+.kliuch{display:none}
+.dlia-avtorky{margin:2rem 0 0}
+.dlia-avtorky > summary{cursor:pointer;font-size:.9rem;opacity:.85}
+.nyz{margin-top:3rem;padding:1.2rem 0 2rem;border-top:1px solid rgba(244,239,225,.18);font-size:.86rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 1.5rem}
+
+@media (max-width:560px){
+  .tilo{padding:1rem 1rem 1.1rem}
+  .pidrozdil-zag{grid-template-columns:1fr}
+  .pidrozdil-zag .propys,.pidrozdil-zag .shar{grid-column:1}
+  .zakon dl{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ── друк ── */
+@media print{
+  @page{margin:13mm}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  body::before{display:none}
+  .ne-druk,.knopka,.zmist,.nazad,.dii-testu,.dlia-avtorky,.vidhuk,.chomu,.keruvannia input,.keruvannia select,.perem,details.vyvedennia > summary .zakryto{display:none!important}
+  .vikno,.vikno.shavlia{box-shadow:none;background:#fff;border:.6pt solid #000;color:#000;break-inside:avoid-page}
+  .tilo{padding:3mm 4mm}
+  .termin,.vikno.shavlia .termin{background:#f3f3f3;border-left-color:#000}
+  .zakon{background:#fff;break-inside:avoid}
+  .skhema{break-inside:avoid}
+  .pidrozdil{padding-top:6mm}
+  h1{font-size:46pt}
+  h1 + .propys{font-size:24pt}
+  .pidrozdil-zag .nomer{color:#000}
+  .varianty button{border:.5pt solid #000;background:#fff;padding:1mm 2mm}
+  .varianty button.prav,.varianty button.hyb,.varianty button[aria-pressed="true"]{background:#fff;box-shadow:none;border:.5pt solid #000}
+  .strichka{display:block;overflow:visible}
+  .postat{display:inline-block;width:31%;vertical-align:top;margin:0 1% 3mm 0;padding-top:0}
+  .postat::before,.postat .rik-vidkryttia{position:static}
+  .postat::before{display:none}
+  .kliuch{display:block}
+  .shar{border:.5pt solid #000;background:#fff!important;color:#000!important}
+  a{text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<div class="obgortka">
+
+<!-- ═══════════ ШАПКА ═══════════ -->
+<header class="shapka-storinky">
+  <a class="nazad" href="../../index.html#/konspekty">← До саду</a>
+  <div class="meta">
+    <span>Фізика · Електрика</span>
+    <span>Для кого: 8–9 клас, профіль, олімпіада</span>
+    <span>≈ 30 хв читання</span>
+  </div>
+  <h1>Постійний струм</h1>
+  <p class="propys">від Ома до Кірхгофа</p>
+  <div class="shary">
+    <span>Шари конспекту:</span>
+    <span class="shar osnova">Основа</span>
+    <span class="shar profil">Профіль</span>
+    <span class="shar olimp">Олімпіада</span>
+  </div>
+  <nav class="zmist" aria-label="Зміст">
+    <a href="#s1">1. Струм</a><a href="#s2">2. Напруга й опір</a><a href="#s3">3. Закон Ома</a>
+    <a href="#s4">4. З’єднання</a><a href="#s5">5. Робота й потужність</a><a href="#s6">6. ЕРС</a>
+    <a href="#s7">7. Кірхгоф</a><a href="#postati">Постаті</a><a href="#holovne">Головне</a>
+    <a href="#hlosarii">Глосарій</a><a href="#test">Тест</a><a href="#dzherela">Джерела</a>
+  </nav>
+</header>
+
+<!-- ═══════════ ЩО ТИ ДІЗНАЄШСЯ ═══════════ -->
+<section class="vikno shavlia" aria-labelledby="dizn">
+  <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Почнемо</span></div>
+  <div class="tilo">
+    <h3 id="dizn">Що ти дізнаєшся</h3>
+    <ul>
+      <li>Що таке електричний струм і чому лампа світить одразу, хоча електрони в дроті повзуть повільніше за равлика.</li>
+      <li>Як пов’язані сила струму, напруга й опір — і де закон Ома перестає працювати.</li>
+      <li>Як рахувати опір будь-якого кола з послідовних і паралельних ділянок.</li>
+      <li>Як знайти роботу, потужність струму й вартість електроенергії, і чому слабша лампа в певному колі світить яскравіше.</li>
+      <li>Що таке ЕРС і внутрішній опір джерела, і як за правилами Кірхгофа розв’язати складне коло.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═══════════ 1. ЕЛЕКТРИЧНИЙ СТРУМ ═══════════ -->
+<section class="pidrozdil" id="s1">
+  <div class="pidrozdil-zag">
+    <span class="nomer">01</span>
+    <h2>Електричний струм</h2>
+    <p class="propys">заряди в дорозі</p>
+    <span class="shar osnova">Основа</span>
+  </div>
+
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Теорія</span></div>
+    <div class="tilo">
+      <div class="termin" id="t-strum"><a href="#g-strum">Електричний струм</a> — напрямлений (упорядкований) рух заряджених частинок.</div>
+      <p>У металах струм створюють <b>вільні електрони</b>, в розчинах електролітів — <b>йони</b>. Щоб струм існував, потрібні дві умови: <mark>вільні заряджені частинки</mark> та <mark>електричне поле</mark>, яке їх рухає. Поле в колі підтримує <b>джерело струму</b>.</p>
+      <p>За <b>напрямок струму</b> історично домовилися вважати напрямок руху <i>позитивних</i> зарядів: у зовнішньому колі — від «+» джерела до «−». Електрони в металі рухаються <mark>протилежно</mark> до цього напрямку.</p>
+      <div class="termin" id="t-syla"><a href="#g-syla">Сила струму</a> \(I\) — фізична величина, що дорівнює заряду, який проходить через поперечний переріз провідника за одиницю часу.</div>
+      <p class="formula">\[ I = \frac{q}{t} \qquad [I] = 1\ \text{А} = 1\ \frac{\text{Кл}}{\text{с}} \]</p>
+      <p>Ампер — основна одиниця СІ. Елементарний заряд \( e = 1{,}602\cdot10^{-19}\ \text{Кл} \) (4 значущі цифри; за СІ 2019 року це значення точне: \(1{,}602\,176\,634\cdot10^{-19}\) Кл).</p>
+      <p>Силу струму вимірюють <a href="#g-ampermetr">амперметром</a>, увімкненим у коло <mark>послідовно</mark>.</p>
+
+      <details class="vyvedennia">
+        <summary>Показати виведення: \( I = n|q|vS \) <span class="zakryto">— звідки береться струм</span></summary>
+        <ol class="kroky">
+          <li><div>Нехай у провіднику з площею перерізу \(S\) в кожному кубічному метрі є \(n\) вільних частинок із зарядом \(q\), і всі вони дрейфують зі швидкістю \(v\).<span class="poiasn">Модель: середня швидкість упорядкованого руху однакова для всіх частинок.</span></div></li>
+          <li><div>За час \(\Delta t\) через переріз пройдуть усі частинки, що були на відстані не більше \(v\Delta t\) від нього, тобто в об’ємі циліндра:<p class="formula">\[ V = S\,v\,\Delta t \]</p></div></li>
+          <li><div>Кількість цих частинок і їхній сумарний заряд:<p class="formula">\[ N = nV = nSv\Delta t, \qquad \Delta q = N|q| = n|q|Sv\Delta t \]</p></div></li>
+          <li><div>Ділимо заряд на час — за означенням сили струму:<p class="formula">\[ I = \frac{\Delta q}{\Delta t} = n|q|vS \]</p></div></li>
+        </ol>
+        <p class="rozmirnist">Розмірність: \( \text{м}^{-3}\cdot\text{Кл}\cdot\frac{\text{м}}{\text{с}}\cdot\text{м}^2 = \frac{\text{Кл}}{\text{с}} = \text{А} \) ✓</p>
+      </details>
+
+      <div class="mif"><b>Міф: «Електрони в дроті летять зі швидкістю світла».</b><span>Дрейф електронів дуже повільний — частки міліметра за секунду (див. приклад). Майже миттєво (зі швидкістю, близькою до швидкості світла) по колу поширюється <i>електричне поле</i>, яке одночасно рушає всі вільні електрони — тому лампа загоряється відразу.</span></div>
+    </div>
+  </div>
+
+  <figure class="vikno skhema-vikno" aria-labelledby="sh1-pidpys">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Інтерактивна схема</span></div>
+    <div class="tilo">
+      <h3 id="sh1-pidpys">Струм у металі</h3>
+      <div class="skhema">
+        <svg id="sh1" viewBox="0 0 600 200" role="img" aria-label="Ділянка металевого провідника: нерухомі йони кристалічної ґратки та електрони, що дрейфують справа наліво; напрямок струму — зліва направо"></svg>
+      </div>
+      <div class="keruvannia">
+        <label>
+          <span class="riadok"><span>Напруга \(U\)</span><output id="sh1-u-v">6 В</output></span>
+          <input id="sh1-u" type="range" min="0" max="12" step="0.5" value="6" aria-label="Напруга, вольт">
+        </label>
+        <div class="perem" style="align-self:end">
+          <button class="knopka" type="button" id="sh1-pauza" aria-pressed="false">Пауза</button>
+        </div>
+      </div>
+      <p class="pokaz">Опір ділянки <b>\(R = 4\) Ом</b> · сила струму <b id="sh1-i">1,5 А</b></p>
+      <p class="sprobuy">Постав \(U = 0\): електрони не зникають, але впорядкований рух припиняється — струму немає. Подвій напругу — і подвоїться швидкість дрейфу, а з нею й сила струму.</p>
+      <p class="prymitka">Швидкість руху точок на схемі умовна: справжній дрейф у тисячі разів повільніший.</p>
+    </div>
+  </figure>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Приклад</span></div>
+    <div class="tilo">
+      <h3>Наскільки повільно?</h3>
+      <p>По мідному дроту з перерізом \(1\ \text{мм}^2\) тече струм \(1\) А. Концентрація вільних електронів у міді \(n \approx 8{,}5\cdot10^{28}\ \text{м}^{-3}\). Знайди швидкість дрейфу.</p>
+      <p class="formula">\[ v = \frac{I}{n e S} = \frac{1}{8{,}5\cdot10^{28}\cdot1{,}6\cdot10^{-19}\cdot10^{-6}} \approx 7{,}4\cdot10^{-5}\ \frac{\text{м}}{\text{с}} \]</p>
+      <p><b>Відповідь:</b> приблизно \(0{,}07\) мм/с — метр дроту електрон «проповзе» майже за 4 години.</p>
+    </div>
+  </div>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Перевір себе</span></div>
+    <div class="tilo">
+      <fieldset class="test" data-pravylna="б" data-nomer="1.1">
+        <legend><span class="n">1.1</span>Який напрямок має електричний струм у металевому провіднику?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Збігається з напрямком руху електронів</button>
+          <button type="button" data-v="б">б) Протилежний до напрямку руху електронів</button>
+          <button type="button" data-v="в">в) У зовнішньому колі — від «−» до «+» джерела</button>
+          <button type="button" data-v="г">г) Залежить від матеріалу провідника</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">За напрямок струму домовилися брати рух <i>позитивних</i> зарядів, а електрони заряджені негативно.</li>
+          <li data-v="б">Так: електрони рухаються проти умовного напрямку струму.</li>
+          <li data-v="в">Навпаки: у зовнішньому колі струм напрямлений від «+» до «−». Від «−» до «+» рухаються електрони.</li>
+          <li data-v="г">Напрямок — це домовленість, однакова для всіх провідників.</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+      <fieldset class="test" data-pravylna="в" data-nomer="1.2">
+        <legend><span class="n">1.2</span>Чому лампа загоряється відразу після замикання вимикача, хоча електрони дрейфують дуже повільно?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Після замикання електрони розганяються до швидкості світла</button>
+          <button type="button" data-v="б">б) Електрони від вимикача встигають долетіти до лампи за мить</button>
+          <button type="button" data-v="в">в) Електричне поле поширюється колом майже миттєво й одночасно рушає вільні електрони в усьому колі, зокрема в нитці лампи</button>
+          <button type="button" data-v="г">г) Лампа світить із запізненням у кілька годин, але ми цього не помічаємо</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Швидкість дрейфу — частки міліметра за секунду; зіткнення з йонами не дають електронам розганятися.</li>
+          <li data-v="б">Електрони з вимикача до лампи йшли б годинами. Світять електрони, які вже є в нитці.</li>
+          <li data-v="в">Так: поле поширюється зі швидкістю, близькою до швидкості світла, і струм виникає в усьому колі майже одночасно.</li>
+          <li data-v="г">Лампа загоряється практично миттєво — це легко перевірити.</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 2. НАПРУГА Й ОПІР ═══════════ -->
+<section class="pidrozdil" id="s2">
+  <div class="pidrozdil-zag">
+    <span class="nomer">02</span>
+    <h2>Напруга й опір</h2>
+    <p class="propys">що штовхає і що гальмує</p>
+    <span class="shar osnova">Основа</span>
+  </div>
+
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Теорія</span></div>
+    <div class="tilo">
+      <div class="termin" id="t-napruha"><a href="#g-napruha">Напруга</a> \(U\) — фізична величина, що дорівнює відношенню роботи електричного поля з переміщення заряду на ділянці кола до значення цього заряду.</div>
+      <p class="formula">\[ U = \frac{A}{q} \qquad [U] = 1\ \text{В} = 1\ \frac{\text{Дж}}{\text{Кл}} \]</p>
+      <p>Напругу вимірюють <a href="#g-voltmetr">вольтметром</a>, увімкненим <mark>паралельно</mark> до ділянки.</p>
+      <div class="termin" id="t-opir"><a href="#g-opir">Електричний опір</a> \(R\) — фізична величина, що характеризує властивість провідника протидіяти напрямленому руху заряджених частинок. Одиниця — ом: \(1\ \text{Ом} = 1\ \text{В/А}\).</div>
+      <p>Опір провідника залежить від його розмірів і матеріалу (виведення — у підрозділі 4):</p>
+      <p class="formula">\[ R = \rho\,\frac{l}{S} \]</p>
+      <div class="termin" id="t-pytomyi"><a href="#g-pytomyi">Питомий опір</a> \(\rho\) — опір провідника з певної речовини завдовжки 1 м і площею перерізу 1 м² (або 1 мм²). Одиниці: Ом·м або Ом·мм²/м; \(1\ \frac{\text{Ом}\cdot\text{мм}^2}{\text{м}} = 10^{-6}\ \text{Ом}\cdot\text{м}\).</div>
+      <div class="tablytsia">
+        <table>
+          <caption class="lyshe-chytachu">Питомий опір деяких речовин за 20 °C</caption>
+          <thead><tr><th>Речовина</th><th>\(\rho\), Ом·м</th><th>\(\rho\), Ом·мм²/м</th></tr></thead>
+          <tbody>
+            <tr><td>Срібло</td><td>\(1{,}59\cdot10^{-8}\)</td><td>0,0159</td></tr>
+            <tr><td>Мідь</td><td>\(1{,}68\cdot10^{-8}\)</td><td>0,0168</td></tr>
+            <tr><td>Алюміній</td><td>\(2{,}65\cdot10^{-8}\)</td><td>0,0265</td></tr>
+            <tr><td>Залізо</td><td>\(9{,}71\cdot10^{-8}\)</td><td>0,0971</td></tr>
+            <tr><td>Ніхром</td><td>\(1{,}00\cdot10^{-6}\)</td><td>1,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="prymitka">Значення — за OpenStax University Physics, т. 2, табл. 9.1. У різних довідниках останні цифри можуть трохи відрізнятися.</p>
+
+      <h3 style="margin-top:1.2rem">Опір і температура <span class="shar profil">Профіль</span></h3>
+      <p>Опір металів зі зростанням температури <mark>збільшується</mark>, бо йони ґратки коливаються сильніше й частіше «заважають» електронам. Для невеликих змін температури:</p>
+      <p class="formula">\[ R = R_0\,(1 + \alpha\,\Delta t) \]</p>
+      <p>\(\alpha\) — температурний коефіцієнт опору; для міді \(\alpha \approx 0{,}0039\ \text{К}^{-1}\). Це <b>наближення</b>: воно добре працює в діапазоні кількох десятків — сотень градусів.</p>
+    </div>
+  </div>
+
+  <figure class="vikno" aria-labelledby="sh2-pidpys">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Інтерактивна схема</span></div>
+    <div class="tilo">
+      <h3 id="sh2-pidpys">Від чого залежить опір дроту</h3>
+      <div class="skhema">
+        <svg id="sh2" viewBox="0 0 600 150" role="img" aria-label="Дріт, довжина й товщина якого змінюються повзунками; обчислюється його опір"></svg>
+      </div>
+      <div class="keruvannia">
+        <label><span class="riadok"><span>Довжина \(l\)</span><output id="sh2-l-v"></output></span>
+          <input id="sh2-l" type="range" min="0.5" max="10" step="0.5" value="4" aria-label="Довжина дроту, метри"></label>
+        <label><span class="riadok"><span>Переріз \(S\)</span><output id="sh2-s-v"></output></span>
+          <input id="sh2-s" type="range" min="0.1" max="2.5" step="0.1" value="0.5" aria-label="Площа перерізу, квадратні міліметри"></label>
+        <label><span class="riadok"><span>Матеріал</span></span>
+          <select id="sh2-m" aria-label="Матеріал дроту">
+            <option value="0.0168">мідь</option>
+            <option value="0.0265">алюміній</option>
+            <option value="0.0971">залізо</option>
+            <option value="1.00">ніхром</option>
+          </select></label>
+      </div>
+      <p class="pokaz">Опір <b id="sh2-r"></b></p>
+      <p class="sprobuy">Подвой довжину — опір подвоїться; подвой переріз — зменшиться вдвічі. Заміни мідь на ніхром: опір зросте приблизно в 60 разів. Саме тому з ніхрому роблять нагрівальні спіралі, а з міді — проводку.</p>
+    </div>
+  </figure>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Приклад</span></div>
+    <div class="tilo">
+      <h3>Подовжувач</h3>
+      <p>Знайди опір мідного дроту завдовжки \(100\) м і перерізом \(2\ \text{мм}^2\).</p>
+      <p class="formula">\[ R = \rho\frac{l}{S} = 0{,}0168\ \frac{\text{Ом}\cdot\text{мм}^2}{\text{м}}\cdot\frac{100\ \text{м}}{2\ \text{мм}^2} = 0{,}84\ \text{Ом} \]</p>
+      <p><span class="shar profil">Профіль</span> Скільки стане опір, якщо дріт нагріється від 20 °C до 70 °C? \( R = 0{,}84\cdot(1 + 0{,}0039\cdot50) \approx 1{,}00\ \text{Ом} \).</p>
+    </div>
+  </div>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Перевір себе</span></div>
+    <div class="tilo">
+      <fieldset class="test" data-pravylna="в" data-nomer="2.1">
+        <legend><span class="n">2.1</span>Дріт розрізали навпіл і обидві половини склали разом (уздовж). Як змінився опір?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Не змінився</button>
+          <button type="button" data-v="б">б) Зменшився вдвічі</button>
+          <button type="button" data-v="в">в) Зменшився вчетверо</button>
+          <button type="button" data-v="г">г) Збільшився вдвічі</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Змінилися і довжина, і переріз — це впливає на \(R\).</li>
+          <li data-v="б">Врахована лише зміна довжини (або лише перерізу), а змінилися обидві.</li>
+          <li data-v="в">Довжина зменшилась у 2 рази, переріз зріс у 2 рази: \(R \propto l/S\) зменшився в \(2\cdot2 = 4\) рази.</li>
+          <li data-v="г">Опір зростає з довжиною, а провідник став коротшим.</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 3. ЗАКОН ОМА ═══════════ -->
+<section class="pidrozdil" id="s3">
+  <div class="pidrozdil-zag">
+    <span class="nomer">03</span>
+    <h2>Закон Ома</h2>
+    <p class="propys">для ділянки кола</p>
+    <span class="shar osnova">Основа</span>
+  </div>
+
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Теорія</span></div>
+    <div class="tilo">
+      <div class="zakon">
+        <span class="mitka-z">Закон</span>
+        <h4>Закон Ома для ділянки кола</h4>
+        <p>Сила струму в ділянці кола прямо пропорційна напрузі на кінцях цієї ділянки й обернено пропорційна її опору.</p>
+        <p class="formula">\[ I = \frac{U}{R} \]</p>
+        <dl>
+          <dt>Хто й коли</dt><dd>Георг Симон Ом, книга «Die galvanische Kette, mathematisch bearbeitet» (1827).</dd>
+          <dt>Умови</dt><dd>Ділянка без джерела струму; провідник за сталої температури.</dd>
+          <dt>Межі</dt><dd>Виконується для металів і розчинів електролітів. <b>Не</b> виконується для газового розряду, напівпровідникових приладів (діод) і для нитки розжарення, якщо її температура змінюється.</dd>
+        </dl>
+      </div>
+      <div class="termin" id="t-vakh"><a href="#g-vakh">Вольт-амперна характеристика (ВАХ)</a> — графік залежності сили струму від напруги \(I(U)\). Для провідника, що підкоряється закону Ома, це пряма, яка проходить через початок координат.</div>
+      <div class="mif"><b>Міф: «З \(R = U/I\) випливає, що опір залежить від напруги».</b><span>\(R = U/I\) — лише спосіб <i>обчислити</i> опір. Опір резистора визначають матеріал, розміри й температура. Збільшиш напругу вдвічі — подвоїться струм, а їхнє відношення лишиться тим самим.</span></div>
+    </div>
+  </div>
+
+  <figure class="vikno" aria-labelledby="sh3-pidpys">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Інтерактивна схема</span></div>
+    <div class="tilo">
+      <h3 id="sh3-pidpys">Вольт-амперна характеристика</h3>
+      <div class="skhema">
+        <svg id="sh3" viewBox="0 0 420 300" role="img" aria-label="Графік залежності сили струму від напруги: пряма для резистора і крива для лампи розжарення"></svg>
+      </div>
+      <div class="keruvannia">
+        <label><span class="riadok"><span>Опір резистора \(R\)</span><output id="sh3-r-v"></output></span>
+          <input id="sh3-r" type="range" min="4" max="20" step="1" value="8" aria-label="Опір резистора, ом"></label>
+        <label><span class="riadok"><span>Напруга \(U\)</span><output id="sh3-u-v"></output></span>
+          <input id="sh3-u" type="range" min="0.5" max="10" step="0.5" value="5" aria-label="Напруга, вольт"></label>
+        <div class="perem" style="align-self:end">
+          <button class="knopka" type="button" id="sh3-lampa" aria-pressed="true">Показати лампу</button>
+        </div>
+      </div>
+      <p class="pokaz" id="sh3-pokaz"></p>
+      <p class="sprobuy">Рухай повзунок напруги й стеж за відношенням \(U/I\): у резистора воно стале, а в лампи зростає — нитка нагрівається, і її опір збільшується. Тому ВАХ лампи загинається.</p>
+      <p class="prymitka">Крива лампи — якісна модель, а не дані конкретної лампи.</p>
+    </div>
+  </figure>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Приклад</span></div>
+    <div class="tilo">
+      <h3>Резистор у колі</h3>
+      <p>На резисторі опором \(15\) Ом напруга \(4{,}5\) В. Знайди силу струму. Якою вона стане, якщо напругу збільшити до \(9\) В?</p>
+      <p class="formula">\[ I_1 = \frac{U_1}{R} = \frac{4{,}5}{15} = 0{,}3\ \text{А}, \qquad I_2 = \frac{9}{15} = 0{,}6\ \text{А} \]</p>
+      <p><b>Відповідь:</b> 0,3 А; 0,6 А — струм зріс удвічі разом із напругою, опір не змінився.</p>
+    </div>
+  </div>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Перевір себе</span></div>
+    <div class="tilo">
+      <fieldset class="test" data-pravylna="б" data-nomer="3.1">
+        <legend><span class="n">3.1</span>Напругу на резисторі збільшили втричі. Що станеться?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Опір резистора збільшиться втричі</button>
+          <button type="button" data-v="б">б) Сила струму збільшиться втричі, опір не зміниться</button>
+          <button type="button" data-v="в">в) Сила струму зменшиться втричі</button>
+          <button type="button" data-v="г">г) Нічого не зміниться</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Опір не залежить від напруги — це типова пастка формули \(R = U/I\).</li>
+          <li data-v="б">За законом Ома \(I \propto U\) за сталого \(R\).</li>
+          <li data-v="в">Струм прямо, а не обернено пропорційний напрузі.</li>
+          <li data-v="г">Струм зміниться: \(I = U/R\).</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 4. З’ЄДНАННЯ ПРОВІДНИКІВ ═══════════ -->
+<section class="pidrozdil" id="s4">
+  <div class="pidrozdil-zag">
+    <span class="nomer">04</span>
+    <h2>З’єднання провідників</h2>
+    <p class="propys">послідовно чи паралельно</p>
+    <span class="shar osnova">Основа</span>
+  </div>
+
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Теорія</span></div>
+    <div class="tilo">
+      <div class="termin" id="t-poslid"><a href="#g-poslid">Послідовне з’єднання</a> — з’єднання, за якого провідники ввімкнено один за одним без розгалужень; через усі тече той самий струм.</div>
+      <div class="termin" id="t-paral"><a href="#g-paral">Паралельне з’єднання</a> — з’єднання, за якого всі провідники під’єднано до однієї пари точок (вузлів); на всіх однакова напруга.</div>
+      <div class="tablytsia">
+        <table>
+          <thead><tr><th></th><th>Послідовне</th><th>Паралельне</th></tr></thead>
+          <tbody>
+            <tr><th>Струм</th><td class="f">\( I = I_1 = I_2 \)</td><td class="f">\( I = I_1 + I_2 \)</td></tr>
+            <tr><th>Напруга</th><td class="f">\( U = U_1 + U_2 \)</td><td class="f">\( U = U_1 = U_2 \)</td></tr>
+            <tr><th>Опір</th><td class="f">\( R = R_1 + R_2 \)</td><td class="f">\( \frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2} \)</td></tr>
+            <tr><th>\(n\) однакових по \(R_0\)</th><td class="f">\( R = nR_0 \)</td><td class="f">\( R = R_0/n \)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="vyvedennia">
+        <summary>Показати виведення: послідовне з’єднання</summary>
+        <ol class="kroky">
+          <li><div>Заряд у провідниках не накопичується, розгалужень немає — отже, через кожен переріз за той самий час проходить той самий заряд:<p class="formula">\[ I = I_1 = I_2 \]</p><span class="poiasn">Закон збереження заряду.</span></div></li>
+          <li><div>Робота поля з переміщення заряду через усю ділянку дорівнює сумі робіт на кожному резисторі. Ділимо на заряд:<p class="formula">\[ A = A_1 + A_2 \;\Rightarrow\; U = U_1 + U_2 \]</p></div></li>
+          <li><div>Застосовуємо закон Ома до кожного резистора й до всієї ділянки:<p class="formula">\[ IR = IR_1 + IR_2 \]</p></div></li>
+          <li><div>Скорочуємо на \(I \ne 0\):<p class="formula">\[ R = R_1 + R_2 \]</p></div></li>
+        </ol>
+        <p class="rozmirnist">Граничний випадок: якщо \(R_2 = 0\) (замість резистора — провід), то \(R = R_1\) ✓</p>
+      </details>
+
+      <details class="vyvedennia">
+        <summary>Показати виведення: паралельне з’єднання</summary>
+        <ol class="kroky">
+          <li><div>Обидва резистори під’єднано до тих самих двох точок, тому напруга на них однакова:<p class="formula">\[ U = U_1 = U_2 \]</p></div></li>
+          <li><div>Заряд, що надходить у вузол, розподіляється між вітками і не накопичується:<p class="formula">\[ I = I_1 + I_2 \]</p></div></li>
+          <li><div>За законом Ома для кожної вітки й усієї ділянки:<p class="formula">\[ \frac{U}{R} = \frac{U}{R_1} + \frac{U}{R_2} \]</p></div></li>
+          <li><div>Скорочуємо на \(U \ne 0\):<p class="formula">\[ \frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2} \;\Rightarrow\; R = \frac{R_1R_2}{R_1 + R_2} \]</p></div></li>
+        </ol>
+        <p class="rozmirnist">Розмірність: \( \frac{\text{Ом}\cdot\text{Ом}}{\text{Ом}} = \text{Ом} \) ✓ · Граничні випадки: \(R_2 \to \infty\) (обрив) дає \(R = R_1\) ✓; \(R_2 = 0\) (коротке замикання вітки) дає \(R = 0\) ✓. Загальний опір завжди <mark>менший за найменший</mark> з опорів.</p>
+      </details>
+
+      <details class="vyvedennia">
+        <summary>Показати виведення: чому \( R = \rho\,l/S \)</summary>
+        <ol class="kroky">
+          <li><div>Уяви дріт завдовжки \(l\) як \(k\) однакових відрізків завдовжки \(l_0\), з’єднаних <i>послідовно</i>. Тоді \(R = kR_0\), тобто опір пропорційний довжині:<p class="formula">\[ R \propto l \]</p></div></li>
+          <li><div>Дріт із перерізом \(S\) — це \(m\) тонших дротинок із перерізом \(S_0\), з’єднаних <i>паралельно</i>. Тоді \(R = R_0/m\), тобто опір обернено пропорційний перерізу:<p class="formula">\[ R \propto \frac{1}{S} \]</p></div></li>
+          <li><div>Разом \(R \propto l/S\). Коефіцієнт пропорційності залежить лише від речовини (і температури) — це питомий опір:<p class="formula">\[ R = \rho\,\frac{l}{S} \]</p><span class="poiasn">Модель: однорідний провідник зі сталим перерізом.</span></div></li>
+        </ol>
+        <p class="rozmirnist">Розмірність: \( \text{Ом}\cdot\text{м}\cdot\frac{\text{м}}{\text{м}^2} = \text{Ом} \) ✓</p>
+      </details>
+
+      <h3 style="margin-top:1.2rem">Вимірювальні прилади</h3>
+      <ul>
+        <li><b>Амперметр</b> вмикають <mark>послідовно</mark>; його опір має бути дуже малим, щоб не змінювати струм у колі.</li>
+        <li><b>Вольтметр</b> вмикають <mark>паралельно</mark>; його опір має бути дуже великим, щоб через нього майже не відгалужувався струм.</li>
+      </ul>
+      <div class="mif"><b>Міф: «Струм “витрачається” в лампі, тож після неї його менше».</b><span>У нерозгалуженому колі сила струму однакова в будь-якому місці — і до лампи, і після неї. Витрачається <i>енергія</i>, а не заряд.</span></div>
+    </div>
+  </div>
+
+  <figure class="vikno" aria-labelledby="sh4-pidpys">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Інтерактивна схема</span></div>
+    <div class="tilo">
+      <h3 id="sh4-pidpys">Конструктор кола</h3>
+      <div class="perem" role="group" aria-label="Тип з’єднання">
+        <button class="knopka" type="button" data-zjed="poslid" aria-pressed="true">Послідовно</button>
+        <button class="knopka" type="button" data-zjed="paral" aria-pressed="false">Паралельно</button>
+      </div>
+      <div class="skhema" style="margin-top:.7rem">
+        <svg id="sh4" viewBox="0 0 560 280" role="img" aria-label="Електричне коло з джерелом, двома резисторами й амперметрами"></svg>
+      </div>
+      <div class="keruvannia">
+        <label><span class="riadok"><span>Напруга джерела \(U\)</span><output id="sh4-u-v"></output></span>
+          <input id="sh4-u" type="range" min="1" max="12" step="0.5" value="12" aria-label="Напруга, вольт"></label>
+        <label><span class="riadok"><span>\(R_1\)</span><output id="sh4-r1-v"></output></span>
+          <input id="sh4-r1" type="range" min="1" max="20" step="1" value="4" aria-label="Опір першого резистора, ом"></label>
+        <label><span class="riadok"><span>\(R_2\)</span><output id="sh4-r2-v"></output></span>
+          <input id="sh4-r2" type="range" min="1" max="20" step="1" value="12" aria-label="Опір другого резистора, ом"></label>
+      </div>
+      <p class="pokaz" id="sh4-pokaz"></p>
+      <p class="sprobuy">Постав \(R_1 = R_2\) і перемикай з’єднання: загальний опір змінюється вчетверо (\(2R\) проти \(R/2\)). Зроби \(R_2\) дуже великим у паралельному з’єднанні — загальний опір наблизиться до \(R_1\).</p>
+      <p class="prymitka">Джерело вважаємо ідеальним (без внутрішнього опору), прилади — ідеальними.</p>
+    </div>
+  </figure>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Приклад</span></div>
+    <div class="tilo">
+      <h3>Змішане з’єднання</h3>
+      <p>Резистор \(R_1 = 4\) Ом увімкнено послідовно з ділянкою з двох паралельних резисторів \(R_2 = 6\) Ом і \(R_3 = 3\) Ом. Напруга на всьому колі \(12\) В. Знайди струми в усіх резисторах.</p>
+      <p class="formula">\[ R_{23} = \frac{6\cdot3}{6+3} = 2\ \text{Ом}, \quad R = 4 + 2 = 6\ \text{Ом}, \quad I = I_1 = \frac{12}{6} = 2\ \text{А} \]</p>
+      <p class="formula">\[ U_{23} = IR_{23} = 4\ \text{В}, \quad I_2 = \frac{4}{6} \approx 0{,}67\ \text{А}, \quad I_3 = \frac{4}{3} \approx 1{,}33\ \text{А} \]</p>
+      <p><b>Перевірка:</b> \(I_2 + I_3 = 2\) А \(= I\) ✓; \(U_1 + U_{23} = 8 + 4 = 12\) В ✓.</p>
+    </div>
+  </div>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Перевір себе</span></div>
+    <div class="tilo">
+      <fieldset class="test" data-pravylna="а" data-nomer="4.1">
+        <legend><span class="n">4.1</span>Як правильно ввімкнути амперметр, щоб виміряти струм через лампу?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Послідовно з лампою</button>
+          <button type="button" data-v="б">б) Паралельно до лампи</button>
+          <button type="button" data-v="в">в) Як завгодно — покази будуть однакові</button>
+          <button type="button" data-v="г">г) Лише безпосередньо до «+» джерела, інакше струм уже «витратиться»</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Так: через послідовно ввімкнений амперметр тече той самий струм, що й через лампу.</li>
+          <li data-v="б">Амперметр має малий опір: паралельно він «закоротить» лампу, а великий струм може його пошкодити.</li>
+          <li data-v="в">Від способу вмикання покази й безпека приладу залежать принципово.</li>
+          <li data-v="г">У нерозгалуженому колі струм однаковий скрізь — він не «витрачається».</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+      <fieldset class="test" data-pravylna="в" data-nomer="4.2">
+        <legend><span class="n">4.2</span>Два резистори по \(10\) Ом з’єднали паралельно. Який загальний опір?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 20 Ом</button>
+          <button type="button" data-v="б">б) 10 Ом</button>
+          <button type="button" data-v="в">в) 5 Ом</button>
+          <button type="button" data-v="г">г) 0,2 Ом</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Це опір <i>послідовного</i> з’єднання.</li>
+          <li data-v="б">За паралельного з’єднання опір менший за найменший із опорів.</li>
+          <li data-v="в">\(R = R_0/n = 10/2 = 5\) Ом.</li>
+          <li data-v="г">Це \(1/R\) (0,2 Ом⁻¹), а не сам опір — забули обернути дріб.</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 5. РОБОТА Й ПОТУЖНІСТЬ ═══════════ -->
+<section class="pidrozdil" id="s5">
+  <div class="pidrozdil-zag">
+    <span class="nomer">05</span>
+    <h2>Робота й потужність</h2>
+    <p class="propys">куди йде енергія</p>
+    <span class="shar osnova">Основа</span>
+  </div>
+
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Теорія</span></div>
+    <div class="tilo">
+      <div class="termin" id="t-robota"><a href="#g-robota">Робота струму</a> \(A\) — робота електричного поля з переміщення заряду в провіднику; дорівнює енергії, яку струм передає ділянці кола.</div>
+      <div class="termin" id="t-potuzhnist"><a href="#g-potuzhnist">Потужність струму</a> \(P\) — робота струму за одиницю часу. Одиниця — ват: \(1\ \text{Вт} = 1\ \text{Дж/с}\).</div>
+
+      <details class="vyvedennia">
+        <summary>Показати виведення: \( A = UIt \) і три формули потужності</summary>
+        <ol class="kroky">
+          <li><div>З означення напруги \(U = A/q\) маємо:<p class="formula">\[ A = qU \]</p></div></li>
+          <li><div>З означення сили струму \(q = It\). Підставляємо:<p class="formula">\[ A = UIt \]</p></div></li>
+          <li><div>Потужність — робота за одиницю часу:<p class="formula">\[ P = \frac{A}{t} = UI \]</p><span class="poiasn">Ця формула правильна для будь-якого споживача.</span></div></li>
+          <li><div>Для резистора, що підкоряється закону Ома, підставляємо \(U = IR\) або \(I = U/R\):<p class="formula">\[ P = I^2R = \frac{U^2}{R} \]</p><span class="poiasn">Ці дві форми — лише для ділянок, де вся енергія йде на нагрівання.</span></div></li>
+        </ol>
+        <p class="rozmirnist">Розмірність: \( \text{В}\cdot\text{А} = \frac{\text{Дж}}{\text{Кл}}\cdot\frac{\text{Кл}}{\text{с}} = \frac{\text{Дж}}{\text{с}} = \text{Вт} \) ✓</p>
+      </details>
+
+      <div class="zakon">
+        <span class="mitka-z">Закон</span>
+        <h4>Закон Джоуля — Ленца</h4>
+        <p>Кількість теплоти, що виділяється в провіднику зі струмом, дорівнює добутку квадрата сили струму, опору провідника й часу проходження струму.</p>
+        <p class="formula">\[ Q = I^2Rt \]</p>
+        <dl>
+          <dt>Хто й коли</dt><dd>Джеймс Прескотт Джоуль (1841) і незалежно Емілій Ленц (1842).</dd>
+          <dt>Умови</dt><dd>Нерухомі провідники; формула дає саме теплову дію струму.</dd>
+          <dt>Межі</dt><dd>Якщо в колі є двигун чи акумулятор, що заряджається, то \(A = UIt\) більше за \(Q = I^2Rt\): частина енергії йде на механічну роботу чи хімічні реакції.</dd>
+        </dl>
+      </div>
+
+      <div class="termin" id="t-kvt"><a href="#g-kvt">Кіловат-година</a> — позасистемна одиниця роботи (енергії), яку використовують лічильники: \(1\ \text{кВт·год} = 1000\ \text{Вт}\cdot3600\ \text{с} = 3{,}6\cdot10^{6}\ \text{Дж}\).</div>
+      <div class="mif"><b>Міф: «Потужніша лампа завжди світить яскравіше».</b><span>Номінальна потужність на лампі — це потужність за номінальної напруги. Якщо лампи 60 Вт і 100 Вт увімкнути <i>послідовно</i>, яскравіше світитиме лампа 60 Вт (перевір на схемі).</span></div>
+    </div>
+  </div>
+
+  <figure class="vikno" aria-labelledby="sh5-pidpys">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Інтерактивна схема</span></div>
+    <div class="tilo">
+      <h3 id="sh5-pidpys">Яка лампа яскравіша?</h3>
+      <div class="perem" role="group" aria-label="Тип з’єднання ламп">
+        <button class="knopka" type="button" data-lampy="paral" aria-pressed="true">Паралельно</button>
+        <button class="knopka" type="button" data-lampy="poslid" aria-pressed="false">Послідовно</button>
+      </div>
+      <div class="skhema" style="margin-top:.7rem">
+        <svg id="sh5" viewBox="0 0 560 230" role="img" aria-label="Дві лампи 60 і 100 ват, з’єднані послідовно або паралельно, під напругою 220 вольт; яскравість світіння показує потужність"></svg>
+      </div>
+      <p class="pokaz" id="sh5-pokaz"></p>
+      <p class="sprobuy">Перемкни на послідовне з’єднання. Струм в обох лампах тепер однаковий, тож більша потужність \(P = I^2R\) виділяється в лампі з більшим опором — а це лампа 60 Вт (\(R = U^2/P\)).</p>
+      <p class="prymitka">Модель: опір ламп сталий і дорівнює опору в номінальному режимі. Насправді холодніша нитка має менший опір, тож реальні числа будуть дещо іншими, але висновок не зміниться.</p>
+    </div>
+  </figure>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Приклад</span></div>
+    <div class="tilo">
+      <h3>Чайник</h3>
+      <p>Електричний чайник потужністю \(2\) кВт закипає за \(3\) хв. Скільки електроенергії він споживає? Яка сила струму в його спіралі за напруги \(220\) В?</p>
+      <p class="formula">\[ A = Pt = 2000\ \text{Вт}\cdot180\ \text{с} = 360\,000\ \text{Дж} = 0{,}1\ \text{кВт·год} \]</p>
+      <p class="formula">\[ I = \frac{P}{U} = \frac{2000}{220} \approx 9{,}1\ \text{А} \]</p>
+      <p><b>Відповідь:</b> 0,1 кВт·год (360 кДж); ≈ 9,1 А. Щоб дізнатися вартість, помнож кіловат-години на свій тариф.</p>
+    </div>
+  </div>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Перевір себе</span></div>
+    <div class="tilo">
+      <fieldset class="test" data-pravylna="а" data-nomer="5.1">
+        <legend><span class="n">5.1</span>Лампи 60 Вт і 100 Вт (обидві на 220 В) з’єднали послідовно й увімкнули в мережу 220 В. Яка світитиме яскравіше?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 60 Вт</button>
+          <button type="button" data-v="б">б) 100 Вт</button>
+          <button type="button" data-v="в">в) Однаково</button>
+          <button type="button" data-v="г">г) Жодна не світитиме</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Струм однаковий, а опір лампи 60 Вт більший (\(R = U^2/P\)), тому \(P = I^2R\) в ній більша.</li>
+          <li data-v="б">«100 Вт» — потужність лише за номінальної напруги 220 В на самій лампі; у послідовному колі напруга ділиться.</li>
+          <li data-v="в">Однаково було б тільки за однакових опорів.</li>
+          <li data-v="г">Струм тече, лампи світять, просто тьмяніше, ніж у номінальному режимі.</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 6. ЕРС ═══════════ -->
+<section class="pidrozdil" id="s6">
+  <div class="pidrozdil-zag">
+    <span class="nomer">06</span>
+    <h2>ЕРС і повне коло</h2>
+    <p class="propys">джерело теж має опір</p>
+    <span class="shar profil">Профіль</span>
+  </div>
+
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Теорія</span></div>
+    <div class="tilo">
+      <div class="termin" id="t-storonni"><a href="#g-storonni">Сторонні сили</a> — сили неелектростатичного походження (хімічні, магнітні тощо), які всередині джерела розділяють заряди й підтримують струм у колі.</div>
+      <div class="termin" id="t-ers"><a href="#g-ers">Електрорушійна сила (ЕРС)</a> \(\mathcal{E}\) — фізична величина, що дорівнює відношенню роботи сторонніх сил з переміщення заряду в замкненому колі до значення цього заряду. Одиниця — вольт.</div>
+      <p class="formula">\[ \mathcal{E} = \frac{A_{\text{ст}}}{q} \]</p>
+      <div class="termin" id="t-vnutr"><a href="#g-vnutr">Внутрішній опір</a> \(r\) — опір самого джерела струму.</div>
+      <p>Хоч у назві є слово «сила», ЕРС — <b>не сила</b> в механічному сенсі, а енергетична характеристика джерела (вимірюється у вольтах).</p>
+
+      <div class="zakon">
+        <span class="mitka-z">Закон</span>
+        <h4>Закон Ома для повного кола</h4>
+        <p>Сила струму в замкненому колі дорівнює відношенню ЕРС джерела до повного опору кола.</p>
+        <p class="formula">\[ I = \frac{\mathcal{E}}{R + r} \]</p>
+        <dl>
+          <dt>Хто й коли</dt><dd>Також випливає з праці Г. Ома 1827 року, яка описувала коло з джерелом.</dd>
+          <dt>Умови</dt><dd>Одне джерело, нерозгалужене коло, сталі \(R\) і \(r\).</dd>
+          <dt>Межі</dt><dd>Для кількох джерел і розгалужених кіл — правила Кірхгофа (підрозділ 7).</dd>
+        </dl>
+      </div>
+
+      <details class="vyvedennia">
+        <summary>Показати виведення: закон Ома для повного кола</summary>
+        <ol class="kroky">
+          <li><div>За час \(t\) через коло проходить заряд \(q = It\). Сторонні сили виконують роботу:<p class="formula">\[ A_{\text{ст}} = \mathcal{E}q = \mathcal{E}It \]</p></div></li>
+          <li><div>Ця енергія виділяється як теплота у зовнішньому колі та всередині джерела (закон Джоуля — Ленца):<p class="formula">\[ Q = I^2Rt + I^2rt \]</p><span class="poiasn">Закон збереження енергії; інших споживачів у колі немає.</span></div></li>
+          <li><div>Прирівнюємо й скорочуємо на \(It\):<p class="formula">\[ \mathcal{E}It = I^2Rt + I^2rt \;\Rightarrow\; \mathcal{E} = IR + Ir \]</p></div></li>
+          <li><div>Виражаємо силу струму:<p class="formula">\[ I = \frac{\mathcal{E}}{R + r} \]</p></div></li>
+          <li><div>Напруга на клемах джерела (на зовнішньому колі):<p class="formula">\[ U = IR = \mathcal{E} - Ir \]</p><span class="poiasn">Що більший струм, то менша напруга на клемах.</span></div></li>
+        </ol>
+        <p class="rozmirnist">Граничні випадки: \(R \to \infty\) (коло розімкнене) — \(I = 0\), \(U = \mathcal{E}\) ✓ (вольтметр на розімкнених клемах показує ЕРС). \(R = 0\) — <a href="#g-kz">коротке замикання</a>: \( I_{\text{кз}} = \mathcal{E}/r \) ✓.</p>
+      </details>
+
+      <details class="vyvedennia">
+        <summary>Показати виведення: коли корисна потужність найбільша <span class="shar olimp">Олімпіада</span></summary>
+        <ol class="kroky">
+          <li><div>Корисна потужність — та, що виділяється у зовнішньому колі:<p class="formula">\[ P = I^2R = \frac{\mathcal{E}^2R}{(R+r)^2} \]</p></div></li>
+          <li><div>Ділимо чисельник і знаменник на \(R\):<p class="formula">\[ P = \frac{\mathcal{E}^2}{R + 2r + \dfrac{r^2}{R}} \]</p><span class="poiasn">\(P\) найбільша, коли знаменник найменший.</span></div></li>
+          <li><div>За нерівністю між середнім арифметичним і геометричним для додатних \(R\) і \(r^2/R\):<p class="formula">\[ R + \frac{r^2}{R} \ge 2\sqrt{R\cdot\frac{r^2}{R}} = 2r \]</p><span class="poiasn">Рівність досягається, коли \(R = r^2/R\), тобто \(R = r\).</span></div></li>
+          <li><div>Отже, найбільша корисна потужність:<p class="formula">\[ R = r, \qquad P_{max} = \frac{\mathcal{E}^2}{4r} \]</p></div></li>
+          <li><div>ККД джерела — частка корисної потужності в повній:<p class="formula">\[ \eta = \frac{I^2R}{I^2(R+r)} = \frac{R}{R+r} \]</p><span class="poiasn">За максимальної потужності \(\eta = 50\ \%\) — половина енергії гріє саме джерело.</span></div></li>
+        </ol>
+        <p class="rozmirnist">Розмірність: \( \frac{\text{В}^2}{\text{Ом}} = \text{В}\cdot\text{А} = \text{Вт} \) ✓</p>
+      </details>
+    </div>
+  </div>
+
+  <figure class="vikno" aria-labelledby="sh6-pidpys">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Інтерактивна схема</span></div>
+    <div class="tilo">
+      <h3 id="sh6-pidpys">Потужність і опір навантаження</h3>
+      <div class="skhema">
+        <svg id="sh6" viewBox="0 0 420 280" role="img" aria-label="Графік залежності корисної потужності від опору зовнішнього кола з позначкою поточного опору й максимуму при R = r"></svg>
+      </div>
+      <div class="keruvannia">
+        <label><span class="riadok"><span>ЕРС \(\mathcal{E}\)</span><output id="sh6-e-v"></output></span>
+          <input id="sh6-e" type="range" min="1" max="12" step="0.5" value="4.5" aria-label="ЕРС, вольт"></label>
+        <label><span class="riadok"><span>Внутрішній опір \(r\)</span><output id="sh6-rr-v"></output></span>
+          <input id="sh6-rr" type="range" min="0.5" max="5" step="0.5" value="2" aria-label="Внутрішній опір, ом"></label>
+        <label><span class="riadok"><span>Зовнішній опір \(R\)</span><output id="sh6-r-v"></output></span>
+          <input id="sh6-r" type="range" min="0" max="20" step="0.5" value="6" aria-label="Зовнішній опір, ом"></label>
+      </div>
+      <p class="pokaz" id="sh6-pokaz"></p>
+      <p class="sprobuy">Знайди повзунком \(R\) вершину графіка — вона завжди при \(R = r\). Потім зменш \(R\) до нуля: струм стане найбільшим (коротке замикання), а корисна потужність — нульовою.</p>
+    </div>
+  </figure>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Приклад</span></div>
+    <div class="tilo">
+      <h3>Батарейка і лампочка</h3>
+      <p>Батарейка з ЕРС \(4{,}5\) В і внутрішнім опором \(0{,}5\) Ом живить лампочку опором \(4\) Ом. Знайди силу струму, напругу на лампочці, струм короткого замикання та ККД.</p>
+      <p class="formula">\[ I = \frac{4{,}5}{4 + 0{,}5} = 1\ \text{А}, \quad U = IR = 4\ \text{В}, \quad I_{\text{кз}} = \frac{4{,}5}{0{,}5} = 9\ \text{А}, \quad \eta = \frac{4}{4{,}5} \approx 89\ \% \]</p>
+    </div>
+  </div>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Перевір себе</span></div>
+    <div class="tilo">
+      <fieldset class="test" data-pravylna="б" data-nomer="6.1">
+        <legend><span class="n">6.1</span>Опір зовнішнього кола зменшили. Що станеться з напругою на клемах джерела?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Зросте</button>
+          <button type="button" data-v="б">б) Зменшиться</button>
+          <button type="button" data-v="в">в) Не зміниться — вона завжди дорівнює ЕРС</button>
+          <button type="button" data-v="г">г) Стане рівною нулю</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Струм зросте, а з ним і спад напруги \(Ir\) усередині джерела.</li>
+          <li data-v="б">\(U = \mathcal{E} - Ir\): менше \(R\) → більше \(I\) → більше \(Ir\) → менша \(U\).</li>
+          <li data-v="в">Напруга на клемах дорівнює ЕРС лише для розімкненого кола (або ідеального джерела з \(r = 0\)).</li>
+          <li data-v="г">Нулем вона стане лише за \(R = 0\) (коротке замикання), а не за будь-якого зменшення.</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 7. КІРХГОФ ═══════════ -->
+<section class="pidrozdil" id="s7">
+  <div class="pidrozdil-zag">
+    <span class="nomer">07</span>
+    <h2>Правила Кірхгофа</h2>
+    <p class="propys">для будь-якого кола</p>
+    <span class="shar olimp">Олімпіада</span>
+  </div>
+
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Теорія</span></div>
+    <div class="tilo">
+      <div class="termin" id="t-vuzol"><a href="#g-vuzol">Вузол</a> — точка кола, в якій з’єднуються три провідники або більше.</div>
+      <div class="termin" id="t-kontur"><a href="#g-kontur">Контур</a> — будь-який замкнений шлях у колі; <b>вітка</b> — ділянка кола між двома сусідніми вузлами.</div>
+
+      <div class="zakon">
+        <span class="mitka-z">Правило</span>
+        <h4>Перше правило Кірхгофа (правило вузлів)</h4>
+        <p>Алгебраїчна сума сил струмів, що сходяться у вузлі, дорівнює нулю (вхідні — зі знаком «+», вихідні — з «−»).</p>
+        <p class="formula">\[ \sum_k I_k = 0 \]</p>
+        <dl>
+          <dt>Звідки</dt><dd>Закон збереження заряду: у вузлі заряд не накопичується.</dd>
+          <dt>Хто й коли</dt><dd>Густав Кірхгоф, 1845 рік, ще студентом Кенігсберзького університету.</dd>
+        </dl>
+      </div>
+      <div class="zakon">
+        <span class="mitka-z">Правило</span>
+        <h4>Друге правило Кірхгофа (правило контурів)</h4>
+        <p>У будь-якому замкненому контурі алгебраїчна сума ЕРС дорівнює алгебраїчній сумі добутків сил струмів на опори відповідних ділянок.</p>
+        <p class="formula">\[ \sum_i \mathcal{E}_i = \sum_k I_kR_k \]</p>
+        <dl>
+          <dt>Звідки</dt><dd>Закон збереження енергії (робота поля на замкненому шляху).</dd>
+          <dt>Межі</dt><dd>Сталі (або повільно змінні) струми в колах, де опори, джерела й провідники можна вважати окремими елементами.</dd>
+        </dl>
+      </div>
+
+      <h3 style="margin-top:1rem">Правила знаків</h3>
+      <ol>
+        <li>Для кожної вітки довільно обери напрямок струму й позначку \(I_1, I_2, \ldots\)</li>
+        <li>Обери напрямок обходу контуру.</li>
+        <li>Добуток \(IR\) беремо з «+», якщо напрямок струму збігається з напрямком обходу.</li>
+        <li>ЕРС беремо з «+», якщо обхід проходить джерело від «−» до «+».</li>
+        <li>Від’ємна відповідь означає, що справжній струм тече <mark>протилежно</mark> до обраного напрямку. Це не помилка!</li>
+      </ol>
+      <p>Для кола з \(n\) вузлами незалежних рівнянь вузлів — \(n - 1\); решту рівнянь дають незалежні контури.</p>
+    </div>
+  </div>
+
+  <figure class="vikno" aria-labelledby="sh7-pidpys">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Інтерактивна схема</span></div>
+    <div class="tilo">
+      <h3 id="sh7-pidpys">Струми у вузлі</h3>
+      <div class="skhema">
+        <svg id="sh7" viewBox="0 0 420 260" role="img" aria-label="Вузол, у якому сходяться три провідники; стрілки показують напрямки струмів"></svg>
+      </div>
+      <div class="keruvannia">
+        <label><span class="riadok"><span>\(I_1\) (+ — до вузла)</span><output id="sh7-1-v"></output></span>
+          <input id="sh7-1" type="range" min="-3" max="3" step="0.5" value="2" aria-label="Струм у першому провіднику, ампер"></label>
+        <label><span class="riadok"><span>\(I_2\) (+ — до вузла)</span><output id="sh7-2-v"></output></span>
+          <input id="sh7-2" type="range" min="-3" max="3" step="0.5" value="1" aria-label="Струм у другому провіднику, ампер"></label>
+      </div>
+      <p class="pokaz" id="sh7-pokaz"></p>
+      <p class="sprobuy">Зроби \(I_2\) від’ємним — стрілка розвернеться: тепер струм у цьому провіднику виходить із вузла. Хоч як крути повзунки, сума вхідних струмів завжди дорівнює сумі вихідних.</p>
+    </div>
+  </figure>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Приклад</span></div>
+    <div class="tilo">
+      <h3>Два джерела</h3>
+      <svg viewBox="0 0 420 210" role="img" aria-label="Коло з трьома вітками: ліва — джерело ЕРС 12 вольт і резистор 2 ома; середня — резистор 4 ома; права — джерело ЕРС 6 вольт і резистор 4 ома; вузли A вгорі й B внизу" style="display:block;width:100%;max-width:460px;margin:0 auto .8rem;background:#fffdfb;border-radius:10px;border:1px solid rgba(42,35,37,.18)">
+        <g fill="none" stroke="#2a2325" stroke-width="2">
+          <path d="M60 30H360M60 180H360M60 30V60M60 112V180M210 30V75M210 135V180M360 30V60M360 112V180"/>
+          <rect x="196" y="75" width="28" height="60" fill="#fbe6ee"/>
+          <rect x="46" y="128" width="28" height="40" fill="#fbe6ee"/>
+          <rect x="346" y="128" width="28" height="40" fill="#fbe6ee"/>
+        </g>
+        <!-- джерела: довга риска «+» вгорі -->
+        <g stroke="#2a2325" stroke-width="2.4">
+          <path d="M40 80H80M50 92H70"/><path d="M340 80H380M350 92H370"/>
+          <path d="M60 60V80M60 92V112M360 60V80M360 92V112" stroke-width="2"/>
+        </g>
+        <g fill="#2a2325" font-family="Onest,sans-serif" font-size="13">
+          <circle cx="210" cy="30" r="4"/><circle cx="210" cy="180" r="4"/>
+          <text x="216" y="22">A</text><text x="216" y="200">B</text>
+          <text x="86" y="84">ℰ₁ = 12 В</text><text x="84" y="152">R₁ = 2 Ом</text>
+          <text x="230" y="110">R₃ = 4 Ом</text>
+          <text x="262" y="84">ℰ₂ = 6 В</text><text x="268" y="152">R₂ = 4 Ом</text>
+          <text x="30" y="76">+</text><text x="390" y="76">+</text>
+        </g>
+        <g fill="#4b5b37" font-family="Onest,sans-serif" font-size="13" font-weight="700">
+          <path d="M60 50l-6 10h12z"/><text x="26" y="52">I₁</text>
+          <path d="M360 50l-6 10h12z"/><text x="372" y="52">I₂</text>
+          <path d="M210 60l-6-10h12z"/><text x="168" y="62">I₃</text>
+        </g>
+      </svg>
+      <p>Знайди струми в усіх вітках. Обираємо напрямки: \(I_1\) і \(I_2\) — до вузла A (вгору), \(I_3\) — від A вниз через \(R_3\).</p>
+      <p class="formula">\[ \text{вузол A:}\quad I_1 + I_2 = I_3 \]</p>
+      <p class="formula">\[ \text{лівий контур:}\quad \mathcal{E}_1 = I_1R_1 + I_3R_3 \;\Rightarrow\; 12 = 2I_1 + 4I_3 \]</p>
+      <p class="formula">\[ \text{правий контур:}\quad \mathcal{E}_2 = I_2R_2 + I_3R_3 \;\Rightarrow\; 6 = 4I_2 + 4I_3 \]</p>
+      <p>З другого й третього рівнянь: \(I_1 = 6 - 2I_3\), \(I_2 = 1{,}5 - I_3\). Підставляємо в перше:</p>
+      <p class="formula">\[ 7{,}5 - 3I_3 = I_3 \;\Rightarrow\; I_3 = 1{,}875\ \text{А},\quad I_1 = 2{,}25\ \text{А},\quad I_2 = -0{,}375\ \text{А} \]</p>
+      <p><b>Відповідь:</b> \(I_1 = 2{,}25\) А, \(I_3 \approx 1{,}88\) А, а \(I_2\) від’ємний: струм \(0{,}375\) А тече через друге джерело <i>вниз</i> — сильніше джерело його заряджає (якщо це акумулятор).</p>
+      <p><b>Перевірка:</b> \(2\cdot2{,}25 + 4\cdot1{,}875 = 12\) ✓; \(4\cdot(-0{,}375) + 4\cdot1{,}875 = 6\) ✓.</p>
+    </div>
+  </div>
+
+  <div class="vikno shavlia">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Перевір себе</span></div>
+    <div class="tilo">
+      <fieldset class="test" data-pravylna="б" data-nomer="7.1">
+        <legend><span class="n">7.1</span>У вузол входять струми 2 А і 3 А, а виходить лише один провід. Яка сила струму в ньому?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 1 А</button>
+          <button type="button" data-v="б">б) 5 А</button>
+          <button type="button" data-v="в">в) 6 А</button>
+          <button type="button" data-v="г">г) Визначити неможливо</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Це різниця, а заряд, що входить, має весь вийти.</li>
+          <li data-v="б">Перше правило Кірхгофа: \(2 + 3 = 5\) А.</li>
+          <li data-v="в">Струми додаються, а не множаться.</li>
+          <li data-v="г">Даних досить: заряд у вузлі не накопичується.</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+      <fieldset class="test" data-pravylna="в" data-nomer="7.2">
+        <legend><span class="n">7.2</span>Розв’язуючи систему за правилами Кірхгофа, ти отримав \(I_2 = -0{,}4\) А. Що це означає?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Помилку в розрахунках</button>
+          <button type="button" data-v="б">б) Що у вітці немає струму</button>
+          <button type="button" data-v="в">в) Струм 0,4 А тече протилежно до обраного напрямку</button>
+          <button type="button" data-v="г">г) Що джерело у вітці несправне</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Напрямки обирають довільно, тож від’ємний знак — нормальний результат.</li>
+          <li data-v="б">Струм є, і він дорівнює 0,4 А за модулем.</li>
+          <li data-v="в">Так: знак показує напрямок відносно обраного.</li>
+          <li data-v="г">Знак струму нічого не каже про справність джерела.</li>
+        </ul>
+        <p class="vidhuk" aria-live="polite"></p>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ ПОСТАТІ ═══════════ -->
+<section id="postati">
+  <h2 class="blok-zag">Постаті <span class="propys">хто це відкрив</span></h2>
+  <div class="strichka" role="list">
+    <div class="postat" role="listitem">
+      <span class="rik-vidkryttia">1800</span>
+      <div class="vikno"><div class="tilo">
+        <span class="inicialy" aria-hidden="true">АВ</span>
+        <h3>Алессандро Вольта</h3>
+        <p class="roky">1745–1827 · Італія</p>
+        <p>Створив «вольтів стовп» — перше джерело тривалого електричного струму; повідомив про нього 1800 року. На його честь названо одиницю напруги.</p>
+      </div></div>
+    </div>
+    <div class="postat" role="listitem">
+      <span class="rik-vidkryttia">1820-ті</span>
+      <div class="vikno"><div class="tilo">
+        <span class="inicialy" aria-hidden="true">АА</span>
+        <h3>Андре-Марі Ампер</h3>
+        <p class="roky">1775–1836 · Франція</p>
+        <p>Один із засновників електродинаміки: вивчав взаємодію струмів (головна праця — 1826). Його ім’ям названо одиницю сили струму.</p>
+      </div></div>
+    </div>
+    <div class="postat" role="listitem">
+      <span class="rik-vidkryttia">1827</span>
+      <div class="vikno"><div class="tilo">
+        <span class="inicialy" aria-hidden="true">ГО</span>
+        <h3>Георг Симон Ом</h3>
+        <p class="roky">1789–1854 · Баварія (Німеччина)</p>
+        <p>У книзі «Die galvanische Kette, mathematisch bearbeitet» (1827) сформулював закон, що пов’язує струм, напругу й опір. 1841 року отримав медаль Коплі Лондонського королівського товариства.</p>
+      </div></div>
+    </div>
+    <div class="postat" role="listitem">
+      <span class="rik-vidkryttia">1841</span>
+      <div class="vikno"><div class="tilo">
+        <span class="inicialy" aria-hidden="true">ДД</span>
+        <h3>Джеймс Прескотт Джоуль</h3>
+        <p class="roky">1818–1889 · Англія</p>
+        <p>1841 року встановив, що теплота, яку виділяє струм, пропорційна квадрату сили струму й опору. На його честь названо одиницю енергії.</p>
+      </div></div>
+    </div>
+    <div class="postat" role="listitem">
+      <span class="rik-vidkryttia">1842</span>
+      <div class="vikno"><div class="tilo">
+        <span class="inicialy" aria-hidden="true">ЕЛ</span>
+        <h3>Емілій Ленц</h3>
+        <p class="roky">1804–1865 · Російська імперія</p>
+        <p>Народився в Дерпті (нині Тарту, Естонія), працював у Санкт-Петербурзькому університеті. 1842 року незалежно від Джоуля відкрив закон теплової дії струму. Відомий також правилом Ленца для індукції.</p>
+      </div></div>
+    </div>
+    <div class="postat" role="listitem">
+      <span class="rik-vidkryttia">1845</span>
+      <div class="vikno"><div class="tilo">
+        <span class="inicialy" aria-hidden="true">ГК</span>
+        <h3>Густав Кірхгоф</h3>
+        <p class="roky">1824–1887 · Пруссія (Німеччина)</p>
+        <p>1845 року, ще студентом Кенігсберзького університету, сформулював правила для розгалужених кіл. Пізніше разом із Бунзеном заснував спектральний аналіз.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ ГОЛОВНЕ ═══════════ -->
+<section id="holovne">
+  <h2 class="blok-zag">Головне <span class="propys">шпаргалка</span></h2>
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Усі формули</span></div>
+    <div class="tilo tablytsia">
+      <table>
+        <thead><tr><th>Формула</th><th>Що означає</th><th>Одиниці</th></tr></thead>
+        <tbody>
+          <tr><td class="f">\( I = \dfrac{q}{t} \)</td><td>сила струму = заряд / час</td><td>А = Кл/с</td></tr>
+          <tr><td class="f">\( I = n|q|vS \)</td><td>\(n\) — концентрація носіїв, \(v\) — швидкість дрейфу, \(S\) — переріз</td><td>А</td></tr>
+          <tr><td class="f">\( U = \dfrac{A}{q} \)</td><td>напруга = робота поля / заряд</td><td>В = Дж/Кл</td></tr>
+          <tr><td class="f">\( R = \rho\dfrac{l}{S} \)</td><td>\(\rho\) — питомий опір, \(l\) — довжина, \(S\) — переріз</td><td>Ом</td></tr>
+          <tr><td class="f">\( R = R_0(1 + \alpha\Delta t) \)</td><td>\(\alpha\) — температурний коефіцієнт опору</td><td>Ом; \(\alpha\) — К⁻¹</td></tr>
+          <tr><td class="f">\( I = \dfrac{U}{R} \)</td><td>закон Ома для ділянки</td><td>А</td></tr>
+          <tr><td class="f">\( R = R_1 + R_2 \)</td><td>послідовне з’єднання</td><td>Ом</td></tr>
+          <tr><td class="f">\( \dfrac{1}{R} = \dfrac{1}{R_1} + \dfrac{1}{R_2} \)</td><td>паралельне з’єднання</td><td>Ом</td></tr>
+          <tr><td class="f">\( A = UIt \)</td><td>робота струму</td><td>Дж; кВт·год = 3,6 МДж</td></tr>
+          <tr><td class="f">\( P = UI = I^2R = \dfrac{U^2}{R} \)</td><td>потужність струму (дві останні — для резистора)</td><td>Вт</td></tr>
+          <tr><td class="f">\( Q = I^2Rt \)</td><td>закон Джоуля — Ленца</td><td>Дж</td></tr>
+          <tr><td class="f">\( I = \dfrac{\mathcal{E}}{R + r} \)</td><td>закон Ома для повного кола; \(r\) — внутрішній опір</td><td>А</td></tr>
+          <tr><td class="f">\( U = \mathcal{E} - Ir \)</td><td>напруга на клемах джерела</td><td>В</td></tr>
+          <tr><td class="f">\( I_{\text{кз}} = \dfrac{\mathcal{E}}{r} \)</td><td>струм короткого замикання</td><td>А</td></tr>
+          <tr><td class="f">\( \eta = \dfrac{R}{R + r} \)</td><td>ККД джерела; \(P_{max}\) при \(R = r\)</td><td>—</td></tr>
+          <tr><td class="f">\( \sum I_k = 0 \)</td><td>перше правило Кірхгофа (вузли)</td><td>А</td></tr>
+          <tr><td class="f">\( \sum \mathcal{E}_i = \sum I_kR_k \)</td><td>друге правило Кірхгофа (контури)</td><td>В</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ ГЛОСАРІЙ ═══════════ -->
+<section id="hlosarii" class="hlosarii">
+  <h2 class="blok-zag">Глосарій <span class="propys">від А до С</span></h2>
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Терміни за абеткою</span></div>
+    <div class="tilo">
+      <dl>
+        <dt id="g-ampermetr">Амперметр</dt><dd>Прилад для вимірювання сили струму; вмикається послідовно, має малий опір.</dd>
+        <dt id="g-vnutr">Внутрішній опір (\(r\))</dt><dd>Опір самого джерела струму. <a href="#t-vnutr">До тексту ↑</a></dd>
+        <dt id="g-vakh">Вольт-амперна характеристика</dt><dd>Графік залежності сили струму від напруги \(I(U)\). <a href="#t-vakh">До тексту ↑</a></dd>
+        <dt id="g-voltmetr">Вольтметр</dt><dd>Прилад для вимірювання напруги; вмикається паралельно, має великий опір.</dd>
+        <dt id="g-vuzol">Вузол</dt><dd>Точка кола, в якій з’єднуються три провідники або більше. <a href="#t-vuzol">До тексту ↑</a></dd>
+        <dt id="g-strum">Електричний струм</dt><dd>Напрямлений (упорядкований) рух заряджених частинок. <a href="#t-strum">До тексту ↑</a></dd>
+        <dt id="g-ers">Електрорушійна сила (ЕРС, \(\mathcal{E}\))</dt><dd>Відношення роботи сторонніх сил з переміщення заряду в замкненому колі до цього заряду; одиниця — вольт. <a href="#t-ers">До тексту ↑</a></dd>
+        <dt id="g-kvt">Кіловат-година</dt><dd>Позасистемна одиниця енергії: 1 кВт·год = 3,6·10⁶ Дж. <a href="#t-kvt">До тексту ↑</a></dd>
+        <dt id="g-kkd">Коефіцієнт корисної дії (ККД, \(\eta\))</dt><dd>Відношення корисної роботи (потужності) до повної; для джерела \(\eta = R/(R+r)\).</dd>
+        <dt id="g-kontur">Контур</dt><dd>Будь-який замкнений шлях в електричному колі. <a href="#t-kontur">До тексту ↑</a></dd>
+        <dt id="g-kz">Коротке замикання</dt><dd>З’єднання клем джерела провідником дуже малого опору; струм обмежує лише внутрішній опір: \(I_{\text{кз}} = \mathcal{E}/r\).</dd>
+        <dt id="g-napruha">Напруга (\(U\))</dt><dd>Відношення роботи електричного поля з переміщення заряду на ділянці кола до цього заряду; одиниця — вольт. <a href="#t-napruha">До тексту ↑</a></dd>
+        <dt id="g-opir">Опір електричний (\(R\))</dt><dd>Величина, що характеризує протидію провідника напрямленому руху заряджених частинок; одиниця — ом. <a href="#t-opir">До тексту ↑</a></dd>
+        <dt id="g-paral">Паралельне з’єднання</dt><dd>Провідники під’єднано до однієї пари вузлів; напруга на всіх однакова. <a href="#t-paral">До тексту ↑</a></dd>
+        <dt id="g-pytomyi">Питомий опір (\(\rho\))</dt><dd>Характеристика речовини: опір провідника завдовжки 1 м і перерізом 1 м² (або 1 мм²). <a href="#t-pytomyi">До тексту ↑</a></dd>
+        <dt id="g-poslid">Послідовне з’єднання</dt><dd>Провідники ввімкнено один за одним без розгалужень; струм у всіх однаковий. <a href="#t-poslid">До тексту ↑</a></dd>
+        <dt id="g-potuzhnist">Потужність струму (\(P\))</dt><dd>Робота струму за одиницю часу; одиниця — ват. <a href="#t-potuzhnist">До тексту ↑</a></dd>
+        <dt id="g-robota">Робота струму (\(A\))</dt><dd>Робота електричного поля з переміщення заряду в провіднику; \(A = UIt\). <a href="#t-robota">До тексту ↑</a></dd>
+        <dt id="g-syla">Сила струму (\(I\))</dt><dd>Заряд, що проходить через поперечний переріз провідника за одиницю часу; одиниця — ампер. <a href="#t-syla">До тексту ↑</a></dd>
+        <dt id="g-storonni">Сторонні сили</dt><dd>Сили неелектростатичного походження, які всередині джерела розділяють заряди. <a href="#t-storonni">До тексту ↑</a></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ ПІДСУМКОВИЙ ТЕСТ ═══════════ -->
+<section id="test">
+  <h2 class="blok-zag">Тест <span class="propys">перевір усе</span></h2>
+  <form class="vikno shavlia" id="pidsumok" novalidate>
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">12 запитань</span></div>
+    <div class="tilo">
+      <p class="prymitka ne-druk">Обери відповіді в усіх запитаннях і натисни «Перевірити».</p>
+
+      <fieldset class="test" data-pravylna="а" data-nomer="Т1">
+        <legend><span class="n">1</span>Одиниця сили струму в СІ —</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) ампер</button><button type="button" data-v="б">б) вольт</button>
+          <button type="button" data-v="в">в) ом</button><button type="button" data-v="г">г) кулон</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Ампер — основна одиниця СІ для сили струму.</li>
+          <li data-v="б">Вольт — одиниця напруги й ЕРС.</li>
+          <li data-v="в">Ом — одиниця опору.</li>
+          <li data-v="г">Кулон — одиниця заряду (1 Кл = 1 А·с).</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="в" data-nomer="Т2">
+        <legend><span class="n">2</span>Скільки джоулів в 1 кВт·год?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 1000</button><button type="button" data-v="б">б) 3600</button>
+          <button type="button" data-v="в">в) 3,6·10⁶</button><button type="button" data-v="г">г) 3,6·10³</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">1000 — лише кількість ватів у кіловаті, без урахування години.</li>
+          <li data-v="б">3600 — кількість секунд у годині, без урахування кіло-.</li>
+          <li data-v="в">\(1000\ \text{Вт}\cdot3600\ \text{с} = 3{,}6\cdot10^6\ \text{Дж}\).</li>
+          <li data-v="г">Загубили множник 1000.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="б" data-nomer="Т3">
+        <legend><span class="n">3</span>Чому птах, що сидить на одному неізольованому дроті лінії електропередачі, не зазнає ураження струмом?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Пір’я — ідеальний ізолятор</button>
+          <button type="button" data-v="б">б) Між його лапками мала ділянка дроту з малим опором, тож напруга на птахові дуже мала</button>
+          <button type="button" data-v="в">в) У лініях електропередачі струм тече лише вночі</button>
+          <button type="button" data-v="г">г) Струм не може йти вгору</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Лапки торкаються дроту безпосередньо; річ не в пір’ї.</li>
+          <li data-v="б">Птах увімкнений паралельно до коротенької ділянки дроту: \(U = IR_{\text{ділянки}}\) мала, тож і струм через птаха мізерний. Торкнувшись водночас двох дротів, він загинув би.</li>
+          <li data-v="в">Струм у лініях тече цілодобово.</li>
+          <li data-v="г">Напрямок «вгору-вниз» для струму значення не має.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="г" data-nomer="Т4">
+        <legend><span class="n">4</span>Чому побутові прилади в квартирі вмикають паралельно?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Так менше витрачається енергії</button>
+          <button type="button" data-v="б">б) Через усі прилади тече однаковий струм</button>
+          <button type="button" data-v="в">в) Так дешевше прокласти дроти</button>
+          <button type="button" data-v="г">г) На кожному приладі повна напруга мережі, і їх можна вмикати незалежно</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Енергію визначає потужність приладів і час роботи, а не спосіб з’єднання.</li>
+          <li data-v="б">Однаковий струм — ознака <i>послідовного</i> з’єднання.</li>
+          <li data-v="в">Головна причина не в дротах, а в роботі приладів.</li>
+          <li data-v="г">Паралельно — однакова напруга на всіх, а вимкнення одного приладу не розриває коло інших.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="в" data-nomer="Т5">
+        <legend><span class="n">5</span>Мідний дріт завдовжки \(50\) м має переріз \(1\ \text{мм}^2\); \(\rho = 0{,}017\ \text{Ом·мм}^2/\text{м}\). Його опір —</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 0,085 Ом</button><button type="button" data-v="б">б) 8,5 Ом</button>
+          <button type="button" data-v="в">в) 0,85 Ом</button><button type="button" data-v="г">г) 85 Ом</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Помилка в 10 разів — перевір множення.</li>
+          <li data-v="б">Помилка в 10 разів.</li>
+          <li data-v="в">\(R = 0{,}017\cdot50/1 = 0{,}85\) Ом.</li>
+          <li data-v="г">Помилка в 100 разів: можливо, плутанина Ом·м і Ом·мм²/м.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="б" data-nomer="Т6">
+        <legend><span class="n">6</span>Праска потужністю \(1{,}2\) кВт працює від мережі \(220\) В. Яка сила струму в ній?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 0,18 А</button><button type="button" data-v="б">б) ≈ 5,5 А</button>
+          <button type="button" data-v="в">в) 264 А</button><button type="button" data-v="г">г) 26,4 А</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Це \(U/P\) з потужністю в ватах — дріб перевернутий.</li>
+          <li data-v="б">\(I = P/U = 1200/220 \approx 5{,}5\) А.</li>
+          <li data-v="в">Це \(P\cdot U\) з кіловатами — множити не можна.</li>
+          <li data-v="г">Перемножили замість ділити.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="а" data-nomer="Т7">
+        <legend><span class="n">7</span>Три однакові резистори по \(9\) Ом з’єднали паралельно. Загальний опір —</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 3 Ом</button><button type="button" data-v="б">б) 27 Ом</button>
+          <button type="button" data-v="в">в) 9 Ом</button><button type="button" data-v="г">г) 1/3 Ом</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">\(R = R_0/n = 9/3 = 3\) Ом.</li>
+          <li data-v="б">Це послідовне з’єднання.</li>
+          <li data-v="в">За паралельного з’єднання опір менший за кожен із опорів.</li>
+          <li data-v="г">Це \(1/R\) в Ом⁻¹, а не опір.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="в" data-nomer="Т8">
+        <legend><span class="n">8</span>Чому коротке замикання небезпечне?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) Зростає ЕРС джерела</button>
+          <button type="button" data-v="б">б) Напруга на клемах джерела різко зростає</button>
+          <button type="button" data-v="в">в) Струм обмежує лише малий внутрішній опір, тож він стає дуже великим і сильно нагріває проводи</button>
+          <button type="button" data-v="г">г) Струм у колі зникає</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">ЕРС — характеристика джерела, вона не залежить від зовнішнього кола.</li>
+          <li data-v="б">Навпаки: \(U = IR\) з \(R \approx 0\) — напруга на клемах майже нульова.</li>
+          <li data-v="в">\(I_{\text{кз}} = \mathcal{E}/r\) — великий струм, а теплота \(Q = I^2Rt\) зростає як квадрат струму.</li>
+          <li data-v="г">Струм, навпаки, найбільший.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="г" data-nomer="Т9">
+        <legend><span class="n">9</span>Джерело з ЕРС \(12\) В і внутрішнім опором \(1\) Ом замкнули на резистор \(5\) Ом. Сила струму —</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 2,4 А</button><button type="button" data-v="б">б) 12 А</button>
+          <button type="button" data-v="в">в) 1,5 А</button><button type="button" data-v="г">г) 2 А</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Забули внутрішній опір: \(12/5\).</li>
+          <li data-v="б">Це струм короткого замикання \(\mathcal{E}/r\).</li>
+          <li data-v="в">Неправильно додали опори.</li>
+          <li data-v="г">\(I = \mathcal{E}/(R + r) = 12/6 = 2\) А.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="б" data-nomer="Т10">
+        <legend><span class="n">10</span>За якого опору навантаження \(R\) джерело віддає в нього найбільшу потужність?</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) \(R = 0\)</button><button type="button" data-v="б">б) \(R = r\)</button>
+          <button type="button" data-v="в">в) \(R = 2r\)</button><button type="button" data-v="г">г) \(R \to \infty\)</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Струм найбільший, але \(P = I^2R = 0\).</li>
+          <li data-v="б">З нерівності \(R + r^2/R \ge 2r\) максимум досягається при \(R = r\).</li>
+          <li data-v="в">Потужність тут уже менша за максимальну.</li>
+          <li data-v="г">Струм прямує до нуля, потужність теж.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="а" data-nomer="Т11">
+        <legend><span class="n">11</span>Опір мідного провідника за нагрівання —</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) збільшується</button><button type="button" data-v="б">б) зменшується</button>
+          <button type="button" data-v="в">в) не змінюється</button><button type="button" data-v="г">г) спершу зменшується, потім збільшується</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Йони ґратки коливаються сильніше й частіше розсіюють електрони: \(R = R_0(1 + \alpha\Delta t)\), \(\alpha &gt; 0\).</li>
+          <li data-v="б">Так поводяться напівпровідники, а не метали.</li>
+          <li data-v="в">Опір металів залежить від температури — це видно з ВАХ лампи.</li>
+          <li data-v="г">Для міді в звичайному діапазоні залежність монотонна.</li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="test" data-pravylna="в" data-nomer="Т12">
+        <legend><span class="n">12</span>У вузол входять струми 4 А і 1 А. Виходять два провідники; в одному з них 3 А. Сила струму в другому —</legend>
+        <div class="varianty">
+          <button type="button" data-v="а">а) 8 А</button><button type="button" data-v="б">б) 0 А</button>
+          <button type="button" data-v="в">в) 2 А</button><button type="button" data-v="г">г) 1 А</button>
+        </div>
+        <ul class="chomu" hidden>
+          <li data-v="а">Додали всі струми, не розрізняючи вхідні й вихідні.</li>
+          <li data-v="б">Тоді з вузла виходило б менше, ніж входить.</li>
+          <li data-v="в">\(4 + 1 = 3 + I\) ⇒ \(I = 2\) А.</li>
+          <li data-v="г">Порахували \(4 - 3\), забувши вхідний 1 А.</li>
+        </ul>
+      </fieldset>
+
+      <div class="dii-testu">
+        <button class="knopka" type="submit">Перевірити</button>
+        <button class="knopka" type="button" id="znovu" hidden>Пройти ще раз</button>
+      </div>
+      <p class="pidsumok-rezultat" id="rezultat" aria-live="polite" hidden></p>
+    </div>
+  </form>
+</section>
+
+
+<!-- ═══════════ КЛЮЧ (лише для друку) ═══════════ -->
+<section class="kliuch" aria-hidden="true">
+  <h2 class="blok-zag">Ключ відповідей</h2>
+  <p id="kliuch"></p>
+</section>
+
+
+<!-- ═══════════ ДЖЕРЕЛА ═══════════ -->
+<section id="dzherela" class="dzherela">
+  <h2 class="blok-zag">Джерела <span class="propys">звідки це</span></h2>
+  <div class="vikno">
+    <div class="vikno-shapka"><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span><span class="mitka">Перевірено під час створення</span></div>
+    <div class="tilo">
+      <ol>
+        <li>Бар’яхтар В. Г., Довгий С. О., Божинова Ф. Я., Кірюхіна О. О. Фізика : підручник для 8 класу закладів загальної середньої освіти / за ред. В. Г. Бар’яхтара, С. О. Довгого. Рекомендовано МОН України. — <a href="https://osvita.ua/school/textbook/8klas/84033/">osvita.ua/school/textbook/8klas/84033</a> <span class="stan">(сторінку відкрито; рік і видавництво на ній не вказано)</span></li>
+        <li>Ling S. J., Sanny J., Moebs W. University Physics. Volume 2. — Houston : OpenStax, 2016. Розділ 9.3 «Resistivity and Resistance». — <a href="https://pressbooks.online.ucf.edu/osuniversityphysics2/chapter/resistivity-and-resistance/">pressbooks.online.ucf.edu/osuniversityphysics2/chapter/resistivity-and-resistance</a> <span class="stan">(відкрито, копія OpenStax; звідси таблиця питомих опорів і α міді)</span></li>
+        <li>Там само, розділ 10.3 «Kirchhoff’s Rules». — <a href="https://openstax.org/books/university-physics-volume-2/pages/10-3-kirchhoffs-rules">openstax.org/books/university-physics-volume-2/pages/10-3-kirchhoffs-rules</a> <span class="stan">(відкрито)</span></li>
+        <li>NIST. The NIST Reference on Constants, Units, and Uncertainty: elementary charge. — <a href="https://physics.nist.gov/cuu/Constants/Value/e.html">physics.nist.gov/cuu/Constants/Value/e.html</a> <span class="stan">(відкрито)</span></li>
+        <li>O’Connor J. J., Robertson E. F. Georg Simon Ohm // MacTutor History of Mathematics Archive. University of St Andrews. — <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Ohm/">mathshistory.st-andrews.ac.uk/Biographies/Ohm</a> <span class="stan">(відкрито)</span></li>
+        <li>O’Connor J. J., Robertson E. F. Gustav Robert Kirchhoff // MacTutor History of Mathematics Archive. University of St Andrews. — <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Kirchhoff/">mathshistory.st-andrews.ac.uk/Biographies/Kirchhoff</a> <span class="stan">(відкрито)</span></li>
+        <li>Emil Lenz // Wikipedia. — <a href="https://en.wikipedia.org/wiki/Emil_Lenz">en.wikipedia.org/wiki/Emil_Lenz</a> <span class="stan">(відкрито)</span></li>
+        <li>James Prescott Joule // Wikipedia. — <a href="https://en.wikipedia.org/wiki/James_Prescott_Joule">en.wikipedia.org/wiki/James_Prescott_Joule</a> <span class="stan">(відкрито)</span></li>
+        <li>Alessandro Volta // Wikipedia. — <a href="https://en.wikipedia.org/wiki/Alessandro_Volta">en.wikipedia.org/wiki/Alessandro_Volta</a> <span class="stan">(відкрито)</span></li>
+        <li>André-Marie Ampère // Wikipedia. — <a href="https://en.wikipedia.org/wiki/Andr%C3%A9-Marie_Amp%C3%A8re">en.wikipedia.org/wiki/André-Marie_Ampère</a> <span class="stan">(відкрито)</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <details class="dlia-avtorky">
+    <summary>Для авторки: що перевірити</summary>
+    <div class="vikno" style="margin-top:.8rem">
+      <div class="tilo">
+        <ul>
+          <li>[ПЕРЕВІРИТИ] У якому класі тема «Електричний струм» за чинною програмою МОН (у шапці стоїть «8–9 клас»). Підручник Бар’яхтара для 8 класу знайдено, але його зміст я не переглядала.</li>
+          <li>[ПЕРЕВІРИТИ] Рік видання й видавництво підручника Бар’яхтара (на osvita.ua не вказано; ймовірно «Ранок»).</li>
+          <li>[ПЕРЕВІРИТИ] Концентрація вільних електронів у міді \(8{,}5\cdot10^{28}\ \text{м}^{-3}\) — стандартне довідкове значення, але в цьому сеансі в джерелі не звірене.</li>
+          <li>Дати життя Вольти, Ампера, Джоуля й Ленца звірено лише з одним джерелом (Вікіпедія); Ома й Кірхгофа — з MacTutor. Для двох незалежних джерел варто звірити з Britannica.</li>
+          <li>Рік вольтового стовпа: Вікіпедія подає і 1799 (створення), і 1800 (повідомлення). У тексті — «повідомив 1800 року».</li>
+          <li>Позначення: ЕРС у шкільних підручниках трапляється і як \(\mathcal{E}\), і як \(\varepsilon\); тут — \(\mathcal{E}\).</li>
+          <li>ВАХ лампи й «лампи 60/100 Вт» — моделі зі сталим опором; підписано на схемах.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+</section>
+
+<footer class="nyz">
+  <span>© Дарина Проволовська, <span id="rik">2026</span> · Астрофізичний сад</span>
+  <a href="../../index.html#/konspekty">← До саду</a>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var NS = 'http://www.w3.org/2000/svg';
+  var INK = '#2a2325', AKC = '#4b5b37', ROZ = '#fbe6ee', ROZ2 = '#f1cfdc';
+  document.getElementById('rik').textContent = new Date().getFullYear();
+
+  function fmt(x, d) {
+    if (d == null) d = 2;
+    var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d);
+    if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+    if (s === '-0') s = '0';
+    return s.replace('.', ',').replace('-', '−');
+  }
+  function svg(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function chyst(el) { while (el.firstChild) el.removeChild(el.firstChild); }
+  var malo = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── 1. Струм у металі ── */
+  (function () {
+    var s = $('#sh1'), u = $('#sh1-u'), R = 4, pauza = malo, el = [];
+    s.appendChild(svg('rect', { x: 30, y: 60, width: 540, height: 80, rx: 14, fill: ROZ, stroke: INK, 'stroke-width': 2 }));
+    for (var x = 60; x < 560; x += 50) for (var y = 80; y <= 120; y += 40)
+      s.appendChild(svg('circle', { cx: x, cy: y, r: 7, fill: '#cfc6c9', stroke: INK, 'stroke-width': 1 }));
+    var g = svg('g', {}); s.appendChild(g);
+    for (var i = 0; i < 26; i++) {
+      var e = { x: 40 + Math.random() * 520, y: 70 + Math.random() * 60 };
+      e.n = svg('circle', { r: 3.6, fill: AKC }); g.appendChild(e.n); el.push(e);
+    }
+    s.appendChild(svg('path', { d: 'M200 34H400', stroke: INK, 'stroke-width': 2, 'marker-end': 'url(#str1)' }));
+    var defs = svg('defs', {});
+    var m = svg('marker', { id: 'str1', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 8, markerHeight: 8, orient: 'auto-start-reverse' });
+    m.appendChild(svg('path', { d: 'M0 0L10 5L0 10z', fill: INK })); defs.appendChild(m);
+    var m2 = svg('marker', { id: 'str1b', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 8, markerHeight: 8, orient: 'auto-start-reverse' });
+    m2.appendChild(svg('path', { d: 'M0 0L10 5L0 10z', fill: AKC })); defs.appendChild(m2);
+    s.insertBefore(defs, s.firstChild);
+    s.appendChild(svg('text', { x: 300, y: 24, 'text-anchor': 'middle', 'font-size': 14, fill: INK, 'font-family': 'Onest,sans-serif' }, 'напрямок струму I'));
+    s.appendChild(svg('path', { d: 'M400 166H200', stroke: AKC, 'stroke-width': 2, 'marker-end': 'url(#str1b)' }));
+    s.appendChild(svg('text', { x: 300, y: 190, 'text-anchor': 'middle', 'font-size': 14, fill: AKC, 'font-family': 'Onest,sans-serif' }, 'рух електронів (−)'));
+    var shv = 0;
+    function onovyty() {
+      var U = +u.value, I = U / R;
+      $('#sh1-u-v').textContent = fmt(U, 1) + ' В';
+      $('#sh1-i').textContent = fmt(I, 2) + ' А';
+      shv = I * 45;
+    }
+    var mynulyi = null;
+    function krok(t) {
+      if (mynulyi != null && !pauza) {
+        var dt = Math.min(0.05, (t - mynulyi) / 1000);
+        el.forEach(function (e) {
+          e.x -= shv * dt * (0.7 + 0.6 * ((e.y * 7) % 1));
+          if (e.x < 38) e.x += 524;
+        });
+      }
+      mynulyi = t;
+      el.forEach(function (e) { e.n.setAttribute('cx', e.x.toFixed(1)); e.n.setAttribute('cy', e.y.toFixed(1)); });
+      requestAnimationFrame(krok);
+    }
+    var kn = $('#sh1-pauza');
+    function pokazPauzu() { kn.setAttribute('aria-pressed', String(pauza)); kn.textContent = pauza ? 'Запустити' : 'Пауза'; }
+    kn.addEventListener('click', function () { pauza = !pauza; pokazPauzu(); });
+    u.addEventListener('input', onovyty);
+    onovyty(); pokazPauzu(); requestAnimationFrame(krok);
+  })();
+
+  /* ── 2. Опір дроту ── */
+  (function () {
+    var s = $('#sh2'), l = $('#sh2-l'), S = $('#sh2-s'), m = $('#sh2-m');
+    var kolir = { '0.0168': '#c47a3f', '0.0265': '#9aa3a8', '0.0971': '#6a6460', '1.00': '#7a6a8a' };
+    function onovyty() {
+      chyst(s);
+      var L = +l.value, Sv = +S.value, rho = +m.value, R = rho * L / Sv;
+      var w = 40 + L / 10 * 500, h = 4 + Math.sqrt(Sv / 2.5) * 30;
+      s.appendChild(svg('rect', { x: 30, y: 75 - h / 2, width: w, height: h, rx: h / 2, fill: kolir[m.value], stroke: INK, 'stroke-width': 1.5 }));
+      s.appendChild(svg('path', { d: 'M30 ' + (75 + h / 2 + 14) + 'h' + w, stroke: INK, 'stroke-width': 1, 'stroke-dasharray': '3 3' }));
+      s.appendChild(svg('text', { x: 30 + w / 2, y: 75 + h / 2 + 32, 'text-anchor': 'middle', 'font-size': 13, fill: INK, 'font-family': 'Onest,sans-serif' }, 'l = ' + fmt(L, 1) + ' м'));
+      s.appendChild(svg('text', { x: 30, y: 75 - h / 2 - 10, 'font-size': 13, fill: INK, 'font-family': 'Onest,sans-serif' }, 'S = ' + fmt(Sv, 1) + ' мм²'));
+      $('#sh2-l-v').textContent = fmt(L, 1) + ' м';
+      $('#sh2-s-v').textContent = fmt(Sv, 1) + ' мм²';
+      $('#sh2-r').textContent = 'R = ' + fmt(R, R < 1 ? 3 : 2) + ' Ом';
+    }
+    [l, S, m].forEach(function (x) { x.addEventListener('input', onovyty); });
+    onovyty();
+  })();
+
+  /* ── 3. ВАХ ── */
+  (function () {
+    var s = $('#sh3'), rI = $('#sh3-r'), uI = $('#sh3-u'), kn = $('#sh3-lampa'), lampa = true;
+    var X0 = 50, Y0 = 250, W = 340, H = 220, UMAX = 10, IMAX = 2;
+    function px(U) { return X0 + U / UMAX * W; }
+    function py(I) { return Y0 - Math.min(I, IMAX) / IMAX * H; }
+    function Ilampy(U) { return 0.3 * Math.sqrt(U); }
+    function onovyty() {
+      chyst(s);
+      var R = +rI.value, U = +uI.value;
+      for (var u = 0; u <= UMAX; u += 2) {
+        s.appendChild(svg('path', { d: 'M' + px(u) + ' ' + Y0 + 'V' + (Y0 - H), stroke: '#e6dde0', 'stroke-width': 1 }));
+        s.appendChild(svg('text', { x: px(u), y: Y0 + 16, 'text-anchor': 'middle', 'font-size': 11, fill: INK, 'font-family': 'Onest,sans-serif' }, fmt(u, 0)));
+      }
+      for (var i = 0; i <= IMAX; i += 0.5) {
+        s.appendChild(svg('path', { d: 'M' + X0 + ' ' + py(i) + 'H' + (X0 + W), stroke: '#e6dde0', 'stroke-width': 1 }));
+        s.appendChild(svg('text', { x: X0 - 8, y: py(i) + 4, 'text-anchor': 'end', 'font-size': 11, fill: INK, 'font-family': 'Onest,sans-serif' }, fmt(i, 1)));
+      }
+      s.appendChild(svg('path', { d: 'M' + X0 + ' ' + (Y0 - H - 6) + 'V' + Y0 + 'H' + (X0 + W + 6), stroke: INK, 'stroke-width': 1.5, fill: 'none' }));
+      s.appendChild(svg('text', { x: X0 + W, y: Y0 + 34, 'text-anchor': 'end', 'font-size': 12, fill: INK, 'font-family': 'Onest,sans-serif' }, 'U, В'));
+      s.appendChild(svg('text', { x: X0 + 4, y: 18, 'font-size': 12, fill: INK, 'font-family': 'Onest,sans-serif' }, 'I, А'));
+      var uKin = Math.min(UMAX, IMAX * R);
+      s.appendChild(svg('path', { d: 'M' + px(0) + ' ' + py(0) + 'L' + px(uKin) + ' ' + py(uKin / R), stroke: AKC, 'stroke-width': 3, fill: 'none' }));
+      s.appendChild(svg('text', { x: px(uKin) - 4, y: py(uKin / R) - 8, 'text-anchor': 'end', 'font-size': 12, fill: AKC, 'font-weight': 700, 'font-family': 'Onest,sans-serif' }, 'резистор'));
+      var Ir = U / R;
+      s.appendChild(svg('circle', { cx: px(U), cy: py(Ir), r: 6, fill: AKC, stroke: '#fff', 'stroke-width': 2 }));
+      var tekst = 'Резистор: I = ' + fmt(Ir, 2) + ' А, U/I = ' + fmt(R, 1) + ' Ом';
+      if (lampa) {
+        var d = '';
+        for (var k = 0; k <= 50; k++) { var uu = k / 50 * UMAX; d += (k ? 'L' : 'M') + px(uu).toFixed(1) + ' ' + py(Ilampy(uu)).toFixed(1); }
+        s.appendChild(svg('path', { d: d, stroke: '#b5577a', 'stroke-width': 3, fill: 'none', 'stroke-dasharray': '7 4' }));
+        s.appendChild(svg('text', { x: px(UMAX) - 4, y: py(Ilampy(UMAX)) + 18, 'text-anchor': 'end', 'font-size': 12, fill: '#b5577a', 'font-weight': 700, 'font-family': 'Onest,sans-serif' }, 'лампа'));
+        var Il = Ilampy(U);
+        s.appendChild(svg('circle', { cx: px(U), cy: py(Il), r: 6, fill: '#b5577a', stroke: '#fff', 'stroke-width': 2 }));
+        tekst += ' · Лампа: I = ' + fmt(Il, 2) + ' А, U/I = ' + fmt(U / Il, 1) + ' Ом';
+      }
+      s.appendChild(svg('path', { d: 'M' + px(U) + ' ' + Y0 + 'V' + (Y0 - H), stroke: INK, 'stroke-width': 1, 'stroke-dasharray': '3 3' }));
+      $('#sh3-r-v').textContent = fmt(R, 0) + ' Ом';
+      $('#sh3-u-v').textContent = fmt(U, 1) + ' В';
+      $('#sh3-pokaz').textContent = tekst;
+    }
+    kn.addEventListener('click', function () { lampa = !lampa; kn.setAttribute('aria-pressed', String(lampa)); kn.textContent = lampa ? 'Сховати лампу' : 'Показати лампу'; onovyty(); });
+    kn.textContent = 'Сховати лампу';
+    [rI, uI].forEach(function (x) { x.addEventListener('input', onovyty); });
+    onovyty();
+  })();
+
+  /* спільні елементи схем кіл */
+  function rezystor(g, x, y, w, h, napys) {
+    g.appendChild(svg('rect', { x: x - w / 2, y: y - h / 2, width: w, height: h, fill: ROZ, stroke: INK, 'stroke-width': 2 }));
+    if (napys) g.appendChild(svg('text', { x: x, y: y + 5, 'text-anchor': 'middle', 'font-size': 13, fill: INK, 'font-family': 'Onest,sans-serif', 'font-weight': 600 }, napys));
+  }
+  function prylad(g, x, y, bukva, pokaz) {
+    g.appendChild(svg('circle', { cx: x, cy: y, r: 15, fill: '#fff', stroke: INK, 'stroke-width': 2 }));
+    g.appendChild(svg('text', { x: x, y: y + 5, 'text-anchor': 'middle', 'font-size': 14, fill: INK, 'font-family': 'Onest,sans-serif', 'font-weight': 700 }, bukva));
+    if (pokaz) g.appendChild(svg('text', { x: x, y: y - 22, 'text-anchor': 'middle', 'font-size': 13, fill: AKC, 'font-family': 'Onest,sans-serif', 'font-weight': 700 }, pokaz));
+  }
+  function liniia(g, d) { g.appendChild(svg('path', { d: d, stroke: INK, 'stroke-width': 2, fill: 'none' })); }
+  function dzherelo(g, x, y, napys) { // вертикальне, «+» вгорі
+    g.appendChild(svg('rect', { x: x - 22, y: y - 12, width: 44, height: 24, fill: '#fffdfb' }));
+    g.appendChild(svg('path', { d: 'M' + (x - 20) + ' ' + (y - 6) + 'H' + (x + 20), stroke: INK, 'stroke-width': 2.6 }));
+    g.appendChild(svg('path', { d: 'M' + (x - 10) + ' ' + (y + 6) + 'H' + (x + 10), stroke: INK, 'stroke-width': 2.6 }));
+    g.appendChild(svg('text', { x: x + 26, y: y - 2, 'font-size': 13, fill: INK, 'font-family': 'Onest,sans-serif' }, '+'));
+    if (napys) g.appendChild(svg('text', { x: x + 12, y: y + 32, 'text-anchor': 'start', 'font-size': 13, fill: INK, 'font-family': 'Onest,sans-serif', 'font-weight': 600 }, napys));
+  }
+
+  /* ── 4. Конструктор кола ── */
+  (function () {
+    var s = $('#sh4'), uI = $('#sh4-u'), r1I = $('#sh4-r1'), r2I = $('#sh4-r2'), rezhym = 'poslid';
+    function onovyty() {
+      chyst(s);
+      var U = +uI.value, R1 = +r1I.value, R2 = +r2I.value, R, I, I1, I2, U1, U2;
+      if (rezhym === 'poslid') { R = R1 + R2; I = U / R; I1 = I2 = I; U1 = I * R1; U2 = I * R2; }
+      else { R = R1 * R2 / (R1 + R2); I1 = U / R1; I2 = U / R2; I = I1 + I2; U1 = U2 = U; }
+      var g = svg('g', {}); s.appendChild(g);
+      if (rezhym === 'poslid') {
+        liniia(g, 'M70 40H490V240H70Z');
+        dzherelo(g, 70, 140, 'U = ' + fmt(U, 1) + ' В');
+        rezystor(g, 210, 40, 90, 32, 'R₁');
+        rezystor(g, 370, 40, 90, 32, 'R₂');
+        prylad(g, 490, 140, 'A', fmt(I, 2) + ' А');
+        g.appendChild(svg('text', { x: 210, y: 84, 'text-anchor': 'middle', 'font-size': 12, fill: INK, 'font-family': 'Onest,sans-serif' }, 'U₁ = ' + fmt(U1, 2) + ' В'));
+        g.appendChild(svg('text', { x: 370, y: 84, 'text-anchor': 'middle', 'font-size': 12, fill: INK, 'font-family': 'Onest,sans-serif' }, 'U₂ = ' + fmt(U2, 2) + ' В'));
+        s.setAttribute('aria-label', 'Послідовне коло: джерело, резистори R1 і R2 одне за одним, амперметр показує ' + fmt(I, 2) + ' ампера');
+      } else {
+        liniia(g, 'M70 140V240H300M70 140V40H180M180 40H300');
+        liniia(g, 'M300 40V240M300 70H360M300 210H360M360 70H480M360 210H480M480 70V210');
+        dzherelo(g, 70, 140, 'U = ' + fmt(U, 1) + ' В');
+        prylad(g, 180, 40, 'A', fmt(I, 2) + ' А');
+        rezystor(g, 420, 70, 90, 30, 'R₁');
+        rezystor(g, 420, 210, 90, 30, 'R₂');
+        prylad(g, 330, 70, 'A', '');
+        prylad(g, 330, 210, 'A', '');
+        g.appendChild(svg('text', { x: 330, y: 108, 'text-anchor': 'middle', 'font-size': 13, fill: AKC, 'font-family': 'Onest,sans-serif', 'font-weight': 700 }, fmt(I1, 2) + ' А'));
+        g.appendChild(svg('text', { x: 330, y: 248, 'text-anchor': 'middle', 'font-size': 13, fill: AKC, 'font-family': 'Onest,sans-serif', 'font-weight': 700 }, fmt(I2, 2) + ' А'));
+        g.appendChild(svg('circle', { cx: 300, cy: 70, r: 4, fill: INK })); g.appendChild(svg('circle', { cx: 300, cy: 210, r: 4, fill: INK }));
+        g.appendChild(svg('circle', { cx: 480, cy: 140, r: 0 }));
+        s.setAttribute('aria-label', 'Паралельне коло: дві вітки з резисторами R1 і R2; загальний струм ' + fmt(I, 2) + ' ампера');
+      }
+      $('#sh4-u-v').textContent = fmt(U, 1) + ' В';
+      $('#sh4-r1-v').textContent = fmt(R1, 0) + ' Ом';
+      $('#sh4-r2-v').textContent = fmt(R2, 0) + ' Ом';
+      $('#sh4-pokaz').textContent = 'R = ' + fmt(R, 2) + ' Ом · I = ' + fmt(I, 2) + ' А · I₁ = ' + fmt(I1, 2) + ' А · I₂ = ' + fmt(I2, 2) +
+        ' А · U₁ = ' + fmt(U1, 2) + ' В · U₂ = ' + fmt(U2, 2) + ' В · P = ' + fmt(U * I, 2) + ' Вт';
+    }
+    $$('[data-zjed]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        rezhym = b.dataset.zjed;
+        $$('[data-zjed]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        onovyty();
+      });
+    });
+    [uI, r1I, r2I].forEach(function (x) { x.addEventListener('input', onovyty); });
+    onovyty();
+  })();
+
+  /* ── 5. Лампи 60 і 100 Вт ── */
+  (function () {
+    var s = $('#sh5'), rezhym = 'paral', U = 220, P1n = 60, P2n = 100;
+    var R1 = U * U / P1n, R2 = U * U / P2n;
+    function lampa(g, x, y, P, napys, sboku) {
+      var sv = Math.min(1, P / 100);
+      g.appendChild(svg('circle', { cx: x, cy: y, r: 12 + 26 * sv, fill: '#ffd97a', opacity: (0.15 + 0.6 * sv).toFixed(2) }));
+      g.appendChild(svg('circle', { cx: x, cy: y, r: 18, fill: '#fff8e0', stroke: INK, 'stroke-width': 2 }));
+      g.appendChild(svg('path', { d: 'M' + (x - 13) + ' ' + (y - 13) + 'L' + (x + 13) + ' ' + (y + 13) + 'M' + (x + 13) + ' ' + (y - 13) + 'L' + (x - 13) + ' ' + (y + 13), stroke: INK, 'stroke-width': 1.6 }));
+      var tx = sboku ? x + 50 : x, ty = sboku ? y - 4 : y + 62, ta = sboku ? 'start' : 'middle';
+      g.appendChild(svg('text', { x: tx, y: ty, 'text-anchor': ta, 'font-size': 13, fill: INK, 'font-family': 'Onest,sans-serif', 'font-weight': 600 }, 'лампа ' + napys));
+      g.appendChild(svg('text', { x: tx, y: ty + 18, 'text-anchor': ta, 'font-size': 13, fill: AKC, 'font-family': 'Onest,sans-serif', 'font-weight': 700 }, 'P = ' + fmt(P, 1) + ' Вт'));
+    }
+    function onovyty() {
+      chyst(s);
+      var g = svg('g', {}), P1, P2, I; s.appendChild(g);
+      if (rezhym === 'paral') { P1 = U * U / R1; P2 = U * U / R2; I = U / R1 + U / R2; }
+      else { I = U / (R1 + R2); P1 = I * I * R1; P2 = I * I * R2; }
+      if (rezhym === 'paral') {
+        liniia(g, 'M60 30H548M60 30V200H548M548 30V200M190 30V200M390 30V200');
+        dzherelo(g, 60, 115, '220 В');
+        g.appendChild(svg('rect', { x: 170, y: 85, width: 40, height: 60, fill: '#fffdfb' }));
+        g.appendChild(svg('rect', { x: 370, y: 85, width: 40, height: 60, fill: '#fffdfb' }));
+        lampa(g, 190, 115, P1, '60 Вт', true); lampa(g, 390, 115, P2, '100 Вт', true);
+      } else {
+        liniia(g, 'M60 60H500V200H60Z');
+        dzherelo(g, 60, 130, '220 В');
+        g.appendChild(svg('rect', { x: 190, y: 40, width: 60, height: 40, fill: '#fffdfb' }));
+        g.appendChild(svg('rect', { x: 350, y: 40, width: 60, height: 40, fill: '#fffdfb' }));
+        lampa(g, 220, 60, P1, '60 Вт'); lampa(g, 380, 60, P2, '100 Вт');
+      }
+      s.setAttribute('aria-label', (rezhym === 'paral' ? 'Паралельне' : 'Послідовне') + ' з’єднання ламп: потужність лампи 60 Вт — ' + fmt(P1, 1) + ' Вт, лампи 100 Вт — ' + fmt(P2, 1) + ' Вт');
+      $('#sh5-pokaz').textContent = 'R₆₀ ≈ ' + fmt(R1, 0) + ' Ом · R₁₀₀ = ' + fmt(R2, 0) + ' Ом · струм від мережі ' + fmt(I, 3) +
+        ' А · P₆₀ = ' + fmt(P1, 1) + ' Вт · P₁₀₀ = ' + fmt(P2, 1) + ' Вт';
+    }
+    $$('[data-lampy]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        rezhym = b.dataset.lampy;
+        $$('[data-lampy]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        onovyty();
+      });
+    });
+    onovyty();
+  })();
+
+  /* ── 6. P(R) ── */
+  (function () {
+    var s = $('#sh6'), eI = $('#sh6-e'), rrI = $('#sh6-rr'), rI = $('#sh6-r');
+    var X0 = 52, Y0 = 240, W = 340, H = 205, RMAX = 20;
+    function onovyty() {
+      chyst(s);
+      var E = +eI.value, r = +rrI.value, R = +rI.value;
+      var Pmax = E * E / (4 * r), PS = Math.max(1, Math.ceil(Pmax * 1.15));
+      function px(x) { return X0 + x / RMAX * W; }
+      function py(p) { return Y0 - p / PS * H; }
+      function P(x) { return E * E * x / ((x + r) * (x + r)); }
+      for (var x = 0; x <= RMAX; x += 5) {
+        s.appendChild(svg('path', { d: 'M' + px(x) + ' ' + Y0 + 'V' + (Y0 - H), stroke: '#e6dde0' }));
+        s.appendChild(svg('text', { x: px(x), y: Y0 + 16, 'text-anchor': 'middle', 'font-size': 11, fill: INK, 'font-family': 'Onest,sans-serif' }, fmt(x, 0)));
+      }
+      for (var k = 0; k <= 4; k++) {
+        var p = PS * k / 4;
+        s.appendChild(svg('path', { d: 'M' + X0 + ' ' + py(p) + 'H' + (X0 + W), stroke: '#e6dde0' }));
+        s.appendChild(svg('text', { x: X0 - 8, y: py(p) + 4, 'text-anchor': 'end', 'font-size': 11, fill: INK, 'font-family': 'Onest,sans-serif' }, fmt(p, 1)));
+      }
+      s.appendChild(svg('path', { d: 'M' + X0 + ' ' + (Y0 - H - 6) + 'V' + Y0 + 'H' + (X0 + W + 6), stroke: INK, 'stroke-width': 1.5, fill: 'none' }));
+      s.appendChild(svg('text', { x: X0 + W, y: Y0 + 34, 'text-anchor': 'end', 'font-size': 12, fill: INK, 'font-family': 'Onest,sans-serif' }, 'R, Ом'));
+      s.appendChild(svg('text', { x: X0 + 4, y: 22, 'font-size': 12, fill: INK, 'font-family': 'Onest,sans-serif' }, 'P, Вт'));
+      var d = '';
+      for (var i = 0; i <= 120; i++) { var xx = i / 120 * RMAX; d += (i ? 'L' : 'M') + px(xx).toFixed(1) + ' ' + py(P(xx)).toFixed(1); }
+      s.appendChild(svg('path', { d: d, stroke: AKC, 'stroke-width': 3, fill: 'none' }));
+      s.appendChild(svg('path', { d: 'M' + px(r) + ' ' + Y0 + 'V' + py(Pmax), stroke: '#b5577a', 'stroke-width': 1.5, 'stroke-dasharray': '4 3' }));
+      s.appendChild(svg('text', { x: px(r) + 6, y: py(Pmax) - 6, 'font-size': 12, fill: '#b5577a', 'font-weight': 700, 'font-family': 'Onest,sans-serif' }, 'R = r'));
+      s.appendChild(svg('circle', { cx: px(R), cy: py(P(R)), r: 6.5, fill: INK, stroke: '#fff', 'stroke-width': 2 }));
+      var I = E / (R + r), U = I * R, eta = R / (R + r);
+      $('#sh6-e-v').textContent = fmt(E, 1) + ' В';
+      $('#sh6-rr-v').textContent = fmt(r, 1) + ' Ом';
+      $('#sh6-r-v').textContent = fmt(R, 1) + ' Ом';
+      $('#sh6-pokaz').textContent = 'I = ' + fmt(I, 2) + ' А · U = ' + fmt(U, 2) + ' В · P = ' + fmt(I * I * R, 2) + ' Вт · η = ' +
+        fmt(eta * 100, 0) + ' % · I кз = ' + fmt(E / r, 2) + ' А · Pmax = ' + fmt(Pmax, 2) + ' Вт';
+    }
+    [eI, rrI, rI].forEach(function (x) { x.addEventListener('input', onovyty); });
+    onovyty();
+  })();
+
+  /* ── 7. Вузол ── */
+  (function () {
+    var s = $('#sh7'), a = $('#sh7-1'), b = $('#sh7-2'), C = { x: 210, y: 130 };
+    var kinci = [{ x: 40, y: 50 }, { x: 40, y: 210 }, { x: 380, y: 130 }];
+    function strilka(g, p, I, napys) {
+      // I > 0 — від кінця до вузла
+      var vid = I >= 0 ? p : C, do_ = I >= 0 ? C : p;
+      var mx = (p.x + C.x) / 2, my = (p.y + C.y) / 2;
+      var dx = do_.x - vid.x, dy = do_.y - vid.y, L = Math.sqrt(dx * dx + dy * dy), ux = dx / L, uy = dy / L;
+      if (Math.abs(I) > 1e-9) {
+        var tx = mx + ux * 14, ty = my + uy * 14;
+        g.appendChild(svg('path', { d: 'M' + tx + ' ' + ty + 'L' + (tx - ux * 18 - uy * 9) + ' ' + (ty - uy * 18 + ux * 9) + 'L' + (tx - ux * 18 + uy * 9) + ' ' + (ty - uy * 18 - ux * 9) + 'Z', fill: AKC }));
+      }
+      var nx = -(C.y - p.y), ny = C.x - p.x, nL = Math.sqrt(nx * nx + ny * ny);
+      g.appendChild(svg('text', { x: mx + nx / nL * 22, y: my + ny / nL * 22 + 4, 'text-anchor': 'middle', 'font-size': 14, fill: INK, 'font-weight': 700, 'font-family': 'Onest,sans-serif' }, napys + ' = ' + fmt(Math.abs(I), 1) + ' А'));
+    }
+    function onovyty() {
+      chyst(s);
+      var I1 = +a.value, I2 = +b.value, I3 = -(I1 + I2); // I3 > 0 — до вузла
+      var g = svg('g', {}); s.appendChild(g);
+      kinci.forEach(function (p) { g.appendChild(svg('path', { d: 'M' + p.x + ' ' + p.y + 'L' + C.x + ' ' + C.y, stroke: INK, 'stroke-width': 3 })); });
+      g.appendChild(svg('circle', { cx: C.x, cy: C.y, r: 8, fill: INK }));
+      strilka(g, kinci[0], I1, 'I₁'); strilka(g, kinci[1], I2, 'I₂'); strilka(g, kinci[2], I3, 'I₃');
+      var vh = [I1, I2, I3].filter(function (x) { return x > 0; }).reduce(function (s, x) { return s + x; }, 0);
+      var vyh = [I1, I2, I3].filter(function (x) { return x < 0; }).reduce(function (s, x) { return s - x; }, 0);
+      $('#sh7-1-v').textContent = fmt(I1, 1) + ' А';
+      $('#sh7-2-v').textContent = fmt(I2, 1) + ' А';
+      $('#sh7-pokaz').textContent = 'Входить у вузол: ' + fmt(vh, 1) + ' А · виходить: ' + fmt(vyh, 1) + ' А · I₃ ' +
+        (I3 > 0 ? 'входить' : I3 < 0 ? 'виходить' : 'дорівнює нулю');
+      s.setAttribute('aria-label', 'Вузол: у вузол входить ' + fmt(vh, 1) + ' ампера, виходить ' + fmt(vyh, 1) + ' ампера');
+    }
+    [a, b].forEach(function (x) { x.addEventListener('input', onovyty); });
+    onovyty();
+  })();
+
+  /* ── Тести «Перевір себе» (відразу) ── */
+  $$('.pidrozdil fieldset.test').forEach(function (fs) {
+    var prav = fs.dataset.pravylna;
+    $$('.varianty button', fs).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var dobre = b.dataset.v === prav;
+        $$('.varianty button', fs).forEach(function (x) {
+          x.disabled = true;
+          if (x.dataset.v === prav) x.classList.add('prav');
+          else if (x === b) x.classList.add('hyb');
+        });
+        var v = $('.vidhuk', fs);
+        v.textContent = dobre ? 'Правильно!' : 'Ні. Правильна відповідь — ' + prav + '.';
+        v.className = 'vidhuk ' + (dobre ? 'dobre' : 'pohano');
+        var ch = $('.chomu', fs); ch.hidden = false;
+        $$('li', ch).forEach(function (li) { if (li.dataset.v === prav) li.classList.add('prav'); });
+      });
+    });
+  });
+
+  /* ── Підсумковий тест ── */
+  (function () {
+    var forma = $('#pidsumok'), fs = $$('fieldset.test', forma), vybir = {};
+    fs.forEach(function (f, i) {
+      $$('.varianty button', f).forEach(function (b) {
+        b.setAttribute('aria-pressed', 'false');
+        b.addEventListener('click', function () {
+          if (forma.dataset.pereviryeno) return;
+          vybir[i] = b.dataset.v;
+          $$('.varianty button', f).forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        });
+      });
+    });
+    forma.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bal = 0;
+      fs.forEach(function (f, i) {
+        var prav = f.dataset.pravylna;
+        if (vybir[i] === prav) bal++;
+        $$('.varianty button', f).forEach(function (x) {
+          x.disabled = true;
+          if (x.dataset.v === prav) x.classList.add('prav');
+          else if (x.dataset.v === vybir[i]) x.classList.add('hyb');
+        });
+        var ch = $('.chomu', f); ch.hidden = false;
+        $$('li', ch).forEach(function (li) { if (li.dataset.v === prav) li.classList.add('prav'); });
+      });
+      forma.dataset.pereviryeno = '1';
+      var r = $('#rezultat'); r.hidden = false;
+      r.textContent = bal + ' із ' + fs.length + (bal === fs.length ? ' — чудово!' : bal >= 9 ? ' — добре' : ' — повтори підрозділи з помилками');
+      $('#znovu').hidden = false;
+      r.scrollIntoView({ block: 'center', behavior: malo ? 'auto' : 'smooth' });
+    });
+    $('#znovu').addEventListener('click', function () {
+      vybir = {}; delete forma.dataset.pereviryeno;
+      fs.forEach(function (f) {
+        $$('.varianty button', f).forEach(function (x) { x.disabled = false; x.classList.remove('prav', 'hyb'); x.setAttribute('aria-pressed', 'false'); });
+        var ch = $('.chomu', f); ch.hidden = true;
+        $$('li', ch).forEach(function (li) { li.classList.remove('prav'); });
+      });
+      $('#rezultat').hidden = true; $('#znovu').hidden = true;
+      forma.scrollIntoView({ block: 'start', behavior: malo ? 'auto' : 'smooth' });
+    });
+  })();
+
+  /* ── Ключ відповідей для друку ── */
+  $('#kliuch').textContent = $$('fieldset.test').map(function (f) {
+    return f.dataset.nomer + ' — ' + f.dataset.pravylna;
+  }).join(' · ');
+
+  /* ── Друк: виведення розгорнуті ── */
+  var vidkryti = [];
+  window.addEventListener('beforeprint', function () {
+    $$('details.vyvedennia').forEach(function (d) { if (!d.open) { d.open = true; vidkryti.push(d); } });
+  });
+  window.addEventListener('afterprint', function () {
+    vidkryti.forEach(function (d) { d.open = false; }); vidkryti = [];
+  });
+})();
+
+function renderFormulas() {
+  if (!window.renderMathInElement) return;
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: '\\[', right: '\\]', display: true },
+      { left: '\\(', right: '\\)', display: false }
+    ],
+    throwOnError: false, strict: false
+  });
+}
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderFormulas()"></script>
+</body>
+</html>
