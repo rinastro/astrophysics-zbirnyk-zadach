@@ -109,6 +109,15 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
 .storinka-dii .nazva{margin-right:auto;opacity:.85}
 .storinka-dii button{cursor:pointer;width:2rem;height:2rem;border-radius:50%;border:1px solid rgba(244,239,225,.45);background:transparent;color:var(--vershky);font-size:.95rem;line-height:1}
 .storinka-dii button:hover{background:var(--vershky);color:var(--lis-700)}
+.bank{display:grid;gap:.5rem;counter-reset:z}
+.bank-pole{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:.4rem;align-items:start}
+.bank-pole::before{counter-increment:z;content:counter(z);display:grid;place-items:center;width:1.6rem;height:1.6rem;margin-top:.3rem;border-radius:50%;background:var(--lis-500);color:#fff;font-weight:700;font-size:.8rem}
+.bank-pole textarea{width:100%;min-height:3.6rem;resize:vertical;padding:.42rem .55rem;border-radius:8px;border:1px solid rgba(42,35,37,.3);background:#fffdfb;color:var(--chornylo);font-size:.88rem;line-height:1.4}
+.bank-pole button{cursor:pointer;width:1.8rem;height:1.8rem;margin-top:.2rem;border-radius:50%;border:1px solid rgba(42,35,37,.35);background:transparent;color:var(--chornylo)}
+.bank-pole button:hover{background:var(--chornylo);color:var(--rozhevyi)}
+.storinka-umovy{display:grid;gap:.4rem;padding:.6rem .7rem;border-radius:12px;background:rgba(244,239,225,.08);border:1px solid rgba(244,239,225,.18)}
+.storinka-umovy label{display:grid;gap:.2rem;font-size:.8rem;opacity:.95}
+.storinka-umovy textarea{width:100%;min-height:2.6rem;resize:vertical;padding:.4rem .55rem;border-radius:8px;border:1px solid rgba(244,239,225,.35);background:rgba(255,255,255,.95);color:var(--chornylo);font-size:.88rem;line-height:1.4}
 .kadr{position:relative;overflow:hidden;border-radius:4px;box-shadow:0 24px 50px -22px rgba(0,0,0,.8)}
 
 /* ───── АРКУШ А5 (усе в міліметрах) ───── */
@@ -182,7 +191,7 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
 /* ───── друк ───── */
 @media print{
   body{background:#fff!important}
-  body::before,.verkh,.panel,.perehliad-zag,.storinka-dii,.porozhno{display:none!important}
+  body::before,.verkh,.panel,.perehliad-zag,.storinka-dii,.storinka-umovy,.porozhno{display:none!important}
   .robocha{display:block;padding:0;max-width:none}
   .perehliad{display:block}
   .storinka{display:block;margin:0}
@@ -195,7 +204,7 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
 <body>
 
 <header class="verkh">
-  <a class="nazad" href="index.html#/zoshyty">← До саду</a>
+  <a class="nazad" href="index.html#/generator">← До саду</a>
   <h1>Зошити</h1>
   <p class="propys">аркуші до уроку</p>
   <p class="opys">Горизонтальні аркуші А5 у зелену клітинку 5 мм: задача, розбір, НМТ, олімпіада, формульний листок, рефлексія та інші. Усе, що змінюєш, одразу видно на аркушах.</p>
@@ -302,11 +311,29 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
       </div>
     </details>
 
+    <details class="vikno sh" open>
+      <summary><b>Банк задач</b><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span></summary>
+      <div class="tilo">
+        <p class="prymitka">Кожне поле — окрема задача. Натисни «Розкласти» — і кожна задача ляже на свій аркуш. Умову будь-якого аркуша можна також змінити просто під ним.</p>
+        <div id="bank" class="bank"></div>
+        <button class="knopka" type="button" id="bank-dodaty">+ Ще одна задача</button>
+        <div class="ryad">
+          <label class="pole">Розкласти як
+            <select id="bank-typ">
+              <option value="zadacha">Задача</option>
+              <option value="rozbir">Розбір задачі</option>
+              <option value="olimp">Олімпіада</option>
+              <option value="nmt">НМТ (кілька на аркуші)</option>
+            </select></label>
+          <div class="pole"><span>&nbsp;</span><button class="knopka holovna" type="button" id="bank-rozklasty">Розкласти</button></div>
+        </div>
+        <label class="prapor"><input id="bank-zaminyty" type="checkbox"> Замінити аркуші в зошиті, а не додати</label>
+      </div>
+    </details>
+
     <details class="vikno sh">
       <summary><b>Вміст аркушів</b><span class="znaky" aria-hidden="true"><i></i><i></i><i></i></span></summary>
       <div class="tilo">
-        <label class="pole">Умова задачі (для «Задача», «Розбір», «Олімпіада»)
-          <textarea id="umova" placeholder="Залиш порожнім — буде біле місце для умови"></textarea></label>
         <label class="povzunok"><span class="r"><span>Висота місця для умови</span><output id="uv-h"></output></span><input id="umova-h" type="range" min="3" max="10" step="1" value="5"></label>
         <div class="ryad">
           <label class="pole">Завдань НМТ
@@ -527,8 +554,21 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
 
   /* ═════════ СТАН ═════════ */
   var POLIA = ['tema', 'tema-svoia', 'portret-rezhym', 'p-t', 'p-b', 'p-l', 'p-r', 'sitka-kolir', 'sitka-polia', 'liniia', 'pidval',
-    'fon-on', 'fon-o', 'fon-s', 'fon-poz', 'uchen', 'klas', 'urok', 'data', 'shapka-on', 'umova', 'umova-h', 'nmt-k', 'olimp-n', 'lab-n', 'formuly-rezhym', 'druk-format'];
-  var storinky = chytaty('zoshyt-storinky', true) || ['konspekt', 'zadacha', 'refleksia'];
+    'fon-on', 'fon-o', 'fon-s', 'fon-poz', 'uchen', 'klas', 'urok', 'data', 'shapka-on', 'umova-h', 'nmt-k', 'olimp-n', 'lab-n', 'formuly-rezhym', 'druk-format'];
+  var Z_UMOVOIU = { zadacha: 1, rozbir: 1, olimp: 1, nmt: 1 };
+  function nova(typ, umovy) { return { typ: typ, umovy: (umovy || []).slice() }; }
+  var storinky = (chytaty('zoshyt-storinky', true) || ['konspekt', 'zadacha', 'refleksia']).map(function (s) {
+    return typeof s === 'string' ? nova(s) : nova(s.typ, s.umovy);
+  });
+  (function () {   // стара версія мала одне спільне поле умови — переносимо його на перший аркуш із задачею
+    var star = chytaty('zoshyt-stan', true);
+    if (star && star.umova) {
+      for (var i = 0; i < storinky.length; i++) if (Z_UMOVOIU[storinky[i].typ] && !storinky[i].umovy[0]) { storinky[i].umovy[0] = star.umova; break; }
+      delete star.umova; zberihaty('zoshyt-stan', star);
+    }
+  })();
+  var bank = chytaty('zoshyt-bank', true) || ['', '', ''];
+  if (!bank.length) bank = [''];
 
   // заповнити список тем
   (function () {
@@ -585,9 +625,10 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
     return s;
   }
 
-  function maket(typ, C, R, z, t0) {
-    var b = [], y0 = t0, uh = +z['umova-h'], umova = (z.umova || '').trim();
-    var umovaBox = function (y, h, mitka) { return B(0, y, C, h, 'bila', { mitka: mitka || 'Умова задачі', tekst: umova }); };
+  function maket(typ, C, R, z, t0, umovy) {
+    umovy = umovy || [];
+    var b = [], y0 = t0, uh = +z['umova-h'];
+    var umovaBox = function (y, h, mitka) { return B(0, y, C, h, 'bila', { mitka: mitka || 'Умова задачі', tekst: umovy[0] || '', u: 0 }); };
     if (typ === 'zadacha') {
       b.push(umovaBox(y0, uh));
       var y1 = y0 + uh + 1, L = Math.min(17, Math.floor(C * 0.45));
@@ -617,7 +658,7 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
       for (var i = 0; i < k; i++) {
         var y = y0 + i * h, ostannie = i === k - 1 && k >= 3;
         b.push(B(0, y + 0.5, 1, 1, 'num', { num: i + 1 }));
-        b.push(B(2, y, C - 2 - wO - 1, h - 1, 'bila', { mitka: 'Завдання ' + (i + 1) + (ostannie ? ' · відповідь числом' : '') }));
+        b.push(B(2, y, C - 2 - wO - 1, h - 1, 'bila', { mitka: 'Завдання ' + (i + 1) + (ostannie ? ' · відповідь числом' : ''), tekst: umovy[i] || '', u: i }));
         if (ostannie) b.push(B(C - wO, y, wO, Math.min(3, h - 1), 'vidp'));
         else b.push(B(C - wO, y, wO, h - 1, 'kola', { litery: ['А', 'Б', 'В', 'Г'] }));
       }
@@ -683,12 +724,12 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
   function malyuvatyBox(o, z, temaId) {
     var st = 'style="' + box(o.x, o.y, o.w, o.h) + '"', h = '';
     if (o.kind === 'ramka' || o.kind === 'bila') {
-      h = '<div class="bk bk-' + o.kind + '" ' + st + '>';
+      h = '<div class="bk bk-' + o.kind + '" ' + st + (o.u != null ? ' data-u="' + o.u + '"' : '') + '>';
       if (o.num) h += '<span class="bk-num">' + o.num + '</span><span class="bk-zag">' + tekst(o.zag) + '</span>';
       if (o.mitka) h += '<span class="bk-mitka">' + tekst(o.mitka) + '</span>';
       if (o.baly) h += '<span class="bk-baly">' + tekst(o.baly) + '</span>';
       if (o.pidk) h += '<span class="bk-pidk">' + tekst(o.pidk) + '</span>';
-      if (o.tekst) h += '<div class="bk-tekst-umovy">' + tekst(o.tekst) + '</div>';
+      if (o.u != null || o.tekst) h += '<div class="bk-tekst-umovy">' + tekst(o.tekst) + '</div>';
       if (o.velyke) h += '<span class="bk-velyke">' + tekst(o.velyke) + '</span>';
       return h + '</div>';
     }
@@ -740,7 +781,8 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
     return '';
   }
 
-  function arkush(typ, z, nomer, vsogo) {
+  function arkush(sto, z, nomer, vsogo) {
+    var typ = sto.typ;
     var t = +z['p-t'], bt = +z['p-b'], l = +z['p-l'], r = +z['p-r'];
     var C = Math.floor((210 - l - r) / KL), R = Math.floor((148 - t - bt) / KL);
     var temaId = z.tema, tema = TEMY[temaId] || {};
@@ -766,7 +808,7 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
         '<span>Дата <i style="min-width:14mm">' + tekst(datuUa(z.data)) + '</i></span>' +
         (z.urok ? '<span>Урок <i style="min-width:6mm">' + tekst(z.urok) + '</i></span>' : '') + '</div></div>';
     }
-    maket(typ, C, R, z, t0).forEach(function (o) { h += malyuvatyBox(o, z, temaId); });
+    maket(typ, C, R, z, t0, sto.umovy).forEach(function (o) { h += malyuvatyBox(o, z, temaId); });
     h += '</div>';
     if (z.pidval) h += '<div class="a-pidval">Астрофізичний сад · ' + nomer + ' / ' + vsogo + '</div>';
     return h + '</div>';
@@ -800,19 +842,74 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
     var n = storinky.length;
     $('#lichylnyk').textContent = n ? 'У зошиті ' + n + ' ' + (n % 10 === 1 && n % 100 !== 11 ? 'аркуш' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'аркуші' : 'аркушів') + ' А5' : '';
     if (!n) { perehliad.innerHTML = '<div class="porozhno">Зошит порожній. Натисни тип аркуша ліворуч або обери готовий набір.</div>'; povidomytyVysotu(); return; }
-    perehliad.innerHTML = storinky.map(function (typ, i) {
+    perehliad.innerHTML = storinky.map(function (sto, i) {
+      var typ = sto.typ;
       return '<section class="storinka" aria-label="Аркуш ' + (i + 1) + ': ' + tekst(NAZVY[typ]) + '">' +
         '<div class="storinka-dii"><span class="nazva">' + (i + 1) + ' · ' + tekst(NAZVY[typ]) + '</span>' +
         '<button type="button" data-dia="vgoru" data-i="' + i + '" title="Вище" aria-label="Перемістити вище">↑</button>' +
         '<button type="button" data-dia="vnyz" data-i="' + i + '" title="Нижче" aria-label="Перемістити нижче">↓</button>' +
         '<button type="button" data-dia="kopiia" data-i="' + i + '" title="Дублювати" aria-label="Дублювати аркуш">⧉</button>' +
         '<button type="button" data-dia="vydalyty" data-i="' + i + '" title="Видалити" aria-label="Видалити аркуш">✕</button></div>' +
-        '<div class="kadr">' + arkush(typ, z, i + 1, n) + '</div></section>';
+        '<div class="kadr">' + arkush(sto, z, i + 1, n) + '</div>' + polyaUmov(sto, i, z) + '</section>';
     }).join('');
     masshtab(); formuly(perehliad); povidomytyVysotu();
   }
   var taimer;
-  function pislia() { clearTimeout(taimer); taimer = setTimeout(onovyty, 60); }
+  function pislia() { clearTimeout(taimer); taimer = setTimeout(onovyty, 220); }
+
+  /* ── власні умови кожного аркуша ── */
+  function polyaUmov(sto, i, z) {
+    if (!Z_UMOVOIU[sto.typ]) return '';
+    var k = sto.typ === 'nmt' ? +z['nmt-k'] : 1, h = '<div class="storinka-umovy">';
+    for (var j = 0; j < k; j++) {
+      h += '<label>' + (sto.typ === 'nmt' ? 'Завдання ' + (j + 1) + ' цього аркуша' : 'Умова задачі цього аркуша') +
+        '<textarea data-sto="' + i + '" data-u="' + j + '" placeholder="Залиш порожнім — буде біле місце для умови">' + tekst(sto.umovy[j] || '') + '</textarea></label>';
+    }
+    return h + '</div>';
+  }
+  var taimerZb;
+  function zberehtyStorinky() { clearTimeout(taimerZb); taimerZb = setTimeout(function () { zberihaty('zoshyt-storinky', storinky); }, 300); }
+  perehliad.addEventListener('input', function (e) {
+    var ta = e.target.closest('textarea[data-sto]'); if (!ta) return;
+    var i = +ta.dataset.sto, j = +ta.dataset.u, sto = storinky[i]; if (!sto) return;
+    sto.umovy[j] = ta.value;
+    var bk = $$('.storinka', perehliad)[i].querySelector('.bk[data-u="' + j + '"] .bk-tekst-umovy');
+    if (bk) bk.textContent = ta.value;        // лише цей аркуш, без перемальовування всього зошита
+    zberehtyStorinky();
+  });
+
+  /* ── банк задач ── */
+  function malyuvatyBank() {
+    $('#bank').innerHTML = bank.map(function (t, i) {
+      return '<div class="bank-pole"><textarea data-b="' + i + '" aria-label="Задача ' + (i + 1) + '" placeholder="Умова задачі ' + (i + 1) + '">' + tekst(t) + '</textarea>' +
+        '<button type="button" data-bv="' + i + '" title="Прибрати поле" aria-label="Прибрати задачу ' + (i + 1) + '">✕</button></div>';
+    }).join('');
+  }
+  $('#bank').addEventListener('input', function (e) {
+    var ta = e.target.closest('textarea[data-b]'); if (!ta) return;
+    bank[+ta.dataset.b] = ta.value; zberihaty('zoshyt-bank', bank);
+  });
+  $('#bank').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-bv]'); if (!b) return;
+    bank.splice(+b.dataset.bv, 1); if (!bank.length) bank = [''];
+    zberihaty('zoshyt-bank', bank); malyuvatyBank();
+  });
+  $('#bank-dodaty').addEventListener('click', function () {
+    bank.push(''); zberihaty('zoshyt-bank', bank); malyuvatyBank();
+    var t = $$('#bank textarea'); t[t.length - 1].focus();
+  });
+  $('#bank-rozklasty').addEventListener('click', function () {
+    var zadachi = bank.map(function (t) { return t.trim(); }).filter(Boolean);
+    if (!zadachi.length) { alert('Спершу впиши хоча б одну задачу.'); return; }
+    var typ = $('#bank-typ').value, novi = [];
+    if (typ === 'nmt') {
+      var k = +$('#nmt-k').value;
+      for (var i = 0; i < zadachi.length; i += k) novi.push(nova('nmt', zadachi.slice(i, i + k)));
+    } else zadachi.forEach(function (t) { novi.push(nova(typ, [t])); });
+    storinky = $('#bank-zaminyty').checked ? novi : storinky.concat(novi);
+    onovyty();
+  });
+  malyuvatyBank();
 
   POLIA.forEach(function (id) {
     var e = document.getElementById(id);
@@ -820,10 +917,10 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
   });
   $('#typy').addEventListener('click', function (e) {
     var b = e.target.closest('[data-typ]'); if (!b) return;
-    storinky.push(b.dataset.typ); onovyty();
+    storinky.push(nova(b.dataset.typ)); onovyty();
     var vs = $$('.storinka', perehliad); if (vs.length) vs[vs.length - 1].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   });
-  $$('[data-nabir]').forEach(function (b) { b.addEventListener('click', function () { storinky = NABORY[b.dataset.nabir].slice(); onovyty(); }); });
+  $$('[data-nabir]').forEach(function (b) { b.addEventListener('click', function () { storinky = NABORY[b.dataset.nabir].map(function (t) { return nova(t); }); onovyty(); }); });
   $$('[data-polia]').forEach(function (b) {
     b.addEventListener('click', function () { var p = b.dataset.polia.split(','); ['p-t', 'p-b', 'p-l', 'p-r'].forEach(function (id, i) { vstanovyty(id, p[i]); }); onovyty(); });
   });
@@ -832,7 +929,7 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
     var i = +b.dataset.i, d = b.dataset.dia;
     if (d === 'vgoru' && i > 0) storinky.splice(i - 1, 0, storinky.splice(i, 1)[0]);
     if (d === 'vnyz' && i < storinky.length - 1) storinky.splice(i + 1, 0, storinky.splice(i, 1)[0]);
-    if (d === 'kopiia') storinky.splice(i + 1, 0, storinky[i]);
+    if (d === 'kopiia') storinky.splice(i + 1, 0, nova(storinky[i].typ, storinky[i].umovy));
     if (d === 'vydalyty') storinky.splice(i, 1);
     onovyty();
   });
