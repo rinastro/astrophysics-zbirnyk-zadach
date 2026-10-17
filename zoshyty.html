@@ -125,7 +125,7 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
   color:#24301e;font:400 3.3mm/1.35 var(--tekst);-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .arkush *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .a-portret{position:absolute;inset:0;background-repeat:no-repeat;pointer-events:none}
-.a-sitka{position:absolute;pointer-events:none}
+.a-sitka{position:absolute;left:0;top:0;width:210mm;height:148mm;pointer-events:none;overflow:visible}
 .a-liniia{position:absolute;top:0;bottom:0;width:0;border-left:.35mm solid var(--a-liniia,#e3a3b8)}
 .a-vmist{position:absolute}
 .bk{position:absolute;border-radius:2mm}
@@ -277,6 +277,13 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
             <option value="#93bd86">насичена зелена</option>
             <option value="#d9e6d3">ледь помітна</option>
           </select></label>
+        <label class="pole">Товщина ліній
+          <select id="sitka-tovsh">
+            <option value="0.55">тонка</option>
+            <option value="0.8" selected>звичайна</option>
+            <option value="1.15">чітка</option>
+          </select></label>
+        <label class="prapor"><input id="sitka-sm" type="checkbox"> Виділяти кожен сантиметр (2 клітинки)</label>
         <label class="prapor"><input id="sitka-polia" type="checkbox" checked> Клітинка й на полях</label>
         <label class="prapor"><input id="liniia" type="checkbox" checked> Лінія поля ліворуч</label>
         <label class="prapor"><input id="pidval" type="checkbox" checked> Підпис «Астрофізичний сад» і номер сторінки</label>
@@ -553,7 +560,7 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
   };
 
   /* ═════════ СТАН ═════════ */
-  var POLIA = ['tema', 'tema-svoia', 'portret-rezhym', 'p-t', 'p-b', 'p-l', 'p-r', 'sitka-kolir', 'sitka-polia', 'liniia', 'pidval',
+  var POLIA = ['tema', 'tema-svoia', 'portret-rezhym', 'p-t', 'p-b', 'p-l', 'p-r', 'sitka-kolir', 'sitka-tovsh', 'sitka-sm', 'sitka-polia', 'liniia', 'pidval',
     'fon-on', 'fon-o', 'fon-s', 'fon-poz', 'uchen', 'klas', 'urok', 'data', 'shapka-on', 'umova-h', 'nmt-k', 'olimp-n', 'lab-n', 'formuly-rezhym', 'druk-format'];
   var Z_UMOVOIU = { zadacha: 1, rozbir: 1, olimp: 1, nmt: 1 };
   function nova(typ, umovy) { return { typ: typ, umovy: (umovy || []).slice() }; }
@@ -596,6 +603,27 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
   function stan() { var z = {}; POLIA.forEach(function (id) { z[id] = znachennia(id); }); return z; }
 
   /* ═════════ МАЛЮВАННЯ ═════════ */
+  /* Клітинка — справжні векторні лінії на весь аркуш (у мм), а не плитка-картинка:
+     так вона рівна й чітка за будь-якого масштабу й у друці. */
+  function sitkaSvg(z, l, t, C, R) {
+    var x0, x1, y0, y1;
+    if (z['sitka-polia']) { x0 = 0; x1 = 210; y0 = 0; y1 = 148; }
+    else { x0 = l; x1 = l + C * KL; y0 = t; y1 = t + R * KL; }
+    var tonki = '', sm = '', vydil = !!z['sitka-sm'], x, y, k;
+    for (k = Math.ceil((x0 - l) / KL); (x = l + k * KL) <= x1 + 0.001; k++) {
+      var dx = 'M' + x.toFixed(2) + ' ' + y0 + 'V' + y1;
+      if (vydil && k % 2 === 0) sm += dx; else tonki += dx;
+    }
+    for (k = Math.ceil((y0 - t) / KL); (y = t + k * KL) <= y1 + 0.001; k++) {
+      var dy = 'M' + x0 + ' ' + y.toFixed(2) + 'H' + x1;
+      if (vydil && k % 2 === 0) sm += dy; else tonki += dy;
+    }
+    var w = +z['sitka-tovsh'] || 0.8, kol = z['sitka-kolir'];
+    return '<svg class="a-sitka" viewBox="0 0 210 148" preserveAspectRatio="none" aria-hidden="true">' +
+      '<path d="' + tonki + '" fill="none" stroke="' + kol + '" stroke-width="' + w + '" vector-effect="non-scaling-stroke" shape-rendering="geometricPrecision"/>' +
+      (sm ? '<path d="' + sm + '" fill="none" stroke="' + kol + '" stroke-width="' + (w * 1.7).toFixed(2) + '" vector-effect="non-scaling-stroke"/>' : '') +
+      '</svg>';
+  }
   function sitkaUrl(kolir) {
     return svgUrl('<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M0 .5H50M.5 0V50" stroke="' + kolir + '" stroke-width="1.6" fill="none"/></svg>');
   }
@@ -794,9 +822,7 @@ input[type=range]{width:100%;accent-color:var(--lis-500)}
       h += '<div class="a-portret" style="background-image:' + portretUrl(tema.portret || 'zori').replace(/"/g, '&quot;') + ';opacity:' + Math.min(0.9, op) +
         ';background-size:auto ' + z['fon-s'] + '%;background-position:' + (poz === 'right' ? 'right -6mm' : poz === 'left' ? 'left -6mm' : 'center') + ' bottom"></div>';
     }
-    var sitka = sitkaUrl(z['sitka-kolir']).replace(/"/g, '&quot;');
-    if (z['sitka-polia']) h += '<div class="a-sitka" style="inset:0;background-image:' + sitka + ';background-size:5mm 5mm;background-position:' + l + 'mm ' + t + 'mm"></div>';
-    else h += '<div class="a-sitka" style="left:' + l + 'mm;top:' + t + 'mm;width:' + (C * KL + 0.3) + 'mm;height:' + (R * KL + 0.3) + 'mm;background-image:' + sitka + ';background-size:5mm 5mm"></div>';
+    h += sitkaSvg(z, l, t, C, R);
     if (z.liniia) h += '<div class="a-liniia" style="left:' + (l - 2) + 'mm"></div>';
     h += '<div class="a-vmist" style="left:' + l + 'mm;top:' + t + 'mm;width:' + (C * KL) + 'mm;height:' + (R * KL) + 'mm">';
     if (shapka) {
