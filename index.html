@@ -59,6 +59,11 @@
      data-rozdil — id розділу саду (тоді посилання з’явиться і на його сторінці).
      Без data-href конспект показується як «незабаром».
 
+  3в. ЗОШИТИ ДО УРОКУ — вкладка «Зошити» (#/zoshyty) і блок унизу головної.
+     Сам генератор — окремий файл zoshyty.html (лежить поруч з index.html),
+     тут він вбудований рамкою. Фони механіки й молекулярної фізики вбудовані
+     в zoshyty.html; копії — у папці zoshyty-fon/.
+
   3б. ГЕНЕРАТОР ШПАРГАЛОК — вкладка «Шпаргалки» (#/shpargalky).
      Там вставляєте текст і формули, бачите картки в стилі саду,
      друкуєте або завантажуєте окремий HTML. Підказка з розміткою — поруч.
@@ -108,11 +113,6 @@
 
   --shyryna:1180px;
   --pole:clamp(16px,4vw,44px);
-
-  /* генератор зошитів */
-  .zoshyty-ramka-obg{max-width:1560px;margin:0 auto;padding:0 0 3rem}
-  .zoshyty-ramka{display:block;width:100%;min-height:900px;border:0;background:transparent}
-   @media print{body:has(#generator:not([hidden])) .druk-pidpys{display:none!important}}
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -345,6 +345,22 @@ mark:has(.katex-display){display:block;padding:.25em .4em}
 #spysok-zadach .element{margin:0}
 .porozhn p{margin:0 0 .6rem}
 
+/* зошити */
+.zoshyty-ramka-obg{max-width:1560px;margin:0 auto;padding:0 0 3rem}
+.zoshyty-ramka{display:block;width:100%;min-height:900px;border:0;background:transparent}
+.zoshyty-anons{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:1.4rem;align-items:center;padding:clamp(1.2rem,3vw,2rem);text-decoration:none;transition:transform .18s ease}
+.zoshyty-anons:hover{transform:translateY(-3px)}
+.zoshyty-anons-tekst{display:grid;gap:.6rem;justify-items:start}
+.zoshyty-anons-tekst b{font-family:var(--drukovani);font-weight:800;text-transform:uppercase;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:.95}
+.zoshyty-anons-arkush{position:relative;aspect-ratio:210/148;border-radius:6px;background:#fff;box-shadow:0 18px 30px -18px rgba(10,16,8,.7);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M0 .5H12M.5 0V12' stroke='%23b4d3a8' stroke-width='1'/%3E%3C/svg%3E")}
+.zoshyty-anons-arkush i{position:absolute;border-radius:5px}
+.zoshyty-anons-arkush i:nth-child(1){left:8%;right:8%;top:12%;height:20%;background:#fff;box-shadow:0 2px 8px rgba(40,64,30,.25)}
+.zoshyty-anons-arkush i:nth-child(2){left:8%;width:38%;top:40%;bottom:12%;border:1.5px solid #7d9a6c}
+.zoshyty-anons-arkush i:nth-child(3){left:52%;right:8%;top:70%;bottom:12%;background:#fbe6ee;border:1.5px solid #e7b8c9}
+@media (max-width:640px){.zoshyty-anons{grid-template-columns:1fr}}
+@media print{body:has(#zoshyty:not([hidden])) .druk-pidpys{display:none!important}}
+
 /* генератор шпаргалок */
 .shp-redaktor{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:1.15rem;align-items:start}
 .shp-redaktor .vikno{margin:0 0 1.15rem}
@@ -547,8 +563,8 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
       <a href="#/astronomiya">Астрономія</a>
       <a href="#/zadachi">Задачі</a>
       <a href="#/konspekty">Конспекти</a>
-      <<a href="#/generator">Генератор зошитів</a>
       <a href="#/shpargalky">Шпаргалки</a>
+      <a href="#/zoshyty">Зошити</a>
       <button class="druk-knopka" type="button" data-diya="druk" title="Надрукувати цю сторінку">Друк</button>
     </nav>
   </div>
@@ -637,28 +653,41 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
       </div>
     </section>
 
+    <!-- Зошити до уроку (генератор — окремий файл zoshyty.html) -->
+    <section class="blok" id="zoshyty-blok">
+      <h2 class="blok-zaholovok">Зошити <span class="propys">аркуші до уроку</span></h2>
+      <a class="vikno zoshyty-anons" href="#/zoshyty">
+        <span class="zoshyty-anons-tekst">
+          <span class="mitka">Генератор аркушів А5 · клітинка 5 мм</span>
+          <b>Задача · Розбір · НМТ · Олімпіада · Формульний листок · Рефлексія</b>
+          <span>а ще конспект уроку, лабораторна, спостереження неба й обкладинка. Обери тему за програмою, налаштуй поля — і друкуй одразу для учнів.</span>
+          <span class="knopka">Відкрити генератор →</span>
+        </span>
+        <span class="zoshyty-anons-arkush" aria-hidden="true"><i></i><i></i><i></i></span>
+      </a>
+    </section>
+
   </div>
 </div>
 
-  
-<!-- ═══════════ ГЕНЕРАТОР ЗОШИТІВ (окремий файл zoshyty.html) ═══════════ -->
-<section id="generator" data-storinka data-nazva="Генератор зошитів">
+
+<!-- ═══════════ ЗОШИТИ ДО УРОКУ (вбудовано з zoshyty.html) ═══════════ -->
+<section id="zoshyty" data-storinka data-nazva="Зошити до уроку">
   <div class="obgortka rozdil-shapka">
     <a class="nazad" href="#/">← На головну</a>
     <span class="mitka">Аркуші А5 альбомно · зелена клітинка 5 мм · друк одразу</span>
     <h1>Зошити</h1>
     <p class="propys">аркуші до уроку</p>
     <div class="panel">
-      <button class="knopka" type="button" data-diya="druk">Надрукувати зошит</button>
       <a class="knopka" href="zoshyty.html" target="_blank" rel="noopener">Відкрити окремо</a>
     </div>
   </div>
   <div class="zoshyty-ramka-obg">
-    <iframe id="zoshyty-ramka" class="zoshyty-ramka" title="Генератор зошитів"
-            loading="lazy" data-src="zoshyty.html"></iframe>
+    <iframe id="zoshyty-ramka" class="zoshyty-ramka" title="Генератор зошитів" loading="lazy" data-src="zoshyty.html"></iframe>
   </div>
 </section>
-  
+
+
 <!-- ═══════════ ГЕНЕРАТОР ШПАРГАЛОК ═══════════ -->
 <section id="shpargalky" data-storinka data-nazva="Генератор шпаргалок">
   <div class="obgortka rozdil-shapka shp-shapka-storinky">
@@ -761,10 +790,11 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
        Порядок тут = порядок на сторінці. -->
   <div id="konspekty-dzherelo" hidden>
 
-    <article class="konspekt" data-predmet="Фізика" data-rozdil="mekhanika">
-      <h3>Кінематика</h3>
-      <p class="propys">рух без причин</p>
-      <p>Система відліку, переміщення, швидкість і прискорення, графіки руху.</p>
+    <article class="konspekt" data-predmet="Фізика" data-rozdil="mekhanika"
+             data-href="konspekty/fizyka/osnovy-kinematyky.html">
+      <h3>Основи кінематики</h3>
+      <p class="propys">як описати рух</p>
+      <p>Координата й шлях, швидкість і прискорення, рівнозмінний рух, рух по колу, тіло, кинуте під кутом. 10 розв’язаних прикладів і 59 завдань.</p>
     </article>
 
     <article class="konspekt" data-predmet="Фізика" data-rozdil="elektryka"
@@ -772,13 +802,6 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
       <h3>Постійний струм</h3>
       <p class="propys">від Ома до Кірхгофа</p>
       <p>Сила струму, напруга, опір, з’єднання провідників, робота й потужність.</p>
-    </article>
-
-    <article class="konspekt" data-predmet="Фізика" data-rozdil="mekhanika"
-             data-href="konspekty/fizyka/general_kinematyka.html">
-      <h3>Кінематика</h3>
-      <p class="propys">загальний конспект</p>
-      <p>Все про кінематику, що потрібно для підготовки до НМТ</p>
     </article>
 
     <article class="konspekt" data-predmet="Астрономія" data-rozdil="nebesna-mekhanika">
@@ -796,8 +819,6 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
   </div>
 </section>
 
-
-  
 
 <!-- ═══════════ ЗБІРНИК УСІХ ЗАДАЧ (заповнюється сам) ═══════════ -->
 <section id="zadachi" data-storinka data-nazva="Задачі">
@@ -1603,36 +1624,6 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
 <noscript><p style="padding:1rem;background:#fbe6ee;color:#2a2325">Щоб працювали меню, формули, пошук і експорт, увімкніть JavaScript.</p></noscript>
 
 <script>
-
-<script>
-/* Генератор зошитів: рамка з zoshyty.html, висота й друк */
-(function () {
-  var ramka = document.getElementById('zoshyty-ramka');
-  var storinka = document.getElementById('generator');
-  if (!ramka || !storinka) return;
-
-  // завантажуємо генератор лише тоді, коли відкрили сторінку
-  function zavantazhyty() { if (!ramka.getAttribute('src')) ramka.setAttribute('src', ramka.dataset.src); }
-  function perevir() { if (location.hash === '#/generator') zavantazhyty(); }
-  window.addEventListener('hashchange', perevir);
-  perevir();
-
-  // рамка сама підлаштовує висоту під кількість аркушів
-  window.addEventListener('message', function (e) {
-    if (e.data && e.data.typ === 'zoshyt-vysota') ramka.style.height = Math.max(600, e.data.h + 20) + 'px';
-  });
-
-  // «Друк» у меню й на цій сторінці друкує саме аркуші зошита
-  function drukuvaty() {
-    try { ramka.contentWindow.zoshytDruk(); }
-    catch (er) { ramka.contentWindow.postMessage({ typ: 'zoshyt-druk' }, '*'); }
-  }
-  document.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-diya="druk"]');
-    if (b && !storinka.hidden) { e.preventDefault(); e.stopImmediatePropagation(); drukuvaty(); }
-  }, true);
-})();
-
 (function () {
   'use strict';
 
@@ -2106,7 +2097,9 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
     switch (b.dataset.diya) {
       case 'skhovaty': rezhym(!skhovano); break;
       case 'anki': rozdilDlyaAnki(r); break;
-      case 'druk': drukuvaty(b.dataset.rozv !== '0'); break;
+      case 'druk':
+        if (!$('#zoshyty').hidden) { drukZoshyta(); break; }
+        drukuvaty(b.dataset.rozv !== '0'); break;
       case 'rozhornuty': rozhornuty(element); break;
       case 'zakryty': velyke.close(); break;
       case 'png': zberehtyPng(element, b); break;
@@ -2420,6 +2413,19 @@ dialog.velyke .dii{padding:0 1.6rem 1.3rem}
     setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
     povidomyty('Файл «' + imia + '» збережено. Відкрий його в браузері, щоб надрукувати.');
   });
+
+  /* ── 13б. Зошити: рамка з zoshyty.html ── */
+  var ramka = $('#zoshyty-ramka');
+  function zavantazhytyRamku() { if (ramka && !ramka.getAttribute('src')) ramka.setAttribute('src', ramka.dataset.src); }
+  window.addEventListener('message', function (e) {
+    if (e.data && e.data.typ === 'zoshyt-vysota' && ramka) ramka.style.height = Math.max(600, e.data.h + 20) + 'px';
+  });
+  function drukZoshyta() {
+    try { ramka.contentWindow.zoshytDruk(); }
+    catch (er) { try { ramka.contentWindow.postMessage({ typ: 'zoshyt-druk' }, '*'); } catch (er2) { window.print(); } }
+  }
+  window.addEventListener('hashchange', function () { if (location.hash === '#/zoshyty') zavantazhytyRamku(); });
+  if (location.hash === '#/zoshyty') zavantazhytyRamku();
 
   rezhym(skhovano);
   marshrut();
