@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Рівноприскорений рух. Рух по вертикалі та по параболі · Конспект</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+:root{--night:#081F44;--deep:#143660;--dive:#1F3F74;--sail:#4569AD;--lilac:#B9C8E6;--pink:#E679A6;--pink-ink:#B23E72;--pink-bg:#FCEFF5;--green:#587954;--green-bg:#EEF4EC;--blue-bg:#EDF2FB;--amber:#A44A0B;--amber-bg:#FFF5E8;--paper:#F5F7FB;--card:#FFFFFF;--ink:#13284A;--muted:#4A5D7E;--line:#DCE3EF;--fs:18px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:var(--fs)}
+body{margin:0;font-family:Inter,system-ui,sans-serif;font-size:1rem;line-height:1.7;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+a{color:var(--sail)}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;z-index:30;background:var(--night);color:#fff;padding:8px 14px;border-radius:8px}
+.skip:focus{left:8px}
+.hero{position:relative;overflow:hidden;color:#fff;padding:56px 20px 76px;background:radial-gradient(120% 140% at 85% 0%,var(--dive) 0%,var(--deep) 45%,var(--night) 100%)}
+.hero::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-46px;height:92px;background:var(--paper);border-radius:50% 50% 0 0/100% 100% 0 0}
+.hero-in,.page{max-width:780px;margin:0 auto}
+.eyebrow{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--lilac);color:var(--night);font:700 .72rem Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{margin:0;font-family:Manrope,sans-serif;line-height:1.2;letter-spacing:-.015em;color:var(--night)}
+.hero h1{margin:16px 0 14px;color:#fff;font-size:clamp(2rem,6vw,3.1rem)}
+.hero h1 em{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:500;color:#F6B3CF}
+.lead{margin:0;max-width:62ch;font-size:1.1rem;color:#E3EAF7}
+.page{padding:8px 20px 96px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.toc a{padding:7px 13px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink);font-size:.82rem;font-weight:500;text-decoration:none}
+.toc a:hover{border-color:var(--pink);color:var(--pink-ink)}
+.card{margin:0 0 24px;padding:30px 32px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 1px 2px rgba(8,31,68,.04),0 8px 24px rgba(8,31,68,.06);scroll-margin-top:16px}
+.card h2{display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:1.5rem}
+.num{flex:none;display:inline-grid;place-items:center;min-width:2.3rem;height:2.3rem;padding:0 8px;border-radius:12px;background:var(--pink-bg);color:var(--pink-ink);font:800 .9rem Manrope,sans-serif}
+.card h3{margin:28px 0 10px;padding-left:12px;border-left:4px solid var(--green);font-size:1.12rem}
+p{margin:0 0 14px;max-width:68ch}
+ul,ol{margin:0 0 14px;padding-left:1.3em}
+li{margin:4px 0}
+li::marker{color:var(--pink-ink)}
+strong{color:var(--night)}
+.formula{margin:20px 0 8px;padding:18px 20px;overflow-x:auto;text-align:center;font-size:1.15rem;background:var(--blue-bg);border:1px solid #CFDAF0;border-radius:16px}
+.where{margin-bottom:18px;font-size:.92rem;color:var(--muted)}
+.callout{position:relative;margin:20px 0;padding:16px 18px 16px 56px;border:1px solid;border-left-width:5px;border-radius:16px}
+.callout::before{position:absolute;left:18px;top:16px;font-size:1.2rem;line-height:1}
+.callout b:first-child{display:block;margin-bottom:4px;font-family:Manrope,sans-serif;font-size:.95rem}
+.callout.remember{background:var(--green-bg);border-color:#CFE0CB;border-left-color:var(--green)}
+.callout.remember::before{content:"📌"}
+.callout.remember b:first-child{color:var(--green)}
+.callout.info{background:var(--blue-bg);border-color:#D3DEF2;border-left-color:var(--sail)}
+.callout.info::before{content:"🧭"}
+.callout.info b:first-child{color:var(--sail)}
+.callout.fact{background:var(--pink-bg);border-color:#F5D3E2;border-left-color:var(--pink)}
+.callout.fact::before{content:"💡"}
+.callout.fact b:first-child{color:var(--pink-ink)}
+.callout.warn{background:var(--amber-bg);border-color:#F3DABA;border-left-color:var(--amber)}
+.callout.warn::before{content:"⚠️"}
+.callout.warn b:first-child{color:var(--amber)}
+table{width:100%;margin:18px 0;border-collapse:separate;border-spacing:0;font-size:.95rem;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{background:#E9EEF8;color:var(--night);font:700 .78rem Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+tr:nth-child(even) td{background:#FAFBFE}
+dl.terms{display:grid;gap:4px;margin:0}
+dl.terms dt{margin-top:8px;color:var(--green);font:700 1.02rem Manrope,sans-serif}
+dl.terms dd{margin:0;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+dl.terms dd:last-child{border-bottom:0}
+.q{margin:18px 0;padding:18px;background:#FBFCFE;border:1px solid var(--line);border-radius:16px}
+.q>p:first-child{margin-bottom:12px;font-weight:600}
+.options{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.options li{margin:0;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+details{margin:14px 0;background:var(--green-bg);border:1px solid #CFE0CB;border-radius:14px}
+summary{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;color:var(--green);font-weight:700;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"Показати";flex:none;padding:4px 10px;border-radius:999px;background:var(--green);color:#fff;font-size:.75rem;font-weight:600}
+details[open] summary::after{content:"Сховати"}
+details>div{padding:0 18px 16px;color:var(--ink)}
+.gap{display:inline-block;min-width:110px;margin:0 4px;border-bottom:2px dashed var(--pink)}
+main svg{display:block;max-width:100%;height:auto;margin:18px auto}
+main .katex svg{margin:0;max-width:none}
+main button{display:inline-flex;align-items:center;gap:6px;margin:12px 8px 4px 0;padding:9px 18px;border:0;border-radius:999px;background:var(--night);color:#fff;font:700 .85rem Manrope,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 4px 12px rgba(8,31,68,.18);transition:background .2s,transform .15s}
+main button:hover{background:var(--sail);transform:translateY(-1px)}
+main button:active{transform:translateY(0)}
+main button:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+#check-all{background:var(--pink-ink)}
+#check-all:hover{background:var(--pink)}
+@media print{main button{display:none}}
+footer{margin-top:40px;text-align:center;font-size:.85rem;color:var(--muted)}
+.tools{position:fixed;right:18px;bottom:18px;z-index:20;display:flex;flex-direction:column;gap:10px}
+.tools button{display:grid;padding:0;place-items:center;width:52px;height:52px;border:0;border-radius:50%;background:var(--night);color:#fff;font:800 .95rem Manrope,sans-serif;cursor:pointer;box-shadow:0 8px 22px rgba(8,31,68,.28);transition:transform .15s,background .2s,opacity .25s}
+.tools button:hover{background:var(--sail);transform:translateY(-2px)}
+.tools .print{background:var(--pink-ink)}
+.tools .print:hover{background:var(--pink)}
+.tools .up{opacity:0;pointer-events:none}
+.tools .up.show{opacity:1;pointer-events:auto}
+@media (max-width:600px){:root{--fs:17px}.hero{padding:40px 16px 64px}.page{padding:4px 14px 96px}.card{padding:22px 18px;border-radius:18px}.card h2{font-size:1.3rem}table{display:block;overflow-x:auto}.tools{right:12px;bottom:12px}.tools button{width:46px;height:46px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{html{font-size:11.5pt!important}body{background:#fff}.hero{padding:0 0 10px;background:none;color:var(--night)}.hero::after,.tools,.toc,.skip{display:none}.hero h1{color:var(--night)}.hero h1 em{color:var(--pink-ink)}.eyebrow{border:1px solid var(--lilac);background:none}.lead{color:var(--muted)}.page{padding:0}.card{padding:14px 16px;box-shadow:none;border-color:#C9D3E5}.q,.callout,.formula,table,details,main svg,h2,h3{break-inside:avoid}h2,h3{break-after:avoid}@page{margin:14mm}.q{padding:10px 12px}.options{gap:4px}.options li{padding:4px 10px}summary::after{display:none}a{color:inherit}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">До змісту</a>
+<header class="hero"><div class="hero-in">
+    <span class="eyebrow">Фізика · Підготовка до НМТ · Заняття 2</span>
+    <h1>Рівноприскорений рух і рух по параболі <em>під дією сили тяжіння</em></h1>
+    <p class="lead">Якщо швидкість змінюється рівномірно, рух описують дві формули — для швидкості й координати. Вільне падіння, кидок угору і політ по параболі — це той самий рівноприскорений рух із прискоренням g.</p>
+</div></header>
+<main class="page" id="main">
+  <nav class="toc" aria-label="Зміст"></nav>
+
+  <section class="card">
+    <h2><span class="num">01</span>Головна ідея уроку</h2>
+    <p>На минулому занятті ми описували рух, під час якого швидкість не змінюється. Але майже всі цікаві рухи — інші: автомобіль рушає зі світлофора, камінь падає з мосту, м'яч летить у ворота. У них швидкість <strong>змінюється</strong>, і найпростіший такий випадок — коли вона змінюється <strong>рівномірно</strong>: щосекунди на одну й ту саму величину. Таку «швидкість зміни швидкості» називають <strong>прискоренням</strong>.</p>
+    <div class="callout remember"><b>Головна ідея</b>Якщо прискорення стале ($\vec a = \text{const}$), то весь рух описують дві формули: $v_x = v_{0x} + a_x t$ і $x = x_0 + v_{0x}t + \dfrac{a_x t^2}{2}$. Вільне падіння, кидок угору і навіть політ м'яча по параболі — це той самий рівноприскорений рух із прискоренням $\vec g$. Рух по параболі ми розкладаємо на два простих: <strong>рівномірний по горизонталі</strong> і <strong>рівноприскорений по вертикалі</strong>.</div>
+    <h3>Що ти вмітимеш після заняття</h3>
+    <ul>
+      <li>пояснювати, що таке миттєва швидкість і прискорення, і записувати рівняння рівноприскореного руху;</li>
+      <li>«читати» рівняння руху на зразок $x = 5 + 4t - 2t^2$ і знаходити з нього $x_0$, $v_{0x}$, $a_x$;</li>
+      <li>будувати й аналізувати графіки $a_x(t)$, $v_x(t)$, $S_x(t)$, $x(t)$ та переходити від одного графіка до іншого;</li>
+      <li>знаходити шлях і переміщення як площу під графіком швидкості, а середню швидкість — за графіком;</li>
+      <li>розв'язувати задачі на вільне падіння і кидок тіла вертикально вгору;</li>
+      <li>розв'язувати задачі на рух тіла, кинутого горизонтально і під кутом до горизонту.</li>
+    </ul>
+    <h3>Місце в курсі</h3>
+    <p><strong>Минула тема:</strong> Тема 1 «Вступ. Рівномірний рух. Середні швидкості. Відносність руху» — звідти нам знадобляться проєкції, графіки, середня швидкість і закон додавання швидкостей. <strong>Наступні теми:</strong> Тема 4 «Рівномірний рух по колу» (там з'явиться доцентрове прискорення) і Тема 5 «Закони Ньютона» (там ми з'ясуємо, <em>чому</em> тіла набувають прискорення).</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">02</span>Словничок</h2>
+    <p>Три головні терміни теми — простими словами:</p>
+    <dl class="terms">
+      <dt>Прискорення</dt><dd>Наскільки швидко змінюється швидкість. Прискорення $2\ \tfrac{\text{м}}{\text{с}^2}$ означає: щосекунди швидкість зростає на $2\ \tfrac{\text{м}}{\text{с}}$.</dd>
+      <dt>Вільне падіння</dt><dd>Рух тіла лише під дією сили тяжіння, коли опором повітря можна знехтувати. Усі тіла біля Землі падають тоді з однаковим прискоренням $g \approx 9{,}8\ \tfrac{\text{м}}{\text{с}^2}$, незалежно від маси.</dd>
+      <dt>Рух по параболі</dt><dd>Політ тіла, кинутого горизонтально або під кутом до горизонту: по горизонталі воно рухається рівномірно, а по вертикалі — з прискоренням $\vec g$, тому траєкторія вигинається у параболу.</dd>
+    </dl>
+    <h3>Інші терміни</h3>
+    <dl class="terms">
+      <dt>Миттєва швидкість</dt><dd>Швидкість тіла в даний момент часу (у даній точці траєкторії). Її показує спідометр.</dd>
+      <dt>Рівноприскорений рух</dt><dd>Рух, під час якого за будь-які рівні проміжки часу швидкість змінюється однаково, тобто $\vec a = \text{const}$.</dd>
+      <dt>Рівноприскорений (у вузькому сенсі) і рівносповільнений</dt><dd>Якщо $\vec a$ напрямлене так само, як $\vec v$, модуль швидкості зростає (розгін). Якщо протилежно — модуль швидкості зменшується (гальмування). Обидва випадки описують одними формулами, різниця лише в знаку $a_x$.</dd>
+      <dt>Прискорення вільного падіння $\vec g$</dt><dd>Прискорення, якого надає тілу сила тяжіння. Завжди напрямлене вертикально вниз. У задачах НМТ беремо $g = 10\ \tfrac{\text{м}}{\text{с}^2}$.</dd>
+      <dt>Дальність польоту $l$</dt><dd>Відстань по горизонталі від точки кидка до точки падіння.</dd>
+      <dt>Максимальна висота підняття $h$</dt><dd>Найбільша висота траєкторії; у цій точці вертикальна складова швидкості дорівнює нулю.</dd>
+    </dl>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">03</span>Банк формул: що беремо з Теми 1</h2>
+    <p>Перш ніж іти далі, коротко пригадаймо інструменти, з якими ми працювали на першому тижні. Вони постійно трапляються і в нових задачах.</p>
+    <h3>Переведення одиниць</h3>
+    <p>$72\ \tfrac{\text{км}}{\text{год}} = \tfrac{72}{3{,}6} = 20\ \tfrac{\text{м}}{\text{с}}$; &nbsp; $600\ \tfrac{\text{м}}{\text{хв}} = \tfrac{600\ \text{м}}{60\ \text{с}} = 10\ \tfrac{\text{м}}{\text{с}}$; &nbsp; $180\ \tfrac{\text{см}}{\text{с}} = 1{,}8\ \tfrac{\text{м}}{\text{с}}$; &nbsp; $0{,}3\ \tfrac{\text{км}}{\text{хв}} = \tfrac{300\ \text{м}}{60\ \text{с}} = 5\ \tfrac{\text{м}}{\text{с}}$; &nbsp; $1\ \text{л} = 1\ \text{дм}^3 = 10^{-3}\ \text{м}^3$; &nbsp; $1\ \text{мл} = 1\ \text{см}^3 = 10^{-6}\ \text{м}^3$.</p>
+    <h3>Рівномірний рух</h3>
+    <div class="formula">$$\begin{gathered}S_x = v_x t, \qquad l = vt \\ x = x_0 + v_x t\end{gathered}$$</div>
+    <p class="where">де $S_x$ — проєкція переміщення (м); $l$ — шлях (м); $x_0$, $x$ — початкова і кінцева координати (м); $v_x$ — проєкція швидкості (м/с); $t$ — час (с). <em>Коли застосовувати:</em> лише для рівномірного прямолінійного руху ($v_x = \text{const}$). Це окремий випадок рівноприскореного руху, коли $a_x = 0$.</p>
+    <h3>Шлях і переміщення по колу</h3>
+    <table>
+      <tr><th>Ділянка кола</th><th>Шлях $l$</th><th>Модуль переміщення $S$</th></tr>
+      <tr><td>Повне коло</td><td>$2\pi R$</td><td>$0$</td></tr>
+      <tr><td>Пів кола</td><td>$\pi R$</td><td>$2R$</td></tr>
+      <tr><td>Чверть кола</td><td>$\dfrac{\pi R}{2}$</td><td>$R\sqrt2$</td></tr>
+    </table>
+    <h3>Середня шляхова швидкість</h3>
+    <div class="formula">$$\begin{gathered}v_{\text{ср}\,l} = \frac{l_1 + l_2 + \ldots}{t_1 + t_2 + \ldots} \\ t_1 = t_2:\ v_{\text{ср}\,l} = \frac{v_1+v_2}{2} \\ l_1 = l_2:\ v_{\text{ср}\,l} = \frac{2v_1v_2}{v_1+v_2}\end{gathered}$$</div>
+    <p class="where">де $l_i$ — шляхи на ділянках (м); $t_i$ — час руху на ділянках (с); $v_1$, $v_2$ — швидкості на ділянках (м/с). <em>Коли застосовувати:</em> перша формула — завжди; друга — коли ділянки тривають однаковий <strong>час</strong>; третя — коли ділянки мають однакову <strong>довжину</strong>.</p>
+    <h3>Відносність руху і теорема косинусів</h3>
+    <div class="formula">$$\begin{gathered}c^2 = a^2 + b^2 - 2ab\cos\gamma \\ v = \sqrt{v_1^2 - v_2^2},\qquad t = \frac{d}{v} \\ \cos\alpha = \frac{v_2}{v_1}\end{gathered}$$</div>
+    <p class="where">де $a$, $b$, $c$ — сторони трикутника, $\gamma$ — кут між $a$ і $b$; $v_1$ — швидкість човна відносно води (м/с), $v_2$ — швидкість течії (м/с), $v$ — швидкість човна відносно берега (м/с), $d$ — ширина річки (м), $\alpha$ — кут між $\vec v_1$ і берегом. <em>Коли застосовувати:</em> друга група — переправа найкоротшим шляхом (човен перетинає річку перпендикулярно до берега), за умови $v_1 > v_2$.</p>
+    <div class="callout info"><b>Геометричний зміст швидкості</b>На графіку $x(t)$ швидкість визначається <strong>нахилом</strong> прямої: $v_x = \dfrac{\Delta x}{\Delta t}$. Паралельні ділянки графіків руху двох тіл означають <strong>однакові швидкості</strong>. Саме так розв'язують задачу 1.10 (ЗНО-2016) з «Тижня 2»: шукаємо момент, коли ділянки двох графіків $x(t)$ паралельні; там $\Delta x_1 = \Delta x_2 = 5$ м за однаковий проміжок $\Delta t$, тож швидкості однакові (відповідь — 2 с).</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">04</span>Миттєва швидкість і прискорення</h2>
+    <h3>Миттєва швидкість</h3>
+    <p>Під час нерівномірного руху швидкість щомиті різна. Швидкість тіла в даний момент часу (або в даній точці траєкторії) називають <strong>миттєвою</strong>. Щоб її знайти, беруть дуже малу ділянку траєкторії навколо точки $A$ і ділять переміщення на цій ділянці на час:</p>
+    <div class="formula">$$\begin{gathered}\vec v_{\text{митт}\,A} = \frac{\Delta \vec S}{\Delta t} \\ v_x = \lim_{\Delta t \to 0}\frac{\Delta x}{\Delta t} = x'(t)\end{gathered}$$</div>
+    <p class="where">де $\Delta\vec S$ — дуже мале переміщення на ділянці, що містить точку $A$ (м); $\Delta t$ — проміжок часу, за який його здійснено (с); $x(t)$ — рівняння руху вздовж осі $Ox$; $x'(t)$ — похідна координати за часом (м/с). <em>Коли застосовувати:</em> для будь-якого руху. Напрямок миттєвої швидкості — <strong>по дотичній до траєкторії</strong> в цій точці. Модуль миттєвої швидкості автомобіля показує спідометр.</p>
+    <h3>Рівноприскорений рух і прискорення</h3>
+    <p><strong>Рівноприскореним</strong> називають рух, під час якого за будь-які рівні проміжки часу швидкість тіла змінюється однаково. Характеристика цього руху — <strong>прискорення</strong>.</p>
+    <div class="formula">$$\begin{gathered}\vec a = \frac{\Delta \vec v}{\Delta t} = \frac{\vec v - \vec v_0}{t} \\ a_x = \lim_{\Delta t \to 0}\frac{\Delta v_x}{\Delta t} = v_x'(t)\end{gathered}$$</div>
+    <p class="where">де $\vec a$ — прискорення ($\tfrac{\text{м}}{\text{с}^2}$); $\vec v_0$ — початкова швидкість (м/с); $\vec v$ — швидкість у момент $t$ (м/с); $\Delta \vec v$ — зміна швидкості за час $\Delta t$ (с). <em>Коли застосовувати:</em> перша формула — для рівноприскореного руху ($\vec a = \text{const}$); друга (через похідну) — для миттєвого прискорення будь-якого руху. Напрямок $\vec a$ збігається з напрямком <strong>зміни</strong> швидкості $\Delta\vec v$, а не обов'язково з напрямком самої швидкості.</p>
+    <div class="callout remember"><b>Запам'ятай</b>Одиниця прискорення в СІ — $1\ \tfrac{\text{м}}{\text{с}^2}$: це прискорення, за якого швидкість щосекунди змінюється на $1\ \tfrac{\text{м}}{\text{с}}$. Знак $a_x$ ще не каже, розганяється тіло чи гальмує! Тіло розганяється, коли знаки $v_x$ і $a_x$ <strong>однакові</strong>, і гальмує, коли вони <strong>різні</strong>.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">05</span>Рівняння рівноприскореного руху</h2>
+    <h3>Швидкість</h3>
+    <div class="formula">$$v_x = v_{0x} + a_x t$$</div>
+    <p class="where">де $v_x$ — проєкція швидкості в момент $t$ (м/с); $v_{0x}$ — проєкція початкової швидкості (м/с); $a_x$ — проєкція прискорення ($\tfrac{\text{м}}{\text{с}^2}$); $t$ — час від початку відліку (с). <em>Коли застосовувати:</em> рух прямолінійний з $a_x = \text{const}$; проєкції беремо зі знаками відносно обраної осі.</p>
+    <h3>Переміщення</h3>
+    <div class="formula">$$S_x = v_{0x}t + \frac{a_x t^2}{2}$$</div>
+    <p class="where">де $S_x$ — проєкція переміщення за час $t$ (м); інші величини — як вище. <em>Коли застосовувати:</em> рух рівноприскорений; якщо тіло за цей час не розвертається, то шлях $l = |S_x|$, якщо розвертається — шлях рахують по ділянках (до зупинки і після).</p>
+    <h3>Переміщення без часу і через середню швидкість</h3>
+    <div class="formula">$$\begin{gathered}S_x = \frac{v_x^2 - v_{0x}^2}{2a_x} \\ S_x = \frac{v_{0x} + v_x}{2}\,t\end{gathered}$$</div>
+    <p class="where">де $v_{0x}$, $v_x$ — проєкції початкової і кінцевої швидкостей (м/с); $a_x$ — проєкція прискорення ($\tfrac{\text{м}}{\text{с}^2}$); $t$ — час (с); $S_x$ — проєкція переміщення (м). <em>Коли застосовувати:</em> перша — коли в задачі не дано і не питають час (наприклад, гальмівний шлях: $l = \tfrac{v_0^2}{2a}$); друга — коли не знаємо прискорення. Обидві — лише для $a_x = \text{const}$. Із другої формули видно: середня швидкість рівноприскореного руху дорівнює $\tfrac{v_0 + v}{2}$ — <strong>лише</strong> для цього типу руху!</p>
+    <h3>Рівняння руху (координата)</h3>
+    <div class="formula">$$x = x_0 + v_{0x}t + \frac{a_x t^2}{2}$$</div>
+    <p class="where">де $x$ — координата в момент $t$ (м); $x_0$ — початкова координата (м); інші величини — як вище. <em>Коли застосовувати:</em> рівноприскорений прямолінійний рух уздовж осі $Ox$. Це головна формула в задачах про зустріч тіл: умова зустрічі $x_1 = x_2$.</p>
+    <div class="callout info"><b>Як «читати» рівняння руху</b>Порівняй рівняння з шаблоном $x = x_0 + v_{0x}t + \tfrac{a_x}{2}t^2$. Для $x = 5 + 4t - 2t^2$ (СІ): $x_0 = 5$ м, $v_{0x} = 4\ \tfrac{\text{м}}{\text{с}}$, $\tfrac{a_x}{2} = -2$, тобто $a_x = -4\ \tfrac{\text{м}}{\text{с}^2}$ (не $-2$!). Рівняння швидкості: $v_x = 4 - 4t$; тіло зупиниться в момент $t = 1$ с.</div>
+    <h3>Закон непарних чисел</h3>
+    <p>Під час рівноприскореного руху <strong>без початкової швидкості</strong> шляхи, які тіло проходить за послідовні рівні проміжки часу, відносяться як послідовні непарні числа:</p>
+    <div class="formula">$$\begin{gathered}l_1 : l_2 : l_3 : \ldots : l_n = \\ = 1 : 3 : 5 : \ldots : (2n-1)\end{gathered}$$</div>
+    <p class="where">де $l_n$ — шлях за $n$-й проміжок часу (м); $n$ — номер проміжку. <em>Коли застосовувати:</em> лише якщо $v_0 = 0$ і проміжки однакові. Наслідок: шляхи від початку руху за час $t$, $2t$, $3t$ відносяться як $1 : 4 : 9$ (як квадрати чисел), бо $l = \tfrac{at^2}{2}$. За $n$-ту секунду: $l_n = \tfrac{a(2n-1)}{2}$.</p>
+    <div class="callout fact"><b>Цікавий факт</b>Закон непарних чисел відкрив Галілео Галілей, скочуючи кулі похилим жолобом і вимірюючи час. Він опублікував ці результати у книжці «Бесіди і математичні доведення двох нових наук» (1638). А от відома історія про кидання куль із Пізанської вежі, найімовірніше, легенда: надійних свідчень, що Галілей справді проводив цей дослід, немає.</div>
+    <h3>Перевірка до розділу</h3>
+    <div class="q"><p><strong>1.</strong> Рух тіла задано рівнянням $x = 10 - 6t + 1{,}5t^2$ (СІ). Чому дорівнює проєкція прискорення?</p>
+      <ul class="options"><li>А) $1{,}5\ \tfrac{\text{м}}{\text{с}^2}$</li><li>Б) $3\ \tfrac{\text{м}}{\text{с}^2}$</li><li>В) $-6\ \tfrac{\text{м}}{\text{с}^2}$</li><li>Г) $10\ \tfrac{\text{м}}{\text{с}^2}$</li></ul></div>
+    <div class="q"><p><strong>2.</strong> Автомобіль, що рухався зі швидкістю $20\ \tfrac{\text{м}}{\text{с}}$, гальмує з прискоренням, модуль якого $4\ \tfrac{\text{м}}{\text{с}^2}$. Який його гальмівний шлях?</p>
+      <ul class="options"><li>А) 25 м</li><li>Б) 50 м</li><li>В) 100 м</li><li>Г) 80 м</li></ul></div>
+    <details><summary><span>Відповіді та пояснення</span></summary><div>
+        <p><strong>1. Б.</strong> $\tfrac{a_x}{2} = 1{,}5$, отже $a_x = 3\ \tfrac{\text{м}}{\text{с}^2}$. А — забули помножити на 2; В — це $v_{0x}$; Г — це $x_0$.</p>
+        <p><strong>2. Б.</strong> $l = \tfrac{v_0^2}{2a} = \tfrac{400}{8} = 50$ м. А — поділили на $4a$ замість $2a$; В — забули двійку в знаменнику; Г — помножили $v_0$ на 4.</p>
+    </div></details>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">06</span>Графіки рівноприскореного руху</h2>
+    <p>Графіки — головна «мова» задач НМТ з кінематики. Порівняй чотири типи руху:</p>
+    <table>
+      <tr><th>Величина</th><th>Спокій</th><th>Рівномірний рух</th></tr>
+      <tr><td>Прискорення</td><td>—</td><td>$a_x = 0$</td></tr>
+      <tr><td>Швидкість</td><td>$v_x = 0$</td><td>$v_x = v_{0x} = \text{const}$</td></tr>
+      <tr><td>Переміщення</td><td>$S_x = 0$</td><td>$S_x = v_x t$</td></tr>
+      <tr><td>Координата</td><td>$x = x_0$</td><td>$x = x_0 + v_x t$</td></tr>
+      <tr><td>Графік $v_x(t)$</td><td>збігається з віссю $t$</td><td>горизонтальна пряма</td></tr>
+      <tr><td>Графік $x(t)$</td><td>горизонтальна пряма</td><td>похила пряма</td></tr>
+    </table>
+    <table>
+      <tr><th>Величина</th><th>Рівноприскорений ($\vec a \uparrow\uparrow \vec v_0$)</th><th>Рівносповільнений ($\vec a \uparrow\downarrow \vec v_0$)</th></tr>
+      <tr><td>Прискорення</td><td>$a_x = \text{const}$</td><td>$a = \text{const}$</td></tr>
+      <tr><td>Швидкість</td><td>$v_x = v_{0x} + a_x t$</td><td>$v_x = v_{0x} - at$</td></tr>
+      <tr><td>Переміщення</td><td>$S_x = v_{0x}t + \tfrac{a_x t^2}{2}$</td><td>$S_x = v_{0x}t - \tfrac{at^2}{2}$</td></tr>
+      <tr><td>Координата</td><td>$x = x_0 + v_{0x}t + \tfrac{a_x t^2}{2}$</td><td>$x = x_0 + v_{0x}t - \tfrac{at^2}{2}$</td></tr>
+      <tr><td>Графік $v_x(t)$</td><td>похила пряма, модуль швидкості зростає</td><td>похила пряма, модуль швидкості спадає</td></tr>
+      <tr><td>Графік $x(t)$</td><td>парабола</td><td>парабола з вершиною в момент зупинки</td></tr>
+    </table>
+    <p>У другій таблиці для рівносповільненого руху вісь $Ox$ напрямлена вздовж $\vec v_0$, а $a$ — модуль прискорення.</p>
+    <svg viewBox="0 0 720 250" width="720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графіки прискорення, швидкості і координати при рівноприскореному русі">
+      <defs><marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="15" fill="#13284A">
+        <line x1="30" y1="110" x2="210" y2="110" stroke="#13284A" stroke-width="1.5" marker-end="url(#m6)"/>
+        <line x1="30" y1="200" x2="30" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m6)"/>
+        <text x="38" y="30">aₓ</text><text x="198" y="130">t</text>
+        <line x1="30" y1="60" x2="200" y2="60" stroke="#E679A6" stroke-width="3"/>
+        <line x1="30" y1="110" x2="200" y2="110" stroke="#4569AD" stroke-width="3"/>
+        <line x1="30" y1="160" x2="200" y2="160" stroke="#587954" stroke-width="3"/>
+        <text x="120" y="52" fill="#E679A6">aₓ &gt; 0</text><text x="120" y="102" fill="#4569AD">aₓ = 0</text><text x="120" y="152" fill="#587954">aₓ &lt; 0</text>
+        <text x="70" y="235" font-weight="700">а) aₓ(t)</text>
+        <g transform="translate(250,0)">
+          <line x1="30" y1="140" x2="210" y2="140" stroke="#13284A" stroke-width="1.5" marker-end="url(#m6)"/>
+          <line x1="30" y1="200" x2="30" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m6)"/>
+          <text x="38" y="30">vₓ</text><text x="198" y="160">t</text><text x="6" y="105">v₀</text>
+          <line x1="30" y1="100" x2="190" y2="35" stroke="#E679A6" stroke-width="3"/>
+          <line x1="30" y1="100" x2="200" y2="100" stroke="#4569AD" stroke-width="3"/>
+          <line x1="30" y1="100" x2="190" y2="190" stroke="#587954" stroke-width="3"/>
+          <text x="130" y="48" fill="#E679A6">aₓ &gt; 0</text><text x="140" y="92" fill="#4569AD">aₓ = 0</text><text x="120" y="190" fill="#587954">aₓ &lt; 0</text>
+          <text x="70" y="235" font-weight="700">б) vₓ(t)</text>
+        </g>
+        <g transform="translate(500,0)">
+          <line x1="30" y1="180" x2="215" y2="180" stroke="#13284A" stroke-width="1.5" marker-end="url(#m6)"/>
+          <line x1="30" y1="200" x2="30" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m6)"/>
+          <text x="38" y="30">x</text><text x="203" y="200">t</text><text x="6" y="134">x₀</text>
+          <path d="M30,130 Q120,125 195,30" fill="none" stroke="#E679A6" stroke-width="3"/>
+          <path d="M30,130 Q100,40 190,170" fill="none" stroke="#587954" stroke-width="3"/>
+          <text x="95" y="40" fill="#E679A6">aₓ &gt; 0</text><text x="70" y="168" fill="#587954">aₓ &lt; 0</text>
+          <text x="70" y="235" font-weight="700">в) x(t)</text>
+        </g>
+      </g>
+    </svg>
+    <p>Рис. 1. При $v_{0x} &gt; 0$: рожеві лінії — розгін ($a_x &gt; 0$), зелені — гальмування з розворотом ($a_x &lt; 0$). Вершина параболи $x(t)$ відповідає моменту, коли $v_x = 0$.</p>
+    <h3>Геометричний зміст графіків</h3>
+    <ul>
+      <li><strong>Нахил графіка $x(t)$</strong> у точці — це проєкція швидкості в цей момент. Де графік $x(t)$ має вершину (максимум чи мінімум) — там тіло зупиняється й розвертається.</li>
+      <li><strong>Нахил графіка $v_x(t)$</strong> — це проєкція прискорення: $a_x = \dfrac{v_x - v_{0x}}{t}$. Паралельні графіки швидкості — однакові прискорення.</li>
+      <li><strong>Площа під графіком $a_x(t)$</strong> — зміна швидкості $\Delta v_x$.</li>
+      <li><strong>Площа під графіком $v_x(t)$</strong> — переміщення (площа під віссю — зі знаком «−») або шлях (усі площі — з «+»).</li>
+      <li>Графік шляху $l(t)$ ніколи не спадає: при гальмуванні він «вигинається вниз», при розгоні — «вгору».</li>
+    </ul>
+    <svg viewBox="0 0 680 230" width="680" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Шлях як площа під графіком швидкості">
+      <defs><marker id="m7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="15" fill="#13284A">
+        <path d="M90,170 L90,120 L250,70 L250,170 Z" fill="#B9C8E6"/>
+        <line x1="40" y1="170" x2="300" y2="170" stroke="#13284A" stroke-width="1.5" marker-end="url(#m7)"/>
+        <line x1="40" y1="200" x2="40" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m7)"/>
+        <line x1="40" y1="135" x2="290" y2="57" stroke="#4569AD" stroke-width="3"/>
+        <line x1="90" y1="120" x2="90" y2="170" stroke="#13284A" stroke-dasharray="4 4"/>
+        <line x1="250" y1="70" x2="250" y2="170" stroke="#13284A" stroke-dasharray="4 4"/>
+        <text x="84" y="192">t₁</text><text x="244" y="192">t₂</text><text x="290" y="192">t</text><text x="48" y="30">vₓ</text>
+        <text x="150" y="145" font-weight="700" fill="#081F44">S = l</text>
+        <g transform="translate(350,0)">
+          <path d="M70,170 L70,80 L170,170 Z" fill="#B9C8E6"/>
+          <path d="M170,170 L230,170 L230,206 Z" fill="#E679A6" opacity="0.45"/>
+          <line x1="40" y1="170" x2="300" y2="170" stroke="#13284A" stroke-width="1.5" marker-end="url(#m7)"/>
+          <line x1="40" y1="215" x2="40" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m7)"/>
+          <line x1="40" y1="53" x2="240" y2="233" stroke="#4569AD" stroke-width="3"/>
+          <line x1="70" y1="80" x2="70" y2="170" stroke="#13284A" stroke-dasharray="4 4"/>
+          <line x1="230" y1="170" x2="230" y2="206" stroke="#13284A" stroke-dasharray="4 4"/>
+          <text x="64" y="192">t₁</text><text x="224" y="160">t₂</text><text x="290" y="192">t</text><text x="48" y="30">vₓ</text>
+          <text x="88" y="155" font-weight="700" fill="#081F44">+</text><text x="190" y="190" font-weight="700" fill="#081F44">−</text>
+        </g>
+      </g>
+    </svg>
+    <p>Рис. 2. Шлях тіла чисельно дорівнює площі фігури під графіком $v_x(t)$ між прямими $t = t_1$ і $t = t_2$. Праворуч: тіло змінює напрямок руху — для <strong>шляху</strong> обидві площі додаємо, для <strong>переміщення</strong> площу під віссю віднімаємо.</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">07</span>Задачі на графіки: розбір</h2>
+    <p>Усі задачі цього розділу ми розбирали на занятті або вони є в теоретичному матеріалі. Головний метод — <strong>розбити графік на ділянки</strong> і для кожної визначити тип руху.</p>
+
+    <h3>Задача 1.11 і 1.12 (Тиждень 2)</h3>
+    <svg viewBox="0 0 720 290" width="720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графіки швидкості до задач 1.11 і 1.12">
+      <defs><marker id="m8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="14" fill="#13284A">
+        <g stroke="#B9C8E6"><line x1="60" y1="60" x2="310" y2="60"/><line x1="60" y1="120" x2="310" y2="120"/><line x1="120" y1="40" x2="120" y2="250"/><line x1="180" y1="40" x2="180" y2="250"/><line x1="240" y1="40" x2="240" y2="250"/><line x1="300" y1="40" x2="300" y2="250"/><line x1="60" y1="240" x2="310" y2="240"/></g>
+        <line x1="60" y1="180" x2="330" y2="180" stroke="#13284A" stroke-width="1.5" marker-end="url(#m8)"/>
+        <line x1="60" y1="260" x2="60" y2="25" stroke="#13284A" stroke-width="1.5" marker-end="url(#m8)"/>
+        <text x="30" y="65">40</text><text x="30" y="125">20</text><text x="44" y="185">0</text><text x="26" y="245">−20</text>
+        <text x="115" y="198">2</text><text x="175" y="198">4</text><text x="235" y="198">6</text><text x="295" y="198">8</text>
+        <text x="66" y="30">vₓ, км/год</text><text x="300" y="170">t, год</text>
+        <line x1="60" y1="60" x2="180" y2="60" stroke="#4569AD" stroke-width="3"/>
+        <line x1="180" y1="60" x2="180" y2="180" stroke="#13284A" stroke-dasharray="4 4"/>
+        <line x1="180" y1="180" x2="240" y2="180" stroke="#4569AD" stroke-width="3"/>
+        <line x1="240" y1="120" x2="300" y2="120" stroke="#4569AD" stroke-width="3"/>
+        <line x1="240" y1="120" x2="240" y2="180" stroke="#13284A" stroke-dasharray="4 4"/>
+        <line x1="300" y1="120" x2="300" y2="180" stroke="#13284A" stroke-dasharray="4 4"/>
+        <text x="140" y="282" font-weight="700" font-size="15">1.11</text>
+        <g transform="translate(360,0)">
+          <g stroke="#B9C8E6"><line x1="60" y1="60" x2="310" y2="60"/><line x1="60" y1="120" x2="310" y2="120"/><line x1="120" y1="40" x2="120" y2="250"/><line x1="180" y1="40" x2="180" y2="250"/><line x1="240" y1="40" x2="240" y2="250"/><line x1="300" y1="40" x2="300" y2="250"/><line x1="60" y1="240" x2="310" y2="240"/></g>
+          <line x1="60" y1="180" x2="330" y2="180" stroke="#13284A" stroke-width="1.5" marker-end="url(#m8)"/>
+          <line x1="60" y1="260" x2="60" y2="25" stroke="#13284A" stroke-width="1.5" marker-end="url(#m8)"/>
+          <text x="30" y="65">40</text><text x="30" y="125">20</text><text x="44" y="185">0</text><text x="26" y="245">−20</text>
+          <text x="115" y="198">2</text><text x="175" y="198">4</text><text x="228" y="170">6</text><text x="304" y="170">8</text>
+          <text x="66" y="30">vₓ, км/год</text><text x="300" y="215">t, год</text>
+          <line x1="60" y1="60" x2="180" y2="60" stroke="#4569AD" stroke-width="3"/>
+          <line x1="180" y1="60" x2="180" y2="180" stroke="#13284A" stroke-dasharray="4 4"/>
+          <line x1="180" y1="180" x2="240" y2="180" stroke="#4569AD" stroke-width="3"/>
+          <line x1="240" y1="240" x2="300" y2="240" stroke="#E679A6" stroke-width="3"/>
+          <line x1="240" y1="180" x2="240" y2="240" stroke="#13284A" stroke-dasharray="4 4"/>
+          <line x1="300" y1="180" x2="300" y2="240" stroke="#13284A" stroke-dasharray="4 4"/>
+          <text x="140" y="282" font-weight="700" font-size="15">1.12</text>
+        </g>
+      </g>
+    </svg>
+    <div class="callout info"><b>1.11. Середня шляхова швидкість за перші 8 год</b>Ділянка 1: $l_1 = 40 \cdot 4 = 160$ км. Ділянка 2 (від 4 до 6 год): $v = 0$ — стоянка, $l_2 = 0$, але час $t_2 = 2$ год рахуємо! Ділянка 3: $l_3 = 20\cdot 2 = 40$ км.
+      $$\begin{aligned}v_{\text{ср}\,l} &= \frac{l_1 + l_2 + l_3}{t_1+t_2+t_3} \\ &= \frac{160 + 0 + 40}{8} = 25\ \tfrac{\text{км}}{\text{год}}.\end{aligned}$$
+      Відповідь: <strong>Г</strong> (25 км/год).</div>
+    <div class="callout info"><b>1.12. Середня швидкість переміщення за перші 8 год</b>Ділянка 3 тепер під віссю: тіло рухалося назад, $S_{3x} = -20\cdot 2 = -40$ км. Проєкція переміщення: $S_x = 160 + 0 - 40 = 120$ км.
+      $$v_{\text{ср}\,S} = \frac{S_x}{t} = \frac{120}{8} = 15\ \tfrac{\text{км}}{\text{год}}.$$
+      Відповідь: <strong>Б</strong> (15 км/год). Зверни увагу: шлях тут 200 км, тож середня шляхова швидкість знову була б 25 км/год.</div>
+
+    <h3>Приклад 4. Середня швидкість за графіком рівноприскореного руху</h3>
+    <p>За графіком проєкції швидкості визнач середню шляхову швидкість і середню швидкість переміщення за перші 15 с руху вздовж осі $Ox$.</p>
+    <svg viewBox="0 0 360 250" width="576" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік швидкості до прикладу 4">
+      <defs><marker id="m9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="14" fill="#13284A">
+        <path d="M60,140 L60,220 L220,140 Z" fill="#B9C8E6"/>
+        <path d="M220,140 L300,140 L300,100 Z" fill="#B9C8E6"/>
+        <g stroke="#B9C8E6"><line x1="60" y1="100" x2="310" y2="100"/><line x1="60" y1="180" x2="310" y2="180"/><line x1="60" y1="220" x2="310" y2="220"/><line x1="140" y1="90" x2="140" y2="225"/><line x1="220" y1="90" x2="220" y2="225"/><line x1="300" y1="90" x2="300" y2="225"/></g>
+        <line x1="60" y1="140" x2="330" y2="140" stroke="#13284A" stroke-width="1.5" marker-end="url(#m9)"/>
+        <line x1="60" y1="235" x2="60" y2="40" stroke="#13284A" stroke-width="1.5" marker-end="url(#m9)"/>
+        <line x1="60" y1="220" x2="300" y2="100" stroke="#4569AD" stroke-width="3"/>
+        <text x="40" y="105">5</text><text x="44" y="145">0</text><text x="30" y="185">−5</text><text x="22" y="225">−10</text>
+        <text x="128" y="158">5</text><text x="206" y="158">10</text><text x="290" y="158">15</text>
+        <text x="66" y="50">vₓ, м/с</text><text x="300" y="130">t, с</text>
+      </g>
+    </svg>
+    <div class="callout info"><b>Розв'язання</b>1) Прискорення: $a_x = \dfrac{v_x - v_{0x}}{t} = \dfrac{0 - (-10)}{10} = 1\ \tfrac{\text{м}}{\text{с}^2}$.<br>
+      2) Швидкість при $t = 15$ с: $v_x = -10 + 1\cdot 15 = 5\ \tfrac{\text{м}}{\text{с}}$.<br>
+      3) Проєкція переміщення: $S_x = v_{0x}t + \dfrac{a_x t^2}{2} = -10\cdot15 + \dfrac{1\cdot 15^2}{2} = -37{,}5$ м.<br>
+      4) Шлях — сума площ заштрихованих трикутників: $l = \tfrac12\cdot10\cdot10 + \tfrac12\cdot5\cdot5 = 62{,}5$ м.<br>
+      5) $v_{\text{ср}\,l} = \dfrac{l}{t} = \dfrac{62{,}5}{15} \approx 4{,}2\ \tfrac{\text{м}}{\text{с}}$. &nbsp; 6) $v_{\text{ср}\,S} = \dfrac{S_x}{t} = \dfrac{-37{,}5}{15} = -2{,}5\ \tfrac{\text{м}}{\text{с}}$.<br>
+      Відповідь: $\approx 4{,}2\ \tfrac{\text{м}}{\text{с}}$; $-2{,}5\ \tfrac{\text{м}}{\text{с}}$ (знак «−»: переміщення напрямлене проти осі $Ox$).</div>
+
+    <h3>Приклад 7 (ЗНО-2007). Від прискорення до швидкості</h3>
+    <p>За графіком залежності проєкції прискорення від часу визнач графік проєкції швидкості, якщо $v_{0x} = 5\ \tfrac{\text{м}}{\text{с}}$.</p>
+    <svg viewBox="0 0 680 220" width="680" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік прискорення і відповідний графік швидкості до прикладу 7">
+      <defs><marker id="m10" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="14" fill="#13284A">
+        <line x1="50" y1="110" x2="290" y2="110" stroke="#13284A" stroke-width="1.5" marker-end="url(#m10)"/>
+        <line x1="50" y1="170" x2="50" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m10)"/>
+        <line x1="50" y1="140" x2="120" y2="140" stroke="#E679A6" stroke-width="3"/>
+        <line x1="120" y1="50" x2="190" y2="50" stroke="#E679A6" stroke-width="3"/>
+        <line x1="190" y1="80" x2="260" y2="80" stroke="#E679A6" stroke-width="3"/>
+        <text x="30" y="55">2</text><text x="30" y="85">1</text><text x="34" y="115">0</text><text x="22" y="145">−1</text>
+        <text x="113" y="128">5</text><text x="178" y="128">10</text><text x="248" y="128">15</text>
+        <text x="58" y="30">aₓ, м/с²</text><text x="270" y="100">t, с</text>
+        <g transform="translate(340,0)">
+          <g stroke="#B9C8E6"><line x1="50" y1="130" x2="290" y2="130"/><line x1="50" y1="90" x2="290" y2="90"/><line x1="50" y1="50" x2="290" y2="50"/></g>
+          <line x1="50" y1="170" x2="290" y2="170" stroke="#13284A" stroke-width="1.5" marker-end="url(#m10)"/>
+          <line x1="50" y1="190" x2="50" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m10)"/>
+          <polyline points="50,130 120,170 190,90 260,50" fill="none" stroke="#4569AD" stroke-width="3"/>
+          <text x="30" y="135">5</text><text x="24" y="95">10</text><text x="24" y="55">15</text><text x="34" y="175">0</text>
+          <text x="113" y="190">5</text><text x="178" y="190">10</text><text x="248" y="190">15</text>
+          <text x="58" y="30">vₓ, м/с</text><text x="270" y="160">t, с</text>
+        </g>
+      </g>
+    </svg>
+    <div class="callout info"><b>Розв'язання</b>Знаходимо швидкість наприкінці кожної ділянки (тривалість 5 с):<br>
+      I ділянка: $v_{x1} = v_{0x} + a_{x1}t_1 = 5 + (-1)\cdot5 = 0\ \tfrac{\text{м}}{\text{с}}$;<br>
+      II ділянка: $v_{x2} = 0 + 2\cdot 5 = 10\ \tfrac{\text{м}}{\text{с}}$;<br>
+      III ділянка: $v_{x3} = 10 + 1\cdot5 = 15\ \tfrac{\text{м}}{\text{с}}$.<br>
+      Графік — ламана через точки (0; 5), (5; 0), (10; 10), (15; 15), як на рисунку праворуч. У збірнику це варіант <strong>Д</strong>.</div>
+
+    <h3>Приклад 8 (ЗНО-2009). Від координати до швидкості</h3>
+    <svg viewBox="0 0 680 240" width="680" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік координати і відповідний графік швидкості до прикладу 8">
+      <defs><marker id="m11" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="14" fill="#13284A">
+        <g stroke="#B9C8E6"><line x1="50" y1="96" x2="280" y2="96"/><line x1="50" y1="132" x2="280" y2="132"/><line x1="50" y1="168" x2="280" y2="168"/><line x1="50" y1="204" x2="280" y2="204"/><line x1="80" y1="30" x2="80" y2="210"/><line x1="140" y1="30" x2="140" y2="210"/><line x1="200" y1="30" x2="200" y2="210"/><line x1="260" y1="30" x2="260" y2="210"/></g>
+        <line x1="50" y1="60" x2="295" y2="60" stroke="#13284A" stroke-width="1.5" marker-end="url(#m11)"/>
+        <line x1="50" y1="215" x2="50" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m11)"/>
+        <path d="M50,204 Q62,198 80,186 L170,78 Q192,46 215,42 L265,42" fill="none" stroke="#4569AD" stroke-width="3"/>
+        <text x="36" y="47">1</text><text x="34" y="65">0</text><text x="26" y="101">−2</text><text x="26" y="137">−4</text><text x="26" y="173">−6</text><text x="26" y="209">−8</text>
+        <text x="76" y="78">1</text><text x="136" y="78">3</text><text x="196" y="78">5</text><text x="256" y="78">7</text>
+        <text x="58" y="28">x, м</text><text x="275" y="80">t, с</text>
+        <g transform="translate(350,0)">
+          <g stroke="#B9C8E6"><line x1="50" y1="110" x2="280" y2="110"/><line x1="50" y1="70" x2="280" y2="70"/><line x1="80" y1="40" x2="80" y2="160"/><line x1="140" y1="40" x2="140" y2="160"/><line x1="200" y1="40" x2="200" y2="160"/><line x1="260" y1="40" x2="260" y2="160"/></g>
+          <line x1="50" y1="150" x2="295" y2="150" stroke="#13284A" stroke-width="1.5" marker-end="url(#m11)"/>
+          <line x1="50" y1="180" x2="50" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m11)"/>
+          <polyline points="50,150 80,110 170,110 215,150 265,150" fill="none" stroke="#E679A6" stroke-width="3"/>
+          <text x="34" y="75">4</text><text x="34" y="115">2</text><text x="34" y="155">0</text>
+          <text x="76" y="170">1</text><text x="136" y="170">3</text><text x="196" y="170">5</text><text x="256" y="170">7</text>
+          <text x="58" y="28">vₓ, м/с</text><text x="275" y="140">t, с</text>
+        </g>
+      </g>
+    </svg>
+    <div class="callout info"><b>Розв'язання</b>На першій ділянці графік $x(t)$ вигинається вгору — тіло розганяється. На другій (від $t_1 = 1$ с до $t_2 = 4$ с) графік — пряма: рух рівномірний, і
+      $$\begin{aligned}v_{x2} &= \frac{x - x_0}{t_2 - t_1} \\ &= \frac{-1\ \text{м} - (-7\ \text{м})}{3\ \text{с}} = 2\ \tfrac{\text{м}}{\text{с}}.\end{aligned}$$
+      Далі графік вигинається вниз до горизонтальної ділянки — тіло гальмує до зупинки. Підходить графік швидкості, що зростає до 2 м/с, тримається сталим і спадає до нуля (рисунок праворуч; у збірнику — варіант <strong>А</strong>).</div>
+
+    <h3>Приклад 9 (пробне ЗНО-2010). Шлях жука</h3>
+    <p>За графіком швидкості руху жука визнач шлях, який він проповз за 9 с. Варіанти: А 34 см; Б 45 см; В 50 см; Г 72 см.</p>
+    <svg viewBox="0 0 340 240" width="544" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік швидкості жука до прикладу 9">
+      <defs><marker id="m12" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="14" fill="#13284A">
+        <path d="M50,190 L50,100 L162,100 L218,190 L246,46 L302,46 L302,190 Z" fill="#B9C8E6"/>
+        <line x1="50" y1="190" x2="325" y2="190" stroke="#13284A" stroke-width="1.5" marker-end="url(#m12)"/>
+        <line x1="50" y1="210" x2="50" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m12)"/>
+        <polyline points="50,100 162,100 218,190 246,46 302,46" fill="none" stroke="#4569AD" stroke-width="3"/>
+        <text x="34" y="105">5</text><text x="34" y="51">8</text><text x="34" y="195">0</text>
+        <text x="157" y="208">4</text><text x="213" y="208">6</text><text x="241" y="208">7</text><text x="297" y="208">9</text>
+        <text x="58" y="28">v, см/с</text><text x="300" y="182">t, с</text>
+        <text x="90" y="150">I</text><text x="180" y="150">II</text><text x="228" y="170">III</text><text x="268" y="120">IV</text>
+      </g>
+    </svg>
+    <div class="callout info"><b>Розв'язання</b>Шлях дорівнює площі під графіком:<br>
+      I ділянка (рівномірний рух): $l_1 = 5\ \tfrac{\text{см}}{\text{с}}\cdot 4\ \text{с} = 20$ см;<br>
+      II (рівносповільнений): $l_2 = \dfrac{5 + 0}{2}\cdot 2 = 5$ см;<br>
+      III (рівноприскорений): $l_3 = \dfrac{0 + 8}{2}\cdot 1 = 4$ см;<br>
+      IV (рівномірний): $l_4 = 8 \cdot 2 = 16$ см.<br>
+      $l = 20 + 5 + 4 + 16 = 45$ см. Відповідь: <strong>Б</strong>.</div>
+
+    <h3>Приклад 10 (ЗНО-2009). Від швидкості до координати</h3>
+    <svg viewBox="0 0 700 220" width="700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік швидкості і відповідний графік координати до прикладу 10">
+      <defs><marker id="m13" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="14" fill="#13284A">
+        <line x1="50" y1="100" x2="330" y2="100" stroke="#13284A" stroke-width="1.5" marker-end="url(#m13)"/>
+        <line x1="50" y1="180" x2="50" y2="15" stroke="#13284A" stroke-width="1.5" marker-end="url(#m13)"/>
+        <polyline points="50,50 130,150 230,150 320,37" fill="none" stroke="#4569AD" stroke-width="3"/>
+        <line x1="130" y1="100" x2="130" y2="150" stroke="#13284A" stroke-dasharray="4 4"/>
+        <line x1="230" y1="100" x2="230" y2="150" stroke="#13284A" stroke-dasharray="4 4"/>
+        <line x1="50" y1="150" x2="130" y2="150" stroke="#13284A" stroke-dasharray="4 4"/>
+        <text x="22" y="55">v₀</text><text x="34" y="105">0</text><text x="16" y="155">−v₀</text>
+        <text x="84" y="92">t₁</text><text x="124" y="92">t₂</text><text x="224" y="92">t₃</text><text x="262" y="118">t₄</text><text x="312" y="118">t₅</text>
+        <text x="58" y="25">vₓ</text><text x="318" y="92">t</text>
+        <g transform="translate(360,0)">
+          <line x1="50" y1="60" x2="335" y2="60" stroke="#13284A" stroke-width="1.5" marker-end="url(#m13)"/>
+          <line x1="50" y1="180" x2="50" y2="15" stroke="#13284A" stroke-width="1.5" marker-end="url(#m13)"/>
+          <path d="M50,60 Q70,50 90,50 Q110,50 130,60 L230,110 Q250,120 270,120 Q295,120 320,104" fill="none" stroke="#E679A6" stroke-width="3"/>
+          <line x1="90" y1="50" x2="90" y2="60" stroke="#13284A" stroke-dasharray="3 3"/>
+          <line x1="270" y1="60" x2="270" y2="120" stroke="#13284A" stroke-dasharray="3 3"/>
+          <text x="34" y="65">0</text><text x="84" y="80">t₁</text><text x="124" y="50">t₂</text><text x="222" y="50">t₃</text><text x="262" y="50">t₄</text><text x="312" y="50">t₅</text>
+          <text x="58" y="25">x</text><text x="322" y="80">t</text>
+        </g>
+      </g>
+    </svg>
+    <div class="callout info"><b>Розв'язання (варіант Б у збірнику — праворуч)</b>I ділянка ($0$–$t_2$): рух рівносповільнений, потім розворот; $a_x &lt; 0$, тож графік $x(t)$ — парабола з вітками донизу, координата максимальна в момент $t_1$ (там $v_x = 0$).<br>
+      II ділянка ($t_2$–$t_3$): рівномірний рух, $v_x &lt; 0$ — координата лінійно зменшується.<br>
+      III ділянка ($t_3$–$t_5$): $a_x &gt; 0$ — парабола з вітками вгору, координата мінімальна в момент $t_4$, коли $v_x = 0$.<br>
+      Графіки з інших варіантів не підходять: в одному координата на першій ділянці спочатку зменшується (А), в іншому на другій ділянці зростає (В), ще в іншому мінімум не там, де $v_x = 0$ (Г).</div>
+
+    <h3>Задача з «Тижня 2»: графік швидкості — дуга кола</h3>
+    <p>Тіло рухалося прямолінійно зі змінною швидкістю протягом 12 с. Графік залежності швидкості від часу, побудований в обраному масштабі, виявився дугою кола з центром у точці A. Чому дорівнює середня швидкість тіла? (Одна клітинка: 2 с по горизонталі, 2 м/с по вертикалі.)</p>
+    <svg viewBox="0 0 320 260" width="512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік швидкості у формі дуги кола">
+      <defs><marker id="m14" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker></defs>
+      <g font-family="Inter" font-size="14" fill="#13284A">
+        <g stroke="#B9C8E6"><line x1="50" y1="70" x2="260" y2="70"/><line x1="50" y1="100" x2="260" y2="100"/><line x1="50" y1="160" x2="260" y2="160"/><line x1="50" y1="190" x2="260" y2="190"/><line x1="50" y1="220" x2="260" y2="220"/><line x1="80" y1="60" x2="80" y2="225"/><line x1="110" y1="60" x2="110" y2="225"/><line x1="140" y1="60" x2="140" y2="225"/><line x1="170" y1="60" x2="170" y2="225"/><line x1="200" y1="60" x2="200" y2="225"/><line x1="230" y1="60" x2="230" y2="225"/></g>
+        <path d="M50,130 A127.3,127.3 0 0,1 230,130 Z" fill="#B9C8E6" opacity="0.7"/>
+        <line x1="50" y1="130" x2="285" y2="130" stroke="#13284A" stroke-width="1.5" marker-end="url(#m14)"/>
+        <line x1="50" y1="230" x2="50" y2="30" stroke="#13284A" stroke-width="1.5" marker-end="url(#m14)"/>
+        <path d="M50,130 A127.3,127.3 0 0,1 230,130" fill="none" stroke="#4569AD" stroke-width="3"/>
+        <line x1="50" y1="130" x2="140" y2="220" stroke="#13284A" stroke-dasharray="5 4"/>
+        <line x1="230" y1="130" x2="140" y2="220" stroke="#13284A" stroke-dasharray="5 4"/>
+        <circle cx="140" cy="220" r="4" fill="#E679A6"/>
+        <text x="146" y="240" font-weight="700">A</text>
+        <text x="34" y="75">4</text><text x="34" y="105">2</text><text x="34" y="135">0</text>
+        <text x="75" y="148">2</text><text x="105" y="148">4</text><text x="135" y="148">6</text><text x="165" y="148">8</text><text x="222" y="148">12</text>
+        <text x="58" y="38">v, м/с</text><text x="270" y="120">t, с</text>
+      </g>
+    </svg>
+    <div class="callout info"><b>Розв'язання</b>Шлях — площа під графіком, тобто площа <strong>сегмента кола</strong>. Рахуємо в клітинках. Центр A лежить на 3 клітинки нижче осі, а хорда (від 0 до 12 с) має довжину 6 клітинок. Тоді радіус $R = \sqrt{3^2 + 3^2} = 3\sqrt2$ клітинки, а центральний кут дорівнює $90^\circ$ (радіуси йдуть під $45^\circ$ до осі).<br>
+      Площа сегмента: $S_\text{сегм} = S_\text{сектора} - S_\triangle = \dfrac{\pi R^2}{4} - \dfrac{R^2}{2} = \dfrac{R^2}{2}\left(\dfrac{\pi}{2} - 1\right) = 9\left(\dfrac{\pi}{2}-1\right) \approx 5{,}14$ клітинки.<br>
+      Одна клітинка — це $2\ \text{с}\cdot 2\ \tfrac{\text{м}}{\text{с}} = 4$ м, тож $l \approx 5{,}14 \cdot 4 \approx 20{,}55$ м.<br>
+      $v_{\text{ср}} = \dfrac{l}{t} = \dfrac{20{,}55}{12} \approx 1{,}71\ \tfrac{\text{м}}{\text{с}}$. Відповідь: $\approx 1{,}71$ м/с.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">08</span>Задачі на рівноприскорений рух: розбір</h2>
+
+    <div class="callout info"><b>Приклад 1. Коли швидкості рівні?</b>Рух двох автомобілів задано рівняннями (СІ) $x_1 = 2t + 0{,}2t^2$ і $x_2 = 8t - 0{,}1t^2$. Визнач проміжок часу, за який швидкості тіл стануть рівними. (А 5 с; Б 10 с; В 15 с; Г 20 с.)<br>
+      <em>I спосіб (похідна):</em> $v_{1x} = x_1'(t) = 2 + 0{,}4t$; $v_{2x} = x_2'(t) = 8 - 0{,}2t$.<br>
+      <em>II спосіб (порівняння з шаблоном):</em> $x_{01} = 0$, $v_{01x} = 2\ \tfrac{\text{м}}{\text{с}}$, $a_{1x} = 0{,}4\ \tfrac{\text{м}}{\text{с}^2}$; $x_{02} = 0$, $v_{02x} = 8\ \tfrac{\text{м}}{\text{с}}$, $a_{2x} = -0{,}2\ \tfrac{\text{м}}{\text{с}^2}$ — ті самі рівняння швидкості.<br>
+      З умови $v_{1x} = v_{2x}$: $2 + 0{,}4t = 8 - 0{,}2t$, звідси $t = 10$ с. Відповідь: <strong>Б</strong>.</div>
+
+    <div class="callout info"><b>Приклад 2. Остання секунда</b>За останню секунду рівноприскореного руху без початкової швидкості тіло пройшло три чверті всього шляху. Скільки часу рухалося тіло?<br>
+      Дано: $l_2 = \tfrac34 l$, $\tau = 1$ с, $v_0 = 0$. Шлях за весь час: $l = \dfrac{at^2}{2}$. За перші $(t - \tau)$ секунд тіло пройшло решту, $\tfrac14 l$:
+      $$\begin{gathered}\frac{l}{4} = \frac{a(t-\tau)^2}{2} \\ \Rightarrow\; \frac{at^2}{8} = \frac{a(t-\tau)^2}{2} \\ \Rightarrow\; 3t^2 - 8t\tau + 4\tau^2 = 0.\end{gathered}$$
+      При $\tau = 1$ с: $3t^2 - 8t + 4 = 0$, корені $t_1 = \dfrac{4+2}{3} = 2$ с і $t_2 = \dfrac23$ с. Другий корінь менший за 1 с і не має фізичного змісту. Відповідь: 2 с.<br>
+      <em>Простіше за законом непарних чисел:</em> за дві однакові секунди шляхи відносяться як $1:3$, тобто остання секунда дає $\tfrac34$ шляху — отже, рух тривав 2 с.</div>
+
+    <div class="callout info"><b>Приклад 12 (пробне ЗНО-2009). Гальмування з розворотом</b>Який шлях пройшло тіло за 10 с рівноприскореного руху, якщо його початкова швидкість $20\ \tfrac{\text{м}}{\text{с}}$, а прискорення $5\ \tfrac{\text{м}}{\text{с}^2}$ напрямлене протилежно до початкової швидкості?<br>
+      Спочатку тіло гальмує. Момент зупинки: $0 = v_0 - at_1$, $t_1 = \dfrac{v_0}{a} = 4$ с; шлях до зупинки $l_1 = \dfrac{v_0^2}{2a} = \dfrac{400}{10} = 40$ м.<br>
+      Наступні $t_2 = 10 - 4 = 6$ с тіло розганяється без початкової швидкості в протилежний бік: $l_2 = \dfrac{at_2^2}{2} = \dfrac{5\cdot36}{2} = 90$ м.<br>
+      $l = l_1 + l_2 = 130$ м. Відповідь: 130 м. <em>Пастка:</em> формула $S_x = v_0t - \tfrac{at^2}{2} = 200 - 250 = -50$ м дає <strong>переміщення</strong>, а не шлях!</div>
+
+    <div class="callout info"><b>Приклад 13 (ЗНО-2014). Проходження через початок координат</b>Координата тіла змінюється за законом $x = -8 + 8t - 2t^2$ (СІ). 1) У який момент тіло опиниться в початку координат? 2) Яка його швидкість у цей момент?<br>
+      1) $0 = -8 + 8t - 2t^2 \;\Rightarrow\; -2(t^2 - 4t + 4) = -2(t-2)^2 = 0$, звідси $t = 2$ с.<br>
+      2) $v_{0x} = 8\ \tfrac{\text{м}}{\text{с}}$, $a_x = -4\ \tfrac{\text{м}}{\text{с}^2}$, тож $v_x = 8 - 4t$; при $t = 2$ с $v_x = 0$.<br>
+      Відповідь: 2 с; $0\ \tfrac{\text{м}}{\text{с}}$ (тіло лише «торкається» точки $x = 0$ і розвертається — це вершина параболи).</div>
+
+    <div class="callout info"><b>Приклад 14 (пробне ЗНО-2015). Кіт і мишеня</b>Коли кіт помітив мишеня, воно було на відстані 3 м від нори і бігло до неї рівномірно зі швидкістю $0{,}5\ \tfrac{\text{м}}{\text{с}}$. Кіт був на відстані 4,5 м від нори і почав бігти з місця з прискоренням $2\ \tfrac{\text{м}}{\text{с}^2}$. Кіт і мишеня рухаються по одній прямій. 1) На якій відстані від нори кіт упіймає мишеня? 2) Скільки часу для цього знадобиться?<br>
+      Нехай $x$ — відстань від нори до місця зустрічі. Мишеня до зустрічі пробігає $S_1 - x = vt$, кіт за той самий час — $S_2 - x = \dfrac{at^2}{2}$. Віднімаємо рівняння: $S_2 - S_1 = \dfrac{at^2}{2} - vt$.<br>
+      $1{,}5 = t^2 - 0{,}5t \;\Rightarrow\; t^2 - 0{,}5t - 1{,}5 = 0$, корені $t_1 = 1{,}5$ с і $t_2 = -1$ с (не має змісту).<br>
+      $x = S_1 - vt = 3 - 0{,}5\cdot1{,}5 = 2{,}25$ м. Відповідь: 1) 2,25 м; 2) 1,5 с.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">09</span>Вільне падіння і рух по вертикалі</h2>
+    <p>Падіння тіла за умов, коли опором повітря можна знехтувати, називають <strong>вільним падінням</strong>. Поблизу поверхні Землі всі тіла падають із прискоренням $\vec g$, яке напрямлене вертикально вниз і за модулем дорівнює $g \approx 9{,}8\ \tfrac{\text{м}}{\text{с}^2}$. Це <strong>прискорення вільного падіння</strong>. У задачах НМТ беремо $g \approx 10\ \tfrac{\text{м}}{\text{с}^2}$.</p>
+    <div class="callout remember"><b>Запам'ятай</b>Рух по вертикалі — це звичайний рівноприскорений рух із $|a| = g$. Отже, працюють усі формули розділу 05, у яких замість $a$ підставляємо $g$ з правильним знаком: якщо вісь $Oy$ напрямлена <strong>вгору</strong>, то $a_y = -g$; якщо <strong>вниз</strong> — $a_y = +g$. Прискорення $\vec g$ однакове на всіх етапах руху: і на підйомі, і у верхній точці, і на спуску.</div>
+    <h3>Вільне падіння без початкової швидкості</h3>
+    <div class="formula">$$\begin{gathered}h = \frac{gt^2}{2}, \qquad v = gt \\ v = \sqrt{2gh}, \qquad t = \sqrt{\frac{2h}{g}}\end{gathered}$$</div>
+    <p class="where">де $h$ — висота падіння (пройдений шлях) (м); $t$ — час падіння (с); $v$ — швидкість у кінці падіння (м/с); $g$ — прискорення вільного падіння ($\tfrac{\text{м}}{\text{с}^2}$). <em>Коли застосовувати:</em> $v_0 = 0$, опором повітря нехтуємо, висота мала порівняно з радіусом Землі.</p>
+    <h3>Тіло кинули вертикально вгору (вісь $Oy$ — вгору)</h3>
+    <div class="formula">$$\begin{gathered}y = v_0 t - \frac{gt^2}{2} \\ v_y = v_0 - gt\end{gathered}$$</div>
+    <p class="where">де $y$ — висота над точкою кидка (м); $v_0$ — початкова швидкість (м/с); $v_y$ — проєкція швидкості на вісь, напрямлену вгору (м/с); $t$ — час від моменту кидка (с). <em>Коли застосовувати:</em> на <strong>всьому</strong> русі — і на підйомі ($v_y &gt; 0$), і на спуску ($v_y &lt; 0$). Від'ємне $y$ означає, що тіло нижче за точку кидка (наприклад, камінь, кинутий з балкона, уже падає на землю).</p>
+    <div class="formula">$$\begin{gathered}t_\text{п} = \frac{v_0}{g}, \qquad H = \frac{v_0^2}{2g} \\ t_\text{пол} = \frac{2v_0}{g}\end{gathered}$$</div>
+    <p class="where">де $t_\text{п}$ — час підйому до найвищої точки (с); $H$ — максимальна висота підняття над точкою кидка (м); $t_\text{пол}$ — час польоту до повернення в точку кидка (с). <em>Коли застосовувати:</em> кидок угору без опору повітря; у найвищій точці $v_y = 0$.</p>
+    <div class="formula">$$\begin{aligned}H &= v_0t + \frac{gt^2}{2} \\ H &= \frac{v^2 - v_0^2}{2g} = \frac{v + v_0}{2}t \\ v &= \sqrt{v_0^2 + 2gH} \\ v_0 &= \sqrt{v^2 - 2gH}\end{aligned}$$</div>
+    <p class="where">де $H$ — висота (м); $v_0$ і $v$ — початкова і кінцева швидкості (м/с); $t$ — час (с). <em>Коли застосовувати:</em> тіло кинули <strong>вертикально вниз</strong> з початковою швидкістю $v_0$ (вісь — вниз). Якщо $v_0 = 0$, маємо формули вільного падіння.</p>
+    <svg viewBox="0 0 520 300" width="680" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Симетрія руху тіла, кинутого вертикально вгору">
+      <defs><marker id="m15" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker>
+        <marker id="m15p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E679A6"/></marker>
+        <marker id="m15g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#587954"/></marker></defs>
+      <g font-family="Inter" font-size="15" fill="#13284A">
+        <line x1="60" y1="270" x2="60" y2="20" stroke="#13284A" stroke-width="1.5" marker-end="url(#m15)"/>
+        <text x="40" y="30">y</text><text x="40" y="275">0</text>
+        <line x1="40" y1="260" x2="400" y2="260" stroke="#13284A"/>
+        <line x1="160" y1="255" x2="160" y2="60" stroke="#B9C8E6" stroke-width="2" stroke-dasharray="5 4"/>
+        <line x1="240" y1="60" x2="240" y2="255" stroke="#B9C8E6" stroke-width="2" stroke-dasharray="5 4"/>
+        <path d="M160,60 Q200,30 240,60" fill="none" stroke="#B9C8E6" stroke-width="2" stroke-dasharray="5 4"/>
+        <circle cx="160" cy="255" r="7" fill="#4569AD"/><circle cx="200" cy="45" r="7" fill="#4569AD"/><circle cx="240" cy="255" r="7" fill="#4569AD"/>
+        <circle cx="160" cy="160" r="6" fill="#4569AD"/><circle cx="240" cy="160" r="6" fill="#4569AD"/>
+        <line x1="145" y1="250" x2="145" y2="180" stroke="#E679A6" stroke-width="3" marker-end="url(#m15p)"/>
+        <text x="102" y="220" fill="#E679A6">v₀</text>
+        <line x1="145" y1="160" x2="145" y2="125" stroke="#E679A6" stroke-width="3" marker-end="url(#m15p)"/>
+        <text x="110" y="148" fill="#E679A6">v₁</text>
+        <line x1="255" y1="160" x2="255" y2="195" stroke="#E679A6" stroke-width="3" marker-end="url(#m15p)"/>
+        <text x="262" y="185" fill="#E679A6">v₁</text>
+        <line x1="255" y1="205" x2="255" y2="272" stroke="#E679A6" stroke-width="3" marker-end="url(#m15p)"/>
+        <text x="270" y="250" fill="#E679A6">v = v₀</text>
+        <text x="212" y="40">v = 0</text>
+        <line x1="340" y1="70" x2="340" y2="140" stroke="#587954" stroke-width="3" marker-end="url(#m15g)"/>
+        <text x="350" y="110" fill="#587954">g (завжди вниз)</text>
+        <line x1="60" y1="45" x2="185" y2="45" stroke="#13284A" stroke-dasharray="3 3"/>
+        <text x="68" y="40">H</text>
+        <line x1="60" y1="160" x2="300" y2="160" stroke="#13284A" stroke-dasharray="3 3"/>
+        <text x="68" y="155">h</text>
+      </g>
+    </svg>
+    <p>Рис. 3. Симетрія руху по вертикалі. На тій самій висоті $h$ модуль швидкості на підйомі й на спуску однаковий, а час підйому до висоти $H$ дорівнює часу падіння з неї.</p>
+    <div class="callout remember"><b>Симетрія руху</b>Під час руху під дією лише сили тяжіння час підняття тіла на висоту $H$ і час падіння з неї рівні. Модуль швидкості тіла на тій самій висоті однаковий при підніманні і спуску. Тіло, кинуте вгору зі швидкістю $v_0$, повертається в точку кидка з тією самою за модулем швидкістю.</div>
+
+    <h3>Розв'язані приклади</h3>
+    <div class="callout info"><b>Приклад 3. Плавець</b>Плавець стрибнув із п'ятиметрової вишки й занурився у воду на глибину 2 м. Початкова швидкість 0. Скільки часу і з яким прискоренням він рухався у воді? Опором повітря знехтуй, рух у воді вважай рівноприскореним.<br>
+      Дано: $h_1 = 5$ м, $h_2 = 2$ м, $v_0 = 0$. Знайти: $t_2$, $a$.<br>
+      У повітрі — вільне падіння: $h_1 = \dfrac{v_1^2}{2g}$, звідси $v_1 = \sqrt{2gh_1} = \sqrt{2\cdot10\cdot5} = 10\ \tfrac{\text{м}}{\text{с}}$ — швидкість на вході у воду.<br>
+      У воді — рівносповільнений рух до зупинки: $h_2 = \dfrac{v_1^2}{2a}$, звідси $a = \dfrac{v_1^2}{2h_2} = \dfrac{2gh_1}{2h_2} = g\dfrac{h_1}{h_2} = 10\cdot\dfrac52 = 25\ \tfrac{\text{м}}{\text{с}^2}$ (прискорення напрямлене вгору).<br>
+      З рівняння швидкості $0 = v_1 - at_2$: $t_2 = \dfrac{v_1}{a} = \dfrac{10}{25} = 0{,}4$ с. Відповідь: $25\ \tfrac{\text{м}}{\text{с}^2}$; 0,4 с.</div>
+
+    <div class="callout info"><b>Приклад 5. Восьма секунда падіння</b>Який шлях пролетить камінець, що вільно падає, за восьму секунду падіння?<br>
+      За 7 с: $h_1 = \dfrac{gt_1^2}{2}$; за 8 с: $h_2 = \dfrac{gt_2^2}{2}$. За восьму секунду:
+      $$\begin{aligned}h &= h_2 - h_1 = \frac{g}{2}(t_2^2 - t_1^2) \\ &= 5\cdot(64 - 49) = 75\ \text{м}.\end{aligned}$$
+      <em>Перевірка за законом непарних чисел:</em> за 1-шу секунду — 5 м, за 8-му — $5\cdot(2\cdot8 - 1) = 75$ м ✓. Відповідь: 75 м.</div>
+
+    <div class="callout info"><b>Приклад 6. Камінь з балкона</b>З балкона на висоті 20 м зі швидкістю $20\ \tfrac{\text{м}}{\text{с}}$ вертикально вгору кинули камінь. Через який час він упаде на землю?<br>
+      <em>I спосіб (по етапах).</em> Час підйому: $0 = v_0 - gt_1$, $t_1 = \dfrac{v_0}{g} = 2$ с. Висота підйому над балконом: $H = \dfrac{v_0^2}{2g} = 20$ м. Далі камінь падає без початкової швидкості з висоти $H + h = 40$ м:
+      $$\begin{aligned}t_2 &= \sqrt{\frac{2(H+h)}{g}} \\ &= \sqrt{\frac{v_0^2 + 2gh}{g^2}} \\ &= \frac{\sqrt{v_0^2+2gh}}{g} \approx 2{,}83\ \text{с}.\end{aligned}$$
+      Загальний час: $t = t_1 + t_2 = \dfrac{v_0 + \sqrt{v_0^2 + 2gh}}{g} \approx 4{,}83$ с.<br>
+      <em>II спосіб (одне рівняння).</em> Вісь вгору, початок — на балконі; у момент падіння $y = -h$: $-h = v_0t - \dfrac{gt^2}{2}$, тобто $\dfrac{gt^2}{2} - v_0t - h = 0$. Корені: $$\begin{gathered}t' = \frac{v_0 + \sqrt{v_0^2+2gh}}{g} \approx 4{,}83\ \text{с}, \\ t'' = \frac{v_0 - \sqrt{v_0^2+2gh}}{g} &lt; 0\end{gathered}$$ Другий корінь не має фізичного змісту. Відповідь: $\approx 4{,}83$ с.</div>
+
+    <div class="callout info"><b>Приклад 11 (ЗНО-2008). Шматки штукатурки</b>Під час ремонту будинку шматки штукатурки падають із третього поверху. Визнач, з якого поверху шматки падатимуть удвічі довше. Висоту, з якої падають шматки, визначає кількість поверхів під тим, з якого вони впали. Опором повітря знехтуй. (А з четвертого; Б з шостого; В з дев'ятого; Г з дванадцятого.)<br>
+      Нехай $h_0$ — висота одного поверху. З третього поверху: $h_1 = 2h_0 = \dfrac{gt_1^2}{2}$; з $n$-го: $h_2 = (n-1)h_0 = \dfrac{gt_2^2}{2}$. Ділимо рівняння:
+      $$\begin{gathered}\frac{n-1}{2} = \left(\frac{t_2}{t_1}\right)^2 = 4 \\ \Rightarrow\; n = 9.\end{gathered}$$
+      Відповідь: <strong>В</strong> — з дев'ятого поверху. Дистрактор «з шостого» виходить, якщо забути, що під третім поверхом лише два поверхи; «з четвертого» — якщо вважати $h \sim t$.</div>
+
+    <h3>Перевірка до розділу</h3>
+    <div class="q"><p><strong>3.</strong> М'яч кинули вертикально вгору зі швидкістю $15\ \tfrac{\text{м}}{\text{с}}$. Через який час він повернеться в точку кидка?</p>
+      <ul class="options"><li>А) 1,5 с</li><li>Б) 3 с</li><li>В) 15 с</li><li>Г) 2,25 с</li></ul></div>
+    <div class="q"><p><strong>4.</strong> Тіло вільно падає без початкової швидкості з висоти $h$ і в момент удару має швидкість $v$. Яка його швидкість на висоті $h/2$?</p>
+      <ul class="options"><li>А) $v/2$</li><li>Б) $v/\sqrt2$</li><li>В) $v/3$</li><li>Г) $v/4$</li></ul></div>
+    <details><summary><span>Відповіді та пояснення</span></summary><div>
+        <p><strong>3. Б.</strong> $t_\text{пол} = \tfrac{2v_0}{g} = \tfrac{30}{10} = 3$ с. А — це лише час підйому; Г — помилково $v_0^2/(10g)$.</p>
+        <p><strong>4. Б.</strong> На висоті $h/2$ тіло пролетіло половину шляху: $v_1^2 = 2g\tfrac h2 = \tfrac{v^2}{2}$, тож $v_1 = \tfrac{v}{\sqrt2}$. Відповідь А — типова помилка «швидкість пропорційна шляху», але $v \sim \sqrt{h}$.</p>
+    </div></details>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">10</span>Рух по параболі під дією сили тяжіння</h2>
+    <p>Тіло будь-якої маси, яке кинули горизонтально або під кутом до горизонту, за умови, що немає опору повітря, рухається <strong>вздовж осі $Ox$ рівномірно</strong>, а <strong>вздовж осі $Oy$ — з прискоренням $\vec g$</strong>, якого надає тілу сила тяжіння. Ці два рухи відбуваються одночасно і незалежно один від одного.</p>
+    <ul>
+      <li>Траєкторія руху в обох випадках — <strong>парабола</strong>.</li>
+      <li>Миттєва швидкість у довільній точці параболи напрямлена <strong>по дотичній</strong> до траєкторії в цій точці.</li>
+      <li>Час польоту визначає лише вертикальний рух; горизонтальна швидкість на нього не впливає.</li>
+    </ul>
+    <h3>Тіло кинули горизонтально</h3>
+    <svg viewBox="0 0 440 310" width="680" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Траєкторія тіла, кинутого горизонтально">
+      <defs><marker id="m16" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker>
+        <marker id="m16p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E679A6"/></marker>
+        <marker id="m16g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#587954"/></marker></defs>
+      <g font-family="Inter" font-size="15" fill="#13284A">
+        <line x1="60" y1="40" x2="400" y2="40" stroke="#13284A" stroke-width="1.5" marker-end="url(#m16)"/>
+        <line x1="60" y1="40" x2="60" y2="295" stroke="#13284A" stroke-width="1.5" marker-end="url(#m16)"/>
+        <text x="390" y="62">x</text><text x="40" y="292">y</text><text x="40" y="35">O</text>
+        <path d="M60,40 Q180,40 300,260" fill="none" stroke="#4569AD" stroke-width="3"/>
+        <line x1="60" y1="40" x2="120" y2="40" stroke="#E679A6" stroke-width="3.5" marker-end="url(#m16p)"/>
+        <text x="80" y="30" fill="#E679A6">v₀</text>
+        <line x1="220" y1="138" x2="280" y2="138" stroke="#E679A6" stroke-width="2.5" marker-end="url(#m16p)"/>
+        <line x1="220" y1="138" x2="220" y2="209" stroke="#E679A6" stroke-width="2.5" marker-end="url(#m16p)"/>
+        <line x1="220" y1="138" x2="278" y2="209" stroke="#081F44" stroke-width="3" marker-end="url(#m16)"/>
+        <text x="250" y="130" fill="#E679A6">vₓ</text><text x="196" y="190" fill="#E679A6">v<tspan dy="4" font-size="14">y</tspan></text><text x="262" y="226">v</text>
+        <path d="M245,138 A25,25 0 0,1 236,157" fill="none" stroke="#13284A"/>
+        <text x="246" y="160">β</text>
+        <line x1="300" y1="40" x2="300" y2="260" stroke="#13284A" stroke-dasharray="4 4"/>
+        <line x1="60" y1="260" x2="300" y2="260" stroke="#13284A" stroke-dasharray="4 4"/>
+        <text x="170" y="30">l</text><text x="40" y="160">h</text>
+        <line x1="370" y1="120" x2="370" y2="190" stroke="#587954" stroke-width="3" marker-end="url(#m16g)"/>
+        <text x="380" y="160" fill="#587954">g</text>
+      </g>
+    </svg>
+    <p>Рис. 4. Тіло, кинуте горизонтально з висоти $h$. Вісь $Oy$ напрямлена вниз, початок координат — у точці кидка.</p>
+    <div class="formula">$$\begin{gathered}x = v_0 t, \qquad y = \frac{gt^2}{2} \\ v_x = v_0, \qquad v_y = gt\end{gathered}$$</div>
+    <p class="where">де $x$, $y$ — координати тіла (м); $v_0$ — початкова (горизонтальна) швидкість (м/с); $v_x$, $v_y$ — проєкції швидкості (м/с); $t$ — час від моменту кидка (с); $g$ — прискорення вільного падіння ($\tfrac{\text{м}}{\text{с}^2}$). <em>Коли застосовувати:</em> кидок строго горизонтально, вісь $Oy$ — вниз, опору повітря немає. Рівняння траєкторії (виключаємо $t$): $y = \dfrac{g}{2v_0^2}x^2$ — парабола.</p>
+    <div class="formula">$$\begin{gathered}t = \sqrt{\frac{2h}{g}}, \qquad h = \frac{gt^2}{2} \\ l = v_0 t = v_0\sqrt{\frac{2h}{g}}\end{gathered}$$</div>
+    <p class="where">де $t$ — час польоту (с); $h$ — висота кидка (м); $l$ — дальність польоту (м). <em>Коли застосовувати:</em> горизонтальний кидок із висоти $h$ на горизонтальну поверхню. Час польоту <strong>не залежить від $v_0$</strong>: він такий самий, як у тіла, що просто падає з висоти $h$.</p>
+    <div class="formula">$$\begin{aligned}v &= \sqrt{v_x^2 + v_y^2} \\ &= \sqrt{v_0^2 + g^2t^2} \\ &= \sqrt{v_0^2 + 2gh} \\ \operatorname{tg}\beta &= \frac{v_y}{v_x} = \frac{gt}{v_0}\end{aligned}$$</div>
+    <p class="where">де $v$ — модуль швидкості в момент $t$ (м/с); $\beta$ — кут між вектором швидкості і горизонтом. <em>Коли застосовувати:</em> для будь-якого моменту польоту; щоб знайти кінцеву швидкість, підставляємо повний час польоту або повну висоту $h$.</p>
+
+    <h3>Тіло кинули під кутом до горизонту</h3>
+    <svg viewBox="0 0 450 300" width="680" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Траєкторія тіла, кинутого під кутом до горизонту">
+      <defs><marker id="m17" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker>
+        <marker id="m17p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E679A6"/></marker>
+        <marker id="m17g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#587954"/></marker></defs>
+      <g font-family="Inter" font-size="15" fill="#13284A">
+        <line x1="50" y1="260" x2="430" y2="260" stroke="#13284A" stroke-width="1.5" marker-end="url(#m17)"/>
+        <line x1="50" y1="260" x2="50" y2="25" stroke="#13284A" stroke-width="1.5" marker-end="url(#m17)"/>
+        <text x="420" y="282">x</text><text x="30" y="35">y</text><text x="30" y="280">O</text>
+        <path d="M50,260 Q220,-140 390,260" fill="none" stroke="#4569AD" stroke-width="3"/>
+        <line x1="50" y1="260" x2="85" y2="177" stroke="#E679A6" stroke-width="3.5" marker-end="url(#m17p)"/>
+        <line x1="50" y1="260" x2="85" y2="260" stroke="#E679A6" stroke-width="2.5" marker-end="url(#m17p)"/>
+        <line x1="50" y1="260" x2="50" y2="177" stroke="#E679A6" stroke-width="2.5" marker-end="url(#m17p)"/>
+        <text x="90" y="195" fill="#E679A6">v₀</text><text x="70" y="282" fill="#E679A6">v₀ₓ</text><text x="12" y="200" fill="#E679A6">v₀<tspan dy="4" font-size="14">y</tspan></text>
+        <path d="M75,260 A25,25 0 0,0 60,237" fill="none" stroke="#13284A"/>
+        <text x="76" y="248">α</text>
+        <line x1="220" y1="60" x2="285" y2="60" stroke="#081F44" stroke-width="3" marker-end="url(#m17)"/>
+        <text x="250" y="50">v = v₀cos α</text>
+        <line x1="220" y1="60" x2="220" y2="260" stroke="#13284A" stroke-dasharray="4 4"/>
+        <text x="228" y="160">h</text>
+        <text x="300" y="282">l</text>
+        <line x1="400" y1="90" x2="400" y2="160" stroke="#587954" stroke-width="3" marker-end="url(#m17g)"/>
+        <text x="410" y="130" fill="#587954">g</text>
+      </g>
+    </svg>
+    <p>Рис. 5. Тіло, кинуте під кутом $\alpha$ до горизонту. Вісь $Oy$ — вгору. У верхній точці швидкість горизонтальна і дорівнює $v_0\cos\alpha$, а прискорення, як і всюди, дорівнює $\vec g$.</p>
+    <div class="formula">$$\begin{gathered}x = v_0\cos\alpha\cdot t \\ y = v_0\sin\alpha\cdot t - \frac{gt^2}{2}\end{gathered}$$</div>
+    <p class="where">де $x$, $y$ — координати тіла (м); $v_0$ — модуль початкової швидкості (м/с); $\alpha$ — кут кидка до горизонту; $t$ — час (с). <em>Коли застосовувати:</em> кидок із поверхні під кутом $\alpha$, вісь $Oy$ — вгору, опору повітря немає. $v_{0x} = v_0\cos\alpha$, $v_{0y} = v_0\sin\alpha$.</p>
+    <div class="formula">$$\begin{aligned}v_x &= v_0\cos\alpha = \text{const} \\ v_y &= v_0\sin\alpha - gt \\ v &= \sqrt{v_x^2 + v_y^2} \\ \operatorname{tg}\beta &= \frac{v_y}{v_x}\end{aligned}$$</div>
+    <p class="where">де $v_x$, $v_y$ — проєкції швидкості в момент $t$ (м/с); $v$ — модуль швидкості (м/с); $\beta$ — кут між швидкістю і горизонтом. <em>Коли застосовувати:</em> будь-який момент польоту; $v_y &gt; 0$ — тіло піднімається, $v_y &lt; 0$ — опускається.</p>
+    <div class="formula">$$\begin{gathered}t_\text{п} = \frac{v_0\sin\alpha}{g} \\ t_\text{пол} = 2t_\text{п} = \frac{2v_0\sin\alpha}{g}\end{gathered}$$</div>
+    <p class="where">де $t_\text{п}$ — час підняття на максимальну висоту (с), знайдений з умови $v_y = 0$; $t_\text{пол}$ — повний час польоту (с). <em>Коли застосовувати:</em> точка кидка і точка падіння на одній висоті.</p>
+    <div class="formula">$$\begin{aligned}h &= \frac{v_0^2\sin^2\alpha}{2g} \\ &= v_0\sin\alpha\cdot t_\text{п} - \frac{gt_\text{п}^2}{2} \\ l &= v_0\cos\alpha\cdot t_\text{пол} \\ &= \frac{2v_0^2\sin\alpha\cos\alpha}{g} \\ &= \frac{v_0^2\sin2\alpha}{g}\end{aligned}$$</div>
+    <p class="where">де $h$ — максимальна висота підняття (м); $l$ — дальність польоту (м). <em>Коли застосовувати:</em> кидок і падіння на одному рівні, без опору повітря.</p>
+    <div class="callout remember"><b>Наслідки з формули дальності</b>
+      1) Дальність максимальна при $\alpha = 45^\circ$ (бо $\sin2\alpha = 1$): $l_\text{max} = \dfrac{v_0^2}{g}$.<br>
+      2) Кути, що доповнюють один одного до $90^\circ$ ($15^\circ$ і $75^\circ$, $30^\circ$ і $60^\circ$, $20^\circ$ і $70^\circ$), дають <strong>однакову дальність</strong>, але різну висоту й різний час польоту.<br>
+      3) При $\alpha = 45^\circ$: $l = 4h$ (з відношення $\tfrac{l}{h} = 4\operatorname{ctg}\alpha$).<br>
+      4) Маса тіла на траєкторію не впливає.<br>
+      5) Вертикальний кидок — окремий випадок: $\alpha = 90^\circ$, $h = \tfrac{v_0^2}{2g}$, $l = 0$.</div>
+    <table>
+      <tr><th>Величина</th><th>Кинули горизонтально</th><th>Кинули під кутом до горизонту</th></tr>
+      <tr><td>Рівняння руху</td><td>$x = v_0t$; $y = \tfrac{gt^2}{2}$</td><td>$x = v_0\cos\alpha\cdot t$; $y = v_0\sin\alpha\cdot t - \tfrac{gt^2}{2}$</td></tr>
+      <tr><td>Проєкції швидкості</td><td>$v_x = v_0$; $v_y = gt$</td><td>$v_x = v_0\cos\alpha$; $v_y = v_0\sin\alpha - gt$</td></tr>
+      <tr><td>Модуль швидкості</td><td colspan="2">$v = \sqrt{v_x^2 + v_y^2}$</td></tr>
+      <tr><td>Напрямок швидкості</td><td colspan="2">$\operatorname{tg}\beta = \dfrac{v_y}{v_x}$</td></tr>
+      <tr><td>Дальність польоту ($x = l$)</td><td>$l = v_0t = v_0\sqrt{\tfrac{2h}{g}}$, де $t$ — час руху по параболі</td><td>$l = v_0\cos\alpha\cdot t = \tfrac{2v_0^2\sin\alpha\cos\alpha}{g}$, де $t$ — час руху по параболі</td></tr>
+      <tr><td>Висота ($y = h$)</td><td>$h = \tfrac{gt^2}{2}$</td><td>$h = \tfrac{v_0^2\sin^2\alpha}{2g} = v_0\sin\alpha\cdot t_\text{п} - \tfrac{gt_\text{п}^2}{2}$</td></tr>
+      <tr><td>Час підняття на максимальну висоту</td><td>—</td><td>$t_\text{п} = \tfrac{v_0\sin\alpha}{g}$ (з умови $v_y = 0$)</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">11</span>Задачі на рух по параболі: розбір</h2>
+    <div class="callout info"><b>Приклад 1. Кулька зі столу</b>Кульку зіштовхнули з горизонтального столу заввишки 1,5 м. У момент падіння на підлогу її швидкість становила $8\ \tfrac{\text{м}}{\text{с}}$. Визнач початкову швидкість кульки.<br>
+      Дано: $h = 1{,}5$ м, $v = 8\ \tfrac{\text{м}}{\text{с}}$. Знайти: $v_0$.<br>
+      Переміщення по вертикалі: $h = \dfrac{gt^2}{2}$, звідси $t = \sqrt{\dfrac{2h}{g}}$. Проєкції швидкості: $v_x = v_0$, $v_y = gt$.<br>
+      Швидкість у момент удару: $v = \sqrt{v_x^2 + v_y^2} = \sqrt{v_0^2 + g^2t^2} = \sqrt{v_0^2 + 2gh}$.<br>
+      Звідси $v_0 = \sqrt{v^2 - 2gh} = \sqrt{64 - 30} = \sqrt{34} \approx 5{,}8\ \tfrac{\text{м}}{\text{с}}$.<br>
+      Перевірка одиниць: $[v_0] = \sqrt{\tfrac{\text{м}^2}{\text{с}^2} - \tfrac{\text{м}}{\text{с}^2}\cdot\text{м}} = \tfrac{\text{м}}{\text{с}}$. Відповідь: $\approx 5{,}8\ \tfrac{\text{м}}{\text{с}}$.</div>
+
+    <div class="callout info"><b>Приклад 2. Камінь із вершини гори</b>Камінь кидають горизонтально з вершини гори, схил якої має нахил $\alpha$. З якою початковою швидкістю кинули камінь, якщо він упав на схил на відстані $L$ від вершини?</div>
+    <svg viewBox="0 0 380 270" width="608" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Камінь, кинутий горизонтально з вершини гори з нахилом альфа">
+      <defs><marker id="m18" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#13284A"/></marker>
+        <marker id="m18p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E679A6"/></marker></defs>
+      <g font-family="Inter" font-size="15" fill="#13284A">
+        <path d="M60,40 L60,200 L260,200 Z" fill="#B9C8E6"/>
+        <line x1="60" y1="40" x2="340" y2="40" stroke="#13284A" stroke-width="1.5" marker-end="url(#m18)"/>
+        <line x1="60" y1="40" x2="60" y2="250" stroke="#13284A" stroke-width="1.5" marker-end="url(#m18)"/>
+        <text x="330" y="62">x</text><text x="40" y="248">y</text><text x="40" y="35">O</text>
+        <line x1="60" y1="40" x2="260" y2="200" stroke="#081F44" stroke-width="2.5"/>
+        <path d="M60,40 Q160,40 260,200" fill="none" stroke="#4569AD" stroke-width="3"/>
+        <line x1="60" y1="40" x2="115" y2="40" stroke="#E679A6" stroke-width="3.5" marker-end="url(#m18p)"/>
+        <text x="78" y="30" fill="#E679A6">v₀</text>
+        <line x1="260" y1="40" x2="260" y2="200" stroke="#13284A" stroke-dasharray="4 4"/>
+        <text x="150" y="222">l = L cos α</text><text x="18" y="130">h</text>
+        <text x="128" y="140">L</text>
+        <path d="M90,40 A30,30 0 0,1 83,59" fill="none" stroke="#13284A"/>
+        <text x="94" y="66">α</text>
+        <circle cx="260" cy="200" r="5" fill="#E679A6"/>
+      </g>
+    </svg>
+    <div class="callout info"><b>Розв'язання</b>Уздовж осі $Ox$ рух рівномірний; дальність польоту по горизонталі:
+      $$l = v_0t = L\cos\alpha. \qquad (1)$$
+      Уздовж осі $Oy$ рух рівноприскорений без початкової швидкості:
+      $$h = \frac{gt^2}{2} = L\sin\alpha. \qquad (2)$$
+      З (2) знаходимо час: $t = \sqrt{\dfrac{2L\sin\alpha}{g}}$. Підставляємо в (1):
+      $$\begin{aligned}v_0 &= \frac{L\cos\alpha}{t} \\ &= L\cos\alpha\sqrt{\frac{g}{2L\sin\alpha}} \\ &= \sqrt{\frac{gL}{2\sin\alpha}}\cdot\cos\alpha.\end{aligned}$$
+      Перевірка одиниць: $[v_0] = \sqrt{\tfrac{\text{м}}{\text{с}^2}\cdot\text{м}} = \tfrac{\text{м}}{\text{с}}$. Відповідь: $v_0 = \sqrt{\dfrac{gL}{2\sin\alpha}}\cdot\cos\alpha$.</div>
+
+    <div class="callout info"><b>Приклад 3. Диск під кутом 45°</b>Диск кинули під кутом $45^\circ$ до горизонту. Максимальна висота підняття диска 10 м. Визнач дальність польоту.<br>
+      Дано: $h = 10$ м, $\alpha = 45^\circ$. Знайти: $l$.<br>
+      Дальність: $l = \dfrac{2v_0^2\sin\alpha\cos\alpha}{g}$; висота: $h = \dfrac{v_0^2\sin^2\alpha}{2g}$. Поділивши рівності, отримаємо $\dfrac{l}{h} = 4\operatorname{ctg}\alpha$.<br>
+      Звідси $l = 4h\operatorname{ctg}\alpha = 4h = 40$ м. Відповідь: 40 м. Зверни увагу: початкову швидкість знаходити не довелося.</div>
+
+    <div class="callout info"><b>Приклад 4 (ЗНО-2007). Волейбол</b>Учні на уроці фізкультури грають у волейбол. Визнач максимальну висоту (відносно рук гравців), якої досягає м'яч, якщо між двома ударами він перебуває в польоті 2 с. Вважай, що $g = 10\ \tfrac{\text{м}}{\text{с}^2}$. (А 5 м; Б 10 м; В 2,5 м; Г 1,25 м.)<br>
+      Тіло, кинуте під кутом до горизонту, досягає максимальної висоти за час $t_\text{п} = \tfrac t2$. Для цього моменту запишемо рівняння переміщення і швидкості на вісь $Oy$:
+      $$\begin{gathered}h = v_0\sin\alpha\cdot\frac t2 - \frac{gt^2}{8} \\ 0 = v_0\sin\alpha - \frac{gt}{2}.\end{gathered}$$
+      Звідси $v_0\sin\alpha = \dfrac{gt}{2}$, тоді $h = \dfrac{gt^2}{4} - \dfrac{gt^2}{8} = \dfrac{gt^2}{8} = \dfrac{10\cdot4}{8} = 5$ м. Відповідь: <strong>А</strong>.<br>
+      <em>Коротше:</em> з верхньої точки м'яч падає 1 с, тож $h = \tfrac{g\cdot1^2}{2} = 5$ м.</div>
+
+    <h3>Перевірка до розділу</h3>
+    <div class="q"><p><strong>5.</strong> Два тіла різної маси кинули з вежі горизонтально з однакової висоти. Швидкість першого вдвічі більша за швидкість другого. Яке тіло впаде першим? Опором повітря знехтуй.</p>
+      <ul class="options"><li>А) Тіло з більшою масою</li><li>Б) Тіло з більшою швидкістю</li><li>В) Тіло з меншою швидкістю</li><li>Г) Обидва тіла впадуть одночасно</li></ul></div>
+    <div class="q"><p><strong>6.</strong> Камінь кинули горизонтально з початковою швидкістю $15\ \tfrac{\text{м}}{\text{с}}$. Через який час його швидкість буде напрямлена під кутом $45^\circ$ до горизонту?</p>
+      <ul class="options"><li>А) 2 с</li><li>Б) 1,5 с</li><li>В) 2,5 с</li><li>Г) 1 с</li></ul></div>
+    <details><summary><span>Відповіді та пояснення</span></summary><div>
+        <p><strong>5. Г.</strong> Час польоту $t = \sqrt{2h/g}$ залежить лише від висоти. Більша швидкість дає більшу дальність, але не скорочує час (Б, В); маса не впливає (А).</p>
+        <p><strong>6. Б.</strong> Під кутом $45^\circ$ $v_y = v_x$, тобто $gt = v_0$, $t = 1{,}5$ с.</p>
+    </div></details>
+  </section>
+
+  <section class="card" id="zroby-sam">
+    <h2><span class="num">12</span>Зроби сам: графіки та рівняння руху</h2>
+    <p>Це інтерактивна лабораторія. Змінюй числа — і рівняння та графіки перебудуються. Усі графіки побудовано точно за формулами: поділки на осях рівномірні, а на траєкторії масштаб по горизонталі й вертикалі <strong>однаковий</strong> (1 м по $x$ = 1 м по $y$), тож форму параболи видно без спотворень.</p>
+    <div class="callout info"><b>Як працювати</b>1) Обери готовий приклад або введи свої значення. 2) Спершу <em>сам</em> спрогнозуй, як виглядатимуть графіки, і запиши рівняння в зошит. 3) Натисни «Побудувати» і порівняй. 4) Рухай повзунок часу — побачиш значення величин у будь-який момент. Десяткові дроби можна писати і з комою, і з крапкою.</div>
+
+    <h3>Лабораторія 1. Рівноприскорений рух уздовж осі Ox</h3>
+    <p><label>Готовий приклад:
+      <select id="lab1-preset">
+        <option value="custom">— власні значення —</option>
+        <option value="0,0,2,6">Розгін з місця: aₓ = 2 м/с²</option>
+        <option value="0,20,-5,10">Приклад 12: гальмування з розворотом</option>
+        <option value="-8,8,-4,4">Приклад 13: x = −8 + 8t − 2t²</option>
+        <option value="0,-10,1,15">Приклад 4: v₀ₓ = −10 м/с, aₓ = 1 м/с²</option>
+        <option value="0,20,-10,4">Кидок угору: v₀ = 20 м/с, вісь угору</option>
+        <option value="5,3,0,6">Рівномірний рух: aₓ = 0</option>
+      </select></label></p>
+    <ul class="options">
+      <li><label>Початкова координата $x_0$, м: <input type="text" inputmode="decimal" id="lab1-x0" value="5" size="6"></label></li>
+      <li><label>Проєкція початкової швидкості $v_{0x}$, м/с: <input type="text" inputmode="decimal" id="lab1-v0" value="4" size="6"></label></li>
+      <li><label>Проєкція прискорення $a_x$, м/с²: <input type="text" inputmode="decimal" id="lab1-a" value="-2" size="6"></label></li>
+      <li><label>Час спостереження $t_\text{max}$, с: <input type="text" inputmode="decimal" id="lab1-T" value="5" size="6"></label></li>
+    </ul>
+    <p><button type="button" id="lab1-go">Побудувати</button></p>
+    <p id="lab1-msg" aria-live="polite"></p>
+    <div class="formula" id="lab1-eq"></div>
+    <p class="where" id="lab1-facts"></p>
+    <p><label>Момент часу $t$: <input type="range" id="lab1-t" min="0" max="1000" value="0"></label> <span id="lab1-tval" aria-live="polite"></span></p>
+    <div id="lab1-plot"></div>
+
+    <h3>Лабораторія 2. Кидок під кутом до горизонту</h3>
+    <p>Кут $\alpha = 0^\circ$ — горизонтальний кидок, $\alpha = 90^\circ$ — вертикальний кидок угору, від'ємний кут — кидок під кутом униз. Вісь $Oy$ напрямлена вгору, початок координат — на землі під точкою кидка.</p>
+    <p><label>Готовий приклад:
+      <select id="lab2-preset">
+        <option value="custom">— власні значення —</option>
+        <option value="20,45,0">Кидок під кутом 45°</option>
+        <option value="20,30,0">Кут 30° (порівняй дальність із кутом 60°)</option>
+        <option value="20,60,0">Кут 60°</option>
+        <option value="20,0,45">Тест, завдання 15: горизонтально з висоти 45 м</option>
+        <option value="20,90,20">Приклад 6: угору з балкона висотою 20 м</option>
+        <option value="15,0,20">Горизонтальний кидок: v₀ = 15 м/с, h = 20 м</option>
+      </select></label></p>
+    <ul class="options">
+      <li><label>Початкова швидкість $v_0$, м/с: <input type="text" inputmode="decimal" id="lab2-v0" value="20" size="6"></label></li>
+      <li><label>Кут кидка $\alpha$, градуси (від −90 до 90): <input type="text" inputmode="decimal" id="lab2-al" value="45" size="6"></label></li>
+      <li><label>Висота точки кидка $h_0$, м: <input type="text" inputmode="decimal" id="lab2-h" value="0" size="6"></label></li>
+      <li><label>Прискорення вільного падіння $g$, м/с²:
+        <select id="lab2-g"><option value="10">10 (як у задачах НМТ)</option><option value="9.8">9,8</option><option value="1.62">1,62 (Місяць)</option></select></label></li>
+    </ul>
+    <p><button type="button" id="lab2-go">Побудувати</button></p>
+    <p id="lab2-msg" aria-live="polite"></p>
+    <div class="formula" id="lab2-eq"></div>
+    <p class="where" id="lab2-facts"></p>
+    <p><label>Момент часу $t$: <input type="range" id="lab2-t" min="0" max="1000" value="0"></label> <span id="lab2-tval" aria-live="polite"></span></p>
+    <div id="lab2-plot"></div>
+
+    <h3>Тренажер 1. Від рівняння — до характеристик руху</h3>
+    <p>Натисни «Нове рівняння», визнач величини і перевір себе. Потім глянь на графіки в Лабораторії 1 — кнопка «Показати в лабораторії» перенесе туди твоє рівняння.</p>
+    <p><button type="button" id="tr1-new">Нове рівняння</button></p>
+    <div class="formula" id="tr1-eq"></div>
+    <ul class="options">
+      <li><label>$x_0$, м: <input type="text" inputmode="decimal" id="tr1-x0" size="6"></label></li>
+      <li><label>$v_{0x}$, м/с: <input type="text" inputmode="decimal" id="tr1-v0" size="6"></label></li>
+      <li><label>$a_x$, м/с²: <input type="text" inputmode="decimal" id="tr1-a" size="6"></label></li>
+      <li><label><span id="tr1-qv"></span> <input type="text" inputmode="decimal" id="tr1-v" size="6"></label></li>
+      <li><label><span id="tr1-qx"></span> <input type="text" inputmode="decimal" id="tr1-x" size="6"></label></li>
+    </ul>
+    <p><button type="button" id="tr1-check">Перевірити</button> <button type="button" id="tr1-show">Показати в лабораторії</button></p>
+    <p id="tr1-res" aria-live="polite"></p>
+
+    <h3>Тренажер 2. Від графіка — до рівняння</h3>
+    <p>За графіком $v_x(t)$ визнач $v_{0x}$ і $a_x$, запиши рівняння руху (початкова координата вказана під графіком) і знайди проєкцію переміщення як площу під графіком.</p>
+    <p><button type="button" id="tr2-new">Новий графік</button></p>
+    <div id="tr2-plot"></div>
+    <p id="tr2-cond"></p>
+    <ul class="options">
+      <li><label>$v_{0x}$, м/с: <input type="text" inputmode="decimal" id="tr2-v0" size="6"></label></li>
+      <li><label>$a_x$, м/с²: <input type="text" inputmode="decimal" id="tr2-a" size="6"></label></li>
+      <li><label><span id="tr2-qs"></span> <input type="text" inputmode="decimal" id="tr2-s" size="6"></label></li>
+      <li><label><span id="tr2-ql"></span> <input type="text" inputmode="decimal" id="tr2-l" size="6"></label></li>
+    </ul>
+    <p><button type="button" id="tr2-check">Перевірити</button></p>
+    <p id="tr2-res" aria-live="polite"></p>
+    <details><summary><span>Підказка до тренажерів</span></summary><div>
+      <p>З рівняння $x = x_0 + v_{0x}t + \frac{a_x}{2}t^2$: вільний член — це $x_0$, коефіцієнт при $t$ — це $v_{0x}$, а коефіцієнт при $t^2$ треба <strong>помножити на 2</strong>, щоб отримати $a_x$. Швидкість: $v_x = v_{0x} + a_x t$.</p>
+      <p>З графіка $v_x(t)$: $v_{0x}$ — точка перетину з віссю $v_x$; $a_x = \frac{\Delta v_x}{\Delta t}$ — нахил. Проєкція переміщення — площа під графіком (частини під віссю зі знаком «−»), шлях — та сама площа, але всі частини зі знаком «+».</p>
+    </div></details>
+  </section>
+
+  <script>
+  (function(){
+    var NS='http://www.w3.org/2000/svg';
+    var C={ink:'#13284A',night:'#081F44',line:'#4569AD',pink:'#E679A6',green:'#587954',fill:'#B9C8E6'};
+    function $(id){return document.getElementById(id);}
+    function num(id){var v=($(id).value||'').trim().replace(',','.').replace('−','-');if(v==='')return NaN;return Number(v);}
+    function r(x,d){var k=Math.pow(10,d==null?3:d);var y=Math.round(x*k)/k;return Object.is(y,-0)?0:y;}
+    function fmt(x,d){var y=r(x,d==null?2:d);var s=String(y).replace('.',',');return s.replace('-','−');}
+    function tex(x,d){var y=r(x,d==null?3:d);return String(y).replace('.','{,}');}
+    function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+    function txt(parent,x,y,s,attrs){var a={x:x,y:y,'font-family':'Inter','font-size':14,fill:C.ink};for(var k in attrs)a[k]=attrs[k];var t=el('text',a,parent);t.textContent=s;return t;}
+    function renderTex(node,s){if(window.katex){try{katex.render(s,node,{displayMode:true,throwOnError:false});return;}catch(e){}}node.textContent=s;}
+    function niceStep(range,n){var raw=range/(n||5);var p=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10));var m=raw/p;var s=m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10;return s*p;}
+    function niceRange(lo,hi,includeZero){
+      if(includeZero){lo=Math.min(lo,0);hi=Math.max(hi,0);}
+      if(!(hi-lo>1e-9)){var c=lo;lo=c-1;hi=c+1;}
+      var st=niceStep(hi-lo,5);lo=Math.floor(lo/st+1e-9)*st;hi=Math.ceil(hi/st-1e-9)*st;if(hi-lo<1e-12)hi=lo+st;
+      return {lo:lo,hi:hi,step:st};
+    }
+    function newSvg(container,w,h,label){container.innerHTML='';var s=el('svg',{viewBox:'0 0 '+w+' '+h,width:w,xmlns:NS,role:'img','aria-label':label},container);return s;}
+
+    /* Panel: axes with ticks, returns mapping functions */
+    function panel(svg,ox,oy,w,h,xr,yr,xl,yl,title){
+      var g=el('g',{transform:'translate('+ox+','+oy+')'},svg);
+      var L=58,R=14,T=30,B=40,pw=w-L-R,ph=h-T-B;
+      var X=function(v){return L+(v-xr.lo)/(xr.hi-xr.lo)*pw;};
+      var Y=function(v){return T+(yr.hi-v)/(yr.hi-yr.lo)*ph;};
+      for(var v=yr.lo;v<=yr.hi+1e-9;v+=yr.step){var yy=Y(v);el('line',{x1:L,y1:yy,x2:L+pw,y2:yy,stroke:C.fill,'stroke-width':1},g);txt(g,L-6,yy+5,fmt(v,3),{'text-anchor':'end'});}
+      for(var u=xr.lo;u<=xr.hi+1e-9;u+=xr.step){var xx=X(u);el('line',{x1:xx,y1:T,x2:xx,y2:T+ph,stroke:C.fill,'stroke-width':1},g);txt(g,xx,T+ph+18,fmt(u,3),{'text-anchor':'middle'});}
+      var y0=(yr.lo<=0&&yr.hi>=0)?Y(0):T+ph;
+      el('line',{x1:L,y1:y0,x2:L+pw,y2:y0,stroke:C.ink,'stroke-width':1.6},g);
+      var x0=(xr.lo<=0&&xr.hi>=0)?X(0):L;
+      el('line',{x1:x0,y1:T,x2:x0,y2:T+ph,stroke:C.ink,'stroke-width':1.6},g);
+      txt(g,L+pw,T+ph+36,xl,{'text-anchor':'end','font-weight':600});
+      txt(g,4,18,yl,{'font-weight':600});
+      if(title)txt(g,L+pw,18,title,{'text-anchor':'end',fill:C.green,'font-weight':600});
+      return {g:g,X:X,Y:Y,L:L,T:T,pw:pw,ph:ph,y0:y0};
+    }
+    function poly(p,pts,color,width,dash){var d=pts.map(function(q,i){return (i?'L':'M')+p.X(q[0]).toFixed(2)+','+p.Y(q[1]).toFixed(2);}).join(' ');var a={d:d,fill:'none',stroke:color,'stroke-width':width||3,'stroke-linejoin':'round'};if(dash)a['stroke-dasharray']=dash;return el('path',a,p.g);}
+    function sample(f,a,b,n){var o=[];for(var i=0;i<=n;i++){var t=a+(b-a)*i/n;o.push([t,f(t)]);}return o;}
+
+    /* ---------- polynomial in t as LaTeX ---------- */
+    function polyTex(lhs,c0,c1,c2,showZero){
+      var terms=[];
+      function add(c,mono){if(Math.abs(c)<1e-12)return;var a=Math.abs(c);var coef=(mono&&Math.abs(a-1)<1e-12)?'':tex(a);terms.push({neg:c<0,s:coef+mono});}
+      add(c0,'');add(c1,'t');add(c2,'t^2');
+      if(!terms.length)return lhs+' = 0';
+      var s=lhs+' = '+(terms[0].neg?'-':'')+terms[0].s;
+      for(var i=1;i<terms.length;i++)s+=(terms[i].neg?' - ':' + ')+terms[i].s;
+      return s;
+    }
+
+    /* ---------- Lab 1 ---------- */
+    var L1=null;
+    function kin(x0,v0,a){
+      var X=function(t){return x0+v0*t+a*t*t/2;},V=function(t){return v0+a*t;};
+      var ts=(Math.abs(a)>1e-12)?-v0/a:NaN;
+      var P=function(t){ // path from 0 to t
+        if(isFinite(ts)&&ts>0&&ts<t)return Math.abs(X(ts)-x0)+Math.abs(X(t)-X(ts));
+        return Math.abs(X(t)-x0);};
+      return {X:X,V:V,P:P,ts:ts};
+    }
+    function lab1(){
+      var x0=num('lab1-x0'),v0=num('lab1-v0'),a=num('lab1-a'),T=num('lab1-T'),msg=$('lab1-msg');
+      if([x0,v0,a,T].some(function(z){return !isFinite(z);})){msg.textContent='Перевір введені числа: усі чотири поля мають бути заповнені числами.';return;}
+      if(T<=0||T>1000){msg.textContent='Час спостереження має бути додатним (і не більшим за 1000 с).';return;}
+      msg.textContent='';
+      var k=kin(x0,v0,a);L1={x0:x0,v0:v0,a:a,T:T,k:k};
+      renderTex($('lab1-eq'),'\\begin{gathered}'+polyTex('x',x0,v0,a/2)+'\\\\ '+polyTex('v_x',v0,a,0)+'\\\\ a_x = '+tex(a)+'\\ \\tfrac{\\text{м}}{\\text{с}^2}\\end{gathered}');
+      var f=[];
+      var type=Math.abs(a)<1e-12?(Math.abs(v0)<1e-12?'тіло перебуває у спокої':'рух рівномірний'):'рух рівноприскорений';
+      f.push('Тип руху: '+type+'.');
+      if(Math.abs(a)>1e-12){
+        if(k.ts>0&&k.ts<=T){f.push('Тіло зупиняється й розвертається в момент t = −v₀ₓ/aₓ = '+fmt(k.ts)+' с; координата точки розвороту x = '+fmt(k.X(k.ts))+' м (вершина параболи x(t)). До цього моменту тіло гальмує, після — розганяється у протилежний бік.');}
+        else if(k.ts>T){f.push('Тіло гальмує весь час спостереження і зупинилося б у момент t = '+fmt(k.ts)+' с (поза межами графіка).');}
+        else f.push(Math.abs(v0)<1e-12?'Тіло починає рух зі стану спокою і весь час розганяється.':'Знаки vₓ і aₓ однакові: тіло весь час розганяється.');
+      }
+      var S=k.X(T)-x0,l=k.P(T);
+      f.push('За '+fmt(T)+' с: проєкція переміщення Sₓ = '+fmt(S)+' м, шлях l = '+fmt(l)+' м, середня шляхова швидкість '+fmt(l/T)+' м/с, середня швидкість переміщення '+fmt(S/T)+' м/с.');
+      $('lab1-facts').textContent=f.join(' ');
+      drawLab1();
+    }
+    function drawLab1(){
+      if(!L1)return;var k=L1.k,T=L1.T;
+      var tc=T*Number($('lab1-t').value)/1000;
+      var svg=newSvg($('lab1-plot'),720,600,'Графіки aₓ(t), vₓ(t), x(t) і шляху l(t)');
+      var xr=niceRange(0,T,true);
+      var N=200;
+      var xs=sample(k.X,0,T,N),vs=sample(k.V,0,T,N),ls=sample(k.P,0,T,N);
+      function ext(arr){var lo=Infinity,hi=-Infinity;arr.forEach(function(q){lo=Math.min(lo,q[1]);hi=Math.max(hi,q[1]);});return [lo,hi];}
+      // a(t)
+      var ar=niceRange(Math.min(L1.a,0),Math.max(L1.a,0),true);
+      var p1=panel(svg,0,0,360,300,xr,ar,'t, с','aₓ, м/с²','прискорення');
+      poly(p1,[[0,L1.a],[T,L1.a]],C.pink,3);
+      // v(t) with shaded areas
+      var ve=ext(vs),vr=niceRange(ve[0],ve[1],true);
+      var p2=panel(svg,360,0,360,300,xr,vr,'t, с','vₓ, м/с','швидкість');
+      var pos='M'+p2.X(0)+','+p2.Y(0),neg=pos;
+      vs.forEach(function(q){pos+=' L'+p2.X(q[0]).toFixed(2)+','+p2.Y(Math.max(q[1],0)).toFixed(2);neg+=' L'+p2.X(q[0]).toFixed(2)+','+p2.Y(Math.min(q[1],0)).toFixed(2);});
+      pos+=' L'+p2.X(T)+','+p2.Y(0)+' Z';neg+=' L'+p2.X(T)+','+p2.Y(0)+' Z';
+      el('path',{d:pos,fill:C.fill,opacity:0.8},p2.g);el('path',{d:neg,fill:C.pink,opacity:0.35},p2.g);
+      poly(p2,vs,C.line,3);
+      // x(t)
+      var xe=ext(xs),xrr=niceRange(xe[0],xe[1],true);
+      var p3=panel(svg,0,300,360,300,xr,xrr,'t, с','x, м','координата');
+      poly(p3,xs,C.line,3);
+      // l(t)
+      var le=ext(ls),lr=niceRange(0,le[1],true);
+      var p4=panel(svg,360,300,360,300,xr,lr,'t, с','l, м','шлях');
+      poly(p4,ls,C.green,3);
+      // turning point
+      if(k.ts>0&&k.ts<=T){
+        [p1,p2,p3,p4].forEach(function(p){el('line',{x1:p.X(k.ts),y1:p.T,x2:p.X(k.ts),y2:p.T+p.ph,stroke:C.night,'stroke-dasharray':'5 4','stroke-width':1.3},p.g);});
+        el('circle',{cx:p3.X(k.ts),cy:p3.Y(k.X(k.ts)),r:5,fill:C.pink},p3.g);
+        el('circle',{cx:p2.X(k.ts),cy:p2.Y(0),r:5,fill:C.pink},p2.g);
+      }
+      // cursor
+      [[p1,L1.a],[p2,k.V(tc)],[p3,k.X(tc)],[p4,k.P(tc)]].forEach(function(z){
+        var p=z[0];el('line',{x1:p.X(tc),y1:p.T,x2:p.X(tc),y2:p.T+p.ph,stroke:C.pink,'stroke-width':1.5},p.g);
+        el('circle',{cx:p.X(tc),cy:p.Y(z[1]),r:5.5,fill:C.night,stroke:C.fill,'stroke-width':1.5},p.g);});
+      $('lab1-tval').textContent='t = '+fmt(tc)+' с: x = '+fmt(k.X(tc))+' м; vₓ = '+fmt(k.V(tc))+' м/с; шлях l = '+fmt(k.P(tc))+' м.';
+    }
+    $('lab1-go').addEventListener('click',lab1);
+    $('lab1-t').addEventListener('input',drawLab1);
+    $('lab1-preset').addEventListener('change',function(){var v=this.value;if(v==='custom')return;var q=v.split(',');$('lab1-x0').value=q[0];$('lab1-v0').value=q[1];$('lab1-a').value=q[2];$('lab1-T').value=q[3];$('lab1-t').value=0;lab1();});
+
+    /* ---------- Lab 2 ---------- */
+    var L2=null;
+    function lab2(){
+      var v0=num('lab2-v0'),al=num('lab2-al'),h0=num('lab2-h'),g=Number($('lab2-g').value),msg=$('lab2-msg');
+      if([v0,al,h0].some(function(z){return !isFinite(z);})){msg.textContent='Перевір введені числа.';return;}
+      if(v0<0||al<-90||al>90||h0<0){msg.textContent='Має бути v₀ ≥ 0, кут від −90° до 90°, висота h₀ ≥ 0.';return;}
+      if(v0===0&&h0===0){msg.textContent='Тіло нікуди не полетить: задай v₀ > 0 або h₀ > 0.';return;}
+      var rad=al*Math.PI/180,vx=v0*Math.cos(rad),vy=v0*Math.sin(rad);
+      if(Math.abs(vx)<1e-9)vx=0;if(Math.abs(vy)<1e-9)vy=0;
+      if(h0===0&&vy<=0){msg.textContent='Тіло кинули з поверхні землі горизонтально або вниз — воно одразу торкнеться землі. Збільш кут або висоту h₀.';return;}
+      msg.textContent='';
+      var tf=(vy+Math.sqrt(vy*vy+2*g*h0))/g; // y(tf)=0, larger root
+      var tp=vy>0?vy/g:0,H=h0+(vy>0?vy*vy/(2*g):0),l=vx*tf,vyf=vy-g*tf,vf=Math.sqrt(vx*vx+vyf*vyf);
+      L2={vx:vx,vy:vy,h0:h0,g:g,tf:tf,tp:tp,H:H,l:l};
+      var eq='\\begin{gathered}x = '+(vx===0?'0':tex(vx)+'t')+'\\\\ '+polyTex('y',h0,vy,-g/2)+'\\\\ v_x = '+tex(vx)+'\\\\ '+polyTex('v_y',vy,-g,0)+'\\end{gathered}';
+      renderTex($('lab2-eq'),eq);
+      var f=['Проєкції початкової швидкості: v₀ₓ = v₀cos α = '+fmt(vx)+' м/с, v₀ᵧ = v₀sin α = '+fmt(vy)+' м/с.'];
+      if(vy>0)f.push('Час підйому tₚ = v₀ᵧ/g = '+fmt(tp)+' с; максимальна висота H = h₀ + v₀ᵧ²/(2g) = '+fmt(H)+' м; у верхній точці швидкість дорівнює vₓ = '+fmt(vx)+' м/с, а прискорення — g.');
+      else f.push('Тіло не піднімається вище за точку кидка, тож найвища точка — точка кидка (H = '+fmt(H)+' м).');
+      f.push('Час польоту (корінь рівняння y = 0): t = '+fmt(tf)+' с; дальність l = vₓt = '+fmt(l)+' м; швидкість у момент падіння '+fmt(vf)+' м/с'+(vx>0?', кут із горизонтом β = '+fmt(Math.atan2(-vyf,vx)*180/Math.PI,1)+'°':' (вертикально вниз)')+'.');
+      $('lab2-facts').textContent=f.join(' ');
+      drawLab2();
+    }
+    function drawLab2(){
+      if(!L2)return;var o=L2,tc=o.tf*Number($('lab2-t').value)/1000;
+      var X=function(t){return o.vx*t;},Y=function(t){return o.h0+o.vy*t-o.g*t*t/2;};
+      var W=720,L=58,R=20,T=30,B=46,pw=W-L-R,ph=380;
+      var xmax=Math.max(o.l,1e-6),ymax=Math.max(o.H,1e-6);
+      // equal scale: metres per pixel identical on both axes
+      var sc=Math.min(pw/xmax,ph/ymax);
+      ph=Math.max(Math.ceil(ymax*sc*1.08),120);var Hh=T+ph+B;
+      var step=niceStep(Math.max(pw,ph)/sc,6);
+      var svg=newSvg($('lab2-plot'),W,Hh+300,'Траєкторія польоту в однаковому масштабі по осях і графіки проєкцій швидкості');
+      var g=el('g',{},svg);
+      var PX=function(x){return L+x*sc;},PY=function(y){return T+ph-y*sc;};
+      for(var u=0;u*sc<=pw+1e-6;u+=step){el('line',{x1:PX(u),y1:T,x2:PX(u),y2:T+ph,stroke:C.fill},g);txt(g,PX(u),T+ph+18,fmt(u,3),{'text-anchor':'middle'});}
+      for(var v=0;v*sc<=ph+1e-6;v+=step){el('line',{x1:L,y1:PY(v),x2:L+pw,y2:PY(v),stroke:C.fill},g);txt(g,L-6,PY(v)+5,fmt(v,3),{'text-anchor':'end'});}
+      el('line',{x1:L,y1:T+ph,x2:L+pw,y2:T+ph,stroke:C.ink,'stroke-width':1.6},g);
+      el('line',{x1:L,y1:T,x2:L,y2:T+ph,stroke:C.ink,'stroke-width':1.6},g);
+      txt(g,L+pw,T+ph+38,'x, м',{'text-anchor':'end','font-weight':600});txt(g,4,18,'y, м',{'font-weight':600});
+      txt(g,L+pw,18,'траєкторія (масштаб 1 : 1)',{'text-anchor':'end',fill:C.green,'font-weight':600});
+      var pts=sample(function(t){return t;},0,o.tf,300).map(function(q){return [X(q[0]),Y(q[0])];});
+      el('path',{d:pts.map(function(q,i){return (i?'L':'M')+PX(q[0]).toFixed(2)+','+PY(q[1]).toFixed(2);}).join(' '),fill:'none',stroke:C.line,'stroke-width':3},g);
+      if(o.vy>0){el('line',{x1:PX(X(o.tp)),y1:PY(o.H),x2:PX(X(o.tp)),y2:T+ph,stroke:C.night,'stroke-dasharray':'5 4'},g);el('circle',{cx:PX(X(o.tp)),cy:PY(o.H),r:5,fill:C.pink},g);txt(g,PX(X(o.tp))+8,PY(o.H)-8,'H = '+fmt(o.H)+' м',{fill:C.night});}
+      el('circle',{cx:PX(o.l),cy:PY(0),r:5,fill:C.pink},g);
+      // velocity vector at tc (scaled 1 m/s -> k px)
+      var vxt=o.vx,vyt=o.vy-o.g*tc,vm=Math.sqrt(vxt*vxt+vyt*vyt),cx=PX(X(tc)),cy=PY(Y(tc));
+      var kk=vm>0?80/Math.max(vm,Math.sqrt(o.vx*o.vx+o.vy*o.vy),1e-9):0;
+      el('circle',{cx:cx,cy:cy,r:6,fill:C.night},g);
+      if(vm>1e-9){
+        var ex=cx+vxt*kk,ey=cy-vyt*kk;
+        el('line',{x1:cx,y1:cy,x2:ex,y2:ey,stroke:C.pink,'stroke-width':3},g);
+        var ang=Math.atan2(ey-cy,ex-cx);
+        el('path',{d:'M'+ex+','+ey+' L'+(ex-11*Math.cos(ang-0.4))+','+(ey-11*Math.sin(ang-0.4))+' L'+(ex-11*Math.cos(ang+0.4))+','+(ey-11*Math.sin(ang+0.4))+' Z',fill:C.pink},g);
+      }
+      // v_x(t), v_y(t)
+      var tr=niceRange(0,o.tf,true);
+      var vxr=niceRange(Math.min(0,o.vx),Math.max(0,o.vx),true);
+      var vyr=niceRange(Math.min(o.vy,o.vy-o.g*o.tf,0),Math.max(o.vy,o.vy-o.g*o.tf,0),true);
+      var pa=panel(svg,0,Hh,360,300,tr,vxr,'t, с','vₓ, м/с','рівномірно');
+      poly(pa,[[0,o.vx],[o.tf,o.vx]],C.line,3);
+      var pb=panel(svg,360,Hh,360,300,tr,vyr,'t, с','vᵧ, м/с','рівноприскорено');
+      poly(pb,[[0,o.vy],[o.tf,o.vy-o.g*o.tf]],C.line,3);
+      [[pa,o.vx],[pb,vyt]].forEach(function(z){var p=z[0];el('line',{x1:p.X(tc),y1:p.T,x2:p.X(tc),y2:p.T+p.ph,stroke:C.pink,'stroke-width':1.5},p.g);el('circle',{cx:p.X(tc),cy:p.Y(z[1]),r:5.5,fill:C.night},p.g);});
+      $('lab2-tval').textContent='t = '+fmt(tc)+' с: x = '+fmt(X(tc))+' м; y = '+fmt(Y(tc))+' м; vₓ = '+fmt(vxt)+' м/с; vᵧ = '+fmt(vyt)+' м/с; v = '+fmt(vm)+' м/с.';
+    }
+    $('lab2-go').addEventListener('click',lab2);
+    $('lab2-t').addEventListener('input',drawLab2);
+    $('lab2-g').addEventListener('change',function(){if(L2)lab2();});
+    $('lab2-preset').addEventListener('change',function(){var v=this.value;if(v==='custom')return;var q=v.split(',');$('lab2-v0').value=q[0];$('lab2-al').value=q[1];$('lab2-h').value=q[2];$('lab2-t').value=0;lab2();});
+
+    /* ---------- Trainer 1 ---------- */
+    function ri(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+    function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+    var Q1=null;
+    function close(u,v){return isFinite(u)&&Math.abs(u-v)<=1e-6+1e-3*Math.abs(v);}
+    function tr1New(){
+      var x0=ri(-12,12),v0=pick([-8,-6,-5,-4,-3,-2,2,3,4,5,6,8]),a=pick([-6,-4,-3,-2,-1,1,2,3,4,6]),t=ri(1,4);
+      Q1={x0:x0,v0:v0,a:a,t:t};
+      renderTex($('tr1-eq'),polyTex('x',x0,v0,a/2)+'\\quad(\\text{СІ})');
+      $('tr1-qv').textContent='vₓ у момент t = '+t+' с, м/с:';
+      $('tr1-qx').textContent='x у момент t = '+t+' с, м:';
+      ['tr1-x0','tr1-v0','tr1-a','tr1-v','tr1-x'].forEach(function(id){$(id).value='';});
+      $('tr1-res').textContent='';
+    }
+    $('tr1-new').addEventListener('click',tr1New);
+    $('tr1-check').addEventListener('click',function(){
+      if(!Q1){$('tr1-res').textContent='Спершу натисни «Нове рівняння».';return;}
+      var q=Q1,ok=[],bad=[];
+      [['tr1-x0',q.x0,'x₀'],['tr1-v0',q.v0,'v₀ₓ'],['tr1-a',q.a,'aₓ'],['tr1-v',q.v0+q.a*q.t,'vₓ('+q.t+')'],['tr1-x',q.x0+q.v0*q.t+q.a*q.t*q.t/2,'x('+q.t+')']].forEach(function(z){(close(num(z[0]),z[1])?ok:bad).push(z[2]);});
+      var s='Правильно: '+ok.length+' із 5.';
+      if(bad.length)s+=' Перевір: '+bad.join(', ')+'.'+(bad.indexOf('aₓ')>-1?' Підказка: aₓ — це подвоєний коефіцієнт при t².':'');
+      else s+=' Чудово!';
+      $('tr1-res').textContent=s;
+    });
+    $('tr1-show').addEventListener('click',function(){
+      if(!Q1)return;$('lab1-preset').value='custom';
+      $('lab1-x0').value=Q1.x0;$('lab1-v0').value=Q1.v0;$('lab1-a').value=Q1.a;
+      var ts=-Q1.v0/Q1.a;$('lab1-T').value=Math.max(4,Math.ceil(ts>0?ts*2:4));$('lab1-t').value=0;lab1();
+      $('lab1-eq').scrollIntoView({behavior:'smooth',block:'center'});
+    });
+
+    /* ---------- Trainer 2 ---------- */
+    var Q2=null;
+    function tr2New(){
+      var v0=pick([-10,-8,-6,-4,4,6,8,10]),a=pick([-4,-2,-1,1,2,4]),x0=ri(-10,10);
+      if(v0*a>0&&Math.random()<0.6)a=-a;
+      var T=pick([4,5,6,8]);
+      Q2={v0:v0,a:a,x0:x0,T:T};
+      var svg=newSvg($('tr2-plot'),720,330,'Графік проєкції швидкості для тренажера');
+      var tr={lo:0,hi:T,step:1},v1=v0+a*T;
+      var vr=niceRange(Math.min(v0,v1,0),Math.max(v0,v1,0),true);
+      if(vr.step<1)vr.step=1;
+      var p=panel(svg,0,0,720,330,tr,vr,'t, с','vₓ, м/с','');
+      poly(p,[[0,v0],[T,v1]],C.line,3.5);
+      $('tr2-cond').textContent='Початкова координата x₀ = '+fmt(x0)+' м. Знайди величини для перших '+T+' с руху.';
+      $('tr2-qs').textContent='Проєкція переміщення Sₓ за '+T+' с, м:';
+      $('tr2-ql').textContent='Шлях l за '+T+' с, м:';
+      ['tr2-v0','tr2-a','tr2-s','tr2-l'].forEach(function(id){$(id).value='';});
+      $('tr2-res').textContent='';
+    }
+    $('tr2-new').addEventListener('click',tr2New);
+    $('tr2-check').addEventListener('click',function(){
+      if(!Q2){$('tr2-res').textContent='Спершу натисни «Новий графік».';return;}
+      var q=Q2,k=kin(q.x0,q.v0,q.a),S=k.X(q.T)-q.x0,l=k.P(q.T),ok=[],bad=[];
+      [['tr2-v0',q.v0,'v₀ₓ'],['tr2-a',q.a,'aₓ'],['tr2-s',S,'Sₓ'],['tr2-l',l,'l']].forEach(function(z){(close(num(z[0]),z[1])?ok:bad).push(z[2]);});
+      var eqs='x = '+fmt(q.x0)+(q.v0<0?' − ':' + ')+Math.abs(q.v0)+'t'+(q.a<0?' − ':' + ')+fmt(Math.abs(q.a)/2)+'t²';
+      $('tr2-res').textContent='Правильно: '+ok.length+' із 4.'+(bad.length?' Перевір: '+bad.join(', ')+'.':' Чудово!')+' Рівняння руху: '+eqs+' (СІ).';
+    });
+
+    function init(){lab1();lab2();tr1New();tr2New();}
+    if(document.readyState==='complete')init();else window.addEventListener('load',init);
+  })();
+  </script>
+
+  <section class="card">
+    <h2><span class="num">13</span>Таблиця величин і одиниць СІ</h2>
+    <table>
+      <tr><th>Величина</th><th>Позначення</th><th>Одиниця СІ</th><th>Основна формула</th></tr>
+      <tr><td>Час</td><td>$t$</td><td>с</td><td>—</td></tr>
+      <tr><td>Координата</td><td>$x$, $y$</td><td>м</td><td>$x = x_0 + v_{0x}t + \tfrac{a_xt^2}{2}$</td></tr>
+      <tr><td>Проєкція переміщення</td><td>$S_x$</td><td>м</td><td>$S_x = v_{0x}t + \tfrac{a_xt^2}{2}$</td></tr>
+      <tr><td>Шлях</td><td>$l$</td><td>м</td><td>площа під графіком $v(t)$</td></tr>
+      <tr><td>Початкова швидкість</td><td>$\vec v_0$, $v_{0x}$</td><td>м/с</td><td>—</td></tr>
+      <tr><td>Миттєва швидкість</td><td>$\vec v$, $v_x$</td><td>м/с</td><td>$v_x = v_{0x} + a_xt$; $v_x = x'(t)$</td></tr>
+      <tr><td>Прискорення</td><td>$\vec a$, $a_x$</td><td>м/с²</td><td>$\vec a = \tfrac{\vec v - \vec v_0}{t}$; $a_x = v_x'(t)$</td></tr>
+      <tr><td>Прискорення вільного падіння</td><td>$\vec g$</td><td>м/с²</td><td>$g \approx 9{,}8$ м/с² (у задачах 10 м/с²)</td></tr>
+      <tr><td>Висота</td><td>$h$, $H$</td><td>м</td><td>$h = \tfrac{gt^2}{2}$; $H = \tfrac{v_0^2}{2g}$</td></tr>
+      <tr><td>Час підняття</td><td>$t_\text{п}$</td><td>с</td><td>$t_\text{п} = \tfrac{v_0\sin\alpha}{g}$</td></tr>
+      <tr><td>Дальність польоту</td><td>$l$</td><td>м</td><td>$l = \tfrac{v_0^2\sin2\alpha}{g}$; $l = v_0\sqrt{\tfrac{2h}{g}}$</td></tr>
+      <tr><td>Кут кидка</td><td>$\alpha$</td><td>рад (на практиці — градуси)</td><td>$v_{0x} = v_0\cos\alpha$, $v_{0y} = v_0\sin\alpha$</td></tr>
+      <tr><td>Кут швидкості з горизонтом</td><td>$\beta$</td><td>рад (градуси)</td><td>$\operatorname{tg}\beta = \tfrac{v_y}{v_x}$</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">14</span>Типові помилки</h2>
+    <div class="callout warn"><b>Типова помилка</b>«З рівняння $x = 5 + 4t - 2t^2$ прискорення дорівнює $-2$». Ні: коефіцієнт при $t^2$ — це $\tfrac{a_x}{2}$, тож $a_x = -4\ \tfrac{\text{м}}{\text{с}^2}$.</div>
+    <div class="callout warn"><b>Типова помилка</b>«Прискорення у верхній точці дорівнює нулю, бо тіло зупинилося». Ні: нулю дорівнює <strong>швидкість</strong> (при кидку під кутом — лише її вертикальна складова), а прискорення всюди дорівнює $\vec g$. Якби прискорення було нульовим, тіло так і зависло б у повітрі.</div>
+    <div class="callout warn"><b>Типова помилка</b>Шукати шлях за формулою $S_x = v_0t - \tfrac{at^2}{2}$, коли тіло за цей час розвернулося. Ця формула дає <strong>переміщення</strong>. Для шляху спочатку знайди момент зупинки $t = \tfrac{v_0}{a}$ і рахуй ділянки окремо (приклад 12).</div>
+    <div class="callout warn"><b>Типова помилка</b>Вважати, що важче тіло падає швидше. Без опору повітря всі тіла падають з однаковим прискоренням $g$. Також не залежать від маси траєкторія, час і дальність польоту по параболі.</div>
+    <div class="callout warn"><b>Типова помилка</b>Вважати, що при горизонтальному кидку більша швидкість — довший політ. Час польоту залежить лише від висоти: $t = \sqrt{2h/g}$. Від $v_0$ залежить дальність.</div>
+    <div class="callout warn"><b>Типова помилка</b>Плутати знак $g$. Якщо вісь вгору — $a_y = -g$; якщо вниз — $a_y = +g$. Обери вісь <strong>один раз</strong> на початку і тримайся її в усіх рівняннях.</div>
+    <div class="callout warn"><b>Типова помилка</b>Вважати, що $v \sim h$. Насправді $v = \sqrt{2gh}$: щоб швидкість падіння зросла вдвічі, висоту треба збільшити вчетверо. Так само при горизонтальному кидку: щоб дальність зросла вдвічі за тієї самої $v_0$, висоту треба збільшити в 4 рази.</div>
+    <div class="callout warn"><b>Типова помилка</b>Забувати час зупинок при обчисленні середньої швидкості за графіком (задача 1.11) або брати середнє $\tfrac{v_0+v}{2}$ для руху, який не є рівноприскореним (наприклад, кусково-рівномірного).</div>
+    <div class="callout warn"><b>Типова помилка</b>Застосовувати закон непарних чисел $1:3:5$, коли $v_0 \neq 0$. Він справджується лише для руху без початкової швидкості.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">15</span>Цікаві факти</h2>
+    <div class="callout fact"><b>Цікавий факт</b>2 серпня 1971 року астронавт «Аполлона-15» Девід Скотт на Місяці одночасно відпустив молоток і соколине перо. Оскільки на Місяці немає атмосфери, обидва предмети впали на поверхню одночасно — прямо в прямому телеефірі. Прискорення вільного падіння на Місяці близько $1{,}62\ \tfrac{\text{м}}{\text{с}^2}$, тобто приблизно в 6 разів менше, ніж на Землі.</div>
+    <div class="callout fact"><b>Цікавий факт</b>Значення $g$ на Землі не всюди однакове: на полюсах воно близько $9{,}83\ \tfrac{\text{м}}{\text{с}^2}$, на екваторі — близько $9{,}78\ \tfrac{\text{м}}{\text{с}^2}$. Причини — сплюснутість Землі та її добове обертання.</div>
+    <div class="callout fact"><b>Цікавий факт</b>Ідеальні $45^\circ$ — це результат для руху без опору повітря. У реальному спорті (метання ядра, диска, удар по м'ячу) повітря і висота точки кидка над землею змінюють оптимальний кут, і зазвичай він помітно менший за $45^\circ$.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">16</span>Ключовий висновок</h2>
+    <div class="callout remember"><b>Ключовий висновок</b>
+      1) Рівноприскорений рух повністю описують рівняння $v_x = v_{0x} + a_xt$ і $x = x_0 + v_{0x}t + \tfrac{a_xt^2}{2}$; без часу — $S_x = \tfrac{v_x^2 - v_{0x}^2}{2a_x}$.<br>
+      2) Графік $v_x(t)$ — похила пряма (нахил дорівнює $a_x$, площа під нею — переміщення); графік $x(t)$ — парабола (нахил дотичної дорівнює $v_x$).<br>
+      3) Вільне падіння і кидок угору — рівноприскорений рух з $|a| = g$; прискорення завжди напрямлене вниз, рух симетричний.<br>
+      4) Рух по параболі = рівномірний рух по горизонталі + рівноприскорений по вертикалі; час польоту визначає вертикаль, дальність — горизонталь.<br>
+      5) Без опору повітря маса не впливає ні на падіння, ні на траєкторію.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">17</span>Перевір себе</h2>
+    <p>Спершу відповідай сам, потім розгорни.</p>
+    <details><summary><span>1. Чим відрізняються середня і миттєва швидкості?</span></summary><div><p>Середня швидкість характеризує рух за весь проміжок часу ($v_\text{ср} = l/t$), а миттєва — у конкретний момент (у конкретній точці траєкторії). Миттєва швидкість напрямлена по дотичній до траєкторії, її показує спідометр.</p></div></details>
+    <details><summary><span>2. Тіло рухається з прискоренням $a_x = -3\ \tfrac{\text{м}}{\text{с}^2}$. Чи обов'язково воно гальмує?</span></summary><div><p>Ні. Гальмує, якщо $v_x &gt; 0$ (знаки різні). Якщо $v_x &lt; 0$, тіло розганяється проти осі $Ox$ (знаки однакові).</p></div></details>
+    <details><summary><span>3. Запиши рівняння швидкості для руху $x = 2 - 4t + t^2$ і знайди момент зупинки.</span></summary><div><p>$v_{0x} = -4\ \tfrac{\text{м}}{\text{с}}$, $a_x = 2\ \tfrac{\text{м}}{\text{с}^2}$, отже $v_x = -4 + 2t$. Тіло зупиниться при $t = 2$ с.</p></div></details>
+    <details><summary><span>4. Що означає площа під графіком $v_x(t)$? А нахил цього графіка?</span></summary><div><p>Площа — це переміщення (з урахуванням знака) або шлях (усі ділянки зі знаком «+»). Нахил — це проєкція прискорення $a_x$.</p></div></details>
+    <details><summary><span>5. Тіло починає рух зі спокою і за першу секунду проходить 2 м. Скільки воно пройде за третю секунду? А за перші три секунди?</span></summary><div><p>За законом непарних чисел за третю секунду — $5\cdot 2 = 10$ м. За три секунди — $9\cdot2 = 18$ м ($l \sim t^2$).</p></div></details>
+    <details><summary><span>6. Чому дорівнює прискорення тіла, кинутого вертикально вгору, у верхній точці траєкторії?</span></summary><div><p>$\vec g$, тобто $\approx 10\ \tfrac{\text{м}}{\text{с}^2}$, напрямлене вертикально вниз. Нулю дорівнює лише швидкість.</p></div></details>
+    <details><summary><span>7. Камінь вільно падає 4 с. З якої висоти він падав і яку швидкість мав у момент удару?</span></summary><div><p>$h = \tfrac{gt^2}{2} = \tfrac{10\cdot16}{2} = 80$ м; $v = gt = 40\ \tfrac{\text{м}}{\text{с}}$.</p></div></details>
+    <details><summary><span>8. Стрілу пустили вертикально вгору зі швидкістю $40\ \tfrac{\text{м}}{\text{с}}$. Коли вона досягне найвищої точки і на яку висоту підніметься?</span></summary><div><p>$t_\text{п} = \tfrac{v_0}{g} = 4$ с; $H = \tfrac{v_0^2}{2g} = \tfrac{1600}{20} = 80$ м.</p></div></details>
+    <details><summary><span>9. Який шлях пролітає м'яч, кинутий вертикально вгору, за останню секунду підняття?</span></summary><div><p>5 м — незалежно від початкової швидкості (якщо підйом триває понад 1 с). За симетрією це шлях за першу секунду вільного падіння: $\tfrac{g\cdot1^2}{2} = 5$ м.</p></div></details>
+    <details><summary><span>10. Чому дорівнюють швидкість і прискорення м'яча у верхній точці, якщо його кинули зі швидкістю $20\ \tfrac{\text{м}}{\text{с}}$ під кутом $60^\circ$ до горизонту?</span></summary><div><p>$v = v_0\cos60^\circ = 10\ \tfrac{\text{м}}{\text{с}}$; $a = g = 10\ \tfrac{\text{м}}{\text{с}^2}$.</p></div></details>
+    <details><summary><span>11. Під якими кутами можна кинути тіло, щоб воно влучило в ту саму ціль, що й тіло, кинуте під кутом $20^\circ$ з тією самою швидкістю?</span></summary><div><p>Під кутом $70^\circ$ (сума кутів $90^\circ$, $\sin40^\circ = \sin140^\circ$). Тобто кут нахилу дула треба збільшити на $50^\circ$.</p></div></details>
+    <details><summary><span>12. Два списи кинули під однаковим кутом, дальність першого вчетверо більша. У скільки разів відрізняються початкові швидкості?</span></summary><div><p>$l \sim v_0^2$, тож $\tfrac{v_{01}}{v_{02}} = \sqrt4 = 2$.</p></div></details>
+    <details><summary><span>13. М'яч кинули горизонтально зі швидкістю $15\ \tfrac{\text{м}}{\text{с}}$; він упав через 2 с. Знайди висоту, дальність і кінцеву швидкість.</span></summary><div><p>$h = \tfrac{gt^2}{2} = 20$ м; $l = v_0t = 30$ м; $v_y = gt = 20\ \tfrac{\text{м}}{\text{с}}$, $v = \sqrt{15^2 + 20^2} = 25\ \tfrac{\text{м}}{\text{с}}$; $\operatorname{tg}\beta = \tfrac{20}{15} = \tfrac43$.</p></div></details>
+    <details><summary><span>14. Камінь кинули під кутом $60^\circ$ до горизонту зі швидкістю $10\ \tfrac{\text{м}}{\text{с}}$. Чому дорівнює модуль середньої швидкості переміщення за весь політ?</span></summary><div><p>Переміщення горизонтальне і дорівнює $l$, а час — $t_\text{пол}$. Тому $v_{\text{ср}\,S} = \tfrac{l}{t_\text{пол}} = v_0\cos\alpha = 5\ \tfrac{\text{м}}{\text{с}}$.</p></div></details>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">18</span>Підсумковий тест</h2>
+    <p>20 завдань — від простих до складних. Обери відповідь або впиши число й натисни «Перевірити» під завданням. Кнопка внизу підрахує загальний результат. Завдання 20 — відкрите: порівняй свою відповідь зі зразком. Беремо $g = 10\ \tfrac{\text{м}}{\text{с}^2}$, опором повітря нехтуємо. Ключ і пояснення — після тесту.</p>
+
+    <div class="q" data-kind="one" data-key="Б"><p><strong>1.</strong> <em>(одна правильна)</em> Яка одиниця прискорення в СІ?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t1" value="А"> А) м/с</label></li>
+        <li><label><input type="radio" name="t1" value="Б"> Б) м/с²</label></li>
+        <li><label><input type="radio" name="t1" value="В"> В) м²/с</label></li>
+        <li><label><input type="radio" name="t1" value="Г"> Г) км/год</label></li></ul></div>
+
+    <div class="q" data-kind="one" data-key="Так"><p><strong>2.</strong> <em>(так / ні)</em> У трубці, з якої відкачали повітря, дробинка, корок і пташине перо, відпущені з однакової висоти, досягають дна одночасно.</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t2" value="Так"> Так</label></li>
+        <li><label><input type="radio" name="t2" value="Ні"> Ні</label></li></ul></div>
+
+    <div class="q" data-kind="one" data-key="В"><p><strong>3.</strong> <em>(одна правильна)</em> Як виглядає графік залежності $v_x(t)$ для рівноприскореного прямолінійного руху?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t3" value="А"> А) пряма, паралельна осі часу</label></li>
+        <li><label><input type="radio" name="t3" value="Б"> Б) парабола</label></li>
+        <li><label><input type="radio" name="t3" value="В"> В) похила пряма</label></li>
+        <li><label><input type="radio" name="t3" value="Г"> Г) гіпербола</label></li></ul></div>
+
+    <div class="q" data-kind="one" data-key="А"><p><strong>4.</strong> <em>(одна правильна)</em> Камінь кинули вертикально вгору. Яке його прискорення у верхній точці траєкторії?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t4" value="А"> А) $g$, напрямлене вниз</label></li>
+        <li><label><input type="radio" name="t4" value="Б"> Б) нуль</label></li>
+        <li><label><input type="radio" name="t4" value="В"> В) $g$, напрямлене вгору</label></li>
+        <li><label><input type="radio" name="t4" value="Г"> Г) залежить від маси каменя</label></li></ul></div>
+
+    <div class="q" data-kind="one" data-key="Ні"><p><strong>5.</strong> <em>(так / ні)</em> У верхній точці траєкторії тіла, кинутого під кутом $30^\circ$ до горизонту, його швидкість дорівнює нулю.</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t5" value="Так"> Так</label></li>
+        <li><label><input type="radio" name="t5" value="Ні"> Ні</label></li></ul></div>
+
+    <div class="q" data-kind="calc" data-key="10" data-tol="0.01"><p><strong>6.</strong> <em>(розрахункова)</em> Автомобіль рушає з місця з прискоренням $2\ \tfrac{\text{м}}{\text{с}^2}$. Яку швидкість (у м/с) він матиме через 5 с?</p>
+      <p><label>Відповідь, м/с: <input type="text" inputmode="decimal" name="t6"></label></p></div>
+
+    <div class="q" data-kind="one" data-key="Б"><p><strong>7.</strong> <em>(одна правильна)</em> Рух тіла задано рівнянням $x = 5 + 4t - 2t^2$ (СІ). Чому дорівнюють проєкції початкової швидкості та прискорення?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t7" value="А"> А) $v_{0x} = 4\ \tfrac{\text{м}}{\text{с}}$, $a_x = -2\ \tfrac{\text{м}}{\text{с}^2}$</label></li>
+        <li><label><input type="radio" name="t7" value="Б"> Б) $v_{0x} = 4\ \tfrac{\text{м}}{\text{с}}$, $a_x = -4\ \tfrac{\text{м}}{\text{с}^2}$</label></li>
+        <li><label><input type="radio" name="t7" value="В"> В) $v_{0x} = 5\ \tfrac{\text{м}}{\text{с}}$, $a_x = 4\ \tfrac{\text{м}}{\text{с}^2}$</label></li>
+        <li><label><input type="radio" name="t7" value="Г"> Г) $v_{0x} = 4\ \tfrac{\text{м}}{\text{с}}$, $a_x = 2\ \tfrac{\text{м}}{\text{с}^2}$</label></li></ul></div>
+
+    <div class="q" data-kind="multi" data-key="А,Б,Г"><p><strong>8.</strong> <em>(кілька правильних)</em> Тіло кинули горизонтально з певної висоти. Обери <strong>всі</strong> правильні твердження.</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="t8" value="А"> А) уздовж горизонтальної осі тіло рухається рівномірно</label></li>
+        <li><label><input type="checkbox" name="t8" value="Б"> Б) уздовж вертикальної осі тіло рухається рівноприскорено</label></li>
+        <li><label><input type="checkbox" name="t8" value="В"> В) що більша початкова швидкість, то довше тіло летить</label></li>
+        <li><label><input type="checkbox" name="t8" value="Г"> Г) траєкторія руху — парабола</label></li>
+        <li><label><input type="checkbox" name="t8" value="Д"> Д) модуль швидкості тіла під час польоту не змінюється</label></li></ul></div>
+
+    <div class="q" data-kind="calc" data-key="45" data-tol="0.01"><p><strong>9.</strong> <em>(розрахункова)</em> Камінь вільно падав без початкової швидкості протягом 3 с. З якої висоти (у метрах) він падав?</p>
+      <p><label>Відповідь, м: <input type="text" inputmode="decimal" name="t9"></label></p></div>
+
+    <div class="q" data-kind="match" data-key="Г,Б,В,А"><p><strong>10.</strong> <em>(на відповідність)</em> Установи відповідність між рівнянням руху тіла (СІ) та рівнянням проєкції його швидкості.</p>
+      <ul class="options">
+        <li>1) $x = 2 + 4t - t^2$ &nbsp; <select name="t10a" aria-label="Відповідь для 1"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option><option>Д</option></select></li>
+        <li>2) $x = 2 + 4t$ &nbsp; <select name="t10b" aria-label="Відповідь для 2"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option><option>Д</option></select></li>
+        <li>3) $x = 2 - 4t + t^2$ &nbsp; <select name="t10c" aria-label="Відповідь для 3"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option><option>Д</option></select></li>
+        <li>4) $x = 2 - 4t - t^2$ &nbsp; <select name="t10d" aria-label="Відповідь для 4"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option><option>Д</option></select></li></ul>
+      <p>А) $v_x = -4 - 2t$; &nbsp; Б) $v_x = 4$; &nbsp; В) $v_x = -4 + 2t$; &nbsp; Г) $v_x = 4 - 2t$; &nbsp; Д) $v_x = 2 - 2t$</p></div>
+
+    <div class="q" data-kind="match" data-key="Г,А,Б,В"><p><strong>11.</strong> <em>(послідовність)</em> Тіло кидають з поверхні землі з однаковою за модулем початковою швидкістю під різними кутами до горизонту. Розташуй кути в порядку <strong>зростання дальності польоту</strong>: А) $15^\circ$; Б) $30^\circ$; В) $45^\circ$; Г) $85^\circ$.</p>
+      <ul class="options">
+        <li>1-ше місце (найменша дальність): <select name="t11a" aria-label="Перше місце"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option></select></li>
+        <li>2-ге місце: <select name="t11b" aria-label="Друге місце"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option></select></li>
+        <li>3-тє місце: <select name="t11c" aria-label="Третє місце"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option></select></li>
+        <li>4-те місце (найбільша дальність): <select name="t11d" aria-label="Четверте місце"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option></select></li></ul></div>
+
+    <div class="q" data-kind="calc" data-key="40" data-tol="0.01"><p><strong>12.</strong> <em>(розрахункова)</em> Автомобіль, що їхав зі швидкістю 72 км/год, почав гальмувати з прискоренням, модуль якого $5\ \tfrac{\text{м}}{\text{с}^2}$. Знайди гальмівний шлях (у метрах).</p>
+      <p><label>Відповідь, м: <input type="text" inputmode="decimal" name="t12"></label></p></div>
+
+    <div class="q" data-kind="one" data-key="Б"><p><strong>13.</strong> <em>(одна правильна)</em> Частинка починає рухатися рівноприскорено зі стану спокою і за першу секунду проходить 2 м. Який шлях вона пройде за третю секунду?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t13" value="А"> А) 6 м</label></li>
+        <li><label><input type="radio" name="t13" value="Б"> Б) 10 м</label></li>
+        <li><label><input type="radio" name="t13" value="В"> В) 18 м</label></li>
+        <li><label><input type="radio" name="t13" value="Г"> Г) 9 м</label></li></ul></div>
+
+    <div class="q" data-kind="multi" data-key="А,Б,В"><p><strong>14.</strong> <em>(кілька правильних)</em> Камінь кинули вертикально вгору зі швидкістю $20\ \tfrac{\text{м}}{\text{с}}$. Обери <strong>всі</strong> правильні твердження.</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="t14" value="А"> А) час підйому дорівнює 2 с</label></li>
+        <li><label><input type="checkbox" name="t14" value="Б"> Б) максимальна висота підняття — 20 м</label></li>
+        <li><label><input type="checkbox" name="t14" value="В"> В) камінь повернеться в точку кидка через 4 с</label></li>
+        <li><label><input type="checkbox" name="t14" value="Г"> Г) у верхній точці прискорення каменя дорівнює нулю</label></li>
+        <li><label><input type="checkbox" name="t14" value="Д"> Д) через 3 с після кидка швидкість каменя $10\ \tfrac{\text{м}}{\text{с}}$ і напрямлена вгору</label></li></ul></div>
+
+    <div class="q" data-kind="match" data-key="А,В,Д,Г"><p><strong>15.</strong> <em>(на відповідність)</em> Камінь кинули горизонтально зі швидкістю $20\ \tfrac{\text{м}}{\text{с}}$ з висоти 45 м. Установи відповідність між величиною та її числовим значенням у СІ.</p>
+      <ul class="options">
+        <li>1) Час польоту &nbsp; <select name="t15a" aria-label="Відповідь для 1"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option><option>Д</option></select></li>
+        <li>2) Дальність польоту &nbsp; <select name="t15b" aria-label="Відповідь для 2"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option><option>Д</option></select></li>
+        <li>3) Кінцева швидкість &nbsp; <select name="t15c" aria-label="Відповідь для 3"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option><option>Д</option></select></li>
+        <li>4) Напрямок кінцевої швидкості ($\operatorname{tg}\beta$) &nbsp; <select name="t15d" aria-label="Відповідь для 4"><option value="">—</option><option>А</option><option>Б</option><option>В</option><option>Г</option><option>Д</option></select></li></ul>
+      <p>А) 3; &nbsp; Б) 1,8; &nbsp; В) 60; &nbsp; Г) 1,5; &nbsp; Д) $10\sqrt{13}$</p></div>
+
+    <div class="q" data-kind="calc" data-key="6" data-tol="0.01"><p><strong>16.</strong> <em>(розрахункова)</em> Рухаючись рівноприскорено зі стану спокою, тіло за п'яту секунду руху пройшло 18 м. Який шлях (у метрах) воно пройшло за другу секунду?</p>
+      <p><label>Відповідь, м: <input type="text" inputmode="decimal" name="t16"></label></p></div>
+
+    <div class="q" data-kind="one" data-key="А"><p><strong>17.</strong> <em>(одна правильна)</em> М'яч, підкинутий під кутом до горизонту, перебував у польоті 3 с (кидок і падіння на одному рівні). На яку максимальну висоту він піднявся?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t17" value="А"> А) 11,25 м</label></li>
+        <li><label><input type="radio" name="t17" value="Б"> Б) 45 м</label></li>
+        <li><label><input type="radio" name="t17" value="В"> В) 22,5 м</label></li>
+        <li><label><input type="radio" name="t17" value="Г"> Г) 15 м</label></li></ul></div>
+
+    <div class="q" data-kind="one" data-key="Так"><p><strong>18.</strong> <em>(так / ні)</em> Два тіла кинули з однаковою за модулем швидкістю під кутами $30^\circ$ і $60^\circ$ до горизонту. Їхні дальності польоту однакові, а максимальні висоти — різні.</p>
+      <ul class="options">
+        <li><label><input type="radio" name="t18" value="Так"> Так</label></li>
+        <li><label><input type="radio" name="t18" value="Ні"> Ні</label></li></ul></div>
+
+    <div class="q" data-kind="calc" data-key="40" data-tol="0.01"><p><strong>19.</strong> <em>(розрахункова)</em> Тіло кинули під кутом $30^\circ$ до горизонту, і воно перебувало в польоті 4 с. Знайди модуль початкової швидкості (у м/с).</p>
+      <p><label>Відповідь, м/с: <input type="text" inputmode="decimal" name="t19"></label></p></div>
+
+    <div class="q" data-kind="open"><p><strong>20.</strong> <em>(відкрита відповідь)</em> З рушниці, закріпленої горизонтально на висоті 1,8 м, вилітає куля. Тієї самої миті з тієї самої висоти просто падає (без початкової швидкості) друга така сама куля. Яка з них першою торкнеться землі? Поясни відповідь і обчисли час падіння. Опором повітря знехтуй, землю вважай рівною.</p>
+      <p><label>Твоя відповідь:<br><textarea name="t20" rows="5"></textarea></label></p>
+      <details><summary><span>Зразок відповіді</span></summary><div><p>Обидві кулі торкнуться землі <strong>одночасно</strong>. Рух по параболі можна розкласти на два незалежні рухи: рівномірний по горизонталі і вільне падіння по вертикалі. Вертикальний рух обох куль однаковий: початкова вертикальна швидкість дорівнює нулю, прискорення — $g$, висота — однакова. Горизонтальна швидкість першої кулі впливає лише на те, <em>де</em> вона впаде, а не <em>коли</em>. Час: $t = \sqrt{\tfrac{2h}{g}} = \sqrt{\tfrac{2\cdot1{,}8}{10}} = 0{,}6$ с.</p>
+          <p><em>Критерії (3 бали):</em> правильний висновок «одночасно» — 1 бал; пояснення через незалежність горизонтального і вертикального рухів — 1 бал; правильне обчислення $t = 0{,}6$ с — 1 бал.</p></div></details>
+    </div>
+
+    <p><button type="button" id="check-all">Перевірити весь тест</button></p>
+    <p id="score" aria-live="polite"></p>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">19</span>Ключ відповідей</h2>
+    <details><summary><span>Відповіді та пояснення</span></summary><div>
+        <p><strong>1. Б.</strong> Прискорення — зміна швидкості за одиницю часу: $\tfrac{\text{м/с}}{\text{с}} = \tfrac{\text{м}}{\text{с}^2}$. А і Г — одиниці швидкості; В — безглузда комбінація.</p>
+        <p><strong>2. Так.</strong> Без опору повітря всі тіла падають з однаковим прискоренням $g$, незалежно від маси й форми. У повітрі перо падає повільніше саме через опір.</p>
+        <p><strong>3. В.</strong> $v_x = v_{0x} + a_xt$ — лінійна функція. А — це рівномірний рух; Б — графік <em>координати</em> рівноприскореного руху (типова плутанина графіків).</p>
+        <p><strong>4. А.</strong> Сила тяжіння діє і у верхній точці, тому $a = g$ униз. Б — плутанина швидкості з прискоренням; Г — без опору повітря маса не впливає.</p>
+        <p><strong>5. Ні.</strong> У верхній точці $v_y = 0$, але $v_x = v_0\cos30^\circ \neq 0$. Швидкість дорівнює нулю лише при вертикальному кидку.</p>
+        <p><strong>6. 10 м/с.</strong> $v = v_0 + at = 0 + 2\cdot5 = 10\ \tfrac{\text{м}}{\text{с}}$. Типова помилка: 25 м/с — це шлях $\tfrac{at^2}{2}$ у метрах, а не швидкість.</p>
+        <p><strong>7. Б.</strong> Порівнюємо з $x = x_0 + v_{0x}t + \tfrac{a_x}{2}t^2$: $v_{0x} = 4$, $\tfrac{a_x}{2} = -2$, отже $a_x = -4$. А — забули множник 2; В — сплутали $x_0$ з $v_{0x}$; Г — загубили знак і множник.</p>
+        <p><strong>8. А, Б, Г.</strong> В — неправильно: час польоту $t = \sqrt{2h/g}$ від $v_0$ не залежить. Д — неправильно: вертикальна складова $v_y = gt$ зростає, отже зростає і модуль швидкості.</p>
+        <p><strong>9. 45 м.</strong> $h = \tfrac{gt^2}{2} = \tfrac{10\cdot9}{2} = 45$ м. Типові помилки: 90 м (забули поділити на 2), 30 м (обчислили $gt$ — це швидкість).</p>
+        <p><strong>10. 1 — Г, 2 — Б, 3 — В, 4 — А.</strong> Для кожного рівняння $v_{0x}$ — коефіцієнт при $t$, $a_x$ — подвоєний коефіцієнт при $t^2$: 1) $v_x = 4 - 2t$; 2) $v_x = 4$ (рівномірний рух); 3) $v_x = -4 + 2t$; 4) $v_x = -4 - 2t$. Д ($2 - 2t$) — пастка: тут $x_0 = 2$ сплутали з $v_{0x}$.</p>
+        <p><strong>11. Г → А → Б → В</strong> ($85^\circ$, $15^\circ$, $30^\circ$, $45^\circ$). $l \sim \sin2\alpha$: $\sin170^\circ \approx 0{,}17$; $\sin30^\circ = 0{,}5$; $\sin60^\circ \approx 0{,}87$; $\sin90^\circ = 1$. Пастка: «що більший кут, то далі» — ні, понад $45^\circ$ дальність зменшується, і майже вертикальний кидок дає найменшу дальність.</p>
+        <p><strong>12. 40 м.</strong> $v_0 = 72\ \tfrac{\text{км}}{\text{год}} = 20\ \tfrac{\text{м}}{\text{с}}$; $l = \tfrac{v_0^2}{2a} = \tfrac{400}{10} = 40$ м. Помилка «518,4 м» — не перевели км/год у м/с; «80 м» — забули двійку в знаменнику.</p>
+        <p><strong>13. Б.</strong> Закон непарних чисел: $l_1 : l_2 : l_3 = 1 : 3 : 5$, тож $l_3 = 5\cdot2 = 10$ м. В (18 м) — шлях за <em>три</em> секунди ($l \sim t^2$); А (6 м) — шлях за другу секунду; Г (9 м) — плутанина з квадратами: 9 — це відношення шляху за перші 3 с до шляху за першу секунду, а не самий шлях.</p>
+        <p><strong>14. А, Б, В.</strong> $t_\text{п} = \tfrac{v_0}{g} = 2$ с; $H = \tfrac{v_0^2}{2g} = 20$ м; $t_\text{пол} = 2t_\text{п} = 4$ с. Г — неправильно: прискорення завжди $g$. Д — неправильно: $v_y = 20 - 10\cdot3 = -10\ \tfrac{\text{м}}{\text{с}}$, тобто через 3 с камінь уже падає, і швидкість напрямлена <em>вниз</em>.</p>
+        <p><strong>15. 1 — А, 2 — В, 3 — Д, 4 — Г.</strong> $t = \sqrt{\tfrac{2h}{g}} = \sqrt9 = 3$ с; $l = v_0t = 60$ м; $v_y = gt = 30\ \tfrac{\text{м}}{\text{с}}$, $v = \sqrt{20^2 + 30^2} = \sqrt{1300} = 10\sqrt{13}\ \tfrac{\text{м}}{\text{с}}$; $\operatorname{tg}\beta = \tfrac{v_y}{v_x} = \tfrac{30}{20} = 1{,}5$. Б (1,8) — зайвий варіант, він не відповідає жодній із величин.</p>
+        <p><strong>16. 6 м.</strong> Шляхи за 2-гу і 5-ту секунди відносяться як $3 : 9$, тож $l_2 = \tfrac{18}{3} = 6$ м. (Інакше: $l_5 = \tfrac{a(2\cdot5 - 1)}{2} = 4{,}5a = 18$, $a = 4\ \tfrac{\text{м}}{\text{с}^2}$; $l_2 = \tfrac{3a}{2} = 6$ м.) Помилка «7,2 м» — неправильне співвідношення $2 : 5$.</p>
+        <p><strong>17. А.</strong> Підйом триває половину часу польоту, $t_\text{п} = 1{,}5$ с; з верхньої точки м'яч падає теж 1,5 с: $h = \tfrac{g t_\text{п}^2}{2} = \tfrac{10\cdot2{,}25}{2} = 11{,}25$ м (або $h = \tfrac{gt^2}{8}$). Б — підставили повний час у $\tfrac{gt^2}{2}$; В — у $\tfrac{gt^2}{4}$; Г — $g\cdot t_\text{п}$, це вертикальна швидкість, а не висота.</p>
+        <p><strong>18. Так.</strong> $l \sim \sin2\alpha$, а $\sin60^\circ = \sin120^\circ$ — дальності однакові. Висоти $h \sim \sin^2\alpha$ відрізняються втричі: $\tfrac{\sin^260^\circ}{\sin^230^\circ} = \tfrac{3/4}{1/4} = 3$.</p>
+        <p><strong>19. 40 м/с.</strong> $t_\text{пол} = \tfrac{2v_0\sin\alpha}{g}$, звідси $v_0 = \tfrac{gt}{2\sin\alpha} = \tfrac{10\cdot4}{2\cdot0{,}5} = 40\ \tfrac{\text{м}}{\text{с}}$. Помилка «20 м/с» — забули поділити на $\sin30^\circ$ (знайшли лише $v_{0y}$); «80 м/с» — забули двійку.</p>
+        <p><strong>20.</strong> Обидві кулі падають одночасно, $t = 0{,}6$ с (див. зразок під завданням).</p>
+    </div></details>
+  </section>
+
+  <script>
+    (function(){
+      function norm(s){return (s||'').trim().replace(',', '.').replace(/\s+/g,'');}
+      function check(q){
+        var kind=q.getAttribute('data-kind'), key=q.getAttribute('data-key'), ok=null;
+        if(kind==='one'){
+          var c=q.querySelector('input[type=radio]:checked'); if(!c) return null; ok=(c.value===key);
+        } else if(kind==='multi'){
+          var vals=[].map.call(q.querySelectorAll('input[type=checkbox]:checked'),function(i){return i.value}).sort().join(',');
+          if(!vals) return null; ok=(vals===key.split(',').sort().join(','));
+        } else if(kind==='calc'){
+          var v=norm(q.querySelector('input[type=text]').value); if(!v) return null;
+          var n=parseFloat(v), k=parseFloat(key), tol=parseFloat(q.getAttribute('data-tol')||'0.01');
+          ok=!isNaN(n)&&Math.abs(n-k)<=Math.abs(k)*tol+1e-9;
+        } else if(kind==='match'){
+          var sel=[].map.call(q.querySelectorAll('select'),function(s){return s.value});
+          if(sel.indexOf('')>-1) return null; ok=(sel.join(',')===key);
+        }
+        return ok;
+      }
+      function show(q,res){
+        var p=q.querySelector('p[data-res]');
+        if(res===null) p.textContent='Спершу дай відповідь.';
+        else p.textContent=res?'✔ Правильно!':'✘ Поки що ні. Спробуй ще раз або подивись ключ відповідей.';
+      }
+      var qs=[].slice.call(document.querySelectorAll('.q[data-kind]'));
+      qs.forEach(function(q){
+        if(q.getAttribute('data-kind')==='open') return;
+        var b=document.createElement('button'); b.type='button'; b.textContent='Перевірити';
+        var p=document.createElement('p'); p.setAttribute('data-res',''); p.setAttribute('aria-live','polite');
+        q.appendChild(b); q.appendChild(p);
+        b.addEventListener('click',function(){show(q,check(q))});
+      });
+      var all=document.getElementById('check-all');
+      if(all) all.addEventListener('click',function(){
+        var total=0,right=0,empty=0;
+        qs.forEach(function(q){
+          if(q.getAttribute('data-kind')==='open') return;
+          total++; var r=check(q); show(q,r);
+          if(r===true) right++; if(r===null) empty++;
+        });
+        document.getElementById('score').textContent='Результат: '+right+' із '+total+(empty?' (без відповіді: '+empty+')':'')+'. Завдання 20 перевір за зразком.';
+      });
+    })();
+  </script>
+
+  <footer>© Дарина Проволовська · 2026</footer>
+</main>
+<div class="tools" aria-label="Інструменти">
+  <button type="button" class="size" title="Розмір шрифту" aria-label="Збільшити шрифт">A+</button>
+  <button type="button" class="print" title="Друк" aria-label="Надрукувати конспект"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></button>
+  <button type="button" class="up" title="Вгору" aria-label="Повернутися вгору"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+</div>
+<script>
+  (function(){
+    var toc=document.querySelector('.toc');
+    document.querySelectorAll('main .card').forEach(function(s,i){
+      var h=s.querySelector('h2'); if(!h) return;
+      var n=h.querySelector('.num'), num=n?n.textContent.trim():'';
+      s.id=s.id||'r'+(i+1);
+      var a=document.createElement('a'); a.href='#'+s.id;
+      a.textContent=(num?num+' · ':'')+h.textContent.replace(num,'').trim();
+      toc.appendChild(a);
+    });
+    if(toc&&!toc.children.length) toc.remove();
+    var up=document.querySelector('.tools .up');
+    addEventListener('scroll',function(){up.classList.toggle('show',scrollY>400)},{passive:true});
+    up.onclick=function(){scrollTo({top:0,behavior:'smooth'})};
+    document.querySelector('.tools .print').onclick=function(){print()};
+    var sizes=['18px','20px','22px'],k=0,root=document.documentElement;
+    document.querySelector('.tools .size').onclick=function(){
+      k=(k+1)%sizes.length; root.style.setProperty('--fs',sizes[k]);
+      this.textContent=k===sizes.length-1?'A−':'A+';
+      this.setAttribute('aria-label',k===sizes.length-1?'Зменшити шрифт':'Збільшити шрифт');
+    };
+    var closed=[];
+    addEventListener('beforeprint',function(){closed=[].filter.call(document.querySelectorAll('details'),function(d){return !d.open});closed.forEach(function(d){d.open=true})});
+    addEventListener('afterprint',function(){closed.forEach(function(d){d.open=false})});
+  })();
+</script>
+</body>
+</html>
