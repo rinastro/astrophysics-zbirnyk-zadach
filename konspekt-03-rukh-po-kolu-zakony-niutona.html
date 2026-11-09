@@ -1,0 +1,1429 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Рух по колу. Закони Ньютона · Конспект</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+:root{--night:#081F44;--deep:#143660;--dive:#1F3F74;--sail:#4569AD;--lilac:#B9C8E6;--pink:#E679A6;--pink-ink:#B23E72;--pink-bg:#FCEFF5;--green:#587954;--green-bg:#EEF4EC;--blue-bg:#EDF2FB;--amber:#A44A0B;--amber-bg:#FFF5E8;--paper:#F5F7FB;--card:#FFFFFF;--ink:#13284A;--muted:#4A5D7E;--line:#DCE3EF;--fs:18px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:var(--fs)}
+body{margin:0;font-family:Inter,system-ui,sans-serif;font-size:1rem;line-height:1.7;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+a{color:var(--sail)}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;z-index:30;background:var(--night);color:#fff;padding:8px 14px;border-radius:8px}
+.skip:focus{left:8px}
+.hero{position:relative;overflow:hidden;color:#fff;padding:56px 20px 76px;background:radial-gradient(120% 140% at 85% 0%,var(--dive) 0%,var(--deep) 45%,var(--night) 100%)}
+.hero::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-46px;height:92px;background:var(--paper);border-radius:50% 50% 0 0/100% 100% 0 0}
+.hero-in,.page{max-width:780px;margin:0 auto}
+.eyebrow{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--lilac);color:var(--night);font:700 .72rem Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{margin:0;font-family:Manrope,sans-serif;line-height:1.2;letter-spacing:-.015em;color:var(--night)}
+.hero h1{margin:16px 0 14px;color:#fff;font-size:clamp(2rem,6vw,3.1rem)}
+.hero h1 em{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:500;color:#F6B3CF}
+.lead{margin:0;max-width:62ch;font-size:1.1rem;color:#E3EAF7}
+.page{padding:8px 20px 96px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.toc a{padding:7px 13px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink);font-size:.82rem;font-weight:500;text-decoration:none}
+.toc a:hover{border-color:var(--pink);color:var(--pink-ink)}
+.card{margin:0 0 24px;padding:30px 32px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 1px 2px rgba(8,31,68,.04),0 8px 24px rgba(8,31,68,.06);scroll-margin-top:16px}
+.card h2{display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:1.5rem}
+.num{flex:none;display:inline-grid;place-items:center;min-width:2.3rem;height:2.3rem;padding:0 8px;border-radius:12px;background:var(--pink-bg);color:var(--pink-ink);font:800 .9rem Manrope,sans-serif}
+.card h3{margin:28px 0 10px;padding-left:12px;border-left:4px solid var(--green);font-size:1.12rem}
+p{margin:0 0 14px;max-width:68ch}
+ul,ol{margin:0 0 14px;padding-left:1.3em}
+li{margin:4px 0}
+li::marker{color:var(--pink-ink)}
+strong{color:var(--night)}
+.formula{margin:20px 0 8px;padding:18px 20px;overflow-x:auto;text-align:center;font-size:1.15rem;background:var(--blue-bg);border:1px solid #CFDAF0;border-radius:16px}
+.where{margin-bottom:18px;font-size:.92rem;color:var(--muted)}
+.callout{position:relative;margin:20px 0;padding:16px 18px 16px 56px;border:1px solid;border-left-width:5px;border-radius:16px}
+.callout::before{position:absolute;left:18px;top:16px;font-size:1.2rem;line-height:1}
+.callout b:first-child{display:block;margin-bottom:4px;font-family:Manrope,sans-serif;font-size:.95rem}
+.callout.remember{background:var(--green-bg);border-color:#CFE0CB;border-left-color:var(--green)}
+.callout.remember::before{content:"📌"}
+.callout.remember b:first-child{color:var(--green)}
+.callout.info{background:var(--blue-bg);border-color:#D3DEF2;border-left-color:var(--sail)}
+.callout.info::before{content:"🧭"}
+.callout.info b:first-child{color:var(--sail)}
+.callout.fact{background:var(--pink-bg);border-color:#F5D3E2;border-left-color:var(--pink)}
+.callout.fact::before{content:"💡"}
+.callout.fact b:first-child{color:var(--pink-ink)}
+.callout.warn{background:var(--amber-bg);border-color:#F3DABA;border-left-color:var(--amber)}
+.callout.warn::before{content:"⚠️"}
+.callout.warn b:first-child{color:var(--amber)}
+table{width:100%;margin:18px 0;border-collapse:separate;border-spacing:0;font-size:.95rem;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{background:#E9EEF8;color:var(--night);font:700 .78rem Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+tr:nth-child(even) td{background:#FAFBFE}
+dl.terms{display:grid;gap:4px;margin:0}
+dl.terms dt{margin-top:8px;color:var(--green);font:700 1.02rem Manrope,sans-serif}
+dl.terms dd{margin:0;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+dl.terms dd:last-child{border-bottom:0}
+.q{margin:18px 0;padding:18px;background:#FBFCFE;border:1px solid var(--line);border-radius:16px}
+.q>p:first-child{margin-bottom:12px;font-weight:600}
+.options{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.options li{margin:0;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+details{margin:14px 0;background:var(--green-bg);border:1px solid #CFE0CB;border-radius:14px}
+summary{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;color:var(--green);font-weight:700;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"Показати";flex:none;padding:4px 10px;border-radius:999px;background:var(--green);color:#fff;font-size:.75rem;font-weight:600}
+details[open] summary::after{content:"Сховати"}
+details>div{padding:0 18px 16px;color:var(--ink)}
+.gap{display:inline-block;min-width:110px;margin:0 4px;border-bottom:2px dashed var(--pink)}
+main svg[role="img"]{display:block;max-width:100%;height:auto;margin:22px auto;overflow:visible}
+.katex svg{margin:0;max-width:none}
+.formula .katex-display{margin:0}
+footer{margin-top:40px;text-align:center;font-size:.85rem;color:var(--muted)}
+.tools{position:fixed;right:18px;bottom:18px;z-index:20;display:flex;flex-direction:column;gap:10px}
+.tools button{display:grid;padding:0;place-items:center;width:52px;height:52px;border:0;border-radius:50%;background:var(--night);color:#fff;font:800 .95rem Manrope,sans-serif;cursor:pointer;box-shadow:0 8px 22px rgba(8,31,68,.28);transition:transform .15s,background .2s,opacity .25s}
+.tools button:hover{background:var(--sail);transform:translateY(-2px)}
+.tools .print{background:var(--pink-ink)}
+.tools .print:hover{background:var(--pink)}
+.tools .up{opacity:0;pointer-events:none}
+.tools .up.show{opacity:1;pointer-events:auto}
+@media (max-width:600px){:root{--fs:17px}.hero{padding:40px 16px 64px}.page{padding:4px 14px 96px}.card{padding:22px 18px;border-radius:18px}.card h2{font-size:1.3rem}table{display:block;overflow-x:auto}.tools{right:12px;bottom:12px}.tools button{width:46px;height:46px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{html{font-size:11.5pt!important}body{background:#fff}.hero{padding:0 0 10px;background:none;color:var(--night)}.hero::after,.tools,.toc,.skip{display:none}.hero h1{color:var(--night)}.hero h1 em{color:var(--pink-ink)}.eyebrow{border:1px solid var(--lilac);background:none}.lead{color:var(--muted)}.page{padding:0}.card{padding:14px 16px;box-shadow:none;border-color:#C9D3E5}.q,.callout,.formula,table,details,main svg[role="img"],h2,h3{break-inside:avoid}h2,h3{break-after:avoid}@page{margin:14mm}.q{padding:10px 12px}.options{gap:4px}.options li{padding:4px 10px}summary::after{display:none}a{color:inherit}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">До змісту</a>
+<header class="hero"><div class="hero-in">
+<span class="eyebrow">Фізика · Підготовка до НМТ · Заняття 3</span>
+<h1>Рух по колу і закони Ньютона <em>сила змінює швидкість</em></h1>
+<p class="lead">Швидкість тіла змінюється лише тоді, коли на нього діє нескомпенсована сила — неважливо, чи змінюється модуль швидкості, чи тільки її напрям. Рух по колу — найяскравіший приклад: модуль швидкості сталий, а прискорення й рівнодійна весь час напрямлені до центра.</p>
+</div></header>
+<main class="page" id="main">
+<nav class="toc" aria-label="Зміст"></nav>
+
+<section class="card">
+<h2><span class="num">01</span>Маршрут і результати заняття</h2>
+<p>Заняття поєднує дві теми НМТ: <strong>Тема 4. Рівномірний рух по колу</strong> і <strong>Тема 5. Закони Ньютона</strong>. На минулому занятті ти описував рух під дією сили тяжіння (рівноприскорений рух, рух по вертикалі, рух по параболі), тобто вже вмієш відповідати на питання, <em>як</em> змінюється швидкість. Сьогодні відповідаємо на питання <em>чому</em> вона змінюється. На наступному занятті ці знання знадобляться для закону всесвітнього тяжіння, супутників, сили пружності, ваги й невагомості.</p>
+<h3>Маршрут заняття (120 хв, онлайн)</h3>
+<table>
+<tr><th>Час</th><th>Етап</th><th>Що робиш ти</th></tr>
+<tr><td>0–10 хв</td><td>Розминка</td><td>Згадуєш рівняння рівноприскореного руху: три швидкі питання з минулої теми.</td></tr>
+<tr><td>10–35 хв</td><td>Кінематика руху по колу</td><td>Виводиш зв'язки між $T$, $n$, $\omega$, $v$, $a_{\text{дц}}$ (розділи 04–06).</td></tr>
+<tr><td>35–55 хв</td><td>Задачі: рух по колу</td><td>Розв'язуєш задачі розділу 07 разом із групою.</td></tr>
+<tr><td>55–60 хв</td><td>Пауза</td><td>—</td></tr>
+<tr><td>60–85 хв</td><td>Закони Ньютона</td><td>Формулюєш три закони, вчишся алгоритму розв'язування задач динаміки (розділи 09–13).</td></tr>
+<tr><td>85–112 хв</td><td>Задачі: динаміка</td><td>Розв'язуєш задачі розділу 14.</td></tr>
+<tr><td>112–120 хв</td><td>Вихідний квиток</td><td>Самостійно розв'язуєш нову задачу (розділ 22).</td></tr>
+</table>
+<h3>Чого ти навчишся (ауткам) і як це перевірити</h3>
+<table>
+<tr><th>Ауткам</th><th>Сталося</th><th>Частково</th><th>Не сталося</th></tr>
+<tr><td><strong>1. Обчислює</strong> $T$, $n$, $\omega$, $v$ і $a_{\text{дц}}$ для тіла, що рівномірно рухається по колу, за будь-якими двома відомими величинами.</td><td>Вибирає формулу зв'язку, переводить об/хв, см, хв у СІ, дає відповідь з одиницею.</td><td>Формули правильні, але плутає радіус і діаметр або забуває перевести одиниці.</td><td>Поки підставляє числа у випадкову формулу, не бачачи зв'язку між величинами.</td></tr>
+<tr><td><strong>2. Пояснює,</strong> чому рівномірний рух по колу — рух із прискоренням, і показує на рисунку напрями $\vec v$, $\vec a$ і рівнодійної.</td><td>Пояснює: змінюється напрям $\vec v$, отже $\vec a\neq 0$; $\vec a$ і $\sum\vec F$ — до центра, $\vec v$ — по дотичній.</td><td>Правильно малює вектори, але не може пояснити, чому прискорення існує.</td><td>Поки вважає, що при сталому модулі швидкості прискорення немає.</td></tr>
+<tr><td><strong>3. Знаходить</strong> прискорення або невідому силу для тіла під дією кількох сил, записуючи II закон Ньютона у векторній формі та в проєкціях.</td><td>Малює всі сили, вибирає осі, записує проєкції зі знаками, отримує правильне число.</td><td>Записує рівняння, але губить знак проєкції або одну із сил.</td><td>Поки підставляє в $F=ma$ одну силу замість рівнодійної.</td></tr>
+<tr><td><strong>4. Розрізняє</strong> сили взаємодії (III закон) і сили, що зрівноважують одна одну, обґрунтовуючи, до яких тіл вони прикладені.</td><td>Для кожної пари сил називає обидва тіла та пояснює, чому пара з III закону не зрівноважується.</td><td>Знає, що сили рівні й протилежні, але плутається, до чого вони прикладені.</td><td>Поки вважає, що сили з III закону «гасять» одна одну.</td></tr>
+</table>
+<div class="callout remember"><b>Ауткам заняття</b>В результаті цього заняття учні знаходять напрям і модуль рівнодійної для тіла, що рухається прямолінійно або по колу, та обчислюють за нею прискорення (і навпаки — силу за прискоренням).<br><strong>Як побачу:</strong> вихідний квиток у розділі 22 — задача про карусель, якої на занятті не було (3–5 хв), з критеріями «сталося / частково / не сталося».</div>
+</section>
+
+<section class="card">
+<h2><span class="num">02</span>Головна ідея уроку</h2>
+<p>Сьогоднішні теми — окремі випадки двох великих ідей фізики.</p>
+<div class="callout remember"><b>Велика ідея 1. Взаємодії та сили</b>Тіла змінюють швидкість лише внаслідок взаємодії з іншими тілами. Мірою взаємодії є сила, а відповіддю тіла на силу — прискорення: $\vec a = \sum\vec F / m$. Рух по колу — не «особливий» рух: це рух, коли рівнодійна весь час перпендикулярна до швидкості, тому змінює лише її напрям.</div>
+<div class="callout info"><b>Велика ідея 2. Ті самі закони діють усюди</b>Закони Ньютона однакові для кульки на нитці, автомобіля на повороті, Місяця на орбіті та електрона в магнітному полі (поки швидкості малі порівняно зі швидкістю світла). Саме тому на наступному занятті ми застосуємо ті самі формули до супутників.</div>
+<h3>Як сьогоднішнє спирається на вже вивчене</h3>
+<ul>
+<li><strong>Прискорення</strong> $\vec a = \dfrac{\vec v-\vec v_0}{t}$ ти вже знаєш з теми 2. Нове: вектор $\vec v$ може змінюватися і тоді, коли його модуль сталий — якщо змінюється напрям.</li>
+<li><strong>Рух по параболі</strong> (тема 3) — це рух під дією сталої сили тяжіння, кут між $\vec v$ і силою змінюється. Рух по колу — інший окремий випадок: сила весь час під кутом $90^\circ$ до швидкості.</li>
+<li><strong>Миттєва швидкість</strong> напрямлена по дотичній до траєкторії — саме тому при русі по колу $\vec v$ весь час «повертається».</li>
+</ul>
+<p><strong>Якісно:</strong> щоб тіло рухалося по колу, щось має весь час «тягнути» його до центра (нитка, тертя, тяжіння). <strong>Кількісно:</strong> рівнодійна дорівнює $m\dfrac{v^2}{R}$ і напрямлена до центра.</p>
+</section>
+
+<section class="card">
+<h2><span class="num">03</span>Словничок</h2>
+<dl class="terms">
+<dt>Радіан</dt><dd>Кут, для якого довжина дуги дорівнює радіусу кола. Повний оберт — $2\pi$ рад, $180^\circ = \pi$ рад, $1$ рад $\approx 57{,}3^\circ$.</dd>
+<dt>Період обертання $T$</dt><dd>Час одного повного оберту. Чим швидше обертається тіло, тим менший період.</dd>
+<dt>Частота обертання $n$ ($\nu$)</dt><dd>Скільки обертів тіло робить за одну секунду. Частота й період — взаємно обернені: $n = 1/T$.</dd>
+<dt>Кутова швидкість $\omega$</dt><dd>Наскільки швидко повертається радіус, проведений до тіла: кут повороту за одну секунду (у радіанах).</dd>
+<dt>Доцентрове прискорення</dt><dd>Прискорення, що змінює лише напрям швидкості й напрямлене до центра кола.</dd>
+<dt>Інертність</dt><dd>Властивість тіла «опиратися» зміні швидкості: що інертніше тіло, то менше прискорення воно отримує від тієї самої сили. Мірою інертності є маса.</dd>
+<dt>Рівнодійна</dt><dd>Одна сила, яка діє на тіло так само, як усі прикладені сили разом; дорівнює їхній векторній сумі.</dd>
+<dt>Інерціальна система відліку (ІСВ)</dt><dd>Система відліку, в якій тіло без нескомпенсованих сил зберігає швидкість. З хорошою точністю — система, пов'язана із Землею.</dd>
+</dl>
+</section>
+
+<section class="card">
+<h2><span class="num">04</span>Кінематика рівномірного руху по колу</h2>
+<p><strong>Рівномірний криволінійний рух</strong> — рух зі сталою <em>за модулем</em> швидкістю. Найпростіший приклад — рівномірний рух по колу. Нехай тіло, рухаючись по колу радіуса $R$, перемістилося з положення 1 у положення 2 за час $t$.</p>
+<svg width="600" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Рух тіла по колу: швидкість по дотичній, прискорення до центра, кут повороту і дуга">
+<defs>
+<marker id="m4b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker>
+<marker id="m4p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker>
+</defs>
+<circle cx="220" cy="190" r="140" fill="none" stroke="#13284A" stroke-width="2"/>
+<path d="M220,190 L220,50 M220,190 L327,100" stroke="#4569AD" stroke-width="1.8" stroke-dasharray="6 5" fill="none"/>
+<path d="M220,50 A140,140 0 0 1 327,100" stroke="#E679A6" stroke-width="5" fill="none"/>
+<path d="M220,150 A40,40 0 0 1 251,164" stroke="#13284A" stroke-width="1.5" fill="none"/>
+<line x1="220" y1="50" x2="305" y2="50" stroke="#4569AD" stroke-width="3" marker-end="url(#m4b)"/>
+<line x1="327" y1="100" x2="380" y2="163" stroke="#4569AD" stroke-width="3" marker-end="url(#m4b)"/>
+<line x1="220" y1="50" x2="220" y2="112" stroke="#E679A6" stroke-width="3" marker-end="url(#m4p)"/>
+<line x1="327" y1="100" x2="281" y2="139" stroke="#E679A6" stroke-width="3" marker-end="url(#m4p)"/>
+<circle cx="220" cy="50" r="7" fill="#081F44"/><circle cx="327" cy="100" r="7" fill="#081F44"/><circle cx="220" cy="190" r="4" fill="#081F44"/>
+<text x="196" y="40" font-family="Inter" font-size="16" fill="#13284A">1</text>
+<text x="338" y="94" font-family="Inter" font-size="16" fill="#13284A">2</text>
+<text x="292" y="40" font-family="Inter" font-size="16" fill="#4569AD">v₁</text>
+<text x="386" y="170" font-family="Inter" font-size="16" fill="#4569AD">v₂</text>
+<text x="226" y="100" font-family="Inter" font-size="16" fill="#E679A6">a₁</text>
+<text x="266" y="134" font-family="Inter" font-size="16" fill="#E679A6">a₂</text>
+<text x="262" y="88" font-family="Inter" font-size="16" fill="#E679A6">l</text>
+<text x="198" y="130" font-family="Inter" font-size="16" fill="#13284A">R</text>
+<text x="230" y="146" font-family="Inter" font-size="16" fill="#13284A">φ</text>
+<text x="205" y="212" font-family="Inter" font-size="15" fill="#13284A">O</text>
+<text x="400" y="250" font-family="Inter" font-size="15" fill="#13284A">v — по дотичній</text>
+<text x="400" y="275" font-family="Inter" font-size="15" fill="#13284A">a — до центра O</text>
+<text x="400" y="300" font-family="Inter" font-size="15" fill="#13284A">l = Rφ (φ у рад)</text>
+</svg>
+<p>На рисунку: швидкості $\vec v_1$ і $\vec v_2$ однакові за модулем, але різні за напрямом; прискорення $\vec a_1$, $\vec a_2$ напрямлені до центра $O$.</p>
+
+<h3>Кут повороту і шлях</h3>
+<p><strong>Кут повороту</strong> $\varphi$ — кут, на який за час $t$ повертається радіус, проведений до тіла. У СІ кут вимірюють у радіанах: $180^\circ = \pi$ рад. <strong>Шлях</strong> $l$ — довжина дуги, яку пройшло тіло за час $t$.</p>
+<div class="formula">$$l = R\varphi$$</div>
+<p class="where">де $l$ — довжина дуги, шлях (м); $R$ — радіус кола (м); $\varphi$ — кут повороту (рад). Застосовуй лише з кутом у <strong>радіанах</strong>; для градусів спершу переведи: $\varphi = \dfrac{\pi\,\varphi^\circ}{180^\circ}$.</p>
+<div class="formula">$$l = 2\pi R$$</div>
+<p class="where">де $l$ — шлях за один повний оберт, тобто за період (м); $R$ — радіус (м). Це окремий випадок $l=R\varphi$ при $\varphi = 2\pi$.</p>
+
+<h3>Період і частота</h3>
+<div class="formula">$$T = \frac{t}{N},\qquad T = \frac{1}{n}$$</div>
+<p class="where">де $T$ — період обертання (с); $t$ — час спостереження (с); $N$ — кількість повних обертів за цей час (безрозмірна); $n$ — частота обертання (с⁻¹). Справедливо для <strong>рівномірного</strong> обертання.</p>
+<div class="formula">$$n = \frac{N}{t},\qquad n = \frac{1}{T}$$</div>
+<p class="where">де $n$ (або $\nu$) — частота обертання, кількість обертів за секунду (с⁻¹ = 1/с). Частоту в «обертах за хвилину» переводь діленням на 60: $600$ об/хв $= 10$ с⁻¹.</p>
+
+<h3>Кутова швидкість</h3>
+<p><strong>Кутова швидкість</strong> $\omega$ чисельно дорівнює відношенню кута повороту до часу, за який радіус повернувся на цей кут.</p>
+<div class="formula">$$\omega = \frac{\varphi}{t},\qquad \omega = \frac{2\pi}{T},\qquad \omega = 2\pi n$$</div>
+<p class="where">де $\omega$ — кутова швидкість (рад/с); $\varphi$ — кут повороту (рад); $t$ — час (с); $T$ — період (с); $n$ — частота (с⁻¹). Друга і третя форми — це перша, записана для одного оберту ($\varphi = 2\pi$, $t = T$).</p>
+<div class="callout remember"><b>Запам'ятай</b>Усі точки твердого тіла, що обертається, мають <strong>однакові</strong> $\omega$, $T$ і $n$. А лінійна швидкість і доцентрове прискорення зростають пропорційно відстані до осі.</div>
+
+<h3>Лінійна швидкість</h3>
+<p><strong>Лінійна швидкість</strong> чисельно дорівнює шляху, що проходить тіло за одиницю часу. Вона напрямлена <strong>по дотичній</strong> до кола в кожній точці: миттєва швидкість — це границя $\vec v = \lim\limits_{\Delta t\to 0}\dfrac{\Delta\vec r}{\Delta t}$, а маленьке переміщення $\Delta\vec r$ на колі «прилягає» до дотичної.</p>
+<div class="formula">$$v = \frac{l}{t} = \frac{2\pi R}{T},\qquad v = 2\pi R n,\qquad v = \omega R$$</div>
+<p class="where">де $v$ — модуль лінійної швидкості (м/с); $l$ — шлях (м); $t$ — час (с); $R$ — радіус кола або відстань від точки до осі обертання (м); $T$ — період (с); $n$ — частота (с⁻¹); $\omega$ — кутова швидкість (рад/с). Формула $v=\omega R$ — <strong>зв'язок лінійної та кутової швидкостей</strong>, працює лише з $\omega$ у рад/с.</p>
+<div class="callout info"><b>Довідка · як вивести $v=\omega R$</b>Ділимо $l = R\varphi$ на час: $\dfrac{l}{t} = R\dfrac{\varphi}{t}$, тобто $v = R\omega$. Одна формула — і всі зв'язки між кутовими та лінійними величинами випливають з неї.</div>
+
+<h3>Той самий період у коливаннях</h3>
+<p>Якщо подивитися на тіло, що рівномірно обертається, «збоку», його тінь рухається вперед-назад — це коливання. Тому для коливань використовують ті самі поняття періоду й частоти.</p>
+<div class="formula">$$T = \frac{t}{N} = \frac{1}{\nu},\qquad \nu = \frac{N}{t} = \frac{1}{T}$$</div>
+<p class="where">де $T$ — період коливань, час одного повного коливання (с); $N$ — кількість повних коливань за час $t$; $\nu$ — частота коливань (Гц = с⁻¹).</p>
+<div class="formula">$$l_0 = 4A$$</div>
+<p class="where">де $l_0$ — шлях за один період коливань (м); $A$ — амплітуда, найбільше відхилення від положення рівноваги (м). За період тіло проходить від рівноваги до краю, назад, до іншого краю і знову назад — чотири амплітуди.</p>
+<div class="callout warn"><b>Типова помилка</b>Шлях за період коливань — $4A$, а не $2A$. А переміщення за повний період дорівнює нулю — тіло повернулося в початкову точку.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">05</span>Доцентрове прискорення</h2>
+<p>При рівномірному русі по колу модуль швидкості сталий, але напрям вектора $\vec v$ змінюється щомиті. Отже, $\Delta\vec v \neq 0$ і прискорення існує. Воно напрямлене до центра кола і називається <strong>доцентровим</strong>.</p>
+<h3>Звідки береться $v^2/R$ (виведення)</h3>
+<ol>
+<li>За малий час $\Delta t$ радіус повертається на малий кут $\Delta\varphi$, і на той самий кут повертається вектор швидкості (бо $\vec v \perp R$).</li>
+<li>Трикутник із векторів $\vec v_1$, $\vec v_2$, $\Delta\vec v$ — рівнобедрений з кутом $\Delta\varphi$ при вершині, тому $|\Delta\vec v| \approx v\,\Delta\varphi$.</li>
+<li>Ділимо на $\Delta t$: $a = \dfrac{|\Delta \vec v|}{\Delta t} = v\dfrac{\Delta\varphi}{\Delta t} = v\omega$.</li>
+<li>Підставляємо $\omega = v/R$: $a = \dfrac{v^2}{R}$. Вектор $\Delta\vec v$ при малому $\Delta\varphi$ перпендикулярний до $\vec v$, тобто напрямлений до центра.</li>
+</ol>
+<div class="formula">$$a_{\text{дц}} = \frac{v^2}{R} = \omega^2 R = 4\pi^2 n^2 R = \frac{4\pi^2 R}{T^2}$$</div>
+<p class="where">де $a_{\text{дц}}$ — модуль доцентрового прискорення (м/с²); $v$ — лінійна швидкість (м/с); $R$ — радіус кола (м); $\omega$ — кутова швидкість (рад/с); $n$ — частота (с⁻¹); $T$ — період (с). Усі чотири форми рівноцінні; вибирай ту, у якій відомі величини. Справедливо для <strong>рівномірного</strong> руху по колу.</p>
+<div class="callout remember"><b>Запам'ятай</b>Напрям доцентрового прискорення весь час змінюється, тому <strong>рівномірний рух по колу не є рівноприскореним</strong>. Формули $v = v_0 + at$, $s = v_0t + at^2/2$ тут не застосовуються.</div>
+<h3>Як $a_{\text{дц}}$ залежить від радіуса — залежить від того, що сталe</h3>
+<table>
+<tr><th>Що стале</th><th>Зручна формула</th><th>Залежність від $R$</th><th>Приклад</th></tr>
+<tr><td>$\omega$ (або $T$, $n$)</td><td>$a = \omega^2 R$</td><td>$a \sim R$ — пряма пропорційність</td><td>Точки одного диска, Землі, карусельки</td></tr>
+<tr><td>$v$</td><td>$a = v^2/R$</td><td>$a \sim 1/R$ — обернена пропорційність</td><td>Автомобіль з однаковою швидкістю на поворотах різної кривизни; точки на пасі, що з'єднує два шківи</td></tr>
+</table>
+<div class="callout warn"><b>Типова помилка</b>«Зі збільшенням радіуса доцентрове прискорення зменшується» — це правда лише при сталій лінійній швидкості. Для точок одного диска (сталa $\omega$) — навпаки, зростає.</div>
+<div class="callout fact"><b>Цікавий факт</b>Ти теж рухаєшся по колу разом з обертанням Землі. На екваторі швидкість становить близько $465$ м/с (більше за швидкість звуку!), а доцентрове прискорення — лише $\approx 0{,}034$ м/с², тобто приблизно в 300 разів менше за $g$. Тому ми його не відчуваємо.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">06</span>Кочення колеса і додавання швидкостей</h2>
+<p>Кожна точка колеса, що котиться, бере участь у двох рухах одночасно: <strong>поступальному</strong> разом із центром (швидкість $\vec v$) і <strong>обертальному</strong> навколо центра (швидкість $\vec v_{\text{об}}$, модуль $v_{\text{об}} = \omega R$, напрям — по дотичній). За правилом додавання швидкостей:</p>
+<div class="formula">$$\vec u = \vec v + \vec v_{\text{об}}$$</div>
+<p class="where">де $\vec u$ — швидкість точки відносно землі (м/с); $\vec v$ — швидкість центра колеса (м/с); $\vec v_{\text{об}}$ — швидкість точки в обертанні навколо центра (м/с).</p>
+<p><strong>Без проковзування</strong> нижня точка колеса нерухома відносно дороги: $u_{\text{низ}} = v - \omega R = 0$, отже $\omega R = v$. Звідси:</p>
+<ul>
+<li>нижня точка: $u = 0$;</li>
+<li>верхня точка: $u = v + v = 2v$;</li>
+<li>точки на рівні центра (спереду й ззаду): $u = \sqrt{v^2+v^2} = \sqrt2\,v$;</li>
+<li>центр: $u = v$.</li>
+</ul>
+<div class="callout info"><b>Довідка · швидкий спосіб</b>У кожен момент колесо ніби повертається навколо точки дотику з дорогою. Тому швидкість будь-якої точки $u = \omega d = v\dfrac{d}{R}$, де $d$ — відстань від цієї точки до точки дотику. Для верхньої точки $d = 2R \Rightarrow u = 2v$; для точки на рівні центра $d = \sqrt2R \Rightarrow u = \sqrt2 v$.</div>
+<div class="callout warn"><b>Типова помилка</b>Вважати, що всі точки обода рухаються відносно землі зі швидкістю $v$. Відносно <em>центра</em> — так, зі швидкістю $\omega R = v$; відносно <em>землі</em> — від $0$ до $2v$.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">07</span>Задачі на занятті · рух по колу</h2>
+<p>Розбираємо разом, з детальним розв'язком. Тут і далі $g = 10$ м/с², якщо не сказано інше.</p>
+
+<h3>Задача 1 · Приклад 1 · графік $a(t)$ за траєкторією</h3>
+<p>Матеріальна точка рівномірно рухається по траєкторії, зображеній на рисунку (ділянка 1 — пряма завдовжки $4R$, далі півколо радіуса $2R$ до точки 2, далі півколо радіуса $R$ до точки 3). Укажіть графік залежності модуля доцентрового прискорення від часу.</p>
+<svg width="300" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Траєкторія на клітчастому полі: відрізок, велике півколо і мале півколо">
+<path d="M30,30V240M60,30V240M90,30V240M120,30V240M150,30V240M180,30V240M210,30V240M240,30V240M270,30V240M30,30H270M30,60H270M30,90H270M30,120H270M30,150H270M30,180H270M30,210H270M30,240H270" stroke="#B9C8E6" stroke-width="1" fill="none"/>
+<path d="M60,210 L60,90 A60,60 0 0 1 180,90 A30,30 0 0 0 240,90" stroke="#081F44" stroke-width="3.5" fill="none"/>
+<circle cx="60" cy="210" r="11" fill="#FFFFFF" stroke="#E679A6" stroke-width="2"/><text x="55" y="215" font-family="Inter" font-size="14" fill="#13284A">1</text>
+<circle cx="120" cy="30" r="11" fill="#FFFFFF" stroke="#E679A6" stroke-width="2"/><text x="115" y="35" font-family="Inter" font-size="14" fill="#13284A">2</text>
+<circle cx="240" cy="90" r="11" fill="#FFFFFF" stroke="#E679A6" stroke-width="2"/><text x="235" y="95" font-family="Inter" font-size="14" fill="#13284A">3</text>
+</svg>
+<svg width="640" viewBox="0 0 640 175" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Чотири варіанти графіка доцентрового прискорення від часу А, Б, В, Г">
+<g font-family="Inter" font-size="14" fill="#13284A">
+<text x="80" y="16">А</text><text x="240" y="16">Б</text><text x="400" y="16">В</text><text x="560" y="16">Г</text>
+<text x="6" y="34">a</text><text x="166" y="34">a</text><text x="326" y="34">a</text><text x="486" y="34">a</text>
+<text x="140" y="160">t</text><text x="300" y="160">t</text><text x="460" y="160">t</text><text x="620" y="160">t</text>
+</g>
+<g stroke="#13284A" stroke-width="1.6" fill="none">
+<path d="M20,30V140H150M180,30V140H310M340,30V140H470M500,30V140H630"/>
+</g>
+<g stroke="#4569AD" stroke-width="3" fill="none">
+<path d="M20,140H52V100H102V60H127V140"/>
+<path d="M180,140H212V60H262V100H287V140"/>
+<path d="M340,140H372V100H397V60H447V140"/>
+<path d="M500,140H532V60H557V100H607V140"/>
+</g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p><strong>Ділянка 1</strong> (пряма): рух рівномірний прямолінійний, $a_1 = 0$. Час: $\Delta t_1 = \dfrac{4R}{v}$.</p>
+<p><strong>Ділянка 2</strong> (півколо радіуса $R_2 = 2R$): $a_2 = \dfrac{v^2}{2R}$; час — половина періоду: $\Delta t_2 = \dfrac{T_2}{2} = \dfrac{2\pi R_2}{2v} = \dfrac{2\pi R}{v} \approx \dfrac{6{,}3R}{v}$.</p>
+<p><strong>Ділянка 3</strong> (півколо радіуса $R_3 = R$): $a_3 = \dfrac{v^2}{R} = 2a_2$; час: $\Delta t_3 = \dfrac{\pi R}{v} = \dfrac{\Delta t_2}{2}$.</p>
+<p>Отже, графік: спочатку нуль, потім «низька» довга сходинка, потім удвічі вища і вдвічі коротша. Це графік <strong>А</strong>.</p>
+<p><strong>Відповідь: А.</strong></p></div>
+
+<h3>Задача 2 · Приклад 2 · шків (на відповідність)</h3>
+<p>Шків діаметром 30 см робить 600 обертів за 0,5 хв. Установіть відповідність між фізичною величиною та її числовим значенням у СІ.</p>
+<table>
+<tr><th>Величина</th><th>Значення</th></tr>
+<tr><td>1 Період обертання</td><td>А $6\pi$</td></tr>
+<tr><td>2 Кутова швидкість</td><td>Б $40\pi$</td></tr>
+<tr><td>3 Лінійна швидкість</td><td>В $24\pi^2$</td></tr>
+<tr><td>4 Доцентрове прискорення</td><td>Г $0{,}05$</td></tr>
+<tr><td></td><td>Д $240\pi^2$</td></tr>
+</table>
+<div class="callout info"><b>Розв'язання</b>
+<p>Дано: $d = 0{,}3$ м, $R = 0{,}15$ м, $N = 600$, $t = 30$ с.</p>
+<p>1) $T = \dfrac{t}{N} = \dfrac{30}{600} = 0{,}05$ с — <strong>Г</strong>.</p>
+<p>2) $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{0{,}05} = 40\pi$ рад/с — <strong>Б</strong>.</p>
+<p>3) $v = \omega R = 40\pi\cdot 0{,}15 = 6\pi$ м/с — <strong>А</strong>.</p>
+<p>4) $a = \omega^2 R = 1600\pi^2\cdot 0{,}15 = 240\pi^2$ м/с² — <strong>Д</strong>. (Дистрактор В $= 24\pi^2$ отримують ті, хто бере $R = d$ і помиляється на порядок.)</p>
+<p><strong>Відповідь: 1–Г, 2–Б, 3–А, 4–Д.</strong></p></div>
+
+<h3>Задача 3 · Приклад 3 · циліндр між дошками</h3>
+<p>Циліндр радіусом 10 см розташований між двома дошками, що рухаються в протилежних напрямках зі швидкостями $3$ м/с і $2$ м/с. Обчисліть швидкість поступального руху циліндра та кутову швидкість його обертання. Проковзування немає.</p>
+<svg width="460" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Циліндр між верхньою і нижньою дошками, що рухаються в протилежні боки">
+<defs>
+<marker id="m7b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker>
+<marker id="m7p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker>
+</defs>
+<rect x="90" y="40" width="300" height="20" fill="#B9C8E6" stroke="#13284A" stroke-width="1.5"/>
+<rect x="90" y="240" width="300" height="20" fill="#B9C8E6" stroke="#13284A" stroke-width="1.5"/>
+<circle cx="240" cy="150" r="90" fill="#B9C8E6" fill-opacity="0.45" stroke="#13284A" stroke-width="2"/>
+<line x1="270" y1="25" x2="380" y2="25" stroke="#4569AD" stroke-width="3" marker-end="url(#m7b)"/>
+<line x1="230" y1="282" x2="140" y2="282" stroke="#4569AD" stroke-width="3" marker-end="url(#m7b)"/>
+<line x1="240" y1="150" x2="285" y2="150" stroke="#E679A6" stroke-width="3" marker-end="url(#m7p)"/>
+<path d="M190,95 A70,70 0 0 1 300,110" stroke="#587954" stroke-width="2.5" fill="none" marker-end="url(#m7b)"/>
+<line x1="240" y1="60" x2="240" y2="240" stroke="#4569AD" stroke-width="1.5" stroke-dasharray="5 4"/>
+<circle cx="240" cy="60" r="5" fill="#081F44"/><circle cx="240" cy="240" r="5" fill="#081F44"/><circle cx="240" cy="150" r="4" fill="#081F44"/>
+<g font-family="Inter" font-size="15" fill="#13284A">
+<text x="222" y="80">A</text><text x="222" y="232">B</text><text x="222" y="168">O</text>
+<text x="385" y="30">v₁ = 3 м/с</text><text x="20" y="287">v₂ = 2 м/с</text><text x="290" y="145">v</text><text x="305" y="104">ω</text>
+</g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>Кожна точка циліндра бере участь у поступальному русі зі швидкістю $v$ і в обертальному зі швидкістю $v_{\text{об}} = \omega R$. Без проковзування швидкості точок дотику збігаються зі швидкостями дощок.</p>
+<p>У точці A (вгорі) швидкості додаються: $v_1 = \omega R + v$.</p>
+<p>У точці B (внизу) обертальна швидкість напрямлена протилежно поступальній: $v_2 = \omega R - v$.</p>
+<p>Додаємо рівняння: $v_1 + v_2 = 2\omega R \Rightarrow \omega = \dfrac{v_1+v_2}{2R} = \dfrac{5}{0{,}2} = 25$ рад/с.</p>
+<p>Віднімаємо: $v_1 - v_2 = 2v \Rightarrow v = \dfrac{v_1 - v_2}{2} = 0{,}5$ м/с (у бік швидшої дошки).</p>
+<p><strong>Відповідь: $0{,}5$ м/с; $25$ рад/с.</strong></p></div>
+
+<h3>Задача 4 · Приклад 4 (ЗНО-2007) · два диски</h3>
+<p>Два однакові диски обертаються навколо своїх осей. Точки на краю першого диска мають у 4 рази менше доцентрове (нормальне) прискорення, ніж точки на краю другого. Знайдіть відношення періоду обертання першого диска до періоду обертання другого.</p>
+<table><tr><th>А</th><th>Б</th><th>В</th><th>Г</th></tr><tr><td>4</td><td>2</td><td>0,5</td><td>16</td></tr></table>
+<div class="callout info"><b>Розв'язання</b>
+<p>Диски однакові: $R_1 = R_2 = R$; $a_2 = 4a_1$.</p>
+<p>$a = \omega^2 R = \dfrac{4\pi^2 R}{T^2} \Rightarrow T = 2\pi\sqrt{\dfrac{R}{a}}$.</p>
+<p>$\dfrac{T_1}{T_2} = \sqrt{\dfrac{a_2}{a_1}} = \sqrt4 = 2$. Менше прискорення — повільніше обертання, тобто більший період.</p>
+<p><strong>Відповідь: Б.</strong> (А = 4 — забули корінь; В = 0,5 — перевернули відношення.)</p></div>
+
+<h3>Задача 5 · Приклад 5 · півоберту</h3>
+<p>Тіло, рухаючись рівномірно по колу радіуса $R$, за час $t$ перемістилося з точки 1 у точку 2 (півколо). Установіть відповідність між характеристиками руху та математичними виразами для їх обчислення.</p>
+<svg width="400" viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тіло проходить півколо від точки 1 до точки 2">
+<defs>
+<marker id="m7c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#081F44"/></marker>
+<marker id="m7d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker>
+</defs>
+<path d="M80,160 A120,120 0 0 1 320,160" stroke="#081F44" stroke-width="3" fill="none" marker-end="url(#m7c)"/>
+<line x1="80" y1="168" x2="318" y2="168" stroke="#E679A6" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#m7d)"/>
+<line x1="200" y1="160" x2="320" y2="160" stroke="#4569AD" stroke-width="1.6"/>
+<circle cx="200" cy="160" r="4" fill="#081F44"/><circle cx="80" cy="160" r="5" fill="#081F44"/><circle cx="320" cy="160" r="5" fill="#081F44"/>
+<g font-family="Inter" font-size="15" fill="#13284A"><text x="62" y="165">1</text><text x="330" y="165">2</text><text x="255" y="153">R</text><text x="170" y="186" fill="#E679A6">s = 2R</text></g>
+</svg>
+<table>
+<tr><th>Характеристика</th><th>Вираз</th></tr>
+<tr><td>1 Модуль переміщення</td><td>А $\pi/t$</td></tr>
+<tr><td>2 Шлях</td><td>Б $\pi R/t$</td></tr>
+<tr><td>3 Швидкість</td><td>В $\pi R$</td></tr>
+<tr><td>4 Кутова швидкість</td><td>Г $2R$</td></tr>
+<tr><td></td><td>Д $\pi R^2$</td></tr>
+</table>
+<div class="callout info"><b>Розв'язання</b>
+<p>1) Переміщення — відрізок від 1 до 2, тобто діаметр: $s = 2R$ — <strong>Г</strong>.</p>
+<p>2) Шлях — довжина півкола: $l = \pi R$ (з $l = R\varphi$, $\varphi = \pi$) — <strong>В</strong>.</p>
+<p>3) $v = \dfrac{l}{t} = \dfrac{\pi R}{t}$ — <strong>Б</strong>.</p>
+<p>4) $\omega = \dfrac{\varphi}{t} = \dfrac{\pi}{t}$ — <strong>А</strong>. (Д $= \pi R^2$ — площа круга, пастка.)</p>
+<p><strong>Відповідь: 1–Г, 2–В, 3–Б, 4–А.</strong></p></div>
+
+<h3>Задача 6 · Приклад 6 (ЗНО-2011) · точки колеса</h3>
+<p>Машина рухається прямолінійно зі швидкістю $v$. Установіть відповідність між модулями миттєвих швидкостей точок колеса відносно землі та буквами, якими позначено точки на рисунку. Кут $\alpha = 30^\circ$. Колесо не проковзує.</p>
+<svg width="420" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Колесо з позначеними точками А внизу, Г вгорі, Б зліва, В зліва вгорі під кутом 30 градусів і Д діаметрально протилежно В">
+<defs><marker id="m7e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker></defs>
+<circle cx="200" cy="160" r="120" fill="none" stroke="#13284A" stroke-width="2.5"/>
+<line x1="40" y1="280" x2="380" y2="280" stroke="#13284A" stroke-width="2.5"/>
+<path d="M50,280l-12,14M80,280l-12,14M110,280l-12,14M140,280l-12,14M170,280l-12,14M200,280l-12,14M230,280l-12,14M260,280l-12,14M290,280l-12,14M320,280l-12,14M350,280l-12,14" stroke="#4569AD" stroke-width="1.3"/>
+<g stroke="#4569AD" stroke-width="1.5" stroke-dasharray="6 4"><line x1="200" y1="40" x2="200" y2="280"/><line x1="80" y1="160" x2="200" y2="160"/><line x1="96" y1="100" x2="304" y2="220"/></g>
+<line x1="200" y1="160" x2="275" y2="160" stroke="#E679A6" stroke-width="3" marker-end="url(#m7e)"/>
+<path d="M150,160 A50,50 0 0 1 157,135" stroke="#13284A" stroke-width="1.5" fill="none"/>
+<g fill="#081F44"><circle cx="200" cy="280" r="5"/><circle cx="200" cy="40" r="5"/><circle cx="80" cy="160" r="5"/><circle cx="96" cy="100" r="5"/><circle cx="304" cy="220" r="5"/></g>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="180" y="304">А</text><text x="208" y="36">Г</text><text x="58" y="165">Б</text><text x="72" y="96">В</text><text x="312" y="236">Д</text><text x="125" y="152">α</text><text x="262" y="152" fill="#E679A6">v</text></g>
+</svg>
+<p>1 — $0$; 2 — $v$; 3 — $2v$; 4 — $\sqrt3\,v$.</p>
+<div class="callout info"><b>Розв'язання</b>
+<p>Швидкість точки відносно землі $\vec u = \vec v_0 + \vec v$, де $v_0 = \omega R = v$ (без проковзування).</p>
+<p><strong>Точка А</strong> (внизу): $\vec v_0$ протилежна $\vec v$, $u = v - v = 0$ — <strong>1–А</strong>.</p>
+<p><strong>Точка Г</strong> (вгорі): $\vec v_0$ співнапрямлена з $\vec v$, $u = 2v$ — <strong>3–Г</strong>.</p>
+<p><strong>Точка Б</strong>: $\vec v_0 \perp \vec v$, $u = \sqrt{2}\,v$ — такого варіанта немає.</p>
+<p><strong>Точка В</strong>: кут між $\vec v_0$ і $\vec v$ дорівнює $90^\circ - \alpha = 60^\circ$, за теоремою косинусів (сума векторів) $u = \sqrt{v^2 + v^2 + 2v^2\cos60^\circ} = \sqrt3\,v$ — <strong>4–В</strong>.</p>
+<p><strong>Точка Д</strong> (діаметрально протилежна В): кут між $\vec v_0$ і $\vec v$ дорівнює $90^\circ + \alpha = 120^\circ$: $u = \sqrt{v^2 + v^2 + 2v^2\cos120^\circ} = v$ — <strong>2–Д</strong>.</p>
+<p>Перевірка швидким способом: відстань від Д до точки дотику дорівнює $R$, тому $u = v$; від В — $\sqrt3R$, тому $u = \sqrt3 v$.</p>
+<p><strong>Відповідь: 1–А, 2–Д, 3–Г, 4–В.</strong></p></div>
+
+<h3>Задачі 4.1–4.3 · графіки залежності від відстані до осі</h3>
+<p><strong>4.1.</strong> Диск рівномірно обертається навколо закріпленої осі. Укажіть графік залежності $\omega(r)$, де $r$ — відстань від осі до точки диска.<br><strong>4.2.</strong> Те саме для $v(r)$.<br><strong>4.3.</strong> Те саме для $a(r)$ (вісь проходить через центр диска).</p>
+<svg width="640" viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Варіанти графіків: А нульовий, Б сталий, В пряма пропорційність, Г обернена пропорційність">
+<g font-family="Inter" font-size="14" fill="#13284A">
+<text x="80" y="16">А</text><text x="240" y="16">Б</text><text x="400" y="16">В</text><text x="560" y="16">Г</text>
+<text x="4" y="34">y</text><text x="164" y="34">y</text><text x="324" y="34">y</text><text x="484" y="34">y</text>
+<text x="140" y="160">r</text><text x="300" y="160">r</text><text x="460" y="160">r</text><text x="620" y="160">r</text>
+<text x="10" y="156">0</text><text x="170" y="156">0</text><text x="330" y="156">0</text><text x="490" y="156">0</text>
+</g>
+<path d="M20,30V140H150M180,30V140H310M340,30V140H470M500,30V140H630" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<g stroke="#4569AD" stroke-width="3.5" fill="none">
+<path d="M20,139H140"/><path d="M180,80H300"/><path d="M340,140L455,45"/><path d="M510,40 Q530,125 620,132"/>
+</g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>Усі точки диска мають однакову $\omega$ — графік $\omega(r)$ горизонтальний: <strong>4.1 — Б</strong>.</p>
+<p>$v = \omega r$, $\omega = \text{const}$ — пряма пропорційність: <strong>4.2 — В</strong>.</p>
+<p>$a = \omega^2 r$ — теж пряма пропорційність: <strong>4.3 — В</strong>. Варіант Г ($a\sim 1/r$) був би правильним лише при сталій $v$.</p></div>
+
+<h3>Задача 4.18 · стрілки годинника (на відповідність)</h3>
+<p>Хвилинна стрілка годинника вдвічі довша за годинну. Установіть відповідність між фізичною величиною та її числовим значенням.</p>
+<table>
+<tr><th>Величина</th><th>Значення</th></tr>
+<tr><td>1 Відношення періодів $T_{\text{х}}/T_{\text{г}}$</td><td>А $1/12$</td></tr>
+<tr><td>2 Відношення лінійних швидкостей кінців $v_{\text{х}}/v_{\text{г}}$</td><td>Б $288$</td></tr>
+<tr><td>3 Відношення доцентрових прискорень $a_{\text{х}}/a_{\text{г}}$</td><td>В $24$</td></tr>
+<tr><td>4 Відношення кутових швидкостей $\omega_{\text{х}}/\omega_{\text{г}}$</td><td>Г $1/2$</td></tr>
+<tr><td></td><td>Д $12$</td></tr>
+</table>
+<div class="callout info"><b>Розв'язання</b>
+<p>$T_{\text{х}} = 1$ год, $T_{\text{г}} = 12$ год; $R_{\text{х}} = 2R_{\text{г}}$.</p>
+<p>1) $T_{\text{х}}/T_{\text{г}} = 1/12$ — <strong>А</strong>.</p>
+<p>4) $\omega \sim 1/T$: $\omega_{\text{х}}/\omega_{\text{г}} = 12$ — <strong>Д</strong>.</p>
+<p>2) $v = \omega R$: $\dfrac{v_{\text{х}}}{v_{\text{г}}} = 12\cdot 2 = 24$ — <strong>В</strong>.</p>
+<p>3) $a = \omega^2 R$: $\dfrac{a_{\text{х}}}{a_{\text{г}}} = 12^2\cdot 2 = 288$ — <strong>Б</strong>.</p>
+<p><strong>Відповідь: 1–А, 2–В, 3–Б, 4–Д.</strong></p></div>
+
+<h3>Задача 4.24 · камінь на мотузці (вертикальна площина)</h3>
+<p>Хлопчик обертає камінь, прив'язаний до мотузки завдовжки 0,5 м, у вертикальній площині, роблячи щосекунди 3 оберти. На яку висоту над точкою відриву підніметься камінь, якщо мотузка обірветься в ту мить, коли швидкість камінця напрямлена вертикально вгору? Опором повітря знехтуйте.</p>
+<div class="callout info"><b>Розв'язання</b>
+<p>Дано: $R = 0{,}5$ м, $n = 3$ с⁻¹.</p>
+<p>Після відриву камінь рухається як тіло, кинуте вертикально вгору (тема 2) з початковою швидкістю, що дорівнює лінійній швидкості в момент відриву: $v_0 = 2\pi R n = 2\pi\cdot0{,}5\cdot3 = 3\pi \approx 9{,}42$ м/с.</p>
+<p>У верхній точці $v = 0$, тому з формули без часу: $h = \dfrac{v_0^2}{2g} = \dfrac{4\pi^2R^2n^2}{2g} = \dfrac{2\pi^2R^2n^2}{g}$.</p>
+<p>$h = \dfrac{2\cdot 9{,}87\cdot 0{,}25\cdot 9}{10} \approx 4{,}44$ м.</p>
+<p><strong>Відповідь: ≈ 4,4 м.</strong></p></div>
+
+<h3>Задача 4.41* · камінець над м'ячем</h3>
+<p>Якої найменшої швидкості потрібно надати камінцю, щоб він перелетів через м'яч радіусом 10 см, ледь торкнувшись його у верхній точці траєкторії? Камінець і м'яч лежать на поверхні Землі. Розмірами камінця знехтуйте. Вважайте, що $\sqrt5 = 2{,}24$.</p>
+<svg width="500" viewBox="0 0 500 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Параболічна траєкторія камінця, вершина якої торкається верхньої точки м'яча">
+<defs><marker id="m7f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker></defs>
+<line x1="30" y1="260" x2="470" y2="260" stroke="#13284A" stroke-width="2.5"/>
+<circle cx="230" cy="210" r="50" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<path d="M60,260 Q230,60 400,260" stroke="#4569AD" stroke-width="2.5" stroke-dasharray="7 5" fill="none"/>
+<line x1="60" y1="260" x2="112" y2="199" stroke="#E679A6" stroke-width="3" marker-end="url(#m7f)"/>
+<path d="M100,260 A40,40 0 0 0 86,229" stroke="#13284A" stroke-width="1.5" fill="none"/>
+<line x1="230" y1="210" x2="270" y2="180" stroke="#13284A" stroke-width="1.5"/>
+<path d="M230,160H440M430,160V260M422,160H438M422,260H438" stroke="#587954" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+<circle cx="60" cy="260" r="5" fill="#081F44"/><circle cx="230" cy="160" r="4" fill="#E679A6"/>
+<g font-family="Inter" font-size="15" fill="#13284A"><text x="92" y="190">v₀</text><text x="104" y="250">α</text><text x="248" y="204">R</text><text x="436" y="150">h = 2R</text><text x="240" y="150">вершина</text></g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>1) Щоб камінець не врізався в м'яч, поблизу вершини параболи траєкторія не повинна бути «крутішою» за поверхню м'яча. У вершині камінець рухається горизонтально зі швидкістю $v_x = v_0\cos\alpha$, а його прискорення $g$ напрямлене вниз, тобто до центра кривизни. Отже, тут він на мить рухається по колу радіуса $\rho$, для якого $g = \dfrac{v_x^2}{\rho}$. Мінімальна швидкість відповідає випадку $\rho = R$: $v_0^2\cos^2\alpha = gR$.</p>
+<p>2) Максимальна висота підйому дорівнює діаметру м'яча: $h = \dfrac{v_0^2\sin^2\alpha}{2g} = 2R \Rightarrow v_0^2\sin^2\alpha = 4gR$.</p>
+<p>3) Додаємо, бо $\sin^2\alpha + \cos^2\alpha = 1$: $v_0^2 = 5gR$, $v_0 = \sqrt{5gR} = \sqrt{5\cdot10\cdot0{,}1} = \sqrt5 \approx 2{,}24$ м/с.</p>
+<p><strong>Відповідь: ≈ 2,24 м/с.</strong> Тут доцентрове прискорення з'являється там, де кола немає, — це і є «застосування до нового».</p></div>
+</section>
+
+<section class="card">
+<h2><span class="num">08</span>Домашнє завдання · рух по колу</h2>
+<p>Розв'яжи самостійно, а потім перевір відповідь. Підказки в розгорнутій відповіді — коротко, щоб ти міг(-ла) знайти власну помилку.</p>
+
+<div class="q"><p><strong>4.4.</strong> Виберіть правильне твердження: при рівномірному русі по колу вектор…</p>
+<ul class="options"><li>А) прискорення напрямлений по дотичній до траєкторії</li><li>Б) прискорення не змінюється із часом</li><li>В) лінійної швидкості напрямлений до центра кола</li><li>Г) лінійної швидкості напрямлений по дотичній до траєкторії</li></ul></div>
+<details><summary>Відповідь 4.4</summary><div><p><strong>Г.</strong> Швидкість — по дотичній, прискорення — до центра; вектор прискорення змінює напрям, тому Б хибне.</p></div></details>
+
+<div class="q"><p><strong>4.5.</strong> Кут між векторами лінійної швидкості та прискорення при рівномірному русі по колу становить…</p>
+<ul class="options"><li>А) $90^\circ$</li><li>Б) $45^\circ$</li><li>В) $30^\circ$</li><li>Г) $0^\circ$</li></ul></div>
+<details><summary>Відповідь 4.5</summary><div><p><strong>А.</strong> Дотична до кола перпендикулярна до радіуса, а прискорення напрямлене вздовж радіуса.</p></div></details>
+
+<div class="q"><p><strong>4.14.</strong> Установіть відповідність між фізичною величиною та її одиницею в СІ.</p>
+<table><tr><th>Величина</th><th>Одиниця</th></tr><tr><td>1 Кутова швидкість</td><td>А рад/с</td></tr><tr><td>2 Лінійна швидкість</td><td>Б с</td></tr><tr><td>3 Період обертання</td><td>В 1/с</td></tr><tr><td>4 Доцентрове прискорення</td><td>Г м/с</td></tr><tr><td></td><td>Д м/с²</td></tr></table></div>
+<details><summary>Відповідь 4.14</summary><div><p><strong>1–А, 2–Г, 3–Б, 4–Д.</strong> 1/с — одиниця частоти (зайвий варіант).</p></div></details>
+
+<div class="q"><p><strong>4.15.</strong> Установіть відповідність між фізичною величиною та виразом, за яким її можна обчислити.</p>
+<table><tr><th>Величина</th><th>Вираз</th></tr><tr><td>1 Кутова швидкість</td><td>А $1/n$</td></tr><tr><td>2 Лінійна швидкість</td><td>Б $4\pi^2Rn^2$</td></tr><tr><td>3 Доцентрове прискорення</td><td>В $2\pi Rn$</td></tr><tr><td>4 Період обертання</td><td>Г $N/t$</td></tr><tr><td></td><td>Д $2\pi n$</td></tr></table></div>
+<details><summary>Відповідь 4.15</summary><div><p><strong>1–Д, 2–В, 3–Б, 4–А.</strong> $N/t$ — частота (зайвий варіант).</p></div></details>
+
+<div class="q"><p><strong>4.16.</strong> Маховик радіусом 0,5 м робить за 2 хв 240 обертів. Установіть відповідність між фізичною величиною та її числовим значенням у СІ.</p>
+<table><tr><th>Величина</th><th>Значення</th></tr><tr><td>1 Період</td><td>А $8\pi^2$</td></tr><tr><td>2 Лінійна швидкість</td><td>Б $39{,}4$</td></tr><tr><td>3 Доцентрове прискорення</td><td>В $2\pi$</td></tr><tr><td>4 Кутова швидкість</td><td>Г $4\pi$</td></tr><tr><td></td><td>Д $0{,}5$</td></tr></table></div>
+<details><summary>Відповідь 4.16</summary><div><p>$n = 240/120 = 2$ с⁻¹; $T = 0{,}5$ с; $\omega = 2\pi n = 4\pi$ рад/с; $v = \omega R = 2\pi$ м/с; $a = \omega^2R = 16\pi^2\cdot0{,}5 = 8\pi^2 \approx 79$ м/с².</p><p><strong>1–Д, 2–В, 3–А, 4–Г.</strong> Пастка Б $=39{,}4\approx 4\pi^2$ — вдвічі менше за правильне.</p></div></details>
+
+<div class="q"><p><strong>4.17.</strong> Довжина лопатей вентилятора — 20 см, лінійна швидкість кінців лопатей — 2,5 м/с. Установіть відповідність між фізичною величиною та її числовим значенням у СІ.</p>
+<table><tr><th>Величина</th><th>Значення</th></tr><tr><td>1 Період</td><td>А $12{,}5$</td></tr><tr><td>2 Частота</td><td>Б $0{,}16\pi$</td></tr><tr><td>3 Кутова швидкість</td><td>В $6{,}25/\pi$</td></tr><tr><td>4 Доцентрове прискорення</td><td>Г $31{,}25$</td></tr><tr><td></td><td>Д $2{,}5$</td></tr></table></div>
+<details><summary>Відповідь 4.17</summary><div><p>$\omega = v/R = 2{,}5/0{,}2 = 12{,}5$ рад/с; $T = 2\pi R/v = 2\pi\cdot0{,}2/2{,}5 = 0{,}16\pi$ с; $n = 1/T = 6{,}25/\pi$ с⁻¹; $a = v^2/R = 31{,}25$ м/с².</p><p><strong>1–Б, 2–В, 3–А, 4–Г.</strong> Д $= 2{,}5$ — це сама лінійна швидкість, пастка.</p></div></details>
+
+<div class="q"><p><strong>4.19.</strong> Диск без проковзування котиться по горизонтальній поверхні. Швидкість центра диска $v$. Установіть відповідність між модулями лінійних швидкостей точок на ободі диска відносно землі та точками на рисунку.</p>
+<svg width="420" viewBox="0 0 420 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Диск з точками А вгорі, Г під 45 градусів праворуч угорі, Б праворуч, Д під 45 градусів праворуч унизу, В унизу">
+<defs><marker id="m8a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker></defs>
+<circle cx="200" cy="150" r="110" fill="none" stroke="#13284A" stroke-width="2.5"/>
+<line x1="50" y1="260" x2="370" y2="260" stroke="#13284A" stroke-width="2.5"/>
+<path d="M60,260l-12,14M90,260l-12,14M120,260l-12,14M150,260l-12,14M180,260l-12,14M210,260l-12,14M240,260l-12,14M270,260l-12,14M300,260l-12,14M330,260l-12,14M360,260l-12,14" stroke="#4569AD" stroke-width="1.3"/>
+<g stroke="#4569AD" stroke-width="1.5" stroke-dasharray="6 4"><line x1="200" y1="40" x2="200" y2="260"/><line x1="200" y1="150" x2="278" y2="72"/><line x1="200" y1="150" x2="278" y2="228"/></g>
+<line x1="200" y1="150" x2="310" y2="150" stroke="#E679A6" stroke-width="3" marker-end="url(#m8a)"/>
+<g fill="#081F44"><circle cx="200" cy="40" r="5"/><circle cx="278" cy="72" r="5"/><circle cx="310" cy="150" r="5"/><circle cx="278" cy="228" r="5"/><circle cx="200" cy="260" r="5"/></g>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="182" y="34">А</text><text x="286" y="66">Г</text><text x="318" y="155">Б</text><text x="286" y="245">Д</text><text x="182" y="284">В</text><text x="210" y="100">45°</text><text x="210" y="210">45°</text><text x="250" y="142" fill="#E679A6">v</text></g>
+</svg>
+<p>1 — $\sqrt2\,v$; 2 — $0$; 3 — $\sqrt{2+\sqrt2}\,v$; 4 — $2v$.</p></div>
+<details><summary>Відповідь 4.19</summary><div><p>Швидкий спосіб: $u = v\,d/R$, де $d$ — відстань до точки дотику В. Для Г: $d^2 = R^2\sin^245^\circ + R^2(1+\cos45^\circ)^2 = (2+\sqrt2)R^2$.</p><p><strong>1–Б, 2–В, 3–Г, 4–А.</strong></p></div></details>
+
+<div class="q"><p><strong>4.21.</strong> Лінійна швидкість точки на ободі колеса дорівнює 6 м/с, а швидкість точки, що лежить на 10 см ближче до осі обертання, — 5 м/с. Визначте радіус колеса.</p></div>
+<details><summary>Відповідь 4.21</summary><div><p>$\omega$ однакова: $\dfrac{v_1}{R} = \dfrac{v_2}{R - \Delta r} \Rightarrow R = \dfrac{v_1\Delta r}{v_1 - v_2} = \dfrac{6\cdot0{,}1}{1} = 0{,}6$ м.</p></div></details>
+
+<div class="q"><p><strong>4.22.</strong> Знайдіть лінійну швидкість точок на поверхні Землі на широті $60^\circ$. Радіус Землі — 6400 км.</p></div>
+<details><summary>Відповідь 4.22</summary><div><p>Точка рухається по колу радіуса $r = R\cos\varphi$ з періодом $T = 24$ год $= 86\,400$ с: $v = \dfrac{2\pi R\cos\varphi}{T} = \dfrac{2\pi\cdot6{,}4\cdot10^6\cdot0{,}5}{86\,400} \approx 233$ м/с.</p></div></details>
+
+<div class="q"><p><strong>4.23.</strong> У скільки разів доцентрове прискорення точок на екваторі Землі відрізняється від доцентрового прискорення точок на широті $60^\circ$?</p></div>
+<details><summary>Відповідь 4.23</summary><div><p>$\omega$ однакова, $a = \omega^2r$, $r_{60} = R\cos60^\circ$: $\dfrac{a_{\text{екв}}}{a_{60}} = \dfrac{1}{\cos60^\circ} = 2$. На екваторі — удвічі більше.</p></div></details>
+
+<div class="q"><p><strong>4.25.</strong> Хлопчик обертає камінь, прив'язаний до мотузки завдовжки 0,5 м, у горизонтальній площині, щосекунди роблячи 2 оберти. Площина обертання міститься на висоті 1,25 м над поверхнею землі. Мотузка раптово обривається. На якій відстані від точки відриву впаде камінь? Опором повітря знехтуйте.</p>
+<svg width="460" viewBox="0 0 460 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Камінь злітає з горизонтального кола і летить по параболі; показані висота h, дальність l і відстань S">
+<defs>
+<marker id="m8b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker>
+<marker id="m8c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker>
+</defs>
+<ellipse cx="150" cy="50" rx="110" ry="18" fill="none" stroke="#13284A" stroke-width="1.5" stroke-dasharray="6 4"/>
+<line x1="150" y1="68" x2="260" y2="68" stroke="#4569AD" stroke-width="3" marker-end="url(#m8b)"/>
+<line x1="150" y1="68" x2="150" y2="260" stroke="#13284A" stroke-width="2"/>
+<path d="M150,68 Q255,68 360,260" stroke="#4569AD" stroke-width="2" stroke-dasharray="3 4" fill="none"/>
+<line x1="150" y1="68" x2="360" y2="260" stroke="#E679A6" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="150" y1="260" x2="360" y2="260" stroke="#13284A" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="320" y1="110" x2="320" y2="160" stroke="#E679A6" stroke-width="2.5" marker-end="url(#m8c)"/>
+<circle cx="150" cy="68" r="5" fill="#081F44"/><circle cx="360" cy="260" r="6" fill="#081F44"/>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="265" y="64">v</text><text x="126" y="170">h</text><text x="240" y="282">l</text><text x="228" y="182" fill="#E679A6">S</text><text x="328" y="140">g</text></g>
+</svg></div>
+<details><summary>Відповідь 4.25</summary><div><p>Швидкість у момент відриву напрямлена горизонтально: $v = 2\pi Rn = 2\pi$ м/с $\approx 6{,}28$ м/с. Час падіння: $t = \sqrt{2h/g} = 0{,}5$ с. Горизонтальна дальність: $l = vt \approx 3{,}14$ м. Відстань від точки відриву: $S = \sqrt{l^2 + h^2} = \sqrt{h^2 + \dfrac{8\pi^2R^2n^2h}{g}} \approx 3{,}4$ м.</p></div></details>
+
+<div class="q"><p><strong>4.40.</strong> Рухаючись по колу зі сталою швидкістю 31,4 м/с, тіло за кожні 4 с здійснює кутове переміщення на $45^\circ$. Обчисліть: 1) радіус траєкторії (у метрах); 2) прискорення тіла (у м/с²). Вважайте $\pi = 3{,}14$. Результат округліть до десятих.</p></div>
+<details><summary>Відповідь 4.40</summary><div><p>$\omega = \dfrac{\pi/4}{4} = \dfrac{\pi}{16} \approx 0{,}196$ рад/с. 1) $R = \dfrac{v}{\omega} = \dfrac{31{,}4\cdot16}{3{,}14} = 160$ м. 2) $a = v\omega = 31{,}4\cdot\dfrac{3{,}14}{16} \approx 6{,}2$ м/с².</p></div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">09</span>Сила, маса, інертність</h2>
+<p>Механічний рух тіл або частин тіла змінюється під час їхньої <strong>взаємодії</strong> одне з одним. Унаслідок взаємодії тіла можуть набувати прискорень або деформуватися.</p>
+<h3>Сила</h3>
+<p><strong>Сила</strong> $\vec F$ — векторна фізична величина, що є мірою взаємодії тіл. Сила має модуль, напрям і точку прикладання. Модуль сили вимірюють <strong>динамометром</strong>.</p>
+<div class="formula">$$1\ \text{Н} = 1\ \frac{\text{кг}\cdot\text{м}}{\text{с}^2}$$</div>
+<p class="where">Ньютон (Н) — сила, яка тілу масою 1 кг надає прискорення 1 м/с². Це випливає з II закону Ньютона $F = ma$.</p>
+<h3>Рівнодійна</h3>
+<p>Якщо до тіла (матеріальної точки) прикладено кілька сил, їхню дію можна замінити дією однієї сили — <strong>рівнодійної</strong>, яка дорівнює векторній сумі всіх сил:</p>
+<div class="formula">$$\vec F = \vec F_1 + \vec F_2 + \dots + \vec F_n$$</div>
+<p class="where">де $\vec F$ — рівнодійна (Н); $\vec F_1,\dots,\vec F_n$ — сили, прикладені до тіла (Н). Додавати сили треба <strong>векторно</strong>: за правилом паралелограма чи трикутника або через проєкції на осі.</p>
+<table>
+<tr><th>Дві сили $F_1$, $F_2$</th><th>Модуль рівнодійної</th></tr>
+<tr><td>співнапрямлені ($0^\circ$)</td><td>$F = F_1 + F_2$</td></tr>
+<tr><td>протилежні ($180^\circ$)</td><td>$F = |F_1 - F_2|$</td></tr>
+<tr><td>перпендикулярні ($90^\circ$)</td><td>$F = \sqrt{F_1^2 + F_2^2}$</td></tr>
+<tr><td>під кутом $\alpha$ між собою</td><td>$F = \sqrt{F_1^2 + F_2^2 + 2F_1F_2\cos\alpha}$</td></tr>
+<tr><td>дві рівні сили $F$ під кутом $120^\circ$</td><td>$F_{\text{рів}} = F$</td></tr>
+</table>
+<div class="callout warn"><b>Типова помилка</b>У теоремі косинусів для <em>суми</em> векторів стоїть «$+2F_1F_2\cos\alpha$», де $\alpha$ — кут між силами. Якщо береш кут трикутника (він дорівнює $180^\circ - \alpha$), то знак «мінус». Плутанина кутів — найчастіша причина неправильної відповіді.</div>
+<h3>Інертність і маса</h3>
+<p><strong>Інертність</strong> — властивість тіла, яка характеризує його здатність набувати прискорення під дією певної сили. Більш інертні тіла під дією тієї самої сили набувають менших прискорень.</p>
+<p><strong>Маса тіла</strong> $m$ — скалярна фізична величина, що є мірою інертності тіла. Одиниця маси в СІ — 1 кг. Масу можна виміряти зважуванням або при взаємодії з тілом відомої маси.</p>
+<div class="formula">$$m = \rho V$$</div>
+<p class="where">де $m$ — маса однорідного тіла (кг); $\rho$ — густина речовини, з якої виготовлене тіло (кг/м³); $V$ — об'єм тіла (м³). Формула справедлива для <strong>однорідного</strong> тіла; для тіла з порожниною беруть об'єм самої речовини.</p>
+<div class="callout info"><b>Довідка · приклад</b>Алюмінієвий брусок об'ємом $200$ см³ ($\rho = 2700$ кг/м³): $V = 2\cdot10^{-4}$ м³, $m = 2700\cdot2\cdot10^{-4} = 0{,}54$ кг.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">10</span>Перший закон Ньютона (закон інерції)</h2>
+<div class="callout remember"><b>І закон Ньютона</b>Існують системи відліку, відносно яких тіло, що рухається поступально, зберігає свою швидкість (перебуває в спокої або рухається прямолінійно рівномірно), якщо сума прикладених до тіла сил дорівнює нулю.</div>
+<div class="formula">$$\vec F_1 + \vec F_2 + \dots + \vec F_n = 0 \ \Rightarrow\ \vec v = \text{const}$$</div>
+<p class="where">де $\vec F_i$ — сили, що діють на тіло (Н); $\vec v$ — швидкість тіла (м/с). Справедливо лише в інерціальних системах відліку.</p>
+<p>Системи відліку, в яких тіло зберігає швидкість за умови $\vec F_1 + \vec F_2 + \dots + \vec F_n = 0$, називають <strong>інерціальними</strong>. Для практично всіх рухів поблизу земної поверхні (автомобілів, літаків, деталей машин) інерціальною можна вважати систему, пов'язану із Землею. Системи відліку, що рухаються без прискорення відносно інерціальної, теж інерціальні.</p>
+<div class="callout remember"><b>Принцип відносності Галілея</b>Усі інерціальні системи відліку рівноправні: в усіх цих системах усі механічні явища відбуваються однаково.</div>
+<h3>Якісно: що означає «рух за інерцією»</h3>
+<ul>
+<li>Для руху зі сталою швидкістю сила <strong>не потрібна</strong>. Сила потрібна, щоб <em>змінити</em> швидкість.</li>
+<li>Автомобіль їде рівномірно не «тому що двигун штовхає», а тому що сила тяги <em>зрівноважує</em> опір: рівнодійна дорівнює нулю.</li>
+<li>Пасажири при різкому гальмуванні автобуса нахиляються вперед: їхні тіла за інерцією зберігають швидкість відносно Землі, а автобус сповільнюється.</li>
+</ul>
+<p><strong>Графіки руху за інерцією:</strong> $x(t)$ — пряма (похила або горизонтальна), $v_x(t)$ — горизонтальна пряма, $a_x(t) = 0$, $F_x(t) = 0$.</p>
+<div class="callout warn"><b>Типова помилка</b>«Тіло рухається — отже, на нього діє сила за рухом» — це уявлення Арістотеля. За Ньютоном рух зі сталою швидкістю можливий і без сили; сила за рухом означає, що швидкість <em>зростає</em>.</div>
+<div class="callout fact"><b>Цікавий факт</b>Три закони руху Ісаак Ньютон опублікував у 1687 році у праці «Математичні начала натуральної філософії». Ідею інерції до нього розвивали Галілео Галілей і Рене Декарт.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">11</span>Другий закон Ньютона</h2>
+<div class="callout remember"><b>ІІ закон Ньютона</b>Прискорення, якого набуває тіло при взаємодії, прямо пропорційне рівнодійній прикладених сил, обернено пропорційне масі тіла і має напрям рівнодійної.</div>
+<div class="formula">$$\vec a = \frac{\vec F}{m}$$</div>
+<p class="where">де $\vec a$ — прискорення тіла (м/с²); $\vec F$ — рівнодійна всіх сил, прикладених до тіла (Н); $m$ — маса тіла (кг). Напрям $\vec a$ завжди збігається з напрямом рівнодійної (але не обов'язково зі швидкістю!).</p>
+<p>Для розв'язування задач II закон Ньютона зручно записувати у вигляді <strong>динамічного рівняння руху</strong>:</p>
+<div class="formula">$$m\vec a = \vec F_1 + \vec F_2 + \dots + \vec F_n$$</div>
+<p class="where">де $\vec F_1,\dots,\vec F_n$ — <strong>усі</strong> сили, що діють на тіло (Н); $m$ — маса (кг); $\vec a$ — прискорення (м/с²).</p>
+<p><strong>Межі застосування.</strong> II закон Ньютона справедливий лише в інерціальних системах відліку і для тіл, що рухаються зі швидкостями, малими порівняно зі швидкістю світла. Його не можна застосовувати для опису руху елементарних частинок (там потрібна квантова механіка).</p>
+<h3>Наслідки, які перевіряють на НМТ</h3>
+<ul>
+<li>При сталій масі $a \sim F$: графік $a(F)$ — пряма через початок координат.</li>
+<li>При сталій силі $a \sim 1/m$: графік $a(m)$ — гіпербола.</li>
+<li>Якщо $F_x = \text{const}$, то $a_x = \text{const}$ і рух рівноприскорений: $v_x(t)$ — похила пряма, $x(t)$ — парабола.</li>
+<li>За рівнянням руху $x = x_0 + v_{0x}t + \dfrac{a_xt^2}{2}$ прискорення — це <strong>подвоєний</strong> коефіцієнт при $t^2$; тоді $F_x = ma_x$.</li>
+</ul>
+<h3>Інша форма: імпульс</h3>
+<p>Оскільки $\vec a = \dfrac{\Delta\vec v}{t}$, II закон можна записати через зміну імпульсу $\vec p = m\vec v$ (детально — у темі «Закони збереження»):</p>
+<div class="formula">$$\vec F t = \Delta\vec p = m\vec v - m\vec v_0$$</div>
+<p class="where">де $\vec F t$ — імпульс сили (Н·с); $\Delta \vec p$ — зміна імпульсу тіла (кг·м/с); $t$ — час дії сили (с). Зручно для ударів: відома тривалість удару — знаходимо середню силу.</p>
+<h3>Алгоритм розв'язування задач динаміки</h3>
+<ol>
+<li>Зроби рисунок і покажи <strong>всі</strong> сили, що діють на тіло (від кожного тіла, з яким воно взаємодіє, — своя сила).</li>
+<li>Запиши II закон Ньютона у векторній формі: $m\vec a = \vec F_1 + \dots + \vec F_n$.</li>
+<li>Вибери осі координат (зручно — одну вісь уздовж прискорення).</li>
+<li>Запиши рівняння в проєкціях на осі (стеж за знаками) і розв'яжи систему.</li>
+<li>Перевір одиниці та правдоподібність відповіді.</li>
+</ol>
+<div class="callout info"><b>Довідка · приклад</b>Брусок масою $2$ кг тягнуть по гладкому столу силою $6$ Н під кутом $60^\circ$ до горизонту. Проєкція на горизонтальну вісь: $ma = F\cos60^\circ \Rightarrow a = \dfrac{6\cdot0{,}5}{2} = 1{,}5$ м/с². Вертикальна складова сили лише зменшує тиск на стіл.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">12</span>Третій закон Ньютона</h2>
+<div class="callout remember"><b>ІІІ закон Ньютона</b>Сили, що виникають при взаємодії двох тіл, рівні за модулем і протилежні за напрямом. Ці сили прикладені до різних тіл і мають однакову фізичну природу.</div>
+<div class="formula">$$\vec F_1 = -\vec F_2$$</div>
+<p class="where">де $\vec F_1$ — сила, з якою друге тіло діє на перше (Н); $\vec F_2$ — сила, з якою перше тіло діє на друге (Н). Справедливо для будь-яких взаємодій — при спокої і при русі, з прискоренням і без.</p>
+<svg width="600" viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Два тіла діють одне на одне силами, рівними за модулем і протилежними за напрямом">
+<defs>
+<marker id="m12b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker>
+<marker id="m12p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker>
+</defs>
+<circle cx="200" cy="125" r="45" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<circle cx="395" cy="125" r="60" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<line x1="245" y1="125" x2="165" y2="125" stroke="#4569AD" stroke-width="3.5" marker-end="url(#m12b)"/>
+<line x1="335" y1="125" x2="415" y2="125" stroke="#E679A6" stroke-width="3.5" marker-end="url(#m12p)"/>
+<g font-family="Inter" font-size="16" fill="#13284A" text-anchor="middle">
+<text x="200" y="60">тіло 1 (м'яч)</text><text x="395" y="48">тіло 2 (шибка)</text>
+<text x="200" y="200" fill="#4569AD">F₁ — діє на м'яч</text><text x="395" y="210" fill="#E679A6">F₂ — діє на шибку</text>
+<text x="300" y="248">|F₁| = |F₂|, але сили прикладені до РІЗНИХ тіл</text>
+</g>
+</svg>
+<h3>Чому сили взаємодії не зрівноважують одна одну</h3>
+<p>Зрівноважуватися можуть лише сили, прикладені до <strong>одного</strong> тіла. Сили з III закону прикладені до різних тіл, тому кожна з них змінює рух «свого» тіла. М'яч і шибка діють одне на одне з однаковими силами, але шибка розбивається, бо для неї ця сила руйнівна, а м'яч просто змінює швидкість.</p>
+<table>
+<tr><th>Ознака</th><th>Пара сил за III законом</th><th>Зрівноважені сили</th></tr>
+<tr><td>До яких тіл прикладені</td><td>До двох різних тіл</td><td>До одного тіла</td></tr>
+<tr><td>Природа</td><td>Завжди однакова</td><td>Може бути різною (тяжіння і реакція опори)</td></tr>
+<tr><td>Модулі</td><td>Завжди рівні</td><td>Рівні лише тоді, коли тіло не має прискорення</td></tr>
+<tr><td>Приклад</td><td>Земля притягує книгу, книга притягує Землю</td><td>Сила тяжіння книги і сила реакції стола</td></tr>
+</table>
+<div class="callout info"><b>Довідка · «парадокс коня і воза»</b>Кінь тягне віз, віз тягне коня з такою самою силою. Чому ж вони рушають? Бо рух коня визначають сили, прикладені <em>до коня</em>: сила тертя від землі вперед (кінь відштовхується копитами) більша за силу натягу посторонків назад. Рівнодійна на коня і на віз напрямлена вперед.</div>
+<div class="callout fact"><b>Цікавий факт</b>Ракета летить у космосі, де немає повітря, від якого можна відштовхнутися. Вона «відштовхується» від газів, які сама викидає: ракета діє на гази, гази — на ракету з такою самою силою. Це III закон Ньютона, а кількісно — закон збереження імпульсу (реактивний рух).</div>
+</section>
+
+<section class="card">
+<h2><span class="num">13</span>Динаміка руху по колу</h2>
+<p>Тут дві теми заняття зустрічаються. Якщо тіло рівномірно рухається по колу, його прискорення — доцентрове. Тоді за II законом Ньютона <strong>рівнодійна теж напрямлена до центра</strong>:</p>
+<div class="formula">$$m\vec a_{\text{дц}} = \vec F_1 + \vec F_2 + \dots + \vec F_n,\qquad F_{\text{рів}} = m\frac{v^2}{R} = m\omega^2R$$</div>
+<p class="where">де $m$ — маса тіла (кг); $\vec a_{\text{дц}}$ — доцентрове прискорення (м/с²); $F_{\text{рів}}$ — модуль рівнодійної (Н); $v$ — швидкість (м/с); $R$ — радіус кола (м); $\omega$ — кутова швидкість (рад/с).</p>
+<div class="callout remember"><b>Запам'ятай</b>«Доцентрова сила» — не окрема сила природи. Це <strong>рівнодійна</strong> реальних сил: натягу нитки, тертя, тяжіння, реакції опори. Шукай, яка саме реальна сила (чи їх сума) тягне тіло до центра.</div>
+<h3>Конічний маятник</h3>
+<p>Кулька на нитці обертається в горизонтальній площині, нитка описує конус і утворює кут $\alpha$ з вертикаллю. На кульку діють лише сила тяжіння та сила натягу нитки.</p>
+<svg width="520" viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Конічний маятник: сила тяжіння вниз, сила натягу вздовж нитки, доцентрове прискорення до центра кола">
+<defs>
+<marker id="m13b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker>
+<marker id="m13p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker>
+<marker id="m13g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#587954"/></marker>
+</defs>
+<line x1="160" y1="30" x2="360" y2="30" stroke="#13284A" stroke-width="3"/>
+<path d="M200,30l-10,-12M230,30l-10,-12M260,30l-10,-12M290,30l-10,-12M320,30l-10,-12" stroke="#4569AD" stroke-width="1.3"/>
+<line x1="260" y1="30" x2="260" y2="220" stroke="#4569AD" stroke-width="1.5" stroke-dasharray="6 4"/>
+<ellipse cx="260" cy="220" rx="150" ry="30" fill="none" stroke="#13284A" stroke-width="1.5" stroke-dasharray="6 4"/>
+<line x1="260" y1="30" x2="410" y2="220" stroke="#13284A" stroke-width="2"/>
+<line x1="410" y1="220" x2="360" y2="157" stroke="#4569AD" stroke-width="3.5" marker-end="url(#m13b)"/>
+<line x1="410" y1="220" x2="410" y2="300" stroke="#E679A6" stroke-width="3.5" marker-end="url(#m13p)"/>
+<line x1="410" y1="220" x2="320" y2="220" stroke="#587954" stroke-width="3.5" marker-end="url(#m13g)"/>
+<path d="M260,80 A50,50 0 0 0 291,70" stroke="#13284A" stroke-width="1.5" fill="none"/>
+<circle cx="410" cy="220" r="10" fill="#081F44"/>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="268" y="98">α</text><text x="306" y="172" fill="#4569AD">F<tspan dy="5" font-size="14">нат</tspan></text><text x="420" y="295" fill="#E679A6">mg</text><text x="338" y="200" fill="#587954">a<tspan dy="5" font-size="14">дц</tspan></text><text x="278" y="214">R</text><text x="30" y="322">Рівнодійна сил mg і Fнат напрямлена до центра кола</text></g>
+</svg>
+<div class="formula">$$m\vec g + \vec F_{\text{нат}} = m\vec a_{\text{дц}}$$</div>
+<p class="where">де $m\vec g$ — сила тяжіння (Н); $\vec F_{\text{нат}}$ — сила натягу нитки (Н); $\vec a_{\text{дц}}$ — доцентрове прискорення (м/с²), напрямлене горизонтально до центра кола.</p>
+<p>Проєкції: на вертикальну вісь $F_{\text{нат}}\cos\alpha - mg = 0$; на горизонтальну вісь (до центра) $F_{\text{нат}}\sin\alpha = m\dfrac{v^2}{R}$. Поділивши друге рівняння на перше:</p>
+<div class="formula">$$\operatorname{tg}\alpha = \frac{a_{\text{дц}}}{g} = \frac{v^2}{gR}$$</div>
+<p class="where">де $\alpha$ — кут відхилення нитки від вертикалі; $v$ — швидкість кульки (м/с); $R$ — радіус кола (м); $g$ — прискорення вільного падіння (м/с²). Маса скорочується: кут не залежить від маси кульки.</p>
+<h3>Автомобіль на повороті</h3>
+<p>На горизонтальній дорозі до центра повороту автомобіль «тягне» лише сила тертя спокою між шинами й дорогою. Вона не може перевищити $\mu N = \mu mg$, тому $m\dfrac{v^2}{R} \le \mu mg$, звідки найбільша безпечна швидкість $v_{\max} = \sqrt{\mu gR}$. На мокрій чи слизькій дорозі $\mu$ менший — і безпечна швидкість теж.</p>
+<div class="callout warn"><b>Типова помилка</b>Малювати на рисунку «відцентрову силу», що тягне тіло назовні. В інерціальній системі відліку такої сили немає. Коли нитка обривається, тіло летить <strong>по дотичній</strong> (за інерцією), а не по радіусу назовні.</div>
+<figure class="img-slot"><figcaption><b>Зображення:</b> центрифуга для тренування космонавтів чи пілотів — довга штанга з кабіною на кінці; на ній видно, що для руху по колу потрібна сила, спрямована до центра (стінка кабіни тисне на людину до осі). <cite>Запит: «astronaut training centrifuge» / «центрифуга для тренування космонавтів» · Де шукати: NASA Image and Video Library, ESA Multimedia, Wikimedia Commons [знайти]</cite></figcaption></figure>
+</section>
+
+<section class="card">
+<h2><span class="num">14</span>Задачі на занятті · закони Ньютона</h2>
+
+<h3>Задача 1 · Приклад 1 · від графіка сили до графіка швидкості</h3>
+<p>За графіком залежності $F_x(t)$ побудуйте графік залежності $v_x(t)$, якщо тіло починає рухатися зі стану спокою.</p>
+<svg width="640" viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ліворуч графік сили: додатна, від'ємна такого самого модуля, додатна вдвічі менша; праворуч графік швидкості">
+<g stroke="#B9C8E6" stroke-width="1"><path d="M40,20V200M70,20V200M100,20V200M130,20V200M160,20V200M190,20V200M220,20V200M250,20V200M40,50H260M40,80H260M40,110H260M40,140H260M40,170H260"/><path d="M370,40V200M400,40V200M430,40V200M460,40V200M490,40V200M520,40V200M550,40V200M580,40V200M370,70H600M370,100H600M370,130H600M370,160H600M370,190H600"/></g>
+<path d="M40,15V205M40,110H265" stroke="#13284A" stroke-width="1.8" fill="none"/>
+<path d="M370,30V200H605" stroke="#13284A" stroke-width="1.8" fill="none"/>
+<path d="M40,50H100V170H160V80H220" stroke="#E679A6" stroke-width="3.5" fill="none"/>
+<path d="M370,200L430,140L490,200L550,170" stroke="#4569AD" stroke-width="3.5" fill="none"/>
+<line x1="370" y1="140" x2="430" y2="140" stroke="#4569AD" stroke-width="1.3" stroke-dasharray="5 4"/>
+<g font-family="Inter" font-size="15" fill="#13284A"><text x="48" y="22">Fₓ</text><text x="255" y="128">t</text><text x="25" y="115">0</text><text x="66" y="44">I</text><text x="122" y="190">II</text><text x="182" y="74">III</text><text x="378" y="36">vₓ</text><text x="596" y="218">t</text><text x="352" y="146">v</text><text x="334" y="176">v/2</text></g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p><strong>I ділянка:</strong> $F_{x1} > 0$, отже, $a_1 > 0$ — швидкість рівномірно зростає від $0$ до $v$.</p>
+<p><strong>II ділянка:</strong> $F_{x2} \lt 0$, $|F_{x2}| = |F_{x1}|$, тому $|a_2| = |a_1|$: за той самий час швидкість зменшується від $v$ до $0$.</p>
+<p><strong>III ділянка:</strong> $F_{x3} > 0$, $F_{x3} = F_{x1}/2$, тому $a_3 = a_1/2$: за той самий час швидкість зростає від $0$ лише до $v/2$.</p>
+<p>Графік $v_x(t)$ — ламана праворуч: нахил кожної ділянки пропорційний силі.</p></div>
+
+<h3>Задача 2 · Приклад 2 (пробне ЗНО-2016) · рух за інерцією</h3>
+<p>Декілька тіл рухаються вздовж осі $Ox$ інерціальної системи відліку. Укажіть графік, який відповідає руху за інерцією.</p>
+<svg width="640" viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="А: x спадає лінійно; Б: a зростає лінійно; В: v зростає лінійно; Г: x — парабола">
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="80" y="16">А</text><text x="240" y="16">Б</text><text x="400" y="16">В</text><text x="560" y="16">Г</text><text x="4" y="34">x</text><text x="160" y="34">aₓ</text><text x="320" y="34">vₓ</text><text x="484" y="34">x</text><text x="140" y="160">t</text><text x="300" y="160">t</text><text x="460" y="160">t</text><text x="620" y="160">t</text><text x="8" y="156">O</text><text x="168" y="156">O</text><text x="328" y="156">O</text><text x="488" y="156">O</text></g>
+<path d="M20,30V140H150M180,30V140H310M340,30V140H470M500,30V140H630" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<g stroke="#4569AD" stroke-width="3.5" fill="none"><path d="M20,55L140,120"/><path d="M180,140L300,50"/><path d="M340,140L460,50"/><path d="M500,140Q580,140 620,40"/></g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>Рух за інерцією — рух без нескомпенсованих сил, тобто рівномірний прямолінійний: $v_x = \text{const}$, а координата лінійно залежить від часу.</p>
+<p>А — $x(t)$ лінійна: рух рівномірний (тіло рухається проти осі). <strong>Підходить.</strong> Б — прискорення зростає: сила змінюється. В — швидкість зростає: $a \neq 0$. Г — парабола: рух рівноприскорений.</p>
+<p><strong>Відповідь: А.</strong></p></div>
+
+<h3>Задача 3 · Приклад 3 · дві сили під кутом 120°</h3>
+<p>На тіло масою 2 кг діють сили $F_1 = 10$ Н і $F_2 = 20$ Н, кут між якими становить $120^\circ$. Якого прискорення набуває тіло?</p>
+<svg width="360" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Паралелограм сил: F2 горизонтально, F1 під кутом 120 градусів, рівнодійна F по діагоналі">
+<defs>
+<marker id="m14b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker>
+<marker id="m14p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker>
+</defs>
+<path d="M30,113H230L280,200" stroke="#4569AD" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+<line x1="80" y1="200" x2="280" y2="200" stroke="#4569AD" stroke-width="3" marker-end="url(#m14b)"/>
+<line x1="80" y1="200" x2="30" y2="113" stroke="#4569AD" stroke-width="3" marker-end="url(#m14b)"/>
+<line x1="80" y1="200" x2="230" y2="113" stroke="#E679A6" stroke-width="3.5" marker-end="url(#m14p)"/>
+<path d="M105,200 A25,25 0 0 0 67,178" stroke="#13284A" stroke-width="1.5" fill="none"/>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="20" y="160" fill="#4569AD">F₁</text><text x="250" y="222" fill="#4569AD">F₂</text><text x="160" y="145" fill="#E679A6">F</text><text x="94" y="180">α</text></g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>Рівнодійна $\vec F = \vec F_1 + \vec F_2$. Для суми векторів із кутом $\alpha$ між ними:</p>
+<p>$F = \sqrt{F_1^2 + F_2^2 + 2F_1F_2\cos120^\circ} = \sqrt{100 + 400 - 200} = \sqrt{300} = 10\sqrt3$ Н.</p>
+<p>(Те саме дає теорема косинусів для трикутника сил з кутом $180^\circ - 120^\circ = 60^\circ$: $F^2 = F_1^2 + F_2^2 - 2F_1F_2\cos60^\circ$.)</p>
+<p>За II законом Ньютона: $a = \dfrac{F}{m} = 5\sqrt3 \approx 8{,}7$ м/с².</p>
+<p><strong>Відповідь: ≈ 8,7 м/с².</strong></p></div>
+
+<h3>Задача 4 · Приклад 4 · удар по м'ячу</h3>
+<p>З якою мінімальною силою має вдарити футболіст по м'ячу, щоб той пролетів відстань 50 м? Маса м'яча 500 г, тривалість удару — 20 мс. Опором повітря знехтуйте.</p>
+<svg width="420" viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Траєкторія м'яча — парабола, кинута під кутом альфа, дальність l">
+<defs>
+<marker id="m14c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker>
+<marker id="m14d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#13284A"/></marker>
+</defs>
+<path d="M40,170H400M40,170V20" stroke="#13284A" stroke-width="1.8" fill="none" marker-end="url(#m14d)"/>
+<path d="M40,170 Q200,10 360,170" stroke="#4569AD" stroke-width="3" fill="none"/>
+<line x1="40" y1="170" x2="95" y2="115" stroke="#E679A6" stroke-width="3" marker-end="url(#m14c)"/>
+<line x1="330" y1="40" x2="330" y2="85" stroke="#E679A6" stroke-width="2.5" marker-end="url(#m14c)"/>
+<path d="M75,170 A35,35 0 0 0 65,145" stroke="#13284A" stroke-width="1.5" fill="none"/>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="76" y="112">v₀</text><text x="80" y="163">α</text><text x="195" y="192">l</text><text x="340" y="68">g</text><text x="24" y="186">O</text><text x="390" y="190">x</text><text x="48" y="28">y</text></g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>Дано: $l = 50$ м, $m = 0{,}5$ кг, $t = 0{,}02$ с.</p>
+<p>1) Після удару м'яч рухається як тіло, кинуте під кутом до горизонту: $l = \dfrac{v_0^2\sin2\alpha}{g}$, звідки $v_0 = \sqrt{\dfrac{gl}{\sin2\alpha}}$.</p>
+<p>2) Під час удару м'яч розганяється від $0$ до $v_0$: $a = \dfrac{v_0}{t}$. За II законом Ньютона $F = ma = \dfrac{mv_0}{t} = \dfrac{m}{t}\sqrt{\dfrac{gl}{\sin2\alpha}}$ (те саме дає $Ft = \Delta p$).</p>
+<p>3) Сила мінімальна, коли $\sin2\alpha = 1$, тобто $\alpha = 45^\circ$: $F_{\min} = \dfrac{m}{t}\sqrt{gl} = \dfrac{0{,}5}{0{,}02}\sqrt{10\cdot50} = 25\cdot22{,}4 \approx 560$ Н.</p>
+<p>Одиниці: $\left[\dfrac{\text{кг}}{\text{с}}\sqrt{\dfrac{\text{м}}{\text{с}^2}\cdot\text{м}}\right] = \dfrac{\text{кг}\cdot\text{м}}{\text{с}^2} = \text{Н}$.</p>
+<p><strong>Відповідь: ≈ 560 Н.</strong> (У збірнику надруковано 250 Н — це арифметична помилка: таку силу отримали б для дальності 10 м.)</p></div>
+
+<h3>Задача 5 · Приклад 5 (пробне ЗНО-2009) · сила за рівнянням руху</h3>
+<p>Визначте модуль рівнодійної всіх сил, що діють на автомобіль масою 800 кг, якщо рівняння його руху $x = 2 + 3t + 4t^2$.</p>
+<table><tr><th>А</th><th>Б</th><th>В</th><th>Г</th></tr><tr><td>3200 Н</td><td>6400 Н</td><td>800 Н</td><td>2100 Н</td></tr></table>
+<div class="callout info"><b>Розв'язання</b>
+<p>Порівнюємо з $x = x_0 + v_{0x}t + \dfrac{a_xt^2}{2}$: $\dfrac{a_x}{2} = 4$, тобто $a_x = 8$ м/с².</p>
+<p>$F_x = ma_x = 800\cdot8 = 6400$ Н.</p>
+<p><strong>Відповідь: Б.</strong> Варіант А (3200 Н) — пастка для тих, хто бере $a = 4$ м/с² замість подвоєного коефіцієнта.</p></div>
+
+<h3>Задача 5.10 · графік $a(m)$</h3>
+<p>Укажіть графік залежності $a = a(m)$ при незмінній силі, що діє на тіло, маса якого змінюється. (Ці самі варіанти — до домашньої задачі 5.9, де шукають графік $a(F)$ при незмінній масі.)</p>
+<svg width="640" viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="А: пряма пропорційність; Б: парабола; В: стала; Г: гіпербола">
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="80" y="16">А</text><text x="240" y="16">Б</text><text x="400" y="16">В</text><text x="560" y="16">Г</text><text x="4" y="34">a</text><text x="164" y="34">a</text><text x="324" y="34">a</text><text x="484" y="34">a</text><text x="128" y="160">F, m</text><text x="288" y="160">F, m</text><text x="448" y="160">F, m</text><text x="608" y="160">F, m</text><text x="10" y="156">0</text><text x="170" y="156">0</text><text x="330" y="156">0</text><text x="490" y="156">0</text></g>
+<path d="M20,30V140H150M180,30V140H310M340,30V140H470M500,30V140H630" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<g stroke="#4569AD" stroke-width="3.5" fill="none"><path d="M20,140L135,45"/><path d="M180,140Q260,140 300,40"/><path d="M340,80H460"/><path d="M510,40Q530,125 620,132"/></g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>$a = \dfrac{F}{m}$, $F = \text{const}$ — обернена пропорційність, графік — гіпербола. <strong>Відповідь: Г.</strong></p></div>
+
+<h3>Задача 5.13 · літак</h3>
+<p>На літак під час руху діють сталі за модулем сила тяги $\vec F_1$, сила лобового опору $\vec F_2$, підіймальна сила $\vec F_3$ та сила тяжіння $\vec F_4$. У яких випадках траєкторія руху літака завжди пряма? Початкова швидкість літака напрямлена горизонтально.</p>
+<svg width="400" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Літак: тяга вперед, опір назад, підіймальна сила вгору, тяжіння вниз, швидкість горизонтальна">
+<defs><marker id="m14e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker><marker id="m14f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker></defs>
+<rect x="180" y="90" width="40" height="22" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<g stroke="#4569AD" stroke-width="3"><line x1="220" y1="101" x2="290" y2="101" marker-end="url(#m14e)"/><line x1="180" y1="101" x2="110" y2="101" marker-end="url(#m14e)"/><line x1="200" y1="90" x2="200" y2="30" marker-end="url(#m14e)"/><line x1="200" y1="112" x2="200" y2="172" marker-end="url(#m14e)"/></g>
+<line x1="300" y1="60" x2="360" y2="60" stroke="#E679A6" stroke-width="3" marker-end="url(#m14f)"/>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="280" y="125">F₁</text><text x="105" y="125">F₂</text><text x="208" y="40">F₃</text><text x="208" y="178">F₄</text><text x="325" y="52" fill="#E679A6">v</text></g>
+</svg>
+<p>1) $F_1 = F_2;\ F_3 = F_4$ 2) $F_1 > F_2;\ F_3 > F_4$ 3) $F_1 = F_2;\ F_3 > F_4$ 4) $F_1 = F_2;\ F_3 \lt F_4$</p>
+<table><tr><th>А</th><th>Б</th><th>В</th><th>Г</th></tr><tr><td>1</td><td>2</td><td>3</td><td>4</td></tr></table>
+<div class="callout info"><b>Розв'язання</b>
+<p>Траєкторія пряма, якщо рівнодійна дорівнює нулю або напрямлена вздовж швидкості (горизонтально). Для цього вертикальні сили мають зрівноважуватися: $F_3 = F_4$. У випадках 2–4 вертикальна складова рівнодійної ненульова — траєкторія викривиться вгору чи вниз. Залишається випадок 1 (рівномірний прямолінійний політ).</p>
+<p><strong>Відповідь: А.</strong></p></div>
+
+<h3>Задача 5.14 · м'яч і шибка</h3>
+<p>М'яч ударяє в шибку. На яке з тіл діє більша сила? А) На скло; Б) на м'яч; В) на ці тіла діють рівні сили; Г) відповідь залежить від співвідношення мас м'яча і шибки.</p>
+<div class="callout info"><b>Розв'язання</b>
+<p>За III законом Ньютона сили взаємодії рівні за модулем незалежно від мас. Скло розбивається не тому, що на нього діє більша сила, а тому, що воно крихке. <strong>Відповідь: В.</strong></p></div>
+
+<h3>Задача 5.16 · від графіка сили до графіка координати</h3>
+<p>За графіком $F_x = F_x(t)$ побудуйте графік $x = x(t)$, $x_0 = 0$ (тіло починає рух зі стану спокою).</p>
+<svg width="640" viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Вгорі: сила почергово додатна і від'ємна. Внизу: чотири варіанти графіка координати">
+<path d="M220,15V140M220,90H430" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<path d="M220,90V55H265V125H310V55H355V125H400V90" stroke="#E679A6" stroke-width="3" fill="none"/>
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="228" y="24">Fₓ</text><text x="420" y="108">t</text><text x="206" y="95">0</text></g>
+<g transform="translate(0,170)">
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="80" y="16">А</text><text x="240" y="16">Б</text><text x="400" y="16">В</text><text x="560" y="16">Г</text><text x="4" y="34">x</text><text x="164" y="34">x</text><text x="324" y="34">x</text><text x="484" y="34">x</text><text x="140" y="158">t</text><text x="300" y="158">t</text><text x="460" y="158">t</text><text x="620" y="158">t</text></g>
+<path d="M20,30V140H150M180,30V140H310M340,30V140H470M500,30V140H630" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<g stroke="#4569AD" stroke-width="3" fill="none"><path d="M20,140L132,50"/><path d="M180,140C180,100 236,135 236,95C236,55 292,90 292,50"/><path d="M340,140L368,110L396,140L424,110L452,140"/><path d="M500,140C528,140 528,95 556,95C584,95 584,50 612,50"/></g>
+</g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>1-й інтервал: $F_x > 0$ — тіло розганяється зі спокою, $x(t)$ — парабола, гілки вгору (нахил зростає від нуля).</p>
+<p>2-й інтервал: $F_x \lt 0$ такого самого модуля — тіло гальмує до нуля за той самий час. Воно все ще рухається вперед, координата зростає, але нахил зменшується до нуля.</p>
+<p>Далі все повторюється: тіло рухається лише вперед «сходинками» з горизонтальними дотичними в моменти зупинки. Це графік <strong>Г</strong>. (Б починається з ненульового нахилу — а тіло стартувало зі спокою.)</p></div>
+
+<h3>Задача 5.21 · однакова сила, різні маси</h3>
+<p>Маса другого тіла в $k$ разів менша за масу першого. Під дією однакової за модулем рівнодійної сили тіла проходять рівні шляхи. Чому дорівнює відношення часу руху першого тіла до часу руху другого? Початкова швидкість тіл дорівнює 0. А) $1/k$; Б) $k$; В) $1/\sqrt k$; Г) $\sqrt k$.</p>
+<div class="callout info"><b>Розв'язання</b>
+<p>$s = \dfrac{at^2}{2} \Rightarrow t = \sqrt{\dfrac{2s}{a}} = \sqrt{\dfrac{2sm}{F}}$, тобто $t \sim \sqrt m$.</p>
+<p>$\dfrac{t_1}{t_2} = \sqrt{\dfrac{m_1}{m_2}} = \sqrt k$. Важче тіло розганяється повільніше. <strong>Відповідь: Г.</strong></p></div>
+
+<h3>Задача 5.35 · сила за графіком швидкості</h3>
+<p>За графіком залежності $v_x(t)$ установіть відповідність між ділянкою графіка та проєкцією сили, що діє на тіло масою 100 г.</p>
+<svg width="460" viewBox="0 0 460 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік швидкості: від 0 до 10 м/с за 40 с, сталий до 80 с, спад до −10 м/с за 120 с, зростання до −5 м/с за 160 с">
+<g stroke="#B9C8E6" stroke-width="1"><path d="M100,40V200M140,40V200M180,40V200M220,40V200M260,40V200M300,40V200M340,40V200M380,40V200M60,70H390M60,100H390M60,160H390M60,190H390"/></g>
+<g stroke="#4569AD" stroke-width="1.3" stroke-dasharray="5 4"><path d="M140,40V200M220,40V200M300,40V200"/></g>
+<path d="M60,30V205M60,130H400" stroke="#13284A" stroke-width="1.8" fill="none"/>
+<path d="M60,130L140,70L220,70L300,190L380,160" stroke="#E679A6" stroke-width="3.5" fill="none"/>
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="66" y="28">vₓ, м/с</text><text x="400" y="148">t, с</text><text x="36" y="75">10</text><text x="30" y="195">−10</text><text x="46" y="134">0</text><text x="128" y="222">40</text><text x="208" y="222">80</text><text x="284" y="222">120</text><text x="364" y="222">160</text><text x="96" y="56">1</text><text x="176" y="56">2</text><text x="256" y="56">3</text><text x="336" y="56">4</text></g>
+</svg>
+<p>А $12{,}5$ мН; Б $-50$ мН; В $0$; Г $25$ мН; Д $-12{,}5$ мН.</p>
+<div class="callout info"><b>Розв'язання</b>
+<p>$m = 0{,}1$ кг; на кожній ділянці $a_x = \dfrac{\Delta v_x}{\Delta t}$, $F_x = ma_x$.</p>
+<p>1) $a = \dfrac{10 - 0}{40} = 0{,}25$ м/с², $F = 25$ мН — <strong>Г</strong>.</p>
+<p>2) $v = \text{const}$, $F = 0$ — <strong>В</strong>.</p>
+<p>3) $a = \dfrac{-10 - 10}{40} = -0{,}5$ м/с², $F = -50$ мН — <strong>Б</strong>.</p>
+<p>4) $a = \dfrac{-5 - (-10)}{40} = 0{,}125$ м/с², $F = 12{,}5$ мН — <strong>А</strong>. Увага: швидкість від'ємна, але за модулем зменшується, тому прискорення додатне.</p>
+<p><strong>Відповідь: 1–Г, 2–В, 3–Б, 4–А.</strong></p></div>
+
+<h3>Задача 5.38 · прискорення за рисунком сил</h3>
+<p>На тіло масою 2 кг діють сили $F_1 = 2$ Н, $F_2 = 2$ Н, $F_3 = 3$ Н, напрямки яких показано на рисунках. Установіть відповідність між рисунком та модулем прискорення.</p>
+<svg width="640" viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Чотири рисунки сил F1, F2, F3 у різних напрямках">
+<defs><marker id="m14g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker></defs>
+<g stroke="#4569AD" stroke-width="3" marker-end="url(#m14g)">
+<line x1="40" y1="150" x2="40" y2="75"/><line x1="40" y1="150" x2="90" y2="150"/><line x1="90" y1="150" x2="140" y2="150"/>
+<line x1="240" y1="150" x2="240" y2="75"/><line x1="240" y1="150" x2="190" y2="150"/><line x1="240" y1="150" x2="290" y2="150"/>
+<line x1="400" y1="150" x2="325" y2="150"/><line x1="400" y1="150" x2="450" y2="150"/><line x1="450" y1="150" x2="500" y2="150"/>
+<line x1="530" y1="150" x2="530" y2="100"/><line x1="530" y1="150" x2="580" y2="150"/><line x1="530" y1="150" x2="583" y2="97"/>
+</g>
+<path d="M530,100H580V150" stroke="#13284A" stroke-width="1.2" stroke-dasharray="4 4" fill="none"/>
+<g font-family="Inter" font-size="15" fill="#13284A"><text x="36" y="30">1</text><text x="236" y="30">2</text><text x="396" y="30">3</text><text x="556" y="30">4</text>
+<text x="48" y="80">F₃</text><text x="56" y="172">F₁</text><text x="106" y="172">F₂</text>
+<text x="248" y="80">F₃</text><text x="196" y="172">F₂</text><text x="262" y="172">F₁</text>
+<text x="335" y="172">F₃</text><text x="416" y="172">F₁</text><text x="466" y="172">F₂</text>
+<text x="508" y="104">F₁</text><text x="556" y="172">F₂</text><text x="590" y="96">F₃</text></g>
+</svg>
+<p>А $0{,}1$ м/с²; Б $2{,}9$ м/с²; В $0{,}5$ м/с²; Г $1{,}5$ м/с²; Д $2{,}5$ м/с².</p>
+<div class="callout info"><b>Розв'язання</b>
+<p>1) По горизонталі $F_1 + F_2 = 4$ Н, по вертикалі $3$ Н: $F = \sqrt{16 + 9} = 5$ Н, $a = 2{,}5$ м/с² — <strong>Д</strong>.</p>
+<p>2) $F_1$ і $F_2$ зрівноважуються, лишається $F_3 = 3$ Н: $a = 1{,}5$ м/с² — <strong>Г</strong>.</p>
+<p>3) $F_1 + F_2 - F_3 = 1$ Н: $a = 0{,}5$ м/с² — <strong>В</strong>.</p>
+<p>4) $F_1 \perp F_2$: їхня сума $2\sqrt2 \approx 2{,}83$ Н напрямлена по діагоналі, як і $F_3$: $F = 2{,}83 + 3 = 5{,}83$ Н, $a \approx 2{,}9$ м/с² — <strong>Б</strong>.</p>
+<p><strong>Відповідь: 1–Д, 2–Г, 3–В, 4–Б.</strong></p></div>
+
+<h3>Задача 5.40 · кут між прискоренням і силою</h3>
+<p>На тіло діють сили $F_1 = 3F$, $F_2 = 2F$, $F_3 = 2F$ (див. рис.). Визначте кут між напрямками прискорення і сили $F_1$.</p>
+<svg width="320" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="F1 праворуч, F2 ліворуч, F3 вгору">
+<defs><marker id="m14h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker></defs>
+<g stroke="#4569AD" stroke-width="3" marker-end="url(#m14h)"><line x1="150" y1="110" x2="240" y2="110"/><line x1="150" y1="110" x2="90" y2="110"/><line x1="150" y1="110" x2="150" y2="50"/></g>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="225" y="134">F₁</text><text x="88" y="134">F₂</text><text x="158" y="58">F₃</text></g>
+</svg>
+<div class="callout info"><b>Розв'язання</b>
+<p>Прискорення напрямлене вздовж рівнодійної. Її проєкції: $F_x = 3F - 2F = F$, $F_y = 2F$.</p>
+<p>$\operatorname{tg}\alpha = \dfrac{F_y}{F_x} = 2 \Rightarrow \alpha = \operatorname{arctg}2 \approx 63{,}4^\circ$.</p>
+<p><strong>Відповідь: ≈ 63,4°.</strong></p></div>
+
+<h3>Задача 5.42 · тягач і причепи</h3>
+<p>Порожньому причепу тягач надає прискорення $0{,}4$ м/с², а навантаженому — $0{,}1$ м/с². Якого прискорення тягач надасть обом зчепленим причепам, якщо його сила тяги в усіх випадках однакова? Силою опору знехтуйте.</p>
+<div class="callout info"><b>Розв'язання</b>
+<p>Як у збірнику, масою тягача нехтуємо порівняно з масами причепів (інакше задача не має однозначної відповіді).</p>
+<p>$m_1 = \dfrac{F}{a_1}$, $m_2 = \dfrac{F}{a_2}$; для обох причепів $a = \dfrac{F}{m_1 + m_2} = \dfrac{F}{F/a_1 + F/a_2} = \dfrac{a_1a_2}{a_1 + a_2}$.</p>
+<p>$a = \dfrac{0{,}4\cdot0{,}1}{0{,}5} = 0{,}08$ м/с².</p>
+<p><strong>Відповідь: 0,08 м/с².</strong></p></div>
+</section>
+
+<section class="card">
+<h2><span class="num">15</span>Домашнє завдання · закони Ньютона</h2>
+
+<div class="q"><p><strong>5.8.</strong> У якому випадку тіло, що рухається вздовж осі $Ox$, зберігає свою швидкість?</p>
+<svg width="640" viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графіки сили від часу: А зростає, Б стала додатна, В нульова, Г спадає">
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="80" y="16">А</text><text x="240" y="16">Б</text><text x="400" y="16">В</text><text x="560" y="16">Г</text><text x="4" y="34">Fₓ</text><text x="160" y="34">Fₓ</text><text x="320" y="34">Fₓ</text><text x="480" y="34">Fₓ</text><text x="140" y="160">t</text><text x="300" y="160">t</text><text x="460" y="160">t</text><text x="620" y="160">t</text></g>
+<path d="M20,30V140H150M180,30V140H310M340,30V140H470M500,30V140H630" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<g stroke="#4569AD" stroke-width="3.5" fill="none"><path d="M20,140L135,45"/><path d="M180,80H300"/><path d="M340,138H460"/><path d="M500,60L620,110"/></g>
+</svg></div>
+<details><summary>Відповідь 5.8</summary><div><p><strong>В.</strong> Швидкість зберігається, коли рівнодійна дорівнює нулю (I закон Ньютона).</p></div></details>
+
+<div class="q"><p><strong>5.9.</strong> Укажіть графік залежності $a = a(F)$ при незмінній масі тіла. Варіанти А–Г — на рисунку до задачі 5.10 (розділ 14).</p></div>
+<details><summary>Відповідь 5.9</summary><div><p><strong>А.</strong> $a = F/m$, $m = \text{const}$: пряма пропорційність.</p></div></details>
+
+<div class="q"><p><strong>5.15.</strong> За графіком $F_x = F_x(t)$ побудуйте графік $v_x = v_x(t)$ (тіло стартує зі спокою).</p>
+<svg width="640" viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Вгорі: імпульси сили, що чергуються з нульовою силою. Внизу: чотири варіанти графіка швидкості">
+<path d="M220,15V110M220,90H430" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<path d="M230,90V50H275V90H320V50H365V90H410" stroke="#E679A6" stroke-width="3" fill="none"/>
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="228" y="24">Fₓ</text><text x="420" y="108">t</text><text x="206" y="95">0</text></g>
+<g transform="translate(0,170)">
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="80" y="16">А</text><text x="240" y="16">Б</text><text x="400" y="16">В</text><text x="560" y="16">Г</text><text x="4" y="34">vₓ</text><text x="160" y="34">vₓ</text><text x="320" y="34">vₓ</text><text x="480" y="34">vₓ</text><text x="140" y="158">t</text><text x="300" y="158">t</text><text x="460" y="158">t</text><text x="620" y="158">t</text></g>
+<path d="M20,30V140H150M180,30V140H310M340,30V140H470M500,30V140H630" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<g stroke="#4569AD" stroke-width="3" fill="none"><path d="M20,140L48,110L76,110L104,80L132,80"/><path d="M180,140L208,140L236,110L264,110L292,80"/><path d="M340,140L368,110L396,140L424,110L452,140"/><path d="M500,140L612,50"/></g>
+</g>
+</svg></div>
+<details><summary>Відповідь 5.15</summary><div><p><strong>А.</strong> Поки діє сила — швидкість рівномірно зростає; коли $F = 0$ — швидкість стала (I закон), а не падає до нуля (пастка В).</p></div></details>
+
+<div class="q"><p><strong>5.17.</strong> Маса легкового автомобіля $m_1 = 2$ т, а вантажного — $m_2 = 8$ т. Порівняйте прискорення автомобілів, якщо сила тяги вантажного автомобіля вдвічі більша за силу тяги легкового.</p>
+<ul class="options"><li>А) $a_1/a_2 = 1/2$</li><li>Б) $a_1/a_2 = 8$</li><li>В) $a_1/a_2 = 4$</li><li>Г) $a_1/a_2 = 2$</li></ul></div>
+<details><summary>Відповідь 5.17</summary><div><p>$\dfrac{a_1}{a_2} = \dfrac{F_1}{m_1}\cdot\dfrac{m_2}{F_2} = \dfrac{1}{2}\cdot\dfrac{8}{2} = 2$. <strong>Г.</strong></p></div></details>
+
+<div class="q"><p><strong>5.18.</strong> Тіло масою 4 кг рухається вздовж осі $Ox$ так, що його координата змінюється за законом $x = -5 + 3t - 0{,}1t^2$ (СІ). Визначте проєкцію на вісь $Ox$ сили, що діє на тіло.</p>
+<ul class="options"><li>А) $-0{,}8$ Н</li><li>Б) $0{,}8$ Н</li><li>В) $-0{,}4$ Н</li><li>Г) $0{,}4$ Н</li></ul></div>
+<details><summary>Відповідь 5.18</summary><div><p>$a_x = 2\cdot(-0{,}1) = -0{,}2$ м/с²; $F_x = 4\cdot(-0{,}2) = -0{,}8$ Н. <strong>А.</strong> (В — забули подвоїти коефіцієнт.)</p></div></details>
+
+<div class="q"><p><strong>5.19.</strong> Тіло масою 200 г рухається вздовж осі $Ox$ так, що проєкція його швидкості змінюється за законом $v_x = -2 + 5t$ (СІ). Визначте проєкцію сили на вісь $Ox$.</p>
+<ul class="options"><li>А) $-0{,}4$ Н</li><li>Б) $0{,}4$ Н</li><li>В) $-1$ Н</li><li>Г) $1$ Н</li></ul></div>
+<details><summary>Відповідь 5.19</summary><div><p>Порівнюємо з $v_x = v_{0x} + a_xt$: $a_x = 5$ м/с² (тут множник при $t$ НЕ подвоюють). $F_x = 0{,}2\cdot5 = 1$ Н. <strong>Г.</strong></p></div></details>
+
+<div class="q"><p><strong>5.20.</strong> На тіло масою 2 кг, яке рухається прямолінійно, починає діяти гальмівна сила 10 Н. Через який час після цього тіло зупиниться, якщо його початкова швидкість — 10 м/с?</p>
+<ul class="options"><li>А) 5 с</li><li>Б) 4 с</li><li>В) 1 с</li><li>Г) 2 с</li></ul></div>
+<details><summary>Відповідь 5.20</summary><div><p>$a = F/m = 5$ м/с²; $t = v_0/a = 2$ с. <strong>Г.</strong></p></div></details>
+
+<div class="q"><p><strong>5.32.</strong> Установіть відповідність між характером руху автомобіля та рисунком. Позначення: $F_1$ — сила тяжіння, $F_2$ — сила реакції опори, $F_3$ — сила тяги, $F_4$ — сила опору; довжина стрілки пропорційна модулю сили.</p>
+<p>1 Рівносповільнено рухається на горизонтальній ділянці. 2 Рівномірно рухається по горизонтальній дорозі. 3 Рівномірно проїжджає середину опуклого мосту. 4 Рівноприскорено рухається по горизонтальній дорозі.</p>
+<svg width="640" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="П'ять рисунків сил на автомобіль з різними довжинами стрілок А–Д">
+<defs><marker id="m15a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker><marker id="m15b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker></defs>
+<g font-family="Inter" font-size="15" fill="#13284A"><text x="58" y="20">А</text><text x="186" y="20">Б</text><text x="314" y="20">В</text><text x="442" y="20">Г</text><text x="570" y="20">Д</text></g>
+<g fill="#B9C8E6" stroke="#13284A" stroke-width="1.5"><rect x="50" y="101" width="28" height="18"/><rect x="178" y="101" width="28" height="18"/><rect x="306" y="101" width="28" height="18"/><rect x="434" y="101" width="28" height="18"/><rect x="562" y="101" width="28" height="18"/></g>
+<g stroke="#4569AD" stroke-width="2.5" marker-end="url(#m15a)">
+<line x1="64" y1="101" x2="64" y2="66"/><line x1="64" y1="119" x2="64" y2="154"/><line x1="50" y1="110" x2="10" y2="110"/><line x1="78" y1="110" x2="98" y2="110"/>
+<line x1="192" y1="101" x2="192" y2="66"/><line x1="192" y1="119" x2="192" y2="154"/><line x1="178" y1="110" x2="158" y2="110"/><line x1="206" y1="110" x2="246" y2="110"/>
+<line x1="320" y1="101" x2="320" y2="76"/><line x1="320" y1="119" x2="320" y2="164"/><line x1="306" y1="110" x2="276" y2="110"/><line x1="334" y1="110" x2="364" y2="110"/>
+<line x1="448" y1="101" x2="448" y2="71"/><line x1="448" y1="119" x2="448" y2="149"/><line x1="434" y1="110" x2="404" y2="110"/><line x1="462" y1="110" x2="492" y2="110"/>
+<line x1="576" y1="101" x2="576" y2="56"/><line x1="576" y1="119" x2="576" y2="144"/><line x1="562" y1="110" x2="532" y2="110"/><line x1="590" y1="110" x2="620" y2="110"/>
+</g>
+<g stroke="#E679A6" stroke-width="2.5" marker-end="url(#m15b)"><line x1="74" y1="50" x2="104" y2="50"/><line x1="202" y1="50" x2="232" y2="50"/><line x1="330" y1="50" x2="360" y2="50"/><line x1="458" y1="50" x2="488" y2="50"/><line x1="586" y1="40" x2="616" y2="40"/></g>
+<g font-family="Inter" font-size="14" fill="#E679A6"><text x="106" y="55">v</text><text x="234" y="55">v</text><text x="362" y="55">v</text><text x="490" y="55">v</text><text x="618" y="34">v</text></g>
+</svg></div>
+<details><summary>Відповідь 5.32</summary><div><p><strong>1–А, 2–Г, 3–В, 4–Б.</strong> Гальмування: опір більший за тягу. Рівномірно: усі сили зрівноважені. На опуклому мосту прискорення доцентрове (вниз), тому сила тяжіння більша за реакцію опори. Розгін: тяга більша за опір. Рисунок Д ($F_2 > F_1$) відповідав би увігнутій дорозі.</p></div></details>
+
+<div class="q"><p><strong>5.33.</strong> Установіть відповідність між характером руху тіла та напрямком рівнодійної.</p>
+<table><tr><th>Рівнодійна</th><th>Рух</th></tr>
+<tr><td>1 Стала за величиною і напрямлена проти руху</td><td>А Рівноприскорений прямолінійний, швидкість зростає</td></tr>
+<tr><td>2 Дорівнює нулю</td><td>Б Рівноприскорений прямолінійний, швидкість зменшується</td></tr>
+<tr><td>3 Стала за величиною і напрямлена за рухом</td><td>В Рівномірний прямолінійний рух</td></tr>
+<tr><td>4 Стала за величиною і завжди перпендикулярна до швидкості</td><td>Г Рівномірний рух по колу</td></tr>
+<tr><td></td><td>Д Прямолінійний рух зі змінним прискоренням</td></tr></table></div>
+<details><summary>Відповідь 5.33</summary><div><p><strong>1–Б, 2–В, 3–А, 4–Г.</strong> Сила, перпендикулярна до швидкості, змінює лише напрям — це рух по колу.</p></div></details>
+
+<div class="q"><p><strong>5.34.</strong> Установіть відповідність між графіком зміни $v_x = v_x(t)$ (1–4) та графіком $F_x = F_x(t)$ (А–Д).</p>
+<svg width="640" viewBox="0 0 640 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Вгорі чотири графіки швидкості, внизу п'ять графіків сили">
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="80" y="16">1</text><text x="240" y="16">2</text><text x="400" y="16">3</text><text x="560" y="16">4</text><text x="2" y="30">vₓ</text><text x="162" y="30">vₓ</text><text x="322" y="30">vₓ</text><text x="482" y="30">vₓ</text><text x="140" y="104">t</text><text x="300" y="104">t</text><text x="460" y="104">t</text><text x="620" y="104">t</text></g>
+<path d="M20,20V150M20,85H150M180,20V150M180,85H310M340,20V150M340,85H470M500,20V150M500,85H630" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<g stroke="#4569AD" stroke-width="3" fill="none"><path d="M20,140L120,85"/><path d="M180,30L280,85"/><path d="M340,50H460"/><path d="M500,85Q580,85 620,25"/></g>
+<g transform="translate(0,190)">
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="60" y="6">А</text><text x="188" y="6">Б</text><text x="316" y="6">В</text><text x="444" y="6">Г</text><text x="572" y="6">Д</text><text x="20" y="22">Fₓ</text><text x="148" y="22">Fₓ</text><text x="276" y="22">Fₓ</text><text x="404" y="22">Fₓ</text><text x="532" y="22">Fₓ</text></g>
+<path d="M15,10V145M15,75H120M143,10V145M143,75H248M271,10V145M271,75H376M399,10V145M399,75H504M527,10V145M527,75H632" stroke="#13284A" stroke-width="1.6" fill="none"/>
+<g stroke="#E679A6" stroke-width="3" fill="none"><path d="M15,110H110"/><path d="M143,25L238,65"/><path d="M271,75L366,20"/><path d="M399,74H494"/><path d="M527,45H622"/></g>
+</g>
+</svg></div>
+<details><summary>Відповідь 5.34</summary><div><p>1: швидкість рівномірно зростає (від від'ємної до 0) — $F_x = \text{const} > 0$: <strong>Д</strong>. 2: рівномірно спадає — $F_x = \text{const} \lt 0$: <strong>А</strong>. 3: стала — $F_x = 0$: <strong>Г</strong>. 4: зростає все швидше — $F_x$ зростає: <strong>В</strong>.</p><p><strong>1–Д, 2–А, 3–Г, 4–В.</strong></p></div></details>
+
+<div class="q"><p><strong>5.36.</strong> За графіком залежності $v_x = v_x(t)$ установіть відповідність між ділянкою графіка та проєкцією сили.</p>
+<svg width="460" viewBox="0 0 460 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік швидкості: 1 спадає лінійно, 2 стала, 3 зростає лінійно, 4 зростає все швидше">
+<g stroke="#4569AD" stroke-width="1.3" stroke-dasharray="5 4"><path d="M140,30V200M230,30V200M320,30V200"/></g>
+<path d="M50,20V200H430" stroke="#13284A" stroke-width="1.8" fill="none"/>
+<path d="M50,90L140,170H230L320,120Q380,120 410,40" stroke="#E679A6" stroke-width="3.5" fill="none"/>
+<g font-family="Inter" font-size="15" fill="#13284A"><text x="58" y="26">vₓ</text><text x="425" y="218">t</text><text x="34" y="205">0</text><text x="90" y="44">1</text><text x="180" y="44">2</text><text x="270" y="44">3</text><text x="360" y="44">4</text></g>
+</svg>
+<p>А $F_x = 0$; Б $F_x = \text{const}, F_x > 0$; В $F_x = \text{const}, F_x \lt 0$; Г $F_x \neq \text{const}, F_x \lt 0$; Д $F_x \neq \text{const}, F_x > 0$.</p></div>
+<details><summary>Відповідь 5.36</summary><div><p><strong>1–В, 2–А, 3–Б, 4–Д.</strong></p></div></details>
+
+<div class="q"><p><strong>5.37.</strong> На тіло діють дві рівні за модулем сили $F_1 = F_2 = F$. Установіть відповідність між модулем рівнодійної та рисунком: 1 — $0$; 2 — $F$; 3 — $2F$; 4 — $\sqrt2\,F$.</p>
+<svg width="640" viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="П'ять рисунків двох рівних сил: А співнапрямлені, Б перпендикулярні, В під кутом 60 градусів, Г протилежні, Д під кутом 120 градусів">
+<defs><marker id="m15c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker></defs>
+<g font-family="Inter" font-size="15" fill="#13284A"><text x="58" y="24">А</text><text x="186" y="24">Б</text><text x="314" y="24">В</text><text x="442" y="24">Г</text><text x="570" y="24">Д</text></g>
+<g stroke="#4569AD" stroke-width="3" marker-end="url(#m15c)">
+<line x1="19" y1="110" x2="64" y2="110"/><line x1="64" y1="110" x2="109" y2="110"/>
+<line x1="172" y1="140" x2="172" y2="95"/><line x1="172" y1="140" x2="217" y2="140"/>
+<line x1="295" y1="140" x2="340" y2="140"/><line x1="295" y1="140" x2="317" y2="101"/>
+<line x1="442" y1="110" x2="487" y2="110"/><line x1="442" y1="110" x2="397" y2="110"/>
+<line x1="560" y1="100" x2="605" y2="100"/><line x1="560" y1="100" x2="537" y2="139"/>
+</g>
+<path d="M530,100H560" stroke="#13284A" stroke-width="1.2" stroke-dasharray="4 3"/>
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="30" y="132">F₁</text><text x="80" y="132">F₂</text><text x="150" y="100">F₁</text><text x="205" y="160">F₂</text><text x="300" y="98">F₁</text><text x="330" y="160">F₂</text><text x="475" y="132">F₁</text><text x="398" y="132">F₂</text><text x="594" y="92">F₁</text><text x="514" y="150">F₂</text><text x="306" y="132">60°</text><text x="566" y="126">120°</text></g>
+</svg></div>
+<details><summary>Відповідь 5.37</summary><div><p><strong>1–Г, 2–Д, 3–А, 4–Б.</strong> Дві рівні сили під кутом $120^\circ$ дають рівнодійну $F$; під кутом $60^\circ$ (В) — $\sqrt3F$, такого варіанта немає.</p></div></details>
+
+<div class="q"><p><strong>5.39.</strong> Під дією сил $F_1 = 7$ Н, $F_2 = 3$ Н, $F_3 = 4$ Н, $F_4 = 1$ Н (див. рис.) тіло набуває прискорення $0{,}5$ м/с². Визначте масу тіла.</p>
+<svg width="320" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="F1 праворуч, F2 ліворуч, F3 вниз, F4 вгору">
+<defs><marker id="m15d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker></defs>
+<g stroke="#4569AD" stroke-width="3" marker-end="url(#m15d)"><line x1="150" y1="100" x2="255" y2="100"/><line x1="150" y1="100" x2="105" y2="100"/><line x1="150" y1="100" x2="150" y2="160"/><line x1="150" y1="100" x2="150" y2="80"/></g>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="240" y="124">F₁</text><text x="100" y="124">F₂</text><text x="158" y="166">F₃</text><text x="158" y="80">F₄</text></g>
+</svg></div>
+<details><summary>Відповідь 5.39</summary><div><p>$F_x = 7 - 3 = 4$ Н, $F_y = 4 - 1 = 3$ Н, $F = 5$ Н; $m = F/a = 10$ кг.</p></div></details>
+
+<div class="q"><p><strong>5.41.</strong> Рух тіла в площині $Oxy$ описується в СІ рівняннями $x = 5 - 4t$; $y = 3t - t^2$. Модуль сили, що діє на тіло, дорівнює $0{,}4$ Н. Визначте масу тіла.</p></div>
+<details><summary>Відповідь 5.41</summary><div><p>$a_x = 0$ (рух по $x$ рівномірний), $a_y = 2\cdot(-1) = -2$ м/с²; $a = 2$ м/с²; $m = F/a = 0{,}2$ кг.</p></div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">16</span>Таблиця величин і одиниць СІ</h2>
+<table>
+<tr><th>Величина</th><th>Позначення</th><th>Одиниця СІ</th><th>Вектор чи скаляр</th></tr>
+<tr><td>Кут повороту</td><td>$\varphi$</td><td>рад</td><td>скаляр</td></tr>
+<tr><td>Шлях (довжина дуги)</td><td>$l$</td><td>м</td><td>скаляр</td></tr>
+<tr><td>Радіус кола</td><td>$R$</td><td>м</td><td>скаляр</td></tr>
+<tr><td>Період обертання (коливань)</td><td>$T$</td><td>с</td><td>скаляр</td></tr>
+<tr><td>Частота обертання (коливань)</td><td>$n$, $\nu$</td><td>с⁻¹ (Гц)</td><td>скаляр</td></tr>
+<tr><td>Кількість обертів (коливань)</td><td>$N$</td><td>— (безрозмірна)</td><td>скаляр</td></tr>
+<tr><td>Кутова швидкість</td><td>$\omega$</td><td>рад/с</td><td>скаляр (у шкільному курсі)</td></tr>
+<tr><td>Лінійна швидкість</td><td>$\vec v$</td><td>м/с</td><td>вектор</td></tr>
+<tr><td>Доцентрове прискорення</td><td>$\vec a_{\text{дц}}$</td><td>м/с²</td><td>вектор</td></tr>
+<tr><td>Амплітуда коливань</td><td>$A$</td><td>м</td><td>скаляр</td></tr>
+<tr><td>Сила</td><td>$\vec F$</td><td>Н $=$ кг·м/с²</td><td>вектор</td></tr>
+<tr><td>Маса</td><td>$m$</td><td>кг</td><td>скаляр</td></tr>
+<tr><td>Густина</td><td>$\rho$</td><td>кг/м³</td><td>скаляр</td></tr>
+<tr><td>Об'єм</td><td>$V$</td><td>м³</td><td>скаляр</td></tr>
+<tr><td>Імпульс тіла</td><td>$\vec p$</td><td>кг·м/с</td><td>вектор</td></tr>
+<tr><td>Імпульс сили</td><td>$\vec F t$</td><td>Н·с</td><td>вектор</td></tr>
+</table>
+<div class="callout info"><b>Довідка · корисні переведення</b>$1$ см $= 0{,}01$ м; $1$ мм $= 10^{-3}$ м; $1$ км $= 10^3$ м; $1$ хв $= 60$ с; $1$ год $= 3600$ с; $1$ г $= 10^{-3}$ кг; $1$ т $= 10^3$ кг; $1$ мН $= 10^{-3}$ Н; $1$ км/год $= \dfrac{1}{3{,}6}$ м/с; $1$ об/хв $= \dfrac{1}{60}$ с⁻¹; $1$ г/см³ $= 1000$ кг/м³.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">17</span>Довідник формул курсу: як теми пов'язані</h2>
+<p>Сьогоднішні теми стоять у центрі механіки: кінематика (теми 1–4) описує рух, динаміка (тема 5 і далі) пояснює його причини, а закони збереження дають короткі шляхи розв'язування. Нижче — ключові формули курсу з поясненням кожної величини. Ті, що ще не вивчали, тут подано коротко — детально їх розберемо на відповідних заняттях.</p>
+<h3>Прямолінійний рух (повторення)</h3>
+<table>
+<tr><th>Формула</th><th>Величини (СІ)</th><th>Коли застосовувати</th></tr>
+<tr><td>$s = vt$, $t = \dfrac{s}{v}$, $v = \dfrac{s}{t}$</td><td>$s$ — шлях (м), $v$ — швидкість (м/с), $t$ — час (с)</td><td>Рівномірний прямолінійний рух</td></tr>
+<tr><td>$v_{\text{сер}} = \dfrac{l_1 + l_2 + \dots + l_n}{t_1 + t_2 + \dots + t_n}$</td><td>$l_i$ — шляхи ділянок (м), $t_i$ — час на ділянках (с)</td><td>Нерівномірний рух; це НЕ середнє арифметичне швидкостей</td></tr>
+<tr><td>Шлях $=$ площа під графіком $v(t)$</td><td>—</td><td>Будь-який прямолінійний рух</td></tr>
+<tr><td>$\vec a = \dfrac{\vec v - \vec v_0}{t}$, $a_x = \dfrac{v_x - v_{0x}}{t}$</td><td>$\vec a$ — прискорення (м/с²), $\vec v_0$, $\vec v$ — початкова і кінцева швидкості (м/с)</td><td>Рівноприскорений рух</td></tr>
+<tr><td>$v_x = v_{0x} + a_xt$; $v_y = v_{0y} + g_yt$</td><td>$g_y$ — проєкція прискорення вільного падіння (м/с²)</td><td>Рівноприскорений рух; вільне падіння</td></tr>
+<tr><td>$s_x = v_{0x}t + \dfrac{a_xt^2}{2}$; $h_y = v_{0y}t + \dfrac{g_yt^2}{2}$</td><td>$s_x$ — проєкція переміщення (м), $h_y$ — переміщення по вертикалі (м)</td><td>Рівноприскорений рух</td></tr>
+<tr><td>$s_x = \dfrac{v_{0x} + v_x}{2}\,t$</td><td>Ті самі</td><td>Рівноприскорений рух, коли відомі обидві швидкості</td></tr>
+<tr><td>$s_x = \dfrac{v_x^2 - v_{0x}^2}{2a_x}$; $h_y = \dfrac{v_y^2 - v_{0y}^2}{2g_y}$</td><td>Ті самі</td><td>Рівноприскорений рух, коли час невідомий</td></tr>
+<tr><td>$x = x_0 + v_{0x}t + \dfrac{a_xt^2}{2}$; $y = y_0 + v_{0y}t + \dfrac{g_yt^2}{2}$</td><td>$x_0$, $y_0$ — початкові координати (м)</td><td>Рівняння координати при рівноприскореному русі</td></tr>
+<tr><td>$v_{\text{мит}} = \lim\limits_{\Delta t\to0}\dfrac{\Delta x}{\Delta t}$; $\operatorname{tg}\varphi = \lim\limits_{\Delta x\to0}\dfrac{\Delta y}{\Delta x}$</td><td>$\Delta x$ — зміна координати (м) за час $\Delta t$ (с); $\varphi$ — кут нахилу дотичної</td><td>Миттєва швидкість — нахил дотичної до графіка $x(t)$; вектор швидкості — по дотичній до траєкторії</td></tr>
+</table>
+<h3>Рух під дією сили тяжіння (повторення теми 3)</h3>
+<table>
+<tr><th>Формула</th><th>Величини (СІ)</th><th>Коли застосовувати</th></tr>
+<tr><td>$x = v_0t$; $y = \dfrac{gt^2}{2}$; $v_x = v_0$; $v_y = gt$</td><td>$v_0$ — початкова горизонтальна швидкість (м/с)</td><td>Тіло, кинуте горизонтально (вісь $Oy$ униз), без опору повітря</td></tr>
+<tr><td>$h = \dfrac{gt^2}{2}$; $l = v_0t = v_0\sqrt{\dfrac{2h}{g}}$</td><td>$h$ — висота кидка (м), $l$ — дальність (м)</td><td>Кидок горизонтально</td></tr>
+<tr><td>$x = v_0\cos\alpha\cdot t$; $y = v_0\sin\alpha\cdot t - \dfrac{gt^2}{2}$</td><td>$\alpha$ — кут кидка до горизонту</td><td>Кидок під кутом до горизонту (вісь $Oy$ угору)</td></tr>
+<tr><td>$v_x = v_0\cos\alpha$; $v_y = v_0\sin\alpha - gt$; $v = \sqrt{v_x^2 + v_y^2}$; $\operatorname{tg}\beta = \dfrac{v_y}{v_x}$</td><td>$\beta$ — кут між швидкістю і горизонтом</td><td>Кидок під кутом</td></tr>
+<tr><td>$l = \dfrac{v_0^2\sin2\alpha}{g}$; $h = \dfrac{v_0^2\sin^2\alpha}{2g}$; $t_{\text{п}} = \dfrac{v_0\sin\alpha}{g}$</td><td>$l$ — дальність (м), $h$ — макс. висота (м), $t_{\text{п}}$ — час підйому (с)</td><td>Старт і фініш на одному рівні</td></tr>
+</table>
+<h3>Сили в механіці (детально — на наступних заняттях)</h3>
+<table>
+<tr><th>Формула</th><th>Величини (СІ)</th><th>Коли застосовувати</th></tr>
+<tr><td>$F = G\dfrac{m_1m_2}{r^2}$</td><td>$G = 6{,}67\cdot10^{-11}$ Н·м²/кг², $m_1$, $m_2$ — маси (кг), $r$ — відстань між центрами (м)</td><td>Матеріальні точки або кулі</td></tr>
+<tr><td>$F_{\text{тяж}} = mg$; $F_{\text{тяж}} = G\dfrac{mM_{\text{З}}}{(R_{\text{З}} + h)^2}$</td><td>$M_{\text{З}}$, $R_{\text{З}}$ — маса (кг) і радіус Землі (м), $h$ — висота (м)</td><td>Перша — поблизу поверхні, друга — на висоті $h$</td></tr>
+<tr><td>$F_{\text{пруж}\,x} = -kx$</td><td>$k$ — жорсткість (Н/м), $x$ — видовження (м)</td><td>Закон Гука, малі пружні деформації</td></tr>
+<tr><td>$F_{\text{тер. сп}} = F_{\text{зовн}}$; $F_{\text{тер. ковз}} = \mu N$</td><td>$\mu$ — коефіцієнт тертя, $N$ — сила реакції опори (Н)</td><td>Тертя спокою зрівноважує зовнішню силу; тертя ковзання — при русі</td></tr>
+<tr><td>$P = mg$; $P = m(g + a)$; $P = m(g - a)$; $P = 0$</td><td>$P$ — вага (Н), $a$ — прискорення опори (м/с²)</td><td>Спокій; $\vec a$ вгору; $\vec a$ вниз; вільне падіння (невагомість)</td></tr>
+</table>
+<h3>Закони збереження (детально — у відповідній темі)</h3>
+<table>
+<tr><th>Формула</th><th>Величини (СІ)</th><th>Коли застосовувати</th></tr>
+<tr><td>$\vec p = m\vec v$; $\vec Ft = \Delta\vec p$</td><td>$\vec p$ — імпульс (кг·м/с), $\vec Ft$ — імпульс сили (Н·с)</td><td>Удари, поштовхи</td></tr>
+<tr><td>$\sum\vec p_i = \text{const}$ (для системи, що спочатку спочивала, — $\sum\vec p_i = 0$)</td><td>$\vec p_i$ — імпульси тіл системи</td><td>Замкнена система тіл</td></tr>
+<tr><td>$v_{\text{об}} = -\dfrac{m_2}{m_{\text{об}}}v_2$</td><td>$m_2$, $v_2$ — маса й швидкість викинутої частини; $m_{\text{об}}$, $v_{\text{об}}$ — маса й швидкість оболонки (ракети)</td><td>Реактивний рух, система спочатку в спокої</td></tr>
+<tr><td>$A = FS\cos\alpha$; $A = mgh$; $A = \dfrac{kx^2}{2}$</td><td>$A$ — робота (Дж), $S$ — переміщення (м), $\alpha$ — кут між силою та переміщенням</td><td>Стала сила; сила тяжіння; сила пружності</td></tr>
+<tr><td>$N = \dfrac{A}{t}$; $N = Fv$</td><td>$N$ — потужність (Вт)</td><td>Середня потужність; потужність при сталій швидкості</td></tr>
+<tr><td>$W_k = \dfrac{mv^2}{2}$; $W_p = mgh$; $W_p = \dfrac{kx^2}{2}$</td><td>$W$ — енергія (Дж)</td><td>Кінетична; потенціальна тяжіння; пружної деформації</td></tr>
+<tr><td>$W = W_k + W_p = \text{const}$; $A = \Delta W_k$; $A = -\Delta W_p$</td><td>—</td><td>Замкнена система без тертя; теореми про енергію</td></tr>
+<tr><td>$\eta = \dfrac{A_{\text{к}}}{A_{\text{в}}}\cdot100\%$</td><td>$A_{\text{к}}$ — корисна, $A_{\text{в}}$ — виконана (повна) робота (Дж)</td><td>ККД механізмів</td></tr>
+</table>
+</section>
+
+<section class="card">
+<h2><span class="num">18</span>Типові помилки</h2>
+<div class="callout warn"><b>Типова помилка 1 · градуси замість радіанів</b>У формулах $l = R\varphi$ і $\omega = \varphi/t$ кут — лише в радіанах. $45^\circ = \pi/4$ рад, а не «45».</div>
+<div class="callout warn"><b>Типова помилка 2 · діаметр замість радіуса</b>Задано діаметр шківа $30$ см — у формули підставляй $R = 0{,}15$ м.</div>
+<div class="callout warn"><b>Типова помилка 3 · об/хв і хвилини</b>$600$ обертів за $0{,}5$ хв — це $N = 600$, $t = 30$ с, а не $t = 0{,}5$.</div>
+<div class="callout warn"><b>Типова помилка 4 · «немає зміни модуля — немає прискорення»</b>При рівномірному русі по колу прискорення є: змінюється напрям швидкості.</div>
+<div class="callout warn"><b>Типова помилка 5 · рух по колу як рівноприскорений</b>Модуль $a_{\text{дц}}$ сталий, але напрям змінюється, тому формули рівноприскореного руху до руху по колу не застосовують.</div>
+<div class="callout warn"><b>Типова помилка 6 · одна сила замість рівнодійної</b>У $ma = F$ сила $F$ — це рівнодійна <strong>всіх</strong> сил. Сила тяги $5$ кН при опорі $3$ кН розганяє автомобіль силою $2$ кН.</div>
+<div class="callout warn"><b>Типова помилка 7 · прискорення з рівняння руху</b>У $x = 2 + 3t + 4t^2$ прискорення $a = 8$ м/с² (подвоєний коефіцієнт), а у $v_x = -2 + 5t$ — $a = 5$ м/с² (коефіцієнт без подвоєння).</div>
+<div class="callout warn"><b>Типова помилка 8 · «сили з III закону зрівноважуються»</b>Вони прикладені до різних тіл і зрівноважуватися не можуть.</div>
+<div class="callout warn"><b>Типова помилка 9 · напрям прискорення = напрям швидкості</b>Прискорення напрямлене як рівнодійна. При гальмуванні — проти швидкості, при русі по колу — перпендикулярно до неї.</div>
+<div class="callout warn"><b>Типова помилка 10 · «відцентрова сила»</b>В інерціальній системі відліку її немає; тіло, звільнене від нитки, летить по дотичній.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">19</span>Цікаві факти та ілюстрації</h2>
+<div class="callout fact"><b>Цікавий факт · «перевірка Місяцем»</b>Місяць обертається навколо Землі по орбіті радіусом близько $384\,000$ км з періодом $\approx 27{,}3$ доби. Його доцентрове прискорення $a = \dfrac{4\pi^2R}{T^2} \approx 2{,}7\cdot10^{-3}$ м/с² — приблизно в $3600 = 60^2$ разів менше за $g$, а Місяць віддалений від центра Землі приблизно на 60 земних радіусів. Ньютон помітив цей збіг і зрозумів: Місяць утримує на орбіті та сама сила, що змушує падати яблуко. Це тема наступного заняття — закон всесвітнього тяжіння.</div>
+<div class="callout fact"><b>Цікавий факт · найшвидший пасажир</b>Міжнародна космічна станція облітає Землю приблизно за 90 хв на висоті близько 400 км зі швидкістю $\approx 7{,}7$ км/с. Її доцентрове прискорення — майже $9$ м/с²: космонавти весь час «падають» на Землю, але не долітають до неї — це і є невагомість.</div>
+<figure class="img-slot"><figcaption><b>Ілюстрація 1:</b> метання молота — спортсмен розкручує ядро на тросі; у момент, коли трос відпускають, ядро летить по дотичній до кола, а не по радіусу. Дивись на напрям польоту відносно кола обертання. <cite>Запит: «hammer throw athlete release» / «метання молота момент кидка» · Де шукати: Wikimedia Commons, Unsplash, Pexels [знайти] · alt: «Спортсмен відпускає молот, що злітає по дотичній до кола обертання»</cite></figcaption></figure>
+<figure class="img-slot"><figcaption><b>Ілюстрація 2:</b> старт ракети — гази вириваються вниз, ракета рухається вгору: пара сил за III законом Ньютона. <cite>Запит: «rocket launch exhaust» / «старт ракети» · Де шукати: NASA Image and Video Library (зображення NASA зазвичай у суспільному надбанні) [знайти] · alt: «Ракета піднімається на стовпі вихлопних газів»</cite></figcaption></figure>
+<figure class="img-slot"><figcaption><b>Ілюстрація 3:</b> скріншот симуляції PhET «Forces and Motion: Basics» — тіло на візку з показаними силами, рівнодійною та швидкістю. Дивись, як змінюється швидкість, коли рівнодійна дорівнює нулю. <cite>Запит: «PhET Forces and Motion Basics» / «PhET сили та рух» · Де шукати: phet.colorado.edu (ліцензія CC BY 4.0) [знайти] · alt: «Симуляція: на візок діють сила поштовху і тертя, показано рівнодійну»</cite></figcaption></figure>
+</section>
+
+<section class="card">
+<h2><span class="num">20</span>Ключовий висновок і концепт-карта</h2>
+<div class="callout remember"><b>Ключовий висновок</b>
+<p>1. Швидкість — вектор: вона змінюється і тоді, коли змінюється лише її напрям. Тому рівномірний рух по колу — рух із доцентровим прискоренням $a = \dfrac{v^2}{R} = \omega^2R$.</p>
+<p>2. Причина будь-якого прискорення — нескомпенсована взаємодія: $m\vec a = \sum\vec F$. Немає рівнодійної — швидкість стала (I закон).</p>
+<p>3. Взаємодія завжди парна: тіла діють одне на одне рівними й протилежними силами, прикладеними до різних тіл (III закон).</p>
+<p>4. Рух по колу можливий лише тоді, коли реальні сили дають рівнодійну, напрямлену до центра.</p></div>
+<p>Сьогоднішнє — ще один прояв ідеї <strong>«Взаємодії та сили»</strong>: те, що ми бачили як «рух по колу», «гальмування», «розгін», — один закон $m\vec a = \sum\vec F$ у різних ситуаціях. А ідея <strong>«Ті самі закони діють усюди»</strong> поведе нас наступного разу від каменя на мотузці до Місяця й супутників.</p>
+<h3>Як сьогоднішнє вписується в нашу карту?</h3>
+<svg width="640" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Концепт-карта: взаємодії та сили, сила, маса, другий закон, перший закон, рух по колу, третій закон, кінематика кола">
+<defs><marker id="m20" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker></defs>
+<g fill="#B9C8E6" stroke="#13284A" stroke-width="1.6">
+<rect x="200" y="14" width="240" height="46" rx="12" fill="#FFFFFF" stroke="#E679A6" stroke-width="2.5"/>
+<rect x="40" y="120" width="180" height="44" rx="10"/>
+<rect x="420" y="120" width="180" height="44" rx="10"/>
+<rect x="200" y="220" width="240" height="44" rx="10"/>
+<rect x="5" y="330" width="205" height="44" rx="10"/>
+<rect x="220" y="330" width="200" height="44" rx="10"/>
+<rect x="430" y="330" width="200" height="44" rx="10"/>
+<rect x="220" y="420" width="200" height="44" rx="10" fill="#FFFFFF" stroke="#587954" stroke-width="2"/>
+</g>
+<g font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">
+<text x="320" y="43">ВЗАЄМОДІЇ ТА СИЛИ</text>
+<text x="130" y="147">Сила F (Н)</text>
+<text x="510" y="147">Маса m (кг)</text>
+<text x="320" y="247">II закон: ma = ΣF</text>
+<text x="107" y="357">I закон: ΣF = 0 ⇒ v = const</text>
+<text x="320" y="357">Рух по колу: a до центра</text>
+<text x="530" y="357">III закон: F₁ = −F₂</text>
+<text x="320" y="447">v = ωR,  a = v²/R</text>
+</g>
+<g stroke="#4569AD" stroke-width="2" fill="none" marker-end="url(#m20)">
+<line x1="250" y1="60" x2="160" y2="118"/>
+<line x1="510" y1="164" x2="400" y2="218"/>
+<line x1="130" y1="164" x2="240" y2="218"/>
+<line x1="260" y1="264" x2="140" y2="328"/>
+<line x1="320" y1="264" x2="320" y2="328"/>
+<path d="M440,37 Q610,40 600,328"/>
+<line x1="320" y1="420" x2="320" y2="376"/>
+</g>
+<g font-family="Inter" font-size="14" fill="#4569AD" text-anchor="middle">
+<text x="168" y="88">мірою є</text>
+<text x="500" y="200">інертність</text>
+<text x="105" y="205">змінює швидкість</text>
+<text x="118" y="292">окремий випадок</text>
+<text x="370" y="300">застосування</text>
+<text x="590" y="96">взаємодія</text>
+<text x="590" y="114">парна</text>
+<text x="380" y="403">описує</text>
+</g>
+</svg>
+<p>Читай стрілки як речення: «Мірою взаємодії є сила», «Сила змінює швидкість через II закон», «Маса — інертність, вона входить у II закон», «Рух по колу — застосування II закону, кінематика кола описує прискорення».</p>
+</section>
+
+<section class="card">
+<h2><span class="num">21</span>Перевір себе</h2>
+<details><summary>1. Чому при рівномірному русі по колу є прискорення, якщо модуль швидкості сталий?</summary><div><p>Прискорення — це швидкість зміни <em>вектора</em> швидкості. Напрям $\vec v$ змінюється щомиті, отже, $\Delta\vec v \neq 0$, і прискорення напрямлене до центра.</p></div></details>
+<details><summary>2. Як зміниться лінійна швидкість точки, якщо частоту обертання збільшити втричі, а радіус зменшити вдвічі?</summary><div><p>$v = 2\pi Rn$ — збільшиться в $3/2 = 1{,}5$ раза.</p></div></details>
+<details><summary>3. Чому дорівнює кутова швидкість годинної стрілки?</summary><div><p>$\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{43\,200\ \text{с}} \approx 1{,}45\cdot10^{-4}$ рад/с.</p></div></details>
+<details><summary>4. Яка швидкість верхньої точки колеса велосипеда, що їде зі швидкістю 5 м/с без проковзування?</summary><div><p>$2v = 10$ м/с; нижня точка має швидкість $0$.</p></div></details>
+<details><summary>5. Тіло рухається з прискоренням. Чи обов'язково на нього діє сила за напрямом руху?</summary><div><p>Ні. Рівнодійна напрямлена як прискорення: при гальмуванні — проти руху, при русі по колу — до центра.</p></div></details>
+<details><summary>6. Ліфт піднімається рівномірно. Яка рівнодійна сил, що діють на пасажира?</summary><div><p>Нуль: рух рівномірний прямолінійний (I закон). Сила тяжіння зрівноважена силою реакції підлоги.</p></div></details>
+<details><summary>7. Яку силу треба прикласти до тіла масою 3 кг, щоб воно рухалося з прискоренням 2 м/с²?</summary><div><p>Рівнодійна має дорівнювати $F = ma = 6$ Н і бути напрямленою як прискорення.</p></div></details>
+<details><summary>8. Земля притягує яблуко силою 2 Н. З якою силою яблуко притягує Землю? Чому Земля «не падає» до яблука помітно?</summary><div><p>Теж 2 Н (III закон). Але маса Землі величезна, тому прискорення Землі $a = F/M_{\text{З}}$ мізерно мале.</p></div></details>
+<details><summary>9. Чому на поворотах слизької дороги треба знижувати швидкість?</summary><div><p>Доцентрове прискорення забезпечує сила тертя, найбільше значення якої $\mu mg$. Умова $m v^2/R \le \mu mg$ дає $v \le \sqrt{\mu gR}$; на слизькій дорозі $\mu$ менший — менша і безпечна швидкість.</p></div></details>
+<details><summary>10. Що спільного між рухом каменя на мотузці та рухом Місяця?</summary><div><p>Обидва рухаються по колу під дією рівнодійної, напрямленої до центра: для каменя — сили натягу, для Місяця — сили тяжіння Землі. Закон однаковий: $F = mv^2/R$.</p></div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">22</span>Вихідний квиток (3–5 хв)</h2>
+<p><strong>Нова ситуація.</strong> Дитина масою 30 кг сидить на карусельці на відстані 2 м від осі. Карусель робить один оберт за 4 с.</p>
+<ol>
+<li>Знайди лінійну швидкість дитини і її доцентрове прискорення.</li>
+<li>Знайди модуль рівнодійної сил, що діють на дитину, і вкажи її напрям.</li>
+<li>Яка реальна сила (чи сили) утримує дитину на колі?</li>
+</ol>
+<p>Відповідь: $v =$ <span class="gap"></span> м/с; $a =$ <span class="gap"></span> м/с²; $F =$ <span class="gap"></span> Н, напрям <span class="gap"></span>.</p>
+<details><summary>Розв'язання і критерії</summary><div>
+<p>$v = \dfrac{2\pi R}{T} = \dfrac{2\pi\cdot2}{4} = \pi \approx 3{,}1$ м/с; $a = \dfrac{v^2}{R} = \dfrac{\pi^2}{2} \approx 4{,}9$ м/с²; $F = ma \approx 148$ Н $\approx 150$ Н, напрямлена горизонтально до осі каруселі. Її забезпечує сила тертя спокою сидіння та/або сила, з якою дитина тримається за поручень.</p>
+<p><strong>Сталося:</strong> правильні числа з одиницями, напрям рівнодійної — до центра, названо реальну силу (тертя, поручень).<br><strong>Частково:</strong> правильно знайдено $v$ і $a$, але рівнодійна напрямлена «за рухом» чи «назовні» або не названо реальної сили.<br><strong>Не сталося:</strong> поки вважає, що при сталій швидкості рівнодійна дорівнює нулю, або плутає формули.</p></div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">23</span>Тест · 30 завдань</h2>
+<p>Рівень і крок драбинки позначено біля кожного завдання: <em>початковий / середній / достатній-високий</em>; <em>назвати → описати → пояснити → застосувати до нового</em>. Вважай $g = 10$ м/с², $\pi \approx 3{,}14$. Ключ із поясненнями — у розділі 24.</p>
+
+<div class="q"><p><strong>1.</strong> <em>[Початковий · назвати · одна правильна]</em> Одиниця кутової швидкості в СІ:</p>
+<ul class="options"><li>А) об/хв</li><li>Б) рад/с</li><li>В) м/с</li><li>Г) с</li></ul></div>
+
+<div class="q"><p><strong>2.</strong> <em>[Початковий · назвати · одна правильна]</em> При рівномірному русі по колу прискорення тіла напрямлене:</p>
+<ul class="options"><li>А) по дотичній за рухом</li><li>Б) по дотичній проти руху</li><li>В) до центра кола</li><li>Г) від центра кола</li></ul></div>
+
+<div class="q"><p><strong>3.</strong> <em>[Початковий · назвати · так / ні]</em> Рівномірний рух по колу — це рух без прискорення.</p>
+<ul class="options"><li>Так</li><li>Ні</li></ul></div>
+
+<div class="q"><p><strong>4.</strong> <em>[Початковий · назвати · одна правильна]</em> Мірою інертності тіла є:</p>
+<ul class="options"><li>А) сила</li><li>Б) маса</li><li>В) швидкість</li><li>Г) прискорення</li></ul></div>
+
+<div class="q"><p><strong>5.</strong> <em>[Початковий · описати · так / ні]</em> Сили, про які йдеться в III законі Ньютона, прикладені до одного тіла, тому зрівноважують одна одну.</p>
+<ul class="options"><li>Так</li><li>Ні</li></ul></div>
+
+<div class="q"><p><strong>6.</strong> <em>[Середній · описати · на відповідність]</em> Установіть відповідність між величиною та формулою.</p>
+<table><tr><th>Величина</th><th>Формула</th></tr><tr><td>1 Період</td><td>А $N/t$</td></tr><tr><td>2 Частота</td><td>Б $t/N$</td></tr><tr><td>3 Кутова швидкість</td><td>В $2\pi/T$</td></tr><tr><td>4 Доцентрове прискорення</td><td>Г $\omega^2R$</td></tr><tr><td></td><td>Д $\omega R$</td></tr></table></div>
+
+<div class="q"><p><strong>7.</strong> <em>[Середній · описати · кілька правильних]</em> Виберіть усі правильні твердження про рівномірний рух тіла по колу.</p>
+<ul class="options"><li>А) модуль швидкості сталий</li><li>Б) вектор швидкості сталий</li><li>В) прискорення напрямлене до центра</li><li>Г) рівнодійна сил дорівнює нулю</li><li>Д) рівнодійна перпендикулярна до швидкості</li></ul></div>
+
+<div class="q"><p><strong>8.</strong> <em>[Початковий · назвати · одна правильна]</em> 1 Н дорівнює:</p>
+<ul class="options"><li>А) 1 кг·м/с</li><li>Б) 1 кг·м/с²</li><li>В) 1 кг·м²/с²</li><li>Г) 1 г·см/с²</li></ul></div>
+
+<div class="q"><p><strong>9.</strong> <em>[Середній · застосувати · розрахункова]</em> Колесо робить 120 обертів за 1 хв. Визначте період обертання (у секундах).</p></div>
+
+<div class="q"><p><strong>10.</strong> <em>[Середній · застосувати · розрахункова]</em> Точка на ободі колеса радіусом 0,4 м робить один оберт за 0,2 с. Визначте її лінійну швидкість (м/с, з точністю до десятих).</p></div>
+
+<div class="q"><p><strong>11.</strong> <em>[Середній · застосувати · одна правильна]</em> Автомобіль проходить поворот радіусом 20 м зі швидкістю 10 м/с. Його доцентрове прискорення:</p>
+<ul class="options"><li>А) 0,5 м/с²</li><li>Б) 2 м/с²</li><li>В) 5 м/с²</li><li>Г) 200 м/с²</li></ul></div>
+
+<div class="q"><p><strong>12.</strong> <em>[Середній · пояснити · одна правильна]</em> Як зміниться доцентрове прискорення тіла, якщо при тому самому радіусі період обертання зменшити вдвічі?</p>
+<ul class="options"><li>А) збільшиться вдвічі</li><li>Б) збільшиться в 4 рази</li><li>В) зменшиться в 4 рази</li><li>Г) не зміниться</li></ul></div>
+
+<div class="q"><p><strong>13.</strong> <em>[Середній · пояснити · одна правильна]</em> Дві точки диска, що обертається, розташовані на відстанях $r$ і $3r$ від осі. Чому дорівнюють відношення $v_2/v_1$ і $\omega_2/\omega_1$?</p>
+<ul class="options"><li>А) 3 і 1</li><li>Б) 1 і 3</li><li>В) 3 і 3</li><li>Г) 9 і 1</li></ul></div>
+
+<div class="q"><p><strong>14.</strong> <em>[Середній · описати · послідовність]</em> Розташуйте кроки розв'язування задачі динаміки в правильному порядку.</p>
+<ul class="options"><li>А) записати II закон Ньютона у векторній формі</li><li>Б) зробити рисунок і показати всі сили</li><li>В) вибрати осі координат</li><li>Г) записати рівняння в проєкціях і розв'язати</li><li>Д) перевірити одиниці та правдоподібність</li></ul></div>
+
+<div class="q"><p><strong>15.</strong> <em>[Початковий · пояснити · одна правильна]</em> Тіло рухається рівномірно і прямолінійно. Рівнодійна всіх сил, що на нього діють:</p>
+<ul class="options"><li>А) напрямлена за рухом</li><li>Б) дорівнює нулю</li><li>В) напрямлена проти руху</li><li>Г) дорівнює $mg$</li></ul></div>
+
+<div class="q"><p><strong>16.</strong> <em>[Середній · застосувати · розрахункова]</em> На тіло масою 3 кг діють дві взаємно перпендикулярні сили 6 Н і 8 Н. Визначте прискорення тіла (м/с², з точністю до десятих).</p></div>
+
+<div class="q"><p><strong>17.</strong> <em>[Середній · застосувати · одна правильна]</em> Координата тіла масою 2 кг змінюється за законом $x = 4 - 2t + 3t^2$ (СІ). Проєкція рівнодійної на вісь $Ox$:</p>
+<ul class="options"><li>А) 3 Н</li><li>Б) 6 Н</li><li>В) 12 Н</li><li>Г) −4 Н</li></ul></div>
+
+<div class="q"><p><strong>18.</strong> <em>[Середній · пояснити · кілька правильних]</em> Виберіть усі ознаки пари сил, про яку йдеться в III законі Ньютона.</p>
+<ul class="options"><li>А) рівні за модулем</li><li>Б) протилежні за напрямом</li><li>В) прикладені до одного тіла</li><li>Г) мають однакову фізичну природу</li><li>Д) зрівноважують одна одну</li></ul></div>
+
+<div class="q"><p><strong>19.</strong> <em>[Середній · пояснити · на відповідність, з графіком]</em> За графіком $v_x(t)$ установіть відповідність між інтервалом часу та проєкцією сили, що діє на тіло масою 0,5 кг.</p>
+<svg width="440" viewBox="0 0 440 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Графік швидкості: від 0 до 6 м/с за 2 с, стала до 5 с, спад до 0 за 8 с">
+<g stroke="#B9C8E6" stroke-width="1"><path d="M90,50V190M130,50V190M170,50V190M210,50V190M250,50V190M290,50V190M330,50V190M370,50V190M50,70H390M50,110H390M50,150H390"/></g>
+<path d="M50,35V190H405" stroke="#13284A" stroke-width="1.8" fill="none"/>
+<path d="M50,190L130,70H250L370,190" stroke="#E679A6" stroke-width="3.5" fill="none"/>
+<g font-family="Inter" font-size="14" fill="#13284A"><text x="58" y="34">vₓ, м/с</text><text x="395" y="210">t, с</text><text x="34" y="75">6</text><text x="34" y="115">4</text><text x="34" y="155">2</text><text x="38" y="208">0</text><text x="126" y="208">2</text><text x="246" y="208">5</text><text x="366" y="208">8</text></g>
+</svg>
+<p>1 від 0 до 2 с; 2 від 2 до 5 с; 3 від 5 до 8 с.</p>
+<p>А $F_x = 1{,}5$ Н; Б $F_x = 0$; В $F_x = -1$ Н; Г $F_x = 3$ Н; Д $F_x = -1{,}5$ Н.</p></div>
+
+<div class="q"><p><strong>20.</strong> <em>[Середній · застосувати · розрахункова, з рисунком]</em> На тіло масою 2 кг, що лежить на гладкій горизонтальній поверхні, діють три горизонтальні сили (вигляд згори): $F_1 = 7$ Н, $F_2 = 3$ Н, $F_3 = 3$ Н. Визначте прискорення тіла (м/с²).</p>
+<svg width="320" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Вигляд згори: F1 праворуч, F2 ліворуч, F3 перпендикулярно до них">
+<defs><marker id="m23" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker></defs>
+<rect x="138" y="98" width="24" height="24" fill="#B9C8E6" stroke="#13284A" stroke-width="1.5"/>
+<g stroke="#4569AD" stroke-width="3" marker-end="url(#m23)"><line x1="162" y1="110" x2="267" y2="110"/><line x1="138" y1="110" x2="93" y2="110"/><line x1="150" y1="98" x2="150" y2="53"/></g>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="250" y="134">F₁</text><text x="90" y="134">F₂</text><text x="158" y="60">F₃</text></g>
+</svg></div>
+
+<div class="q"><p><strong>21.</strong> <em>[Достатній-високий · пояснити · одна правильна]</em> Автобус різко гальмує, і пасажири нахиляються вперед. Правильне пояснення:</p>
+<ul class="options"><li>А) на пасажирів діє сила інерції, напрямлена вперед</li><li>Б) тіла пасажирів за інерцією зберігають швидкість відносно Землі, а автобус сповільнюється</li><li>В) сила тяги двигуна передається пасажирам</li><li>Г) під час гальмування збільшується маса пасажирів</li></ul></div>
+
+<div class="q"><p><strong>22.</strong> <em>[Достатній-високий · застосувати · розрахункова]</em> Кабіна центрифуги для тренування пілотів рухається по колу радіусом 8 м. Яким має бути період обертання, щоб доцентрове прискорення дорівнювало $6g$? Відповідь — у секундах, з точністю до десятих.</p></div>
+
+<div class="q"><p><strong>23.</strong> <em>[Достатній-високий · застосувати · одна правильна]</em> Супутник рухається по коловій орбіті радіусом 6700 км зі швидкістю 7,8 км/с. Його доцентрове прискорення приблизно дорівнює:</p>
+<ul class="options"><li>А) 0</li><li>Б) 1,2 м/с²</li><li>В) 9,1 м/с²</li><li>Г) 78 м/с²</li></ul></div>
+
+<div class="q"><p><strong>24.</strong> <em>[Достатній-високий · застосувати · розрахункова]</em> Кулька на нитці рівномірно обертається в горизонтальній площині (конічний маятник). Нитка утворює з вертикаллю кут $45^\circ$, радіус кола — 0,4 м. Визначте швидкість кульки (м/с).</p></div>
+
+<div class="q"><p><strong>25.</strong> <em>[Достатній-високий · застосувати до нового · відкрита відповідь]</em> Велосипедист їде по горизонтальному майданчику по колу радіусом 20 м зі швидкістю 10 м/с. Яка сила забезпечує його доцентрове прискорення? Яким має бути найменший коефіцієнт тертя між шинами та покриттям, щоб велосипед не занесло?</p></div>
+
+<div class="q"><p><strong>26.</strong> <em>[Достатній-високий · пояснити · відкрита відповідь]</em> За III законом Ньютона віз тягне коня назад з такою самою силою, з якою кінь тягне віз уперед. Чому ж кінь може зрушити віз з місця?</p></div>
+
+<div class="q"><p><strong>27.</strong> <em>[Середній · пояснити · знайти помилку на рисунку]</em> Учень зобразив швидкість і прискорення тіла, що рівномірно рухається по колу. Яку помилку він зробив?</p>
+<svg width="360" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Коло, на ньому точка; швидкість по дотичній, прискорення помилково теж по дотичній у протилежний бік">
+<defs><marker id="m23b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#4569AD"/></marker><marker id="m23p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#E679A6"/></marker></defs>
+<circle cx="170" cy="140" r="100" fill="none" stroke="#13284A" stroke-width="2"/>
+<circle cx="170" cy="140" r="4" fill="#081F44"/>
+<line x1="170" y1="40" x2="250" y2="40" stroke="#4569AD" stroke-width="3" marker-end="url(#m23b)"/>
+<line x1="170" y1="40" x2="110" y2="40" stroke="#E679A6" stroke-width="3" marker-end="url(#m23p)"/>
+<circle cx="170" cy="40" r="7" fill="#081F44"/>
+<g font-family="Inter" font-size="16" fill="#13284A"><text x="240" y="30" fill="#4569AD">v</text><text x="112" y="30" fill="#E679A6">a</text><text x="176" y="160">O</text></g>
+</svg>
+<ul class="options"><li>А) помилки немає</li><li>Б) прискорення має бути напрямлене до центра кола</li><li>В) швидкість має бути напрямлена до центра кола</li><li>Г) прискорення має бути напрямлене від центра кола</li></ul></div>
+
+<div class="q"><p><strong>28.</strong> <em>[Достатній-високий · застосувати · на відповідність]</em> Колесо котиться без проковзування, швидкість його центра $v$. Установіть відповідність між точкою колеса та модулем її швидкості відносно дороги.</p>
+<table><tr><th>Точка</th><th>Швидкість</th></tr><tr><td>1 Нижня точка обода</td><td>А $0$</td></tr><tr><td>2 Центр колеса</td><td>Б $v$</td></tr><tr><td>3 Верхня точка обода</td><td>В $\sqrt2\,v$</td></tr><tr><td>4 Передня точка обода на рівні центра</td><td>Г $2v$</td></tr><tr><td></td><td>Д $v/2$</td></tr></table></div>
+
+<div class="q"><p><strong>29.</strong> <em>[Середній · застосувати · розрахункова]</em> Тіло масою 500 г починає рухатися зі стану спокою під дією сталої рівнодійної 2 Н. Яку швидкість (м/с) воно матиме через 3 с?</p></div>
+
+<div class="q"><p><strong>30.</strong> <em>[Достатній-високий · застосувати до нового · одна правильна]</em> Два бруски масами 2 кг і 3 кг, зв'язані ниткою, лежать на гладкому столі. До першого бруска прикладають горизонтальну силу 10 Н, напрямлену від другого. Сила натягу нитки дорівнює:</p>
+<ul class="options"><li>А) 4 Н</li><li>Б) 6 Н</li><li>В) 10 Н</li><li>Г) 2 Н</li></ul></div>
+</section>
+
+<section class="card">
+<h2><span class="num">24</span>Ключ відповідей</h2>
+<details><summary>Відповіді та пояснення до тесту</summary><div>
+<p><strong>1. Б.</strong> Кут вимірюють у радіанах, час — у секундах. Об/хв — позасистемна одиниця частоти; м/с — лінійної швидкості.</p>
+<p><strong>2. В.</strong> Прискорення змінює лише напрям швидкості й напрямлене до центра. По дотичній напрямлена швидкість.</p>
+<p><strong>3. Ні.</strong> Напрям швидкості змінюється — прискорення є (доцентрове).</p>
+<p><strong>4. Б.</strong> Маса — міра інертності. Сила — міра взаємодії, прискорення — результат дії сили.</p>
+<p><strong>5. Ні.</strong> Ці сили прикладені до різних тіл, тому не зрівноважують одна одну.</p>
+<p><strong>6. 1–Б, 2–А, 3–В, 4–Г.</strong> Д $= \omega R$ — лінійна швидкість, зайвий варіант.</p>
+<p><strong>7. А, В, Д.</strong> Вектор швидкості змінює напрям (Б хибне); рівнодійна не дорівнює нулю, бо є прискорення (Г хибне).</p>
+<p><strong>8. Б.</strong> З $F = ma$: кг·м/с². Варіант А — одиниця імпульсу, В — енергії.</p>
+<p><strong>9. 0,5 с.</strong> $T = t/N = 60/120 = 0{,}5$ с. Пастка: $1/120$ — забули перевести хвилину в секунди.</p>
+<p><strong>10. ≈ 12,6 м/с.</strong> $v = 2\pi R/T = 2\cdot3{,}14\cdot0{,}4/0{,}2 = 4\pi \approx 12{,}6$ м/с.</p>
+<p><strong>11. В.</strong> $a = v^2/R = 100/20 = 5$ м/с². А $= 10/20$ — забули піднести швидкість до квадрата; Г — помножили замість ділення.</p>
+<p><strong>12. Б.</strong> $a = 4\pi^2R/T^2$: зменшення $T$ удвічі збільшує $a$ в $2^2 = 4$ рази. А — забули квадрат.</p>
+<p><strong>13. А.</strong> $\omega$ однакова для всіх точок диска; $v = \omega r$ — утричі більша.</p>
+<p><strong>14. Б → А → В → Г → Д.</strong> Спочатку рисунок із силами, далі векторне рівняння, осі, проєкції, перевірка (алгоритм із розділу 11).</p>
+<p><strong>15. Б.</strong> I закон Ньютона: швидкість стала, отже, рівнодійна дорівнює нулю. Варіант А — уявлення Арістотеля.</p>
+<p><strong>16. ≈ 3,3 м/с².</strong> $F = \sqrt{36 + 64} = 10$ Н; $a = 10/3 \approx 3{,}3$ м/с². Пастка: $14/3$ — додали модулі.</p>
+<p><strong>17. В.</strong> $a_x = 2\cdot3 = 6$ м/с², $F_x = 12$ Н. Б — забули подвоїти коефіцієнт; Г — помножили масу на коефіцієнт при $t$.</p>
+<p><strong>18. А, Б, Г.</strong> Сили прикладені до різних тіл і не зрівноважуються.</p>
+<p><strong>19. 1–А, 2–Б, 3–В.</strong> 1) $a = 6/2 = 3$ м/с², $F = 0{,}5\cdot3 = 1{,}5$ Н. 2) $v = \text{const}$, $F = 0$. 3) $a = -6/3 = -2$ м/с², $F = -1$ Н. Г — забули помножити на масу; Д — не той інтервал часу.</p>
+<p><strong>20. 2,5 м/с².</strong> $F_x = 7 - 3 = 4$ Н, $F_y = 3$ Н; $F = 5$ Н; $a = 5/2 = 2{,}5$ м/с².</p>
+<p><strong>21. Б.</strong> В інерціальній системі (Земля) жодна сила не штовхає пасажирів уперед — вони рухаються за інерцією, а автобус гальмує під ними.</p>
+<p><strong>22. ≈ 2,3 с.</strong> $a = \dfrac{4\pi^2R}{T^2} \Rightarrow T = 2\pi\sqrt{\dfrac{R}{a}} = 6{,}28\sqrt{\dfrac{8}{60}} \approx 6{,}28\cdot0{,}365 \approx 2{,}3$ с.</p>
+<p><strong>23. В.</strong> $a = \dfrac{v^2}{R} = \dfrac{(7{,}8\cdot10^3)^2}{6{,}7\cdot10^6} \approx 9{,}1$ м/с². Б — забули піднести швидкість до квадрата; А — сплутали «невагомість» з відсутністю прискорення.</p>
+<p><strong>24. 2 м/с.</strong> $\operatorname{tg}\alpha = \dfrac{v^2}{gR} \Rightarrow v = \sqrt{gR\operatorname{tg}\alpha} = \sqrt{10\cdot0{,}4\cdot1} = 2$ м/с.</p>
+<p><strong>25.</strong> Доцентрове прискорення забезпечує <strong>сила тертя спокою</strong> між шинами та покриттям (напрямлена до центра кола). Умова: $m\dfrac{v^2}{R} \le \mu mg \Rightarrow \mu \ge \dfrac{v^2}{gR} = \dfrac{100}{200} = 0{,}5$. <em>Сталося:</em> названо силу тертя, правильний напрям і $\mu_{\min} = 0{,}5$. <em>Частково:</em> правильне число, але немає пояснення, яка сила діє. <em>Не сталося:</em> поки називає «відцентрову силу».</p>
+<p><strong>26.</strong> Сили взаємодії коня і воза прикладені до різних тіл. Рух коня визначають сили, прикладені до коня: сила тертя від землі (кінь відштовхується копитами) вперед більша за силу натягу посторонків назад — рівнодійна на коня напрямлена вперед. На віз діє натяг посторонків уперед, більший за тертя коліс назад. <em>Сталося:</em> розглянуто сили, прикладені до кожного тіла окремо, з тертям об землю. <em>Частково:</em> сказано «сили прикладені до різних тіл», без аналізу. <em>Не сталося:</em> поки вважає, що кінь тягне сильніше.</p>
+<p><strong>27. Б.</strong> При рівномірному русі по колу прискорення напрямлене до центра, тобто перпендикулярно до швидкості. На рисунку воно напрямлене по дотичній, що означало б гальмування.</p>
+<p><strong>28. 1–А, 2–Б, 3–Г, 4–В.</strong> $u = v\,d/R$, де $d$ — відстань до точки дотику: $0$, $R$, $2R$, $\sqrt2R$.</p>
+<p><strong>29. 12 м/с.</strong> $a = F/m = 2/0{,}5 = 4$ м/с²; $v = at = 12$ м/с. Пастка: $m = 500$ (не перевели грами) дає $0{,}012$ м/с.</p>
+<p><strong>30. Б.</strong> Обидва бруски рухаються з однаковим прискоренням: $a = \dfrac{F}{m_1 + m_2} = 2$ м/с². Нитка розганяє лише другий брусок: $T = m_2a = 3\cdot2 = 6$ Н. А — взяли масу першого бруска; В — вважали, що нитка передає всю силу.</p>
+</div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">25</span>Зведені відповіді до задач збірника</h2>
+<p>Усі відповіді в розділах 07, 08, 14, 15 звірено з ключем відповідей збірника (теми 4 і 5) — вони збігаються. Таблиця нижче — для швидкої самоперевірки домашнього завдання.</p>
+<h3>Тема 4. Рівномірний рух по колу</h3>
+<table>
+<tr><th>Задача</th><th>Відповідь</th><th>Де розв'язуємо</th></tr>
+<tr><td>4.1</td><td>Б</td><td>заняття</td></tr>
+<tr><td>4.2</td><td>В</td><td>заняття</td></tr>
+<tr><td>4.3</td><td>В</td><td>заняття</td></tr>
+<tr><td>4.4</td><td>Г</td><td>ДЗ</td></tr>
+<tr><td>4.5</td><td>А</td><td>ДЗ</td></tr>
+<tr><td>4.14</td><td>1–А, 2–Г, 3–Б, 4–Д</td><td>ДЗ</td></tr>
+<tr><td>4.15</td><td>1–Д, 2–В, 3–Б, 4–А</td><td>ДЗ</td></tr>
+<tr><td>4.16</td><td>1–Д, 2–В, 3–А, 4–Г</td><td>ДЗ</td></tr>
+<tr><td>4.17</td><td>1–Б, 2–В, 3–А, 4–Г</td><td>ДЗ</td></tr>
+<tr><td>4.18</td><td>1–А, 2–В, 3–Б, 4–Д</td><td>заняття</td></tr>
+<tr><td>4.19</td><td>1–Б, 2–В, 3–Г, 4–А</td><td>ДЗ</td></tr>
+<tr><td>4.21</td><td>$0{,}6$ м</td><td>ДЗ</td></tr>
+<tr><td>4.22</td><td>$\approx 233$ м/с</td><td>ДЗ</td></tr>
+<tr><td>4.23</td><td>у 2 рази</td><td>ДЗ</td></tr>
+<tr><td>4.24</td><td>$\approx 4{,}44$ м</td><td>заняття</td></tr>
+<tr><td>4.25</td><td>$\approx 3{,}4$ м</td><td>ДЗ</td></tr>
+<tr><td>4.40</td><td>1) 160 м; 2) 6,2 м/с²</td><td>ДЗ</td></tr>
+<tr><td>4.41*</td><td>$\sqrt5\approx 2{,}24$ м/с</td><td>заняття</td></tr>
+</table>
+<h3>Тема 5. Закони Ньютона</h3>
+<table>
+<tr><th>Задача</th><th>Відповідь</th><th>Де розв'язуємо</th></tr>
+<tr><td>5.8</td><td>В</td><td>ДЗ</td></tr>
+<tr><td>5.9</td><td>А</td><td>ДЗ</td></tr>
+<tr><td>5.10</td><td>Г</td><td>заняття</td></tr>
+<tr><td>5.13</td><td>А</td><td>заняття</td></tr>
+<tr><td>5.14</td><td>В</td><td>заняття</td></tr>
+<tr><td>5.15</td><td>А</td><td>ДЗ</td></tr>
+<tr><td>5.16</td><td>Г</td><td>заняття</td></tr>
+<tr><td>5.17</td><td>Г</td><td>ДЗ</td></tr>
+<tr><td>5.18</td><td>А</td><td>ДЗ</td></tr>
+<tr><td>5.19</td><td>Г</td><td>ДЗ</td></tr>
+<tr><td>5.20</td><td>Г</td><td>ДЗ</td></tr>
+<tr><td>5.21</td><td>Г</td><td>заняття</td></tr>
+<tr><td>5.32</td><td>1–А, 2–Г, 3–В, 4–Б</td><td>ДЗ</td></tr>
+<tr><td>5.33</td><td>1–Б, 2–В, 3–А, 4–Г</td><td>ДЗ</td></tr>
+<tr><td>5.34</td><td>1–Д, 2–А, 3–Г, 4–В</td><td>ДЗ</td></tr>
+<tr><td>5.35</td><td>1–Г, 2–В, 3–Б, 4–А</td><td>заняття</td></tr>
+<tr><td>5.36</td><td>1–В, 2–А, 3–Б, 4–Д</td><td>ДЗ</td></tr>
+<tr><td>5.37</td><td>1–Г, 2–Д, 3–А, 4–Б</td><td>ДЗ</td></tr>
+<tr><td>5.38</td><td>1–Д, 2–Г, 3–В, 4–Б</td><td>заняття</td></tr>
+<tr><td>5.39</td><td>10 кг</td><td>ДЗ</td></tr>
+<tr><td>5.40</td><td>$\operatorname{arctg}2\approx 63{,}4^\circ$</td><td>заняття</td></tr>
+<tr><td>5.41</td><td>0,2 кг</td><td>ДЗ</td></tr>
+<tr><td>5.42</td><td>0,08 м/с²</td><td>заняття</td></tr>
+</table>
+<div class="callout warn"><b>Зверни увагу</b>У розв'язаному прикладі 4 до теми 5 (удар по м'ячу) збірник подає 250 Н, але правильний результат обчислення — $\approx 560$ Н (див. розділ 14). У ключі відповідей цієї задачі немає, тому розбіжність стосується лише прикладу.</div>
+</section>
+
+<footer>© Дарина Проволовська · 2026</footer>
+</main>
+<div class="tools" aria-label="Інструменти">
+<button type="button" class="size" title="Розмір шрифту" aria-label="Збільшити шрифт">A+</button>
+<button type="button" class="print" title="Друк" aria-label="Надрукувати конспект"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></button>
+<button type="button" class="up" title="Вгору" aria-label="Повернутися вгору"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+</div>
+<script>
+(function(){
+  var toc=document.querySelector('.toc');
+  document.querySelectorAll('main .card').forEach(function(s,i){
+    var h=s.querySelector('h2'); if(!h) return;
+    var n=h.querySelector('.num'), num=n?n.textContent.trim():'';
+    s.id=s.id||'r'+(i+1);
+    var a=document.createElement('a'); a.href='#'+s.id;
+    a.textContent=(num?num+' · ':'')+h.textContent.replace(num,'').trim();
+    toc.appendChild(a);
+  });
+  if(toc&&!toc.children.length) toc.remove();
+  var up=document.querySelector('.tools .up');
+  addEventListener('scroll',function(){up.classList.toggle('show',scrollY>400)},{passive:true});
+  up.onclick=function(){scrollTo({top:0,behavior:'smooth'})};
+  document.querySelector('.tools .print').onclick=function(){print()};
+  var sizes=['18px','20px','22px'],k=0,root=document.documentElement;
+  document.querySelector('.tools .size').onclick=function(){
+    k=(k+1)%sizes.length; root.style.setProperty('--fs',sizes[k]);
+    this.textContent=k===sizes.length-1?'A−':'A+';
+    this.setAttribute('aria-label',k===sizes.length-1?'Зменшити шрифт':'Збільшити шрифт');
+  };
+  var closed=[];
+  addEventListener('beforeprint',function(){closed=[].filter.call(document.querySelectorAll('details'),function(d){return !d.open});closed.forEach(function(d){d.open=true})});
+  addEventListener('afterprint',function(){closed.forEach(function(d){d.open=false})});
+})();
+</script>
+</body>
+</html>
