@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Закон всесвітнього тяжіння. Сила пружності. Вага і невагомість — Конспект для учня</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+:root{--night:#081F44;--deep:#143660;--dive:#1F3F74;--sail:#4569AD;--lilac:#B9C8E6;--pink:#E679A6;--pink-ink:#B23E72;--pink-bg:#FCEFF5;--green:#587954;--green-bg:#EEF4EC;--blue-bg:#EDF2FB;--amber:#A44A0B;--amber-bg:#FFF5E8;--paper:#F5F7FB;--card:#FFFFFF;--ink:#13284A;--muted:#4A5D7E;--line:#DCE3EF;--fs:18px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:var(--fs)}
+body{margin:0;font-family:Inter,system-ui,sans-serif;font-size:1rem;line-height:1.7;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+a{color:var(--sail)}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;z-index:30;background:var(--night);color:#fff;padding:8px 14px;border-radius:8px}
+.skip:focus{left:8px}
+.hero{position:relative;overflow:hidden;color:#fff;padding:56px 20px 76px;background:radial-gradient(120% 140% at 85% 0%,var(--dive) 0%,var(--deep) 45%,var(--night) 100%)}
+.hero::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-46px;height:92px;background:var(--paper);border-radius:50% 50% 0 0/100% 100% 0 0}
+.hero-in,.page{max-width:780px;margin:0 auto}
+.eyebrow{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--lilac);color:var(--night);font:700 .72rem Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{margin:0;font-family:Manrope,sans-serif;line-height:1.2;letter-spacing:-.015em;color:var(--night)}
+.hero h1{margin:16px 0 14px;color:#fff;font-size:clamp(2rem,6vw,3.1rem)}
+.hero h1 em{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:500;color:#F6B3CF}
+.lead{margin:0;max-width:62ch;font-size:1.1rem;color:#E3EAF7}
+.page{padding:8px 20px 96px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.toc a{padding:7px 13px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink);font-size:.82rem;font-weight:500;text-decoration:none}
+.toc a:hover{border-color:var(--pink);color:var(--pink-ink)}
+.card{margin:0 0 24px;padding:30px 32px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 1px 2px rgba(8,31,68,.04),0 8px 24px rgba(8,31,68,.06);scroll-margin-top:16px}
+.card h2{display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:1.5rem}
+.num{flex:none;display:inline-grid;place-items:center;min-width:2.3rem;height:2.3rem;padding:0 8px;border-radius:12px;background:var(--pink-bg);color:var(--pink-ink);font:800 .9rem Manrope,sans-serif}
+.card h3{margin:28px 0 10px;padding-left:12px;border-left:4px solid var(--green);font-size:1.12rem}
+p{margin:0 0 14px;max-width:68ch}
+ul,ol{margin:0 0 14px;padding-left:1.3em}
+li{margin:4px 0}
+li::marker{color:var(--pink-ink)}
+strong{color:var(--night)}
+.formula{margin:20px 0 8px;padding:18px 20px;overflow-x:auto;text-align:center;font-size:1.15rem;background:var(--blue-bg);border:1px solid #CFDAF0;border-radius:16px}
+.where{margin-bottom:18px;font-size:.92rem;color:var(--muted)}
+.callout{position:relative;margin:20px 0;padding:16px 18px 16px 56px;border:1px solid;border-left-width:5px;border-radius:16px}
+.callout::before{position:absolute;left:18px;top:16px;font-size:1.2rem;line-height:1}
+.callout b:first-child{display:block;margin-bottom:4px;font-family:Manrope,sans-serif;font-size:.95rem}
+.callout.remember{background:var(--green-bg);border-color:#CFE0CB;border-left-color:var(--green)}
+.callout.remember::before{content:"📌"}
+.callout.remember b:first-child{color:var(--green)}
+.callout.info{background:var(--blue-bg);border-color:#D3DEF2;border-left-color:var(--sail)}
+.callout.info::before{content:"🧭"}
+.callout.info b:first-child{color:var(--sail)}
+.callout.fact{background:var(--pink-bg);border-color:#F5D3E2;border-left-color:var(--pink)}
+.callout.fact::before{content:"💡"}
+.callout.fact b:first-child{color:var(--pink-ink)}
+.callout.warn{background:var(--amber-bg);border-color:#F3DABA;border-left-color:var(--amber)}
+.callout.warn::before{content:"⚠️"}
+.callout.warn b:first-child{color:var(--amber)}
+table{width:100%;margin:18px 0;border-collapse:separate;border-spacing:0;font-size:.95rem;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{background:#E9EEF8;color:var(--night);font:700 .78rem Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+tr:nth-child(even) td{background:#FAFBFE}
+dl.terms{display:grid;gap:4px;margin:0}
+dl.terms dt{margin-top:8px;color:var(--green);font:700 1.02rem Manrope,sans-serif}
+dl.terms dd{margin:0;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+dl.terms dd:last-child{border-bottom:0}
+.q{margin:18px 0;padding:18px;background:#FBFCFE;border:1px solid var(--line);border-radius:16px}
+.q>p:first-child{margin-bottom:12px;font-weight:600}
+.options{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.options li{margin:0;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+details{margin:14px 0;background:var(--green-bg);border:1px solid #CFE0CB;border-radius:14px}
+summary{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;color:var(--green);font-weight:700;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"Показати";flex:none;padding:4px 10px;border-radius:999px;background:var(--green);color:#fff;font-size:.75rem;font-weight:600}
+details[open] summary::after{content:"Сховати"}
+details>div{padding:0 18px 16px;color:var(--ink)}
+.gap{display:inline-block;min-width:110px;margin:0 4px;border-bottom:2px dashed var(--pink)}
+main svg{display:block;max-width:100%;height:auto;margin:18px auto}
+footer{margin-top:40px;text-align:center;font-size:.85rem;color:var(--muted)}
+.tools{position:fixed;right:18px;bottom:18px;z-index:20;display:flex;flex-direction:column;gap:10px}
+.tools button{display:grid;padding:0;place-items:center;width:52px;height:52px;border:0;border-radius:50%;background:var(--night);color:#fff;font:800 .95rem Manrope,sans-serif;cursor:pointer;box-shadow:0 8px 22px rgba(8,31,68,.28);transition:transform .15s,background .2s,opacity .25s}
+.tools button:hover{background:var(--sail);transform:translateY(-2px)}
+.tools .print{background:var(--pink-ink)}
+.tools .print:hover{background:var(--pink)}
+.tools .up{opacity:0;pointer-events:none}
+.tools .up.show{opacity:1;pointer-events:auto}
+main .katex svg{display:block;max-width:none;margin:0}
+@media (max-width:600px){:root{--fs:17px}.hero{padding:40px 16px 64px}.page{padding:4px 14px 96px}.card{padding:22px 18px;border-radius:18px}.card h2{font-size:1.3rem}table{display:block;overflow-x:auto}.tools{right:12px;bottom:12px}.tools button{width:46px;height:46px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{html{font-size:11.5pt!important}body{background:#fff}.hero{padding:0 0 10px;background:none;color:var(--night)}.hero::after,.tools,.toc,.skip{display:none}.hero h1{color:var(--night)}.hero h1 em{color:var(--pink-ink)}.eyebrow{border:1px solid var(--lilac);background:none}.lead{color:var(--muted)}.page{padding:0}.card{padding:14px 16px;box-shadow:none;border-color:#C9D3E5}.q,.callout,.formula,table,details,main svg,h2,h3{break-inside:avoid}h2,h3{break-after:avoid}@page{margin:14mm}.q{padding:10px 12px}.options{gap:4px}.options li{padding:4px 10px}summary::after{display:none}a{color:inherit}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">До змісту</a>
+<header class="hero"><div class="hero-in">
+<span class="eyebrow">Фізика, підготовка до НМТ, заняття 5</span>
+<h1>Тяжіння, пружність і вага: <em>одна сила, різні ролі</em></h1>
+<p class="lead">Яблуко, Місяць, супутник і пружина динамометра підкоряються тим самим законам Ньютона. Сьогодні ти навчишся бачити, яка сила діє на тіло, яка сила діє з боку тіла на опору, і чому космонавт на орбіті невагомий, хоча Земля притягує його майже так само сильно, як тебе.</p>
+</div></header>
+<main class="page" id="main">
+<nav class="toc" aria-label="Зміст"></nav>
+
+<section class="card">
+<h2><span class="num">01</span>Головна ідея</h2>
+<p>Ми продовжуємо тему 5 «Закони Ньютона». Тоді ти записував(ла) ${m\vec a = \sum \vec F}$ і не питав(ла), звідки беруться самі сили. Сьогодні знайомимося з двома «постачальниками» сил: <strong>гравітацією</strong> (тіла притягуються, бо мають масу) і <strong>пружністю</strong> (деформоване тіло прагне повернути форму). Третє поняття, <strong>вага</strong>, не є новою силою, це сила пружності, з якою тіло діє на опору.</p>
+<h3>Дві великі ідеї</h3>
+<ul>
+<li><strong>Взаємодії та сили.</strong> Будь-яка сила — це взаємодія двох тіл, і за III законом Ньютона вони діють одне на одне однаковими за модулем і протилежними за напрямком силами. Тому сила тяжіння і вага прикладені до <em>різних</em> тіл.</li>
+<li><strong>Ті самі закони діють усюди.</strong> Ньютон зрозумів, що сила, яка тягне яблуко до землі, утримує Місяць на орбіті. Одна формула ${F = G\frac{m_1m_2}{r^2}}$ працює для більярдних куль, супутників і подвійних зір.</li>
+</ul>
+<div class="callout remember"><b>Запам'ятай</b>Майже кожна задача цієї теми — це II закон Ньютона, у який ти підставляєш конкретні сили: силу тяжіння ${mg}$ або ${\frac{GMm}{r^2}}{,}$ силу пружності ${kx}{,}$ силу реакції опори ${N}{.}$ Нових законів руху немає, є нові сили.</div>
+<h3>Що ти зможеш після цього конспекту</h3>
+<ul>
+<li>обчислити силу тяжіння і прискорення вільного падіння на будь-якій висоті та на іншій планеті;</li>
+<li>знайти швидкість і період супутника на коловій орбіті;</li>
+<li>розв'язувати задачі на пружини, з'єднані послідовно і паралельно;</li>
+<li>визначити вагу тіла в ліфті, на мосту, на обертовій станції і пояснити, чому на орбіті невагомість.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2><span class="num">02</span>Словничок</h2>
+<dl class="terms">
+<dt>Гравітація</dt><dd>Притягання між будь-якими тілами, що мають масу. Вона завжди притягує і ніколи не відштовхує; помітною стає, лише коли хоч одне з тіл дуже масивне (планета, зоря).</dd>
+<dt>Супутник</dt><dd>Тіло, що рухається навколо планети чи зорі під дією лише сили тяжіння. По суті, супутник безперервно падає, але «промахується» повз планету, бо має достатню швидкість уздовж орбіти.</dd>
+<dt>Вага</dt><dd>Сила, з якою тіло тисне на опору або розтягує підвіс. Прикладена не до тіла, а до опори (підвісу). Саме вагу показують ваги та динамометр.</dd>
+<dt>Невагомість</dt><dd>Стан, коли тіло не тисне на опору: вага дорівнює нулю. Буває тоді, коли на тіло діє лише сила тяжіння, тобто тіло вільно падає ${(\vec a = \vec g)}$.</dd>
+<dt>Жорсткість</dt><dd>Число, що показує, яку силу треба прикласти, щоб розтягнути тіло на 1 м. Чим «тугіша» пружина, тим більша жорсткість.</dd>
+</dl>
+</section>
+
+<section class="card">
+<h2><span class="num">03</span>Закон всесвітнього тяжіння</h2>
+<p><strong>Якісно.</strong> Два тіла притягуються тим сильніше, чим більші їхні маси, і тим слабше, чим далі вони одне від одного. Відстань впливає «у квадраті»: віддали тіла вдвічі, і сила впала вчетверо. Це схоже на світло від лампи: та сама «кількість впливу» розподіляється на сферу, площа якої зростає як ${r^2}{.}$</p>
+<p><strong>Кількісно.</strong> Ісаак Ньютон сформулював закон у праці «Математичні начала натуральної філософії» (1687):</p>
+<div class="formula">$$F = G\frac{m_1 m_2}{r^2}$$</div>
+<p class="where">де ${F}$ — модуль сили гравітаційного притягання (Н); ${m_1}{,}$ ${m_2}$ — маси тіл (кг); ${r}$ — відстань між ними (м); ${G \approx 6{,}67\cdot10^{-11}\ \text{Н}\cdot\text{м}^2/\text{кг}^2}$ — гравітаційна стала. Коли застосовувати: для матеріальних точок, а також для однорідних куль і сфер (тоді ${r}$ — відстань між їхніми центрами).</p>
+<svg viewBox="0 0 680 200" width="680" height="200" role="img" aria-label="Дві кулі притягуються рівними за модулем протилежно напрямленими силами вздовж лінії центрів">
+<defs><marker id="m3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#E679A6"/></marker></defs>
+<circle cx="150" cy="90" r="48" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<circle cx="520" cy="90" r="30" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<circle cx="150" cy="90" r="3" fill="#081F44"/><circle cx="520" cy="90" r="3" fill="#081F44"/>
+<text x="150" y="78" font-family="Inter" font-size="17" font-style="italic" fill="#081F44" text-anchor="middle">m<tspan font-size="14" font-style="normal" dy="5">1</tspan></text>
+<text x="520" y="78" font-family="Inter" font-size="17" font-style="italic" fill="#081F44" text-anchor="middle">m<tspan font-size="14" font-style="normal" dy="5">2</tspan></text>
+<line x1="200" y1="90" x2="300" y2="90" stroke="#E679A6" stroke-width="3" marker-end="url(#m3a)"/>
+<line x1="488" y1="90" x2="388" y2="90" stroke="#E679A6" stroke-width="3" marker-end="url(#m3a)"/>
+<text x="250" y="76" font-family="Inter" font-size="17" font-style="italic" fill="#13284A" text-anchor="middle">F<tspan font-size="14" font-style="normal" dy="5">12</tspan></text><path d="M244.0 57 H256.0 M251.0 53.5 L256.0 57 L251.0 60.5" fill="none" stroke="#13284A" stroke-width="1.4"/>
+<text x="438" y="76" font-family="Inter" font-size="17" font-style="italic" fill="#13284A" text-anchor="middle">F<tspan font-size="14" font-style="normal" dy="5">21</tspan></text><path d="M432.0 57 H444.0 M439.0 53.5 L444.0 57 L439.0 60.5" fill="none" stroke="#13284A" stroke-width="1.4"/>
+<line x1="150" y1="160" x2="520" y2="160" stroke="#4569AD" stroke-width="1.5"/>
+<line x1="150" y1="150" x2="150" y2="170" stroke="#4569AD" stroke-width="1.5"/><line x1="520" y1="150" x2="520" y2="170" stroke="#4569AD" stroke-width="1.5"/>
+<text x="335" y="188" font-family="Inter" font-size="16" fill="#13284A" text-anchor="middle"><tspan font-style="italic">r</tspan> — відстань між центрами</text>
+</svg>
+<p>Сили напрямлені вздовж прямої, що сполучає центри, і за III законом Ньютона ${\vec F_{12} = -\vec F_{21}}{.}$ Земля тягне тебе з силою ${\approx 600\ \text{Н}}{,}$ і ти тягнеш Землю з такою самою силою. Земля «не помічає» цього, бо її прискорення ${a = F/M_{\text{З}}}$ мізерне.</p>
+<div class="callout info"><b>Довідка</b>Оцінка порядку величини. Дві більярдні кулі по 200 г, що торкаються (діаметр 6 см, тож ${r = 0{,}06\ \text{м}}$): ${F = 6{,}67\cdot10^{-11}\cdot\frac{0{,}2\cdot0{,}2}{0{,}06^2} \approx 7{,}4\cdot10^{-10}\ \text{Н} = 0{,}74\ \text{нН}}{.}$ Це приблизно в мільярд разів менше за вагу самої кулі. Ось чому гравітацію між побутовими предметами ми не відчуваємо.</div>
+<div class="callout fact"><b>Цікавий факт</b>Генрі Кавендіш у 1798 році провів дослід із крутильними терезами, щоб «зважити Землю», тобто визначити її середню густину. Значення ${G}$ з його даних обчислили пізніше. Знаючи ${G}{,}$ ${g}$ і ${R_{\text{З}}}{,}$ масу Землі можна знайти з формули ${g = \frac{GM}{R^2}}$ (задача 2 у розділі «Розв'язані задачі»).</div>
+<div class="callout warn"><b>Типова помилка</b>Для двох куль брати як ${r}$ відстань між поверхнями. Правильно: між центрами. Якщо кулі торкаються, ${r = R_1 + R_2}{.}$</div>
+</section>
+
+<section class="card">
+<h2><span class="num">04</span>Сила тяжіння і прискорення вільного падіння</h2>
+<p><strong>Сила тяжіння</strong> — окремий випадок закону всесвітнього тяжіння: одне з тіл — Земля (або інша планета), друге — тіло масою ${m}$ на відстані ${r = R + h}$ від центра планети.</p>
+<div class="formula">$$F_{\text{тяж}} = G\frac{Mm}{(R+h)^2} = mg_h$$</div>
+<p class="where">де ${F_{\text{тяж}}}$ — сила тяжіння (Н); ${M}$ — маса планети (кг); ${m}$ — маса тіла (кг); ${R}$ — радіус планети (м); ${h}$ — висота над поверхнею (м); ${g_h}$ — прискорення вільного падіння на висоті ${h}$ (м⁠/⁠с²). Коли застосовувати: планету вважаємо однорідною кулею, тіло — матеріальною точкою, ${h \ge 0}{.}$ Напрямлена до центра планети.</p>
+<div class="formula">$$g_h = \frac{GM}{(R+h)^2}, \qquad g_0 = \frac{GM}{R^2} \approx 9{,}8\ \text{м/с}^2$$</div>
+<p class="where">де ${g_0}$ — прискорення вільного падіння на поверхні (м⁠/⁠с²). Не залежить від маси тіла: усі тіла (без опору повітря) падають однаково. Корисний наслідок: ${GM = g_0R^2}{.}$ Ця підстановка рятує в задачах, де маса планети не дана, а дано ${g_0}$ і ${R}{.}$</p>
+<h3>Як ${g}$ залежить від висоти</h3>
+<div class="formula">$$\frac{g_h}{g_0} = \left(\frac{R}{R+h}\right)^2$$</div>
+<p class="where">Коли застосовувати: для будь-якої висоти над поверхнею однорідної кулястої планети. Приклад: на висоті ${h = R}$ відстань до центра зросла вдвічі, тож ${g_h = g_0/4 \approx 2{,}45\ \text{м/с}^2}{.}$</p>
+<h3>Як ${g}$ залежить від густини і радіуса планети</h3>
+<p>Якщо замість маси дана густина, підстав ${M = \rho\cdot\frac43\pi R^3}{:}$</p>
+<div class="formula">$$g_0 = \frac43\pi G\rho R$$</div>
+<p class="where">де ${\rho}$ — середня густина планети (кг⁠/⁠м³); ${R}$ — радіус (м). Коли застосовувати: для однорідної кулі. Висновок: за однакової густини ${g}$ пропорційне радіусу, а не обернено пропорційне його квадрату.</p>
+<svg viewBox="0 0 680 300" width="680" height="300" role="img" aria-label="Графік залежності g від відстані до центра планети: лінійне зростання всередині і спадання як один поділений на r квадрат зовні">
+<defs><marker id="m4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#13284A"/></marker></defs>
+<line x1="60" y1="260" x2="650" y2="260" stroke="#13284A" stroke-width="1.8" marker-end="url(#m4a)"/>
+<line x1="60" y1="260" x2="60" y2="20" stroke="#13284A" stroke-width="1.8" marker-end="url(#m4a)"/>
+<text x="640" y="285" font-family="Inter" font-size="17" font-style="italic" fill="#13284A">r</text>
+<text x="36" y="32" font-family="Inter" font-size="17" font-style="italic" fill="#13284A">g</text>
+<text x="44" y="282" font-family="Inter" font-size="14" fill="#13284A">0</text>
+<rect x="60" y="20" width="140" height="240" fill="#B9C8E6" opacity="0.35"/>
+<line x1="60" y1="260" x2="200" y2="80" stroke="#587954" stroke-width="3"/>
+<polyline points="200,80 240,135 280,187 340,215 420,233 520,243 620,249" fill="none" stroke="#E679A6" stroke-width="3"/>
+<line x1="60" y1="80" x2="200" y2="80" stroke="#4569AD" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="200" y1="80" x2="200" y2="260" stroke="#4569AD" stroke-width="1.2" stroke-dasharray="6 5"/>
+<text x="28" y="84" font-family="Inter" font-size="17" font-style="italic" fill="#13284A">g<tspan font-size="14" font-style="normal" dy="5">0</tspan></text>
+<text x="200" y="282" font-family="Inter" font-size="17" font-style="italic" fill="#13284A" text-anchor="middle">R</text>
+<text x="98" y="222" font-family="Inter" font-size="15" fill="#587954">усередині:</text>
+<text x="112" y="244" font-family="Inter" font-size="16" fill="#587954"><tspan font-style="italic">g</tspan> ~ <tspan font-style="italic">r</tspan></text>
+<text x="300" y="150" font-family="Inter" font-size="16" fill="#B23E72">зовні: <tspan font-style="italic">g</tspan> ~ 1/<tspan font-style="italic">r</tspan>²</text>
+<text x="130" y="44" font-family="Inter" font-size="14" fill="#13284A" text-anchor="middle">планета</text>
+</svg>
+<p>Підпис до графіка: заштрихована смуга — тіло планети. Усередині однорідної кулі на тіло діє лише маса «внутрішньої» кулі радіусом ${r}{,}$ тому ${g = \frac43\pi G\rho r}$ зростає лінійно (задача 6.31* у посібнику). Над поверхнею ${g}$ спадає як ${1/r^2}{.}$ Максимум — на поверхні.</p>
+<div class="callout warn"><b>Типова помилка</b>Плутати висоту ${h}$ і відстань до центра ${r}{.}$ «Сила тяжіння в 100 разів менша» означає ${r = 10R}{,}$ тобто висота над поверхнею ${h = 9R}$ (завдання 6.9, відповідь Б, а не А).</div>
+</section>
+
+<section class="card">
+<h2><span class="num">05</span>Супутники і космічні швидкості</h2>
+<p><strong>Якісно.</strong> Кинь камінь горизонтально — він упаде неподалік. Кинь швидше — упаде далі. Ньютон уявив гармату на дуже високій горі: за певної швидкості ядро падатиме, але поверхня Землі «відступатиме» під ним через кривизну так само швидко. Ядро стане супутником. Отже, рух по орбіті — це вільне падіння, і саме тому на орбіті невагомість.</p>
+<p><strong>Кількісно.</strong> На супутник діє лише сила тяжіння, і вона надає йому доцентрового прискорення ${a = v^2/r}{.}$ За II законом Ньютона:</p>
+<div class="formula">$$m\frac{v^2}{r} = G\frac{Mm}{r^2} \;\Rightarrow\; v_{\text{I}} = \sqrt{\frac{GM}{r}} = \sqrt{\frac{GM}{R+h}}$$</div>
+<p class="where">де ${v_{\text{I}}}$ — перша космічна швидкість, тобто швидкість руху по коловій орбіті (м⁠/⁠с); ${r = R + h}$ — радіус орбіти (м). Коли застосовувати: колова орбіта, на супутник діє лише сила тяжіння планети. Від маси супутника не залежить.</p>
+<div class="formula">$$v_{\text{I}} = \sqrt{g_0R}\ \ (h \ll R), \qquad v_{\text{I}} \approx 7{,}9\ \text{км/с}\ \text{для Землі}$$</div>
+<p class="where">Коли застосовувати: орбіта поблизу поверхні планети. Отримується з ${GM = g_0R^2}{.}$</p>
+<div class="formula">$$v_{\text{II}} = \sqrt2\,v_{\text{I}} \approx 11{,}2\ \text{км/с}\ \text{для Землі}$$</div>
+<p class="where">де ${v_{\text{II}}}$ — друга космічна швидкість (м⁠/⁠с), мінімальна швидкість, з якою тіло назавжди покидає планету (без опору повітря). Коли застосовувати: тіло стартує з того самого місця, для якого обчислено ${v_{\text{I}}}{.}$</p>
+<svg viewBox="0 0 700 400" width="700" height="400" role="img" aria-label="Траєкторії тіла, запущеного горизонтально з різними швидкостями: падіння, коло, еліпс, парабола">
+<defs><marker id="m5a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#081F44"/></marker></defs>
+<ellipse cx="200" cy="240" rx="113" ry="120" fill="none" stroke="#587954" stroke-width="2.5"/>
+<circle cx="200" cy="200" r="80" fill="none" stroke="#4569AD" stroke-width="2.5"/>
+<path d="M200 120 C 260 120, 330 160, 360 200 S 410 260, 428 283" fill="none" stroke="#E679A6" stroke-width="2.5"/>
+<circle cx="200" cy="200" r="60" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<path d="M200 120 Q 250 118 256 180" fill="none" stroke="#13284A" stroke-width="2.5" stroke-dasharray="7 5"/>
+<circle cx="200" cy="120" r="5" fill="#081F44"/>
+<line x1="200" y1="120" x2="262" y2="105" stroke="#081F44" stroke-width="2.5" marker-end="url(#m5a)"/>
+<text x="226" y="96" font-family="Inter" font-size="17" font-style="italic" fill="#081F44">v</text><path d="M226 77 H238 M233 73.5 L238 77 L233 80.5" fill="none" stroke="#081F44" stroke-width="1.4"/>
+<text x="200" y="206" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">планета</text>
+<line x1="470" y1="70" x2="510" y2="70" stroke="#13284A" stroke-width="2.5" stroke-dasharray="7 5"/>
+<text x="520" y="75" font-family="Inter" font-size="16" fill="#13284A"><tspan font-style="italic">v</tspan> &lt; <tspan font-style="italic">v</tspan><tspan font-size="14" dy="5">I</tspan><tspan dy="-5">: падає</tspan></text>
+<line x1="470" y1="110" x2="510" y2="110" stroke="#4569AD" stroke-width="2.5"/>
+<text x="520" y="115" font-family="Inter" font-size="16" fill="#13284A"><tspan font-style="italic">v</tspan> = <tspan font-style="italic">v</tspan><tspan font-size="14" dy="5">I</tspan><tspan dy="-5">: коло</tspan></text>
+<line x1="470" y1="150" x2="510" y2="150" stroke="#587954" stroke-width="2.5"/>
+<text x="520" y="155" font-family="Inter" font-size="16" fill="#13284A"><tspan font-style="italic">v</tspan><tspan font-size="14" dy="5">I</tspan><tspan dy="-5"> &lt; </tspan><tspan font-style="italic">v</tspan> &lt; <tspan font-style="italic">v</tspan><tspan font-size="14" dy="5">II</tspan><tspan dy="-5">: еліпс</tspan></text>
+<line x1="470" y1="190" x2="510" y2="190" stroke="#E679A6" stroke-width="2.5"/>
+<text x="520" y="195" font-family="Inter" font-size="16" fill="#13284A"><tspan font-style="italic">v</tspan> = <tspan font-style="italic">v</tspan><tspan font-size="14" dy="5">II</tspan><tspan dy="-5">: парабола</tspan></text>
+<text x="470" y="240" font-family="Inter" font-size="14" fill="#13284A">Планета — у фокусі еліпса,</text>
+<text x="470" y="260" font-family="Inter" font-size="14" fill="#13284A">а не в його центрі.</text>
+</svg>
+<p>Підпис до схеми: тіло на одній висоті отримує горизонтальну швидкість різної величини. Від швидкості залежить форма траєкторії. Площина будь-якої орбіти проходить через центр планети.</p>
+<h3>Період обертання і третій закон Кеплера</h3>
+<div class="formula">$$T = \frac{2\pi r}{v} = 2\pi\sqrt{\frac{r^3}{GM}} \;\Rightarrow\; \frac{T^2}{r^3} = \frac{4\pi^2}{GM} = \text{const}$$</div>
+<p class="where">де ${T}$ — період обертання (с); ${r}$ — радіус орбіти (м); ${M}$ — маса центрального тіла (кг). Коли застосовувати: колові орбіти навколо одного й того самого центрального тіла; для еліптичних орбіт замість ${r}$ береться велика піввісь. Звідси також маса центрального тіла: ${M = \frac{4\pi^2r^3}{GT^2}}{.}$</p>
+<p>Як змінюються величини, якщо радіус орбіти збільшити в ${n}$ разів (корисно для завдань на відповідність):</p>
+<table>
+<tr><th>Величина</th><th>Залежність від радіуса орбіти</th><th>Якщо радіус зріс у 4 рази</th></tr>
+<tr><td>Прискорення (сила тяжіння)</td><td>${a \sim 1/r^2}$</td><td>зменшиться у 16 разів</td></tr>
+<tr><td>Лінійна швидкість</td><td>${v \sim 1/\sqrt r}$</td><td>зменшиться у 2 рази</td></tr>
+<tr><td>Період</td><td>${T \sim r^{3/2}}$</td><td>зросте у 8 разів</td></tr>
+<tr><td>Кутова швидкість</td><td>${\omega \sim r^{-3/2}}$</td><td>зменшиться у 8 разів</td></tr>
+</table>
+<h3>Супутник біля поверхні: період через густину</h3>
+<div class="formula">$$T = \sqrt{\frac{3\pi}{G\rho}}$$</div>
+<p class="where">де ${\rho}$ — середня густина планети (кг⁠/⁠м³). Коли застосовувати: колова орбіта поблизу поверхні ${(h \ll R)}$. Цікаво: період не залежить від розміру планети, лише від її густини. Для Землі ${(\rho \approx 5500\ \text{кг/м}^3)}$ виходить ${\approx 84}$ хв.</p>
+<div class="callout fact"><b>Цікавий факт</b>Геостаціонарний супутник обертається з періодом обертання Землі (зоряна доба, 23 год 56 хв) у площині екватора, тому «висить» над однією точкою. Радіус такої орбіти ${\approx 42\,200\ \text{км}}{,}$ висота над поверхнею ${\approx 35\,800\ \text{км}}{.}$ Міжнародна космічна станція літає значно нижче, приблизно на 400–420 км, і робить оберт приблизно за 92 хв.</div>
+<div class="callout fact"><b>Цікавий факт</b>Український інженер Юрій Кондратюк (справжнє ім'я Олександр Шаргей) у книзі «Завоювання міжпланетних просторів» (1929) запропонував схему польоту на Місяць через вихід корабля на навколомісячну орбіту з відокремленням посадкового модуля. Подібну схему згодом використала програма «Аполлон».</div>
+<div class="callout warn"><b>Типова помилка</b>Думати, що вищий супутник рухається швидше. Навпаки: зі збільшенням радіуса орбіти швидкість <em>зменшується</em> ${(v \sim 1/\sqrt r)}$, а період <em>зростає</em>.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">06</span>Сила пружності. Закон Гука</h2>
+<p><strong>Якісно.</strong> Коли ти розтягуєш пружину, відстані між її частинками змінюються, і електромагнітні сили між ними прагнуть повернути тіло до початкової форми. Тому сила пружності має <strong>електромагнітну природу</strong> і напрямлена проти деформації. Деформацію називають пружною, якщо після зняття навантаження тіло повністю відновлює форму.</p>
+<p><strong>Кількісно.</strong> Роберт Гук опублікував закон у 1678 році латинською фразою «Ut tensio, sic vis» («Яке видовження, така й сила»):</p>
+<div class="formula">$$\vec F_{\text{пр}} = -k\vec x, \qquad F_{\text{пр}} = k|x|$$</div>
+<p class="where">де ${F_{\text{пр}}}$ — сила пружності (Н); ${k}$ — жорсткість (Н⁠/⁠м); ${x}$ — видовження, тобто зміна довжини ${x = l - l_0}$ (м); знак «мінус» означає, що сила напрямлена проти видовження. Коли застосовувати: лише для пружних деформацій розтягу і стиску, при малих видовженнях.</p>
+<div class="formula">$$k = \frac{ES}{l_0}$$</div>
+<p class="where">де ${E}$ — модуль Юнга, характеристика матеріалу (Па); ${S}$ — площа поперечного перерізу (м²); ${l_0}$ — початкова довжина (м). Коли застосовувати: для стрижня чи дроту при розтягу і стиску. Висновки: коротший і товстіший дріт жорсткіший; для дроту круглого перерізу ${S = \frac{\pi d^2}{4}}{,}$ тож ${k \sim d^2}{.}$</p>
+<p>Одиниця жорсткості через основні одиниці СІ: ${1\ \frac{\text{Н}}{\text{м}} = 1\ \frac{\text{кг}\cdot\text{м}/\text{с}^2}{\text{м}} = 1\ \frac{\text{кг}}{\text{с}^2}}{.}$</p>
+<h3>З'єднання пружин</h3>
+<div class="formula">$$\frac{1}{k_{\text{посл}}} = \frac1{k_1} + \frac1{k_2}, \qquad k_{\text{пар}} = k_1 + k_2$$</div>
+<p class="where">де ${k_{\text{посл}}}$ — жорсткість послідовно з'єднаних пружин (Н⁠/⁠м); ${k_{\text{пар}}}$ — паралельно з'єднаних (Н⁠/⁠м). Коли застосовувати: пружини невагомі; при паралельному з'єднанні всі пружини розтягуються однаково. Запам'ятай логіку: послідовно — <strong>сила однакова</strong> в кожній пружині, видовження додаються; паралельно — <strong>видовження однакове</strong>, сили додаються.</p>
+<svg viewBox="0 0 680 280" width="680" height="280" role="img" aria-label="Послідовне і паралельне з'єднання двох пружин із тягарцями">
+<line x1="60" y1="30" x2="220" y2="30" stroke="#13284A" stroke-width="3"/>
+<line x1="400" y1="30" x2="600" y2="30" stroke="#13284A" stroke-width="3"/>
+<polyline points="140,30 140,45 128,52 152,62 128,72 152,82 128,92 152,102 140,110 140,120" fill="none" stroke="#4569AD" stroke-width="2.5"/>
+<circle cx="140" cy="122" r="4" fill="#081F44"/>
+<polyline points="140,124 140,135 128,142 152,152 128,162 152,172 128,182 152,192 140,200 140,210" fill="none" stroke="#587954" stroke-width="2.5"/>
+<rect x="115" y="210" width="50" height="34" rx="4" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<text x="140" y="233" font-family="Inter" font-size="17" font-style="italic" fill="#081F44" text-anchor="middle">m</text>
+<text x="162" y="80" font-family="Inter" font-size="17" font-style="italic" fill="#13284A">k<tspan font-size="14" font-style="normal" dy="5">1</tspan></text>
+<text x="162" y="170" font-family="Inter" font-size="17" font-style="italic" fill="#13284A">k<tspan font-size="14" font-style="normal" dy="5">2</tspan></text>
+<text x="140" y="272" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">послідовно: <tspan font-style="italic">F</tspan> однакова</text>
+<polyline points="460,30 460,45 448,52 472,62 448,72 472,82 448,92 472,102 460,110 460,140" fill="none" stroke="#4569AD" stroke-width="2.5"/>
+<polyline points="540,30 540,45 528,52 552,62 528,72 552,82 528,92 552,102 540,110 540,140" fill="none" stroke="#587954" stroke-width="2.5"/>
+<line x1="450" y1="140" x2="550" y2="140" stroke="#13284A" stroke-width="3"/>
+<line x1="500" y1="140" x2="500" y2="160" stroke="#13284A" stroke-width="2"/>
+<rect x="475" y="160" width="50" height="34" rx="4" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<text x="500" y="183" font-family="Inter" font-size="17" font-style="italic" fill="#081F44" text-anchor="middle">m</text>
+<text x="418" y="80" font-family="Inter" font-size="17" font-style="italic" fill="#13284A">k<tspan font-size="14" font-style="normal" dy="5">1</tspan></text>
+<text x="562" y="80" font-family="Inter" font-size="17" font-style="italic" fill="#13284A">k<tspan font-size="14" font-style="normal" dy="5">2</tspan></text>
+<text x="500" y="272" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">паралельно: <tspan font-style="italic">x</tspan> однакове</text>
+</svg>
+<div class="callout info"><b>Довідка</b>Дві однакові пружини жорсткістю ${k}{:}$ послідовно ${k/2}{,}$ паралельно ${2k}{.}$ Розрізати пружину навпіл — отримати дві пружини жорсткістю ${2k}$ кожна. Скласти гумову стрічку вчетверо: довжина зменшилася в 4 рази і переріз збільшився в 4 рази, тож ${k}$ зросла в 16 разів (завдання 7.4).</div>
+<div class="callout warn"><b>Типова помилка</b>Підставляти в закон Гука довжину пружини ${l}$ замість видовження ${x = l - l_0}{.}$ На графіку «довжина від сили» пряма не проходить через нуль: точка на осі довжин — це ${l_0}{.}$</div>
+</section>
+
+<section class="card">
+<h2><span class="num">07</span>Вага, перевантаження і невагомість</h2>
+<p><strong>Якісно.</strong> Ти стоїш на підлозі. Земля тягне тебе вниз (сила тяжіння, прикладена до тебе). Підлога прогинається і штовхає тебе вгору (сила реакції опори ${N}{,}$ прикладена до тебе). А ти тиснеш на підлогу (вага ${P}{,}$ прикладена до підлоги). За III законом Ньютона ${\vec P = -\vec N}{.}$ Отже, щоб знайти вагу, знайди ${N}$ з II закону Ньютона.</p>
+<svg viewBox="0 0 680 290" width="680" height="290" role="img" aria-label="Сили для бруска на опорі: сила тяжіння і реакція опори прикладені до бруска, вага прикладена до опори">
+<defs>
+<marker id="m7p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#E679A6"/></marker>
+<marker id="m7g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#587954"/></marker>
+<marker id="m7b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#4569AD"/></marker>
+</defs>
+<rect x="160" y="170" width="300" height="22" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<text x="470" y="186" font-family="Inter" font-size="15" fill="#13284A">опора</text>
+<rect x="250" y="100" width="120" height="70" rx="4" fill="none" stroke="#13284A" stroke-width="2"/>
+<circle cx="310" cy="135" r="3.5" fill="#081F44"/>
+<line x1="310" y1="135" x2="310" y2="250" stroke="#E679A6" stroke-width="3" marker-end="url(#m7p)"/>
+<text x="160" y="245" font-family="Inter" font-size="16" fill="#B23E72">(на брусок)</text><text x="252" y="245" font-family="Inter" font-size="17" font-style="italic" fill="#B23E72">mg</text><path d="M252 226 H274 M269 222.5 L274 226 L269 229.5" fill="none" stroke="#B23E72" stroke-width="1.4"/>
+<line x1="275" y1="170" x2="275" y2="40" stroke="#587954" stroke-width="3" marker-end="url(#m7g)"/>
+<text x="286" y="62" font-family="Inter" font-size="17" font-style="italic" fill="#587954">N</text><path d="M286 43 H298 M293 39.5 L298 43 L293 46.5" fill="none" stroke="#587954" stroke-width="1.4"/><text x="304" y="62" font-family="Inter" font-size="16" fill="#587954">(на брусок)</text>
+<line x1="350" y1="186" x2="350" y2="282" stroke="#4569AD" stroke-width="3" marker-end="url(#m7b)"/>
+<text x="362" y="272" font-family="Inter" font-size="17" font-style="italic" fill="#4569AD">P</text><path d="M362 253 H374 M369 249.5 L374 253 L369 256.5" fill="none" stroke="#4569AD" stroke-width="1.4"/><text x="380" y="272" font-family="Inter" font-size="16" fill="#4569AD">(на опору)</text>
+</svg>
+<p>Підпис до схеми: сила тяжіння і реакція опори прикладені до бруска, вага — до опори. Тому вагу і силу тяжіння не можна «скласти» чи «врівноважити»: вони діють на різні тіла.</p>
+<p><strong>Кількісно.</strong> Для тіла, що рухається разом з опорою з прискоренням ${\vec a}{:}$ ${m\vec a = m\vec g + \vec N}{,}$ звідки ${\vec N = m(\vec a - \vec g)}{,}$ а вага</p>
+<div class="formula">$$\vec P = m(\vec g - \vec a)$$</div>
+<p class="where">де ${P}$ — вага (Н); ${m}$ — маса (кг); ${\vec g}$ — прискорення вільного падіння (м⁠/⁠с²); ${\vec a}$ — прискорення тіла разом з опорою (м⁠/⁠с²). Коли застосовувати: тіло нерухоме відносно опори чи підвісу. Важливий лише <strong>напрям прискорення</strong>, а не напрям швидкості.</p>
+<table>
+<tr><th>Рух</th><th>Модуль ваги</th><th>Приклад</th></tr>
+<tr><td>Спокій або рівномірний прямолінійний рух ${(a = 0)}$</td><td>${P_0 = mg}$</td><td>ліфт їде рівномірно вгору чи вниз</td></tr>
+<tr><td>Прискорення вгору</td><td>${P = m(g + a)}$</td><td>ліфт рушає вгору або гальмує, рухаючись униз; нижня точка петлі; угнутий міст</td></tr>
+<tr><td>Прискорення вниз</td><td>${P = m(g - a)}$</td><td>ліфт рушає вниз або гальмує, рухаючись угору; верхня точка опуклого мосту</td></tr>
+<tr><td>Прискорення горизонтальне</td><td>${P = m\sqrt{g^2 + a^2}}$</td><td>автомобіль розганяється; вагон рушає</td></tr>
+<tr><td>Вільне падіння ${(\vec a = \vec g)}$</td><td>${P = 0}$</td><td>орбіта, стрибок, кинутий м'яч</td></tr>
+</table>
+<p>Для руху по колу ${a = \frac{v^2}{R} = \omega^2R}{.}$ На опуклому мосту прискорення напрямлене вниз, до центра кривини: ${P = m\left(g - \frac{v^2}{R}\right)}{.}$ Невагомість у верхній точці настає при ${v = \sqrt{gR}}{.}$</p>
+<h3>Коефіцієнт перевантаження</h3>
+<div class="formula">$$n = \frac{P}{P_0} = \frac{P}{mg}$$</div>
+<p class="where">де ${n}$ — коефіцієнт перевантаження (безрозмірний); ${P}$ — вага в русі з прискоренням (Н); ${P_0 = mg}$ — вага в стані спокою (Н). Коли застосовувати: будь-який рух із прискоренням. Для прискорення вгору ${n = 1 + \frac ag}{.}$ У посібниках НМТ цю величину часто позначають ${k}{;}$ ми беремо ${n}{,}$ щоб не плутати з жорсткістю.</p>
+<h3>Вага на обертовій Землі</h3>
+<p>Тіло на екваторі разом із Землею рухається по колу з доцентровим прискоренням ${a = \omega^2R = \frac{4\pi^2R}{T^2} \approx 0{,}034\ \text{м/с}^2}{,}$ напрямленим вниз, до центра Землі. Тому ${P_{\text{екв}} = m(g - a)}{,}$ приблизно на 0,35% менше, ніж на полюсі, де ${P = mg}{.}$ Якби доба тривала лише ${\approx 1{,}4}$ год, тіла на екваторі стали б невагомими (задача 7.40). Реальна різниця сили тяжіння між полюсом і екватором ще трохи більша через сплюснутість Землі, але в задачах НМТ Землю вважають кулею.</p>
+<div class="callout warn"><b>Типова помилка</b>«На МКС невагомість, бо там немає гравітації». На висоті 400 км ${g \approx 8{,}6\ \text{м/с}^2}{,}$ майже 90% від земного. Невагомість виникає тому, що станція і все в ній рухаються лише під дією сили тяжіння, тобто вільно падають.</div>
+<div class="callout fact"><b>Цікавий факт</b>Леонід Каденюк — перший астронавт незалежної України — полетів у 1997 році на шатлі «Колумбія» (місія STS-87) і проводив досліди з ростом рослин у невагомості.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">08</span>Таблиця величин і одиниць СІ</h2>
+<table>
+<tr><th>Величина</th><th>Позначення</th><th>Одиниця СІ</th><th>Ключова формула</th></tr>
+<tr><td>Гравітаційна стала</td><td>${G}$</td><td>Н·м²⁠/⁠кг²</td><td>${\approx 6{,}67\cdot10^{-11}}$</td></tr>
+<tr><td>Сила тяжіння</td><td>${F_{\text{тяж}}}$</td><td>Н</td><td>${G\frac{Mm}{(R+h)^2} = mg_h}$</td></tr>
+<tr><td>Прискорення вільного падіння</td><td>${g}$</td><td>м⁠/⁠с²</td><td>${\frac{GM}{R^2} = \frac43\pi G\rho R}$</td></tr>
+<tr><td>Перша космічна швидкість</td><td>${v_{\text{I}}}$</td><td>м⁠/⁠с</td><td>${\sqrt{GM/r}}{,}$ ${\sqrt{g_0R}}$</td></tr>
+<tr><td>Друга космічна швидкість</td><td>${v_{\text{II}}}$</td><td>м⁠/⁠с</td><td>${\sqrt2\,v_{\text{I}}}$</td></tr>
+<tr><td>Період обертання</td><td>${T}$</td><td>с</td><td>${2\pi\sqrt{r^3/(GM)}}$</td></tr>
+<tr><td>Густина</td><td>${\rho}$</td><td>кг⁠/⁠м³</td><td>${M/V}{,}$ ${V = \frac43\pi R^3}$</td></tr>
+<tr><td>Сила пружності</td><td>${F_{\text{пр}}}$</td><td>Н</td><td>${k|x|}$</td></tr>
+<tr><td>Жорсткість</td><td>${k}$</td><td>Н⁠/⁠м = кг⁠/⁠с²</td><td>${ES/l_0}$</td></tr>
+<tr><td>Видовження</td><td>${x}$</td><td>м</td><td>${l - l_0}$</td></tr>
+<tr><td>Модуль Юнга</td><td>${E}$</td><td>Па</td><td>з таблиць</td></tr>
+<tr><td>Сила реакції опори</td><td>${N}$</td><td>Н</td><td>з II закону Ньютона</td></tr>
+<tr><td>Вага</td><td>${P}$</td><td>Н</td><td>${m(\vec g - \vec a)}$</td></tr>
+<tr><td>Коефіцієнт перевантаження</td><td>${n}$</td><td>безрозмірний</td><td>${P/(mg)}$</td></tr>
+</table>
+<p>Довідкові значення для Землі: ${M_{\text{З}} \approx 6\cdot10^{24}\ \text{кг}}{;}$ ${R_{\text{З}} \approx 6400\ \text{км}}$ (у задачах НМТ; точніше 6371 км); ${g \approx 9{,}8\ \text{м/с}^2}$ (часто беруть 10); ${g_{\text{Місяця}} \approx 1{,}6\ \text{м/с}^2}{.}$ Маса Місяця в 81 раз менша за масу Землі, радіус — у 3,7 разу менший.</p>
+</section>
+
+<section class="card">
+<h2><span class="num">09</span>Розв'язані задачі</h2>
+<p>Дванадцять задач рівня НМТ, від простих до складних. Спершу розв'яжи сам(а), потім відкрий розв'язання і порівняй. Номери в дужках — номери задач у посібнику.</p>
+
+<h3>Рівень 1. Одна формула, один крок</h3>
+<div class="callout info"><b>Задача 1 (6.2)</b>Тіло з поверхні Землі підняли на висоту ${h = R/2}{.}$ Як змінилася сила тяжіння? А) зросла вдвічі; Б) зменшилася вдвічі; В) зросла у 2,25 разу; Г) зменшилася у 2,25 разу.</div>
+<details><summary>Розв'язання задачі 1</summary><div><p>${\frac{F_0}{F_h} = \left(\frac{R+h}{R}\right)^2 = 1{,}5^2 = 2{,}25}{.}$ Зверни увагу: у формулі стоїть відстань до центра ${R + h}{,}$ а не висота ${h}{.}$ <strong>Відповідь: Г.</strong></p></div></details>
+<div class="callout info"><b>Задача 2 (6.7)</b>Визначте масу Землі, якщо ${R = 6400\ \text{км}}{,}$ ${g = 9{,}8\ \text{м/с}^2}{.}$</div>
+<details><summary>Розв'язання задачі 2</summary><div><p>${g = \frac{GM}{R^2} \Rightarrow M = \frac{gR^2}{G} = \frac{9{,}8\cdot(6{,}4\cdot10^6)^2}{6{,}67\cdot10^{-11}} \approx 6{,}0\cdot10^{24}\ \text{кг}}{.}$ <strong>Відповідь: Б</strong> (${6\cdot10^{24}}$ кг).</p></div></details>
+<div class="callout info"><b>Задача 3 (7.3)</b>Пружина завдовжки 3 см під дією сили 25 Н видовжилась на 2 мм. Якою стане її довжина під дією сили 125 Н?</div>
+<details><summary>Розв'язання задачі 3</summary><div><p>${k = \frac{F_1}{x_1} = \frac{25}{0{,}002} = 12\,500\ \text{Н/м}}{;}$ ${x_2 = \frac{F_2}{k} = 0{,}01\ \text{м} = 1\ \text{см}}$ (або одразу: сила вп'ятеро більша, видовження вп'ятеро більше, 10 мм). Довжина ${l = l_0 + x_2 = 4\ \text{см}}{.}$ <strong>Відповідь: Б.</strong> Пастка: варіант «5 см» для тих, хто помножив на 5 всю довжину.</p></div></details>
+<div class="callout info"><b>Задача 4 (7.14)</b>У якій ситуації вага людини в ліфті найменша? А) ліфт рушає вгору; Б) рівномірно рухається вгору; В) рівномірно рухається вниз; Г) гальмує на верхньому поверсі.</div>
+<details><summary>Розв'язання задачі 4</summary><div><p>Найменша вага — коли прискорення напрямлене вниз: ${P = m(g - a)}{.}$ Ліфт, що гальмує під час руху вгору, має прискорення, напрямлене вниз. У Б і В ${P = mg}{,}$ в А ${P = m(g + a)}{.}$ <strong>Відповідь: Г.</strong></p></div></details>
+
+<h3>Рівень 2. Два кроки і зміна умов</h3>
+<div class="callout info"><b>Задача 5 (приклад 1 з посібника)</b>Супутник рухається коловою орбітою на висоті 6400 км над Землею ${(R = 6400\ \text{км}}{,}$ ${g = 9{,}8\ \text{м/с}^2)}$. Визначте його швидкість. А) 6,4 км⁠/⁠с; Б) 7,9 км⁠/⁠с; В) 5,6 км⁠/⁠с; Г) 5,2 км⁠/⁠с.</div>
+<details><summary>Розв'язання задачі 5</summary><div><p>${r = R + h = 2R}{;}$ ${v = \sqrt{\frac{GM}{2R}}}{,}$ а ${GM = gR^2}{,}$ тож ${v = \sqrt{\frac{gR}{2}} = \sqrt{\frac{9{,}8\cdot6{,}4\cdot10^6}{2}} = 5600\ \text{м/с}}{.}$ <strong>Відповідь: В.</strong> Пастка: 7,9 км⁠/⁠с — це швидкість лише біля поверхні.</p></div></details>
+<div class="callout info"><b>Задача 6 (6.14, на відповідність)</b>Супутник перейшов з орбіти біля поверхні Землі на колову орбіту з висотою ${h = R}{.}$ Як змінилися: 1) лінійна швидкість; 2) період; 3) сила притягання до Землі; 4) кутова швидкість? Варіанти: А) зменшиться в 4 рази; Б) зросте в ${2\sqrt2}$ рази; В) зменшиться в ${\sqrt2}$ рази; Г) зросте вдвічі; Д) зменшиться в ${2\sqrt2}$ рази.</div>
+<details><summary>Розв'язання задачі 6</summary><div><p>Радіус орбіти зріс від ${R}$ до ${2R}{,}$ тобто вдвічі. ${v \sim r^{-1/2}}{:}$ зменшиться в ${\sqrt2}{.}$ ${T \sim r^{3/2}}{:}$ зросте в ${2\sqrt2}{.}$ ${F \sim r^{-2}}{:}$ зменшиться в 4. ${\omega \sim r^{-3/2}}{:}$ зменшиться в ${2\sqrt2}{.}$ <strong>Відповідь: 1–В, 2–Б, 3–А, 4–Д.</strong></p></div></details>
+<div class="callout info"><b>Задача 7 (7.10)</b>До двох послідовно з'єднаних пружин підвісили тягарець. Перша ${(k_1 = 200\ \text{Н/м})}$ видовжилась на 1,6 см. Яке видовження другої ${(k_2 = 800\ \text{Н/м})}$?</div>
+<details><summary>Розв'язання задачі 7</summary><div><p>При послідовному з'єднанні сила в обох пружинах однакова: ${k_1x_1 = k_2x_2 \Rightarrow x_2 = \frac{k_1x_1}{k_2} = \frac{200\cdot1{,}6}{800} = 0{,}4\ \text{см}}{.}$ Одиниці можна не переводити: у відношенні сантиметри скорочуються. <strong>Відповідь: А</strong> (0,4 см).</p></div></details>
+<div class="callout info"><b>Задача 8 (7.22)</b>Хлопчик масою 30 кг гойдається на гойдалці з підвісом 3 м. Яка його вага в найнижчій точці, якщо швидкість там 6 м⁠/⁠с? ${(g = 10\ \text{м/с}^2)}$</div>
+<details><summary>Розв'язання задачі 8</summary><div><p>У нижній точці доцентрове прискорення напрямлене вгору: ${a = \frac{v^2}{l} = \frac{36}{3} = 12\ \text{м/с}^2}{.}$ ${P = m(g + a) = 30\cdot22 = 660\ \text{Н}}{.}$ <strong>Відповідь: В.</strong> Пастка: 360 Н, якщо забути про ${mg}{.}$</p></div></details>
+
+<h3>Рівень 3. Модель, рисунок і система рівнянь</h3>
+<div class="callout info"><b>Задача 9 (6.25)</b>Спостерігачу на екваторі супутник здається нерухомим. Визначте радіус його орбіти ${(R = 6400\ \text{км})}$.</div>
+<details><summary>Розв'язання задачі 9</summary><div><p>Супутник нерухомий відносно Землі, якщо його період дорівнює періоду обертання Землі, ${T = 24\ \text{год} = 86\,400\ \text{с}}$ (у задачах НМТ беруть 24 год). З ${\frac{4\pi^2r}{T^2} = \frac{GM}{r^2}}$ і ${GM = gR^2}{:}$
+$$r = \sqrt[3]{\frac{gR^2T^2}{4\pi^2}}$$
+При ${g = 10\ \text{м/с}^2}{:}$ ${r \approx 4{,}26\cdot10^7\ \text{м}}{;}$ при ${g = 9{,}8\ \text{м/с}^2}{:}$ ${r \approx 4{,}23\cdot10^7\ \text{м}}{.}$ <strong>Відповідь: ${\approx 42\cdot10^6}$ м</strong> (у ключі посібника ${42{,}6\cdot10^6}$ м, що відповідає ${g = 10\ \text{м/с}^2}$).</p></div></details>
+<div class="callout info"><b>Задача 10 (7.34)</b>Брусок масою 100 г лежить на підставці і підвішений на недеформованій пружині жорсткістю 40 Н⁠/⁠м. Підставку починають опускати з прискоренням 2 м⁠/⁠с². Через який час брусок відірветься від підставки? ${(g = 10\ \text{м/с}^2)}$</div>
+<details><summary>Розв'язання задачі 10</summary><div><svg viewBox="0 0 420 270" width="420" height="270" role="img" aria-label="Брусок на підставці, підвішений на пружині; вгору діють сила пружності і реакція опори, вниз сила тяжіння, прискорення напрямлене вниз">
+<defs>
+<pattern id="h10" width="8" height="8" patternUnits="userSpaceOnUse"><line x1="0" y1="8" x2="8" y2="0" stroke="#13284A" stroke-width="1.2"/></pattern>
+<marker id="m10p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#E679A6"/></marker>
+<marker id="m10g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#587954"/></marker>
+<marker id="m10b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#4569AD"/></marker>
+</defs>
+<rect x="80" y="14" width="180" height="10" fill="url(#h10)"/>
+<line x1="80" y1="24" x2="260" y2="24" stroke="#13284A" stroke-width="2"/>
+<polyline points="170,24 170,36 158,42 182,50 158,58 182,66 158,74 182,82 170,88 170,140" fill="none" stroke="#4569AD" stroke-width="2.5"/>
+<rect x="145" y="140" width="50" height="34" rx="3" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<line x1="80" y1="174" x2="260" y2="174" stroke="#13284A" stroke-width="2"/>
+<rect x="80" y="174" width="180" height="10" fill="url(#h10)"/>
+<line x1="188" y1="140" x2="188" y2="98" stroke="#4569AD" stroke-width="3" marker-end="url(#m10b)"/>
+<text x="198" y="118" font-family="Inter" font-size="17" font-style="italic" fill="#4569AD">F<tspan font-size="14" font-style="normal" dy="5">пр</tspan></text><path d="M198 99 H210 M205 95.5 L210 99 L205 102.5" fill="none" stroke="#4569AD" stroke-width="1.4"/>
+<line x1="156" y1="174" x2="156" y2="120" stroke="#587954" stroke-width="3" marker-end="url(#m10g)"/>
+<text x="128" y="134" font-family="Inter" font-size="17" font-style="italic" fill="#587954">N</text><path d="M128 115 H140 M135 111.5 L140 115 L135 118.5" fill="none" stroke="#587954" stroke-width="1.4"/>
+<line x1="170" y1="157" x2="170" y2="250" stroke="#E679A6" stroke-width="3" marker-end="url(#m10p)"/>
+<text x="180" y="245" font-family="Inter" font-size="17" font-style="italic" fill="#B23E72">mg</text><path d="M180 226 H202 M197 222.5 L202 226 L197 229.5" fill="none" stroke="#B23E72" stroke-width="1.4"/>
+<line x1="320" y1="100" x2="320" y2="160" stroke="#13284A" stroke-width="2.5" marker-end="url(#m10p)"/>
+<text x="332" y="138" font-family="Inter" font-size="17" font-style="italic" fill="#13284A">a</text><path d="M332 119 H344 M339 115.5 L344 119 L339 122.5" fill="none" stroke="#13284A" stroke-width="1.4"/>
+</svg>
+<p>II закон Ньютона (вісь униз): ${ma = mg - N - kx}{.}$ Поки брусок на підставці, він рухається разом з нею, а пружина розтягується на величину переміщення. Відрив: ${N = 0}{,}$ тоді ${x = \frac{m(g - a)}{k} = \frac{0{,}1\cdot8}{40} = 0{,}02\ \text{м}}{.}$ Рух рівноприскорений без початкової швидкості: ${x = \frac{at^2}{2} \Rightarrow t = \sqrt{\frac{2x}{a}} = \sqrt{0{,}02} \approx 0{,}14\ \text{с}}{.}$ <strong>Відповідь: 0,14 с.</strong></p></div></details>
+<div class="callout info"><b>Задача 11 (7.42*)</b>Станція у формі тора із зовнішнім радіусом 200 м обертається навколо осі, що проходить через центр перпендикулярно до площини тора. Яким має бути період обертання, щоб вага космонавта була такою самою, як на Землі? ${(g = 9{,}8\ \text{м/с}^2)}$</div>
+<details><summary>Розв'язання задачі 11</summary><div><svg viewBox="0 0 420 300" width="420" height="300" role="img" aria-label="Тороїдальна станція згори: космонавт на зовнішній стінці, реакція опори і прискорення напрямлені до центра обертання">
+<defs>
+<marker id="m11g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#587954"/></marker>
+<marker id="m11p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#E679A6"/></marker>
+<marker id="m11b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#4569AD"/></marker>
+</defs>
+<circle cx="190" cy="150" r="105" fill="none" stroke="#B9C8E6" stroke-width="30"/>
+<circle cx="190" cy="150" r="120" fill="none" stroke="#13284A" stroke-width="2"/>
+<circle cx="190" cy="150" r="90" fill="none" stroke="#13284A" stroke-width="2"/>
+<circle cx="190" cy="150" r="4" fill="#081F44"/>
+<text x="166" y="140" font-family="Inter" font-size="14" fill="#13284A">вісь</text>
+<line x1="190" y1="150" x2="296" y2="207" stroke="#4569AD" stroke-width="1.5" marker-end="url(#m11b)"/>
+<text x="226" y="202" font-family="Inter" font-size="17" font-style="italic" fill="#4569AD">R</text>
+<rect x="296" y="140" width="12" height="20" fill="#081F44"/>
+<line x1="296" y1="150" x2="236" y2="150" stroke="#587954" stroke-width="3" marker-end="url(#m11g)"/>
+<text x="256" y="138" font-family="Inter" font-size="17" font-style="italic" fill="#587954">N</text><path d="M256 119 H268 M263 115.5 L268 119 L263 122.5" fill="none" stroke="#587954" stroke-width="1.4"/>
+<line x1="380" y1="150" x2="330" y2="150" stroke="#E679A6" stroke-width="3" marker-end="url(#m11p)"/>
+<text x="350" y="138" font-family="Inter" font-size="17" font-style="italic" fill="#B23E72">a</text><path d="M350 119 H362 M357 115.5 L362 119 L357 122.5" fill="none" stroke="#B23E72" stroke-width="1.4"/>
+<path d="M 120 40 A 130 130 0 0 1 260 40" fill="none" stroke="#13284A" stroke-width="2" marker-end="url(#m11p)"/>
+<text x="270" y="42" font-family="Inter" font-size="14" fill="#13284A">обертання</text>
+</svg>
+<p>У міжзоряному просторі силою тяжіння нехтуємо. Доцентрове прискорення космонавту надає реакція зовнішньої стінки: ${N = ma = m\frac{4\pi^2R}{T^2}}{.}$ Вага за модулем дорівнює ${N}{.}$ Умова: ${N = mg}{,}$ тому ${\frac{4\pi^2R}{T^2} = g \Rightarrow T = 2\pi\sqrt{\frac Rg} = 2\pi\sqrt{\frac{200}{9{,}8}} \approx 28\ \text{с}}{.}$ «Підлога» для космонавта — зовнішня стінка, «верх» — напрям до осі. <strong>Відповідь: ${\approx 28}$ с.</strong></p></div></details>
+<div class="callout info"><b>Задача 12 (7.41*)</b>Вага тіла на екваторі планети вдвічі менша, ніж на полюсі. Період обертання планети 2,7 год. Вважаючи планету однорідною кулею, визначте її густину.</div>
+<details><summary>Розв'язання задачі 12</summary><div><p>На полюсі ${P_{\text{п}} = mg}{,}$ на екваторі ${P_{\text{е}} = m(g - a)}{.}$ З ${P_{\text{п}} = 2P_{\text{е}}}{:}$ ${a = \frac g2}{.}$ Підставимо ${a = \frac{4\pi^2R}{T^2}}$ і ${g = \frac43\pi G\rho R}{:}$ ${\frac{4\pi^2R}{T^2} = \frac23\pi G\rho R}{.}$ Радіус скоротився, і ${\rho = \frac{6\pi}{GT^2} = \frac{6\pi}{6{,}67\cdot10^{-11}\cdot(9720)^2} \approx 3{,}0\cdot10^3\ \text{кг/м}^3}{.}$ <strong>Відповідь: ${\approx 3000}$ кг⁠/⁠м³.</strong></p></div></details>
+<div class="callout remember"><b>Запам'ятай</b>Алгоритм розв'язування: 1) рисунок і всі сили, що діють на тіло; 2) напрям прискорення (для руху по колу — до центра); 3) II закон Ньютона в проєкції; 4) підстановки ${GM = gR^2}{,}$ ${M = \rho\cdot\frac43\pi R^3}{,}$ ${a = v^2/r = 4\pi^2r/T^2}{;}$ 5) відповідь у загальному вигляді, потім числа і перевірка одиниць.</div>
+</section>
+
+<section class="card">
+<h2><span class="num">10</span>Ключовий висновок і перевір себе</h2>
+<div class="callout remember"><b>Ключовий висновок</b>Гравітація притягує всі тіла з силою ${G\frac{m_1m_2}{r^2}}{,}$ і саме вона, разом із II законом Ньютона, визначає рух супутників: ${v = \sqrt{GM/r}}{.}$ Сила пружності пропорційна видовженню ${(F = kx)}$ і має електромагнітну природу. Вага — це сила з боку тіла на опору; вона дорівнює ${mg}$ лише без прискорення, а у вільному падінні, зокрема на орбіті, зникає.</div>
+<details><summary>1. Чому прискорення вільного падіння не залежить від маси тіла?</summary><div><p>Сила тяжіння пропорційна масі тіла, а прискорення ${a = F/m}{.}$ Маса скорочується: ${g = \frac{GMm}{R^2m} = \frac{GM}{R^2}}{.}$</p></div></details>
+<details><summary><span>2. На якій висоті (у радіусах Землі) ${g}$ зменшиться в 9 разів?</span></summary><div><p>${\left(\frac{R+h}{R}\right)^2 = 9 \Rightarrow R + h = 3R \Rightarrow h = 2R}{.}$</p></div></details>
+<details><summary>3. Як зміниться перша космічна швидкість, якщо радіус орбіти збільшити в 4 рази?</summary><div><p>${v \sim 1/\sqrt r}{,}$ тож зменшиться у 2 рази.</p></div></details>
+<details><summary>4. Пружину розрізали на три рівні частини. Яка жорсткість кожної частини?</summary><div><p>${k \sim 1/l_0}{:}$ кожна частина втричі коротша, тож жорсткість ${3k}{.}$</p></div></details>
+<details><summary>5. Чи може вага тіла бути більшою за силу тяжіння? Наведи приклад.</summary><div><p>Так, коли прискорення напрямлене вгору: ліфт рушає вгору, нижня точка «мертвої петлі», старт ракети.</p></div></details>
+<details><summary>6. М'яч кинули вгору. Коли він невагомий (без опору повітря)?</summary><div><p>Протягом усього польоту, бо на нього діє лише сила тяжіння (завдання 7.17, відповідь Г). Невагомість не залежить від напрямку швидкості.</p></div></details>
+<details><summary>7. Чому вагу не можна «врівноважити» силою тяжіння?</summary><div><p>Вони прикладені до різних тіл: сила тяжіння — до тіла, вага — до опори. Врівноважувати одна одну можуть лише сили, прикладені до одного тіла (наприклад, ${mg}$ і ${N}$ при спокої).</p></div></details>
+<details><summary>8. Як за періодом і радіусом орбіти Місяця знайти масу Землі?</summary><div><p>${M_{\text{З}} = \frac{4\pi^2r^3}{GT^2}}{,}$ де ${r}$ — радіус орбіти Місяця, ${T}$ — його період. Маса самого Місяця у відповідь не входить.</p></div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">11</span>Перевір себе: тест (15 завдань)</h2>
+<p>Завдання впорядковано від простого до складного. Під кожним завданням можна відкрити відповідь, а пояснення — у розділі після тесту. Якщо не сказано інше, ${g = 10\ \text{м/с}^2}{.}$</p>
+
+<div class="q">
+<p><strong>1.</strong> Яка з одиниць є одиницею жорсткості, вираженою через основні одиниці СІ?</p>
+<ul class="options"><li>А) кг·м⁠/⁠с²</li><li>Б) кг⁠/⁠с²</li><li>В) кг·м⁠/⁠с</li><li>Г) кг·м²⁠/⁠с²</li></ul>
+</div>
+<details><summary>Перевір відповідь 1</summary><div><p>Б.</p></div></details>
+
+<div class="q">
+<p><strong>2.</strong> Познач кожне твердження «так» або «ні».</p>
+<ul class="options"><li>1) Вага прикладена до самого тіла.</li><li>2) Сила пружності має електромагнітну природу.</li><li>3) Гравітаційна стала залежить від того, на якій планеті проводять дослід.</li><li>4) Друга космічна швидкість у ${\sqrt2}$ разу більша за першу.</li></ul>
+</div>
+<details><summary>Перевір відповідь 2</summary><div><p>1) ні; 2) так; 3) ні; 4) так.</p></div></details>
+
+<div class="q">
+<p><strong>3.</strong> Від якої величини НЕ залежить прискорення вільного падіння на поверхні планети?</p>
+<ul class="options"><li>А) від маси планети</li><li>Б) від маси тіла</li><li>В) від радіуса планети</li><li>Г) від густини планети</li></ul>
+</div>
+<details><summary>Перевір відповідь 3</summary><div><p>Б.</p></div></details>
+
+<div class="q">
+<p><strong>4.</strong> У яких випадках тіло перебуває в стані невагомості? Опором повітря знехтуй. Обери всі правильні.</p>
+<ul class="options"><li>А) космонавт усередині МКС</li><li>Б) парашутист, що рівномірно спускається з розкритим парашутом</li><li>В) камінь, кинутий горизонтально</li><li>Г) людина в ліфті, що рівномірно їде вниз</li><li>Д) стрибун на батуті, коли він уже відірвався від сітки</li></ul>
+</div>
+<details><summary>Перевір відповідь 4</summary><div><p>А, В, Д.</p></div></details>
+
+<div class="q">
+<p><strong>5.</strong> Людина масою 60 кг. Розташуй ситуації в порядку зростання її ваги.</p>
+<ul class="options"><li>А) стоїть у нерухомому ліфті</li><li>Б) ліфт гальмує під час руху вгору з прискоренням 2 м⁠/⁠с²</li><li>В) пілот у нижній точці «мертвої петлі» з перевантаженням ${n = 3}$</li><li>Г) ліфт розганяється вгору з прискоренням 2 м⁠/⁠с²</li><li>Д) трос обірвався, ліфт вільно падає</li></ul>
+</div>
+<details><summary>Перевір відповідь 5</summary><div><p>Д, Б, А, Г, В.</p></div></details>
+
+<div class="q">
+<p><strong>6.</strong> Чому космонавти на МКС перебувають у стані невагомості?</p>
+<ul class="options"><li>А) на висоті орбіти гравітації Землі практично немає</li><li>Б) станція і космонавти рухаються лише під дією сили тяжіння, тобто вільно падають</li><li>В) сила тяжіння Землі врівноважена притяганням Місяця</li><li>Г) у вакуумі тіла не мають ваги</li></ul>
+</div>
+<details><summary>Перевір відповідь 6</summary><div><p>Б.</p></div></details>
+
+<div class="q">
+<p><strong>7.</strong> Установи відповідність між величиною і формулою (${M}$ — маса планети, ${R}$ — її радіус, ${r}$ — радіус орбіти).</p>
+<p>1) період супутника на коловій орбіті; 2) прискорення вільного падіння на поверхні; 3) швидкість супутника на коловій орбіті; 4) жорсткість двох послідовно з'єднаних пружин</p>
+<ul class="options"><li>А) ${\sqrt{GM/r}}$</li><li>Б) ${GM/R^2}$</li><li>В) ${\frac{k_1k_2}{k_1 + k_2}}$</li><li>Г) ${2\pi\sqrt{r^3/(GM)}}$</li><li>Д) ${k_1 + k_2}$</li></ul>
+</div>
+<details><summary>Перевір відповідь 7</summary><div><p>1–Г, 2–Б, 3–А, 4–В.</p></div></details>
+
+<div class="q">
+<p><strong>8.</strong> Яке прискорення вільного падіння на висоті, що дорівнює радіусу Землі? ${g_0 = 9{,}8\ \text{м/с}^2}{.}$ Відповідь у м⁠/⁠с², до сотих.</p>
+</div>
+<details><summary>Перевір відповідь 8</summary><div><p>2,45.</p></div></details>
+
+<div class="q">
+<p><strong>9.</strong> За графіком залежності сили пружності від видовження визнач жорсткість пружини.</p>
+<svg viewBox="0 0 460 300" width="460" height="300" role="img" aria-label="Графік сили пружності від видовження: пряма з початку координат через точку 4 см, 2 Н">
+<defs><marker id="m9a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#13284A"/></marker></defs>
+<g stroke="#B9C8E6" stroke-width="1">
+<line x1="110" y1="40" x2="110" y2="250"/><line x1="160" y1="40" x2="160" y2="250"/><line x1="210" y1="40" x2="210" y2="250"/><line x1="260" y1="40" x2="260" y2="250"/><line x1="310" y1="40" x2="310" y2="250"/><line x1="360" y1="40" x2="360" y2="250"/><line x1="410" y1="40" x2="410" y2="250"/>
+<line x1="60" y1="200" x2="420" y2="200"/><line x1="60" y1="150" x2="420" y2="150"/><line x1="60" y1="100" x2="420" y2="100"/><line x1="60" y1="50" x2="420" y2="50"/>
+</g>
+<line x1="60" y1="250" x2="440" y2="250" stroke="#13284A" stroke-width="1.8" marker-end="url(#m9a)"/>
+<line x1="60" y1="250" x2="60" y2="24" stroke="#13284A" stroke-width="1.8" marker-end="url(#m9a)"/>
+<line x1="60" y1="250" x2="360" y2="100" stroke="#E679A6" stroke-width="3"/>
+<circle cx="260" cy="150" r="5" fill="#587954"/>
+<text x="102" y="272" font-family="Inter" font-size="14" fill="#13284A">1</text><text x="152" y="272" font-family="Inter" font-size="14" fill="#13284A">2</text><text x="202" y="272" font-family="Inter" font-size="14" fill="#13284A">3</text><text x="252" y="272" font-family="Inter" font-size="14" fill="#13284A">4</text><text x="302" y="272" font-family="Inter" font-size="14" fill="#13284A">5</text><text x="352" y="272" font-family="Inter" font-size="14" fill="#13284A">6</text>
+<text x="38" y="205" font-family="Inter" font-size="14" fill="#13284A">1</text><text x="38" y="155" font-family="Inter" font-size="14" fill="#13284A">2</text><text x="38" y="105" font-family="Inter" font-size="14" fill="#13284A">3</text><text x="38" y="55" font-family="Inter" font-size="14" fill="#13284A">4</text>
+<text x="370" y="292" font-family="Inter" font-size="15" fill="#13284A"><tspan font-style="italic">x</tspan>, см</text>
+<text x="70" y="30" font-family="Inter" font-size="15" fill="#13284A"><tspan font-style="italic">F</tspan><tspan font-size="14" dy="5">пр</tspan><tspan dy="-5">, Н</tspan></text>
+</svg>
+<ul class="options"><li>А) 0,5 Н⁠/⁠м</li><li>Б) 2 Н⁠/⁠м</li><li>В) 50 Н⁠/⁠м</li><li>Г) 200 Н⁠/⁠м</li></ul>
+</div>
+<details><summary>Перевір відповідь 9</summary><div><p>В.</p></div></details>
+
+<div class="q">
+<p><strong>10.</strong> Кулька на нитці підвішена у вагоні поїзда, що рушає з місця, і відхилилася так, як показано на рисунку (клітинки однакові). З яким прискоренням рушає поїзд?</p>
+<svg viewBox="0 0 360 330" width="360" height="330" role="img" aria-label="Нитка з кулькою відхилена від вертикалі: зміщення одна клітинка по горизонталі на п'ять клітинок по вертикалі">
+<defs>
+<pattern id="h10q" width="8" height="8" patternUnits="userSpaceOnUse"><line x1="0" y1="8" x2="8" y2="0" stroke="#13284A" stroke-width="1.2"/></pattern>
+<marker id="m10q" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#E679A6"/></marker>
+</defs>
+<g stroke="#B9C8E6" stroke-width="1">
+<line x1="140" y1="30" x2="140" y2="280"/><line x1="190" y1="30" x2="190" y2="280"/>
+<line x1="140" y1="80" x2="190" y2="80"/><line x1="140" y1="130" x2="190" y2="130"/><line x1="140" y1="180" x2="190" y2="180"/><line x1="140" y1="230" x2="190" y2="230"/><line x1="140" y1="280" x2="190" y2="280"/>
+</g>
+<rect x="90" y="20" width="160" height="10" fill="url(#h10q)"/>
+<line x1="90" y1="30" x2="250" y2="30" stroke="#13284A" stroke-width="2"/>
+<line x1="190" y1="30" x2="190" y2="290" stroke="#4569AD" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="190" y1="30" x2="140" y2="280" stroke="#13284A" stroke-width="2.5"/>
+<circle cx="140" cy="280" r="9" fill="#081F44"/>
+<path d="M190 90 A60 60 0 0 1 178.2 88.8" fill="none" stroke="#13284A" stroke-width="1.4"/><text x="177" y="114" font-family="Inter" font-size="16" font-style="italic" fill="#13284A">α</text>
+<line x1="230" y1="310" x2="320" y2="310" stroke="#E679A6" stroke-width="3" marker-end="url(#m10q)"/>
+<text x="200" y="300" font-family="Inter" font-size="14" fill="#13284A">поїзд рушає</text>
+</svg>
+<ul class="options"><li>А) 0,2 м⁠/⁠с²</li><li>Б) 2 м⁠/⁠с²</li><li>В) 5 м⁠/⁠с²</li><li>Г) 50 м⁠/⁠с²</li></ul>
+</div>
+<details><summary>Перевір відповідь 10</summary><div><p>Б.</p></div></details>
+
+<div class="q">
+<p><strong>11.</strong> Визнач першу космічну швидкість біля поверхні Марса: маса ${6{,}42\cdot10^{23}\ \text{кг}}{,}$ радіус 3390 км. Відповідь у км⁠/⁠с, до десятих.</p>
+</div>
+<details><summary>Перевір відповідь 11</summary><div><p>3,6.</p></div></details>
+
+<div class="q">
+<p><strong>12.</strong> Дві пружини по 100 Н⁠/⁠м з'єднані паралельно, а до них послідовно приєднано третю, жорсткістю 200 Н⁠/⁠м. До системи підвісили тягарець масою 500 г. Яке загальне видовження (у см)?</p>
+</div>
+<details><summary>Перевір відповідь 12</summary><div><p>5.</p></div></details>
+
+<div class="q">
+<p><strong>13.</strong> Учень зобразив сили для людини в ліфті, що розганяється вгору. Яку помилку він припустився?</p>
+<svg viewBox="0 0 420 330" width="420" height="330" role="img" aria-label="Людина в ліфті: сила реакції опори вгору довша за силу тяжіння вниз, вага намальована від центра людини вниз, прискорення вгору">
+<defs>
+<marker id="m13p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#E679A6"/></marker>
+<marker id="m13g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#587954"/></marker>
+<marker id="m13b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#4569AD"/></marker>
+<marker id="m13k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#081F44"/></marker>
+</defs>
+<rect x="70" y="20" width="230" height="270" fill="none" stroke="#13284A" stroke-width="2.5"/>
+<line x1="70" y1="270" x2="300" y2="270" stroke="#13284A" stroke-width="3"/>
+<circle cx="185" cy="105" r="16" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<rect x="165" y="124" width="40" height="80" rx="8" fill="#B9C8E6" stroke="#13284A" stroke-width="2"/>
+<line x1="175" y1="204" x2="175" y2="270" stroke="#13284A" stroke-width="5"/>
+<line x1="195" y1="204" x2="195" y2="270" stroke="#13284A" stroke-width="5"/>
+<circle cx="185" cy="165" r="3.5" fill="#081F44"/>
+<line x1="185" y1="165" x2="185" y2="250" stroke="#E679A6" stroke-width="3" marker-end="url(#m13p)"/>
+<text x="203" y="236" font-family="Inter" font-size="17" font-style="italic" fill="#B23E72">mg</text><path d="M203 217 H225 M220 213.5 L225 217 L220 220.5" fill="none" stroke="#B23E72" stroke-width="1.4"/>
+<line x1="230" y1="270" x2="230" y2="140" stroke="#587954" stroke-width="3" marker-end="url(#m13g)"/>
+<text x="238" y="160" font-family="Inter" font-size="17" font-style="italic" fill="#587954">N</text><path d="M238 141 H250 M245 137.5 L250 141 L245 144.5" fill="none" stroke="#587954" stroke-width="1.4"/>
+<line x1="166" y1="170" x2="166" y2="250" stroke="#4569AD" stroke-width="3" marker-end="url(#m13b)"/>
+<text x="144" y="214" font-family="Inter" font-size="17" font-style="italic" fill="#4569AD">P</text><path d="M144 195 H156 M151 191.5 L156 195 L151 198.5" fill="none" stroke="#4569AD" stroke-width="1.4"/>
+<line x1="350" y1="200" x2="350" y2="120" stroke="#081F44" stroke-width="3" marker-end="url(#m13k)"/>
+<text x="362" y="166" font-family="Inter" font-size="17" font-style="italic" fill="#081F44">a</text><path d="M362 147 H374 M369 143.5 L374 147 L369 150.5" fill="none" stroke="#081F44" stroke-width="1.4"/>
+</svg>
+<ul class="options"><li>А) сила тяжіння має бути напрямлена вгору, бо ліфт їде вгору</li><li>Б) вагу ${P}$ прикладено до людини, а вона має бути прикладена до підлоги ліфта</li><li>В) стрілка ${N}$ має бути коротшою за стрілку ${mg}$</li><li>Г) прискорення має бути напрямлене вниз</li></ul>
+</div>
+<details><summary>Перевір відповідь 13</summary><div><p>Б.</p></div></details>
+
+<div class="q">
+<p><strong>14.</strong> Лікарям на МКС треба щотижня контролювати масу космонавтів. Чи підійдуть звичайні пружинні ваги? Запропонуй, як виміряти масу на орбіті, і обґрунтуй.</p>
+<p><span class="gap"></span><span class="gap"></span><span class="gap"></span></p>
+</div>
+<details><summary>Перевір відповідь 14</summary><div><p>Пружинні ваги покажуть нуль. Масу можна визначити з II закону Ньютона ${m = F/a}{:}$ надати космонавту відому силу і виміряти його прискорення.</p></div></details>
+
+<div class="q">
+<p><strong>15.</strong> Якою мала б бути тривалість доби на планеті з густиною 5500 кг⁠/⁠м³, щоб тіла на її екваторі стали невагомими? Відповідь у хвилинах, до одиниць.</p>
+</div>
+<details><summary>Перевір відповідь 15</summary><div><p>${\approx 84}$ хв.</p></div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">12</span>Відповіді до тесту з поясненнями</h2>
+<details><summary>Відповіді та пояснення</summary><div>
+<p><strong>1. Б.</strong> ${\frac{\text{Н}}{\text{м}} = \frac{\text{кг}\cdot\text{м}}{\text{с}^2\cdot\text{м}} = \frac{\text{кг}}{\text{с}^2}}{.}$ А — це ньютон (одиниця сили), В — імпульсу, Г — джоуль (енергії). Найчастіша помилка — забути поділити на метр.</p>
+<p><strong>2. ні, так, ні, так.</strong> 1) Вага прикладена до опори чи підвісу. 2) Пружність виникає через взаємодію заряджених частинок речовини. 3) ${G}$ — фундаментальна стала, однакова у всьому Всесвіті; від планети залежить ${g}{,}$ а не ${G}{.}$ 4) ${v_{\text{II}} = \sqrt2\,v_{\text{I}}}{.}$</p>
+<p><strong>3. Б.</strong> ${g = \frac{GM}{R^2} = \frac43\pi G\rho R}$ містить масу, радіус і густину планети, але не масу тіла. Г — пастка для тих, хто пам'ятає лише формулу з масою планети.</p>
+<p><strong>4. А, В, Д.</strong> У цих випадках на тіло діє лише сила тяжіння. Б і Г — рівномірний рух, вага ${mg}{:}$ опір повітря (у Б) чи підлога (у Г) врівноважує силу тяжіння.</p>
+<p><strong>5. Д (0) → Б ${(m(g - a) = 480\ \text{Н})}$ → А (600 Н) → Г ${(m(g + a) = 720\ \text{Н})}$ → В ${(3mg = 1800\ \text{Н})}$.</strong> Пастка в Б: ліфт рухається вгору, але прискорення напрямлене вниз.</p>
+<p><strong>6. Б.</strong> На висоті МКС ${g \approx 8{,}6\ \text{м/с}^2}{,}$ тож А хибне. Притягання Місяця на орбіті мізерне (В). Вакуум не впливає на вагу (Г): вага існує й у вакуумі, якщо тіло тисне на опору, наприклад у ракеті на старті.</p>
+<p><strong>7. 1–Г, 2–Б, 3–А, 4–В.</strong> Д — жорсткість паралельного з'єднання, вона зайва.</p>
+<p><strong>8. 2,45.</strong> Відстань до центра ${2R}{:}$ ${g = g_0/4 = 9{,}8/4 = 2{,}45\ \text{м/с}^2}{.}$ Якщо вийшло ${g_0/2}{,}$ ти забув(ла) про квадрат.</p>
+<p><strong>9. В.</strong> З графіка ${F = 2\ \text{Н}}$ при ${x = 4\ \text{см} = 0{,}04\ \text{м}}{:}$ ${k = 2/0{,}04 = 50\ \text{Н/м}}{.}$ Відповідь А виходить, якщо поділити 2 на 4 без переведення сантиметрів, Б — якщо поділити 4 на 2.</p>
+<p><strong>10. Б.</strong> На кульку діють ${m\vec g}$ і сила пружності нитки. ${Ox}{:}$ ${ma = F_{\text{пр}}\sin\alpha}{;}$ ${Oy}{:}$ ${mg = F_{\text{пр}}\cos\alpha}{.}$ Отже ${a = g\,\text{tg}\,\alpha = 10\cdot\frac15 = 2\ \text{м/с}^2}{.}$ В виходить, якщо взяти ${\text{tg}\,\alpha = 5/1}$ з помилковим кутом, А — якщо забути помножити на ${g}{.}$ Кулька відхиляється в бік, протилежний прискоренню.</p>
+<p><strong>11. 3,6 км⁠/⁠с.</strong> ${v = \sqrt{\frac{GM}{R}} = \sqrt{\frac{6{,}67\cdot10^{-11}\cdot6{,}42\cdot10^{23}}{3{,}39\cdot10^6}} \approx 3{,}55\cdot10^3\ \text{м/с}}{.}$</p>
+<p><strong>12. 5 см.</strong> Паралельно: ${100 + 100 = 200\ \text{Н/м}}{;}$ послідовно з 200 Н⁠/⁠м: ${k = \frac{200\cdot200}{400} = 100\ \text{Н/м}}{.}$ ${x = \frac{mg}{k} = \frac{0{,}5\cdot10}{100} = 0{,}05\ \text{м}}{.}$ Якщо додати всі три (400 Н⁠/⁠м), вийде хибна відповідь 1,25 см.</p>
+<p><strong>13. Б.</strong> Вага — сила, з якою людина тисне на підлогу, тож починається на підлозі. Решта зображено правильно: сила тяжіння завжди вниз (А хибне); при прискоренні вгору ${N > mg}$ (В хибне); ліфт розганяється вгору, тож ${\vec a}$ вгору (Г хибне).</p>
+<p><strong>14. Відкрита.</strong> Повна відповідь: пружинні ваги вимірюють вагу, а на орбіті вага нульова, тож вони покажуть 0. Маса (інертність) на орбіті нікуди не зникає. Можна надати тілу відому силу (наприклад, пружиною з відомою жорсткістю і відомим видовженням) і виміряти прискорення, тоді ${m = F/a}{.}$ Саме за цим принципом працює прилад SLAMMD на МКС. Перевір, чи є у твоїй відповіді три речі: вага на орбіті нульова; маса і вага — різні величини; спосіб вимірювання через II закон Ньютона.</p>
+<p><strong>15. ≈ 84 хв.</strong> Невагомість на екваторі: ${\omega^2R = g = \frac43\pi G\rho R}{,}$ тож ${T = \sqrt{\frac{3\pi}{G\rho}} = \sqrt{\frac{3\pi}{6{,}67\cdot10^{-11}\cdot5500}} \approx 5070\ \text{с} \approx 84\ \text{хв}}{.}$ Зверни увагу: це той самий період, що й у супутника біля поверхні, бо тіло на екваторі тоді рухається з першою космічною швидкістю (завдання 7.24, відповідь А).</p>
+</div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">13</span>Домашнє завдання (10 задач)</h2>
+<p>Розв'яжи задачі в зошиті: запиши «Дано», рисунок (де потрібно), розв'язання в загальному вигляді, потім обчислення. Відповіді нижче — лише для самоперевірки, відкривай їх після розв'язання. Якщо не сказано інше, ${g = 10\ \text{м/с}^2}{.}$</p>
+<div class="q">
+<p><strong>1.</strong> (6.11) На поверхні Землі на тіло діє сила тяжіння 98 Н. Визначте силу тяжіння, що діє на це тіло на Місяці, де прискорення вільного падіння 1,6 м⁠/⁠с² ${(g = 9{,}8\ \text{м/с}^2)}{.}$</p>
+<ul class="options"><li>А) 1,6 Н</li><li>Б) 16 Н</li><li>В) 0,16 Н</li><li>Г) 160 Н</li></ul>
+</div>
+<details><summary>Відповідь 1</summary><div><p>Б (16 Н).</p></div></details>
+<div class="q">
+<p><strong>2.</strong> (6.10, ЗНО-2018) На якій висоті над поверхнею Землі сила тяжіння, що діє на космонавта масою 81 кг, така сама, як сила тяжіння, що діє на його дружину масою 64 кг на поверхні Землі? Радіус Землі 6400 км.</p>
+<ul class="options"><li>А) 800 км</li><li>Б) 640 км</li><li>В) 8000 км</li><li>Г) 6400 км</li></ul>
+</div>
+<details><summary>Відповідь 2</summary><div><p>А (800 км).</p></div></details>
+<div class="q">
+<p><strong>3.</strong> (7.5) Сила 1 Н розтягує пружину на 1 см. Яку силу потрібно прикласти, щоб розтягнути на 1 см дві такі самі пружини, з'єднані послідовно?</p>
+<ul class="options"><li>А) 4 Н</li><li>Б) 2 Н</li><li>В) 1 Н</li><li>Г) 0,5 Н</li></ul>
+</div>
+<details><summary>Відповідь 3</summary><div><p>Г (0,5 Н).</p></div></details>
+<div class="q">
+<p><strong>4.</strong> (7.18) Ліфт із людиною масою 60 кг рухається вертикально вгору. Модуль прискорення ліфта на початку і в кінці підйому дорівнює 2 м⁠/⁠с². На скільки відрізняється вага людини на початку і в кінці руху?</p>
+<ul class="options"><li>А) 240 Н</li><li>Б) 600 Н</li><li>В) 120 Н</li><li>Г) 1200 Н</li></ul>
+</div>
+<details><summary>Відповідь 4</summary><div><p>А (240 Н).</p></div></details>
+<div class="q">
+<p><strong>5.</strong> (7.23) Водій автомобіля, що рухається зі швидкістю 30 м⁠/⁠с, проїжджаючи верхню точку опуклого мосту, на мить опиняється у стані невагомості. Визначте радіус кривини мосту.</p>
+<ul class="options"><li>А) 60 м</li><li>Б) 70 м</li><li>В) 80 м</li><li>Г) 90 м</li></ul>
+</div>
+<details><summary>Відповідь 5</summary><div><p>Г (90 м).</p></div></details>
+<div class="q">
+<p><strong>6.</strong> (6.18) Визначте прискорення вільного падіння на поверхні Місяця, якщо його радіус у 3,7 разу менший за радіус Землі, а маса у 81 раз менша за масу Землі ${(g_{\text{З}} = 9{,}8\ \text{м/с}^2)}{.}$ Відповідь у м⁠/⁠с², до десятих.</p>
+
+</div>
+<details><summary>Відповідь 6</summary><div><p>≈ 1,7 м⁠/⁠с².</p></div></details>
+<div class="q">
+<p><strong>7.</strong> (6.16) Радіус однієї планети вдвічі більший за радіус іншої, а середні густини планет однакові. У скільки разів перша космічна швидкість на поверхні першої планети більша, ніж на поверхні другої?</p>
+
+</div>
+<details><summary>Відповідь 7</summary><div><p>У 2 рази.</p></div></details>
+<div class="q">
+<p><strong>8.</strong> (7.30) До двох послідовно з'єднаних пружин підвісили тягарець масою 300 г. Загальне видовження пружин 10 см, жорсткість першої пружини 40 Н⁠/⁠м. Визначте жорсткість другої пружини (у Н⁠/⁠м).</p>
+
+</div>
+<details><summary>Відповідь 8</summary><div><p>120 Н⁠/⁠м.</p></div></details>
+<div class="q">
+<p><strong>9.</strong> (7.37) Стартуючи вертикально вгору, ракета рівноприскорено пролетіла 100 м і набула швидкості 100 м⁠/⁠с. Визначте коефіцієнт перевантаження космонавта.</p>
+
+</div>
+<details><summary>Відповідь 9</summary><div><p>${n = 6}{.}$</p></div></details>
+<div class="q">
+<p><strong>10.</strong> (6.26) Визначте відношення маси Сонця до маси Землі, якщо Місяць робить 13 обертів навколо Землі за рік, а відстань від Сонця до Землі в 390 разів більша за відстань від Землі до Місяця. Орбіти вважай коловими.</p>
+
+</div>
+<details><summary>Відповідь 10</summary><div><p>${M_{\text{С}}/M_{\text{З}} \approx 3{,}5\cdot10^5}$ (351 000).</p></div></details>
+</section>
+
+<section class="card">
+<h2><span class="num">14</span>Куди це вписується: концепт-карта</h2>
+<p>Як сьогоднішнє вписується в нашу карту? Прочитай кожну стрілку як речення: «Закон всесвітнього тяжіння <em>біля планети дає</em> силу тяжіння».</p>
+<svg viewBox="0 0 760 490" width="760" height="490" role="img" aria-label="Концепт-карта: від великої ідеї взаємодій і законів Ньютона до гравітації, супутників, сили пружності, ваги і невагомості">
+<defs><marker id="m13c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 L10 5 L0 9 z" fill="#4569AD"/></marker></defs>
+<rect x="230" y="14" width="300" height="50" rx="14" fill="#E679A6"/>
+<text x="380" y="45" font-family="Inter" font-size="17" fill="#081F44" text-anchor="middle">Взаємодії та сили</text>
+<rect x="270" y="110" width="220" height="44" rx="12" fill="#B9C8E6" stroke="#13284A" stroke-width="1.5"/>
+<text x="380" y="138" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">Закони Ньютона (тема 5)</text>
+<rect x="20" y="210" width="250" height="44" rx="12" fill="none" stroke="#13284A" stroke-width="1.5"/>
+<text x="145" y="238" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">Закон всесвітнього тяжіння</text>
+<rect x="490" y="210" width="250" height="44" rx="12" fill="none" stroke="#13284A" stroke-width="1.5"/>
+<text x="615" y="238" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">Сила пружності, <tspan font-style="italic">F</tspan> = <tspan font-style="italic">kx</tspan></text>
+<rect x="20" y="310" width="200" height="44" rx="12" fill="none" stroke="#13284A" stroke-width="1.5"/>
+<text x="120" y="338" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">Сила тяжіння <tspan font-style="italic">mg</tspan></text>
+<rect x="20" y="410" width="200" height="44" rx="12" fill="none" stroke="#13284A" stroke-width="1.5"/>
+<text x="120" y="438" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">Супутник, <tspan font-style="italic">v</tspan><tspan font-size="14" dy="5">I</tspan><tspan dy="-5">, </tspan><tspan font-style="italic">T</tspan></text>
+<rect x="520" y="310" width="220" height="44" rx="12" fill="none" stroke="#13284A" stroke-width="1.5"/>
+<text x="630" y="338" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">Реакція опори <tspan font-style="italic">N</tspan></text>
+<rect x="520" y="410" width="220" height="44" rx="12" fill="none" stroke="#13284A" stroke-width="1.5"/>
+<text x="630" y="438" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">Вага <tspan font-style="italic">P</tspan> = <tspan font-style="italic">m</tspan>(<tspan font-style="italic">g</tspan> − <tspan font-style="italic">a</tspan>)</text>
+<rect x="290" y="410" width="160" height="44" rx="12" fill="#B9C8E6" stroke="#587954" stroke-width="3"/>
+<text x="370" y="438" font-family="Inter" font-size="15" fill="#081F44" text-anchor="middle">Невагомість</text>
+<line x1="380" y1="64" x2="380" y2="106" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="390" y="92" font-family="Inter" font-size="14" fill="#13284A">описують рух</text>
+<line x1="300" y1="154" x2="190" y2="206" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="96" y="182" font-family="Inter" font-size="14" fill="#13284A">гравітаційна сила</text>
+<line x1="460" y1="154" x2="570" y2="206" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="532" y="182" font-family="Inter" font-size="14" fill="#13284A">електромагнітна сила</text>
+<line x1="120" y1="254" x2="120" y2="306" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="130" y="286" font-family="Inter" font-size="14" fill="#13284A">біля планети дає</text>
+<line x1="120" y1="354" x2="120" y2="406" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="130" y="386" font-family="Inter" font-size="14" fill="#13284A">надає доцентрове <tspan font-style="italic">a</tspan></text>
+<line x1="630" y1="254" x2="630" y2="306" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="640" y="286" font-family="Inter" font-size="14" fill="#13284A">з боку опори</text>
+<line x1="630" y1="354" x2="630" y2="406" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="640" y="386" font-family="Inter" font-size="14" fill="#13284A">III закон</text>
+<line x1="220" y1="432" x2="286" y2="432" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="255" y="478" font-family="Inter" font-size="14" fill="#13284A" text-anchor="middle">вільне падіння</text>
+<line x1="516" y1="432" x2="454" y2="432" stroke="#4569AD" stroke-width="2" marker-end="url(#m13c)"/>
+<text x="485" y="478" font-family="Inter" font-size="14" fill="#13284A" text-anchor="middle"><tspan font-style="italic">a</tspan> = <tspan font-style="italic">g</tspan>, <tspan font-style="italic">P</tspan> = 0</text>
+</svg>
+<p>Сьогоднішнє — ще один прояв ідеї <strong>«Взаємодії та сили»</strong>: ми не відкрили нових законів руху, а навчилися підставляти в II закон Ньютона сили конкретної природи. І прояв ідеї <strong>«Ті самі закони діють усюди»</strong>: одна формула описує падіння яблука, політ МКС і обертання подвійних зір. Далі на карті з'явиться ще одна сила — <strong>сила тертя</strong> (тема 8), а рух супутника стане окремим випадком <strong>динаміки руху по колу</strong> (тема 9).</p>
+</section>
+
+<section class="card">
+<h2><span class="num">15</span>Моя рефлексія</h2>
+<h3>1. Чи вдалося?</h3>
+<p>Я хотів(ла) навчитися обчислювати ${g}{,}$ першу космічну швидкість і вагу в новій ситуації. Що з цього вже виходить самостійно? <span class="gap"></span> Що поки виходить лише з підказкою? <span class="gap"></span></p>
+<p>Скільки задач тесту я розв'язав(ла) правильно: <span class="gap"></span> із 15. Скільки задач домашнього завдання: <span class="gap"></span> із 10.</p>
+<h3>2. Плюс — мінус — цікаво</h3>
+<p><strong>Плюс</strong> (яка задача вдалася найкраще): <span class="gap"></span></p>
+<p><strong>Мінус</strong> (де було найважче: геостаціонарна орбіта, пружини, ліфт, обертова станція?): <span class="gap"></span></p>
+<p><strong>Цікаво</strong> (який факт здивував: невагомість при ${g \approx 8{,}6\ \text{м/с}^2}{,}$ доба в 84 хв, ідея Кондратюка?): <span class="gap"></span></p>
+<h3>3. Незакінчені речення</h3>
+<p>Сьогодні я зрозумів(ла), що вага і сила тяжіння відрізняються тим, що <span class="gap"></span></p>
+<p>Найбільше мене зацікавило <span class="gap"></span></p>
+<p>Мені ще варто попрацювати над <span class="gap"></span></p>
+<h3>4. 3-2-1</h3>
+<p>Три нові формули, які я тепер можу пояснити: <span class="gap"></span> <span class="gap"></span> <span class="gap"></span></p>
+<p>Два цікаві факти про супутники чи невагомість: <span class="gap"></span> <span class="gap"></span></p>
+<p>Одне питання, що лишилося: <span class="gap"></span></p>
+<h3>5. Квиток на вихід</h3>
+<p>Автомобіль проїжджає верхню точку опуклого мосту радіусом 40 м. За якої швидкості водій на мить стане невагомим? ${(g = 10\ \text{м/с}^2)}$ Моя відповідь: <span class="gap"></span> м⁠/⁠с.</p>
+<details><summary>Перевір квиток на вихід</summary><div><p>${mg = m\frac{v^2}{R} \Rightarrow v = \sqrt{gR} = \sqrt{400} = 20\ \text{м/с}}$ (72 км⁠/⁠год).</p></div></details>
+<h3>6. Питання-місток до наступного заняття</h3>
+<p>Ти штовхаєш важку шафу, а вона не рухається, хоча сила є. Яка сила її «тримає»? І чому машина на мокрому повороті може вилетіти з дороги, хоча швидкість та сама, що й на сухому? Мої припущення: <span class="gap"></span> <span class="gap"></span></p>
+<p>Відповідь — на наступному занятті, теми 8 «Сили тертя» і 9 «Динаміка рівномірного руху тіла по колу».</p>
+</section>
+
+<footer>© Дарина Проволовська, 2026</footer>
+</main>
+<div class="tools" aria-label="Інструменти">
+<button type="button" class="size" title="Розмір шрифту" aria-label="Збільшити шрифт">A+</button>
+<button type="button" class="print" title="Друк" aria-label="Надрукувати конспект"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></button>
+<button type="button" class="up" title="Вгору" aria-label="Повернутися вгору"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+</div>
+<script>
+(function(){
+  var toc=document.querySelector('.toc');
+  document.querySelectorAll('main .card').forEach(function(s,i){
+    var h=s.querySelector('h2'); if(!h) return;
+    var n=h.querySelector('.num'), num=n?n.textContent.trim():'';
+    s.id=s.id||'r'+(i+1);
+    var a=document.createElement('a'); a.href='#'+s.id;
+    a.textContent=(num?num+' — ':'')+h.textContent.replace(num,'').trim();
+    toc.appendChild(a);
+  });
+  if(toc&&!toc.children.length) toc.remove();
+  var up=document.querySelector('.tools .up');
+  addEventListener('scroll',function(){up.classList.toggle('show',scrollY>400)},{passive:true});
+  up.onclick=function(){scrollTo({top:0,behavior:'smooth'})};
+  document.querySelector('.tools .print').onclick=function(){print()};
+  var sizes=['18px','20px','22px'],k=0,root=document.documentElement;
+  document.querySelector('.tools .size').onclick=function(){
+    k=(k+1)%sizes.length; root.style.setProperty('--fs',sizes[k]);
+    this.textContent=k===sizes.length-1?'A−':'A+';
+    this.setAttribute('aria-label',k===sizes.length-1?'Зменшити шрифт':'Збільшити шрифт');
+  };
+  var closed=[];
+  addEventListener('beforeprint',function(){closed=[].filter.call(document.querySelectorAll('details'),function(d){return !d.open});closed.forEach(function(d){d.open=true})});
+  addEventListener('afterprint',function(){closed.forEach(function(d){d.open=false})});
+})();
+</script>
+</body>
+</html>
